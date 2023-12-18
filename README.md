@@ -1,1 +1,1 @@
-bir_xin_cpu yyds
+bir yyds

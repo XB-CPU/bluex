@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_PC_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_PC" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="455.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="509.201 ns"></ZoomEndTime>
+      <Cursor1Time time="396.400 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="296"></NameColumnWidth>
+      <ValueColumnWidth column_width="90"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="10" />
+   <wvobject fp_name="/tb_PC/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_PC/rst_n" type="logic">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_PC/en" type="logic">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_PC/next_addr_branch" type="array">
+      <obj_property name="ElementShortName">next_addr_branch[15:0]</obj_property>
+      <obj_property name="ObjectShortName">next_addr_branch[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_PC/branch_taken_ex" type="logic">
+      <obj_property name="ElementShortName">branch_taken_ex</obj_property>
+      <obj_property name="ObjectShortName">branch_taken_ex</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_PC/current_addr" type="array">
+      <obj_property name="ElementShortName">current_addr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">current_addr[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_PC/next_addr_in_use" type="array">
+      <obj_property name="ElementShortName">next_addr_in_use[15:0]</obj_property>
+      <obj_property name="ObjectShortName">next_addr_in_use[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_PC/next_addr_output" type="array">
+      <obj_property name="ElementShortName">next_addr_output[15:0]</obj_property>
+      <obj_property name="ObjectShortName">next_addr_output[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_PC/i" type="array">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_PC/PERIOD" type="array">
+      <obj_property name="ElementShortName">PERIOD[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PERIOD[31:0]</obj_property>
+   </wvobject>
+</wave_config>

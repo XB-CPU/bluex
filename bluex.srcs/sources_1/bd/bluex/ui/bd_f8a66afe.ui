@@ -1,0 +1,78 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.44508",
+   "Default View_TopLeft":"-97,551",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0 threadsafe
+#  -string -flagsOSRD
+preplace port port-id_clk -pg 1 -lvl 0 -x -10 -y 340 -defaultsOSRD
+preplace port port-id_rst_n -pg 1 -lvl 0 -x -10 -y 360 -defaultsOSRD
+preplace port port-id_write_mem_en -pg 1 -lvl 7 -x 2830 -y 840 -defaultsOSRD
+preplace port port-id_write_mem_clk -pg 1 -lvl 7 -x 2830 -y 900 -defaultsOSRD
+preplace portBus isc -pg 1 -lvl 0 -x -10 -y 400 -defaultsOSRD
+preplace portBus read_mem_out_inw -pg 1 -lvl 0 -x -10 -y 790 -defaultsOSRD
+preplace portBus current_addr -pg 1 -lvl 7 -x 2830 -y 560 -defaultsOSRD
+preplace portBus write_mem_data -pg 1 -lvl 7 -x 2830 -y 880 -defaultsOSRD
+preplace portBus write_mem_addr -pg 1 -lvl 7 -x 2830 -y 860 -defaultsOSRD
+preplace inst reg_wb_0 -pg 1 -lvl 2 -x 760 -y 740 -defaultsOSRD
+preplace inst redirection_0 -pg 1 -lvl 5 -x 2180 -y 360 -defaultsOSRD
+preplace inst demux_id_0 -pg 1 -lvl 1 -x 250 -y 380 -defaultsOSRD
+preplace inst controller_id_0 -pg 1 -lvl 2 -x 760 -y 340 -defaultsOSRD
+preplace inst aux_id_0 -pg 1 -lvl 3 -x 1190 -y 390 -defaultsOSRD
+preplace inst alu_ex_0 -pg 1 -lvl 4 -x 1670 -y 240 -defaultsOSRD
+preplace inst reg_heap_id_0 -pg 1 -lvl 3 -x 1190 -y 740 -defaultsOSRD
+preplace inst PC_0 -pg 1 -lvl 6 -x 2620 -y 570 -defaultsOSRD
+preplace inst wrapper_mem_0 -pg 1 -lvl 1 -x 250 -y 710 -defaultsOSRD
+preplace netloc PC_0_next_addr_output 1 0 7 50 530 530J 520 NJ 520 1410J 510 1900J 520 2390J 470 2810
+preplace netloc alu_ex_0_branch_addr 1 4 2 1910 220 2410J
+preplace netloc alu_ex_0_branch_jump_flag 1 4 2 2000 210 2420J
+preplace netloc aux_id_0_addr_reg 1 3 1 N 380
+preplace netloc aux_id_0_sext_imm 1 3 1 1340 160n
+preplace netloc clk_0_1 1 0 6 20 550 530 550 1050 550 1420 550 NJ 550 2390J
+preplace netloc controller_id_0_addr_flag 1 2 1 1050 360n
+preplace netloc controller_id_0_alu_src 1 2 2 1040 280 NJ
+preplace netloc controller_id_0_branch 1 2 2 1050 290 1380J
+preplace netloc controller_id_0_memory_to_reg 1 2 2 1030 300 1400J
+preplace netloc controller_id_0_memory_write 1 2 2 1020 260 1440J
+preplace netloc controller_id_0_reg_write 1 2 2 970 270 1410J
+preplace netloc demux_id_0_imm 1 1 2 530 450 1050J
+preplace netloc demux_id_0_pc_next 1 1 3 440J 180 970J 210 1430
+preplace netloc demux_id_0_rd 1 1 2 470 200 950J
+preplace netloc demux_id_0_real_op 1 1 4 460 190 980J 180 1330 20 1980
+preplace netloc demux_id_0_rs 1 1 4 490J 230 1000 480 1380J 470 1930J
+preplace netloc demux_id_0_rt 1 1 4 480 220 1010 500 NJ 500 1940J
+preplace netloc redirection_0_flush 1 3 3 1470 480 1960J 510 2360
+preplace netloc redirection_0_rs_forward 1 3 3 1450 530 NJ 530 2380
+preplace netloc redirection_0_rt_forward 1 3 3 1460 490 1950J 500 2370
+preplace netloc redirection_0_stall 1 0 6 40 560 NJ 560 NJ 560 NJ 560 NJ 560 2400
+preplace netloc reg_heap_id_0_rs 1 3 1 1370 120n
+preplace netloc reg_heap_id_0_rt 1 3 1 1390 140n
+preplace netloc reg_wb_0_write_back_data 1 2 2 990 190 1360J
+preplace netloc reg_wb_0_write_reg_addr 1 2 1 960 740n
+preplace netloc rst_n_0_1 1 0 6 10 570 510 580 1040 580 NJ 580 NJ 580 2430
+preplace netloc alu_ex_0_rd_value 1 0 5 50 540 NJ 540 NJ 540 NJ 540 1880
+preplace netloc alu_ex_0_write_data 1 0 5 30 870 NJ 870 NJ 870 1340J 860 1890
+preplace netloc alu_ex_0_write_reg_addr_out 1 0 5 10 880 NJ 880 NJ 880 1350J 870 1920
+preplace netloc alu_ex_0_memory_write 1 0 5 60 850 540J 530 NJ 530 1440J 520 1870
+preplace netloc alu_ex_0_memory_to_reg 1 0 5 40 860 NJ 860 NJ 860 1330J 850 1910
+preplace netloc alu_ex_0_reg_write 1 0 5 30 10 NJ 10 NJ 10 NJ 10 1990
+preplace netloc wrapper_mem_0_alu_result 1 1 3 500 210 960J 200 NJ
+preplace netloc wrapper_mem_0_read_mem_out 1 1 1 550 740n
+preplace netloc wrapper_mem_0_write_reg_addr 1 1 4 570 910 NJ 910 NJ 910 2000J
+preplace netloc wrapper_mem_0_reg_write 1 1 4 560 570 NJ 570 NJ 570 1970J
+preplace netloc wrapper_mem_0_memory_to_reg 1 1 1 470 650n
+preplace netloc reg_wb_0_reg_write 1 2 1 950 760n
+preplace netloc isc_0_1 1 0 1 NJ 400
+preplace netloc read_mem_out_inw_0_1 1 0 1 NJ 790
+preplace netloc PC_0_current_addr 1 6 1 NJ 560
+preplace netloc wrapper_mem_0_write_mem_en 1 1 6 450J 900 NJ 900 1470J 840 NJ 840 NJ 840 NJ
+preplace netloc wrapper_mem_0_write_mem_clk 1 1 6 440J 890 NJ 890 NJ 890 NJ 890 NJ 890 2810J
+preplace netloc wrapper_mem_0_write_mem_data 1 1 6 550J 620 NJ 620 1360J 880 NJ 880 NJ 880 NJ
+preplace netloc wrapper_mem_0_write_mem_addr 1 1 6 520J 610 NJ 610 NJ 610 NJ 610 2370J 670 2810J
+levelinfo -pg 1 -10 250 760 1190 1670 2180 2620 2830
+pagesize -pg 1 -db -bbox -sgen -230 0 3030 920
+"
+}
+{
+   "da_clkrst_cnt":"9"
+}

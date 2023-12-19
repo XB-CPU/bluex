@@ -1,0 +1,5 @@
+mirl r1, 20
+mil r5, 20h
+add r3, r1, r2
+# because here is actually relative displacement
+jmp -1

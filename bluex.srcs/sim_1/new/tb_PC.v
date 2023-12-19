@@ -1,6 +1,6 @@
 //~ `New testbench
 `timescale  1ns / 1ps
-`include "D://MyWorks//Programs//Verilog//vivado//DSP_sim//DSP_sim.srcs//sources_1//new//global_macro.v"
+`include "..//..//sources_1//new//global_macro.v"
 
 module tb_PC;
 

@@ -137,9 +137,9 @@ module alu_ex (
 	always @(*) begin
 		// error_type = `ERR_NOE;
 		case (alu_op)
-			`ALO_NOP:	begin
-				rd_value = 0; alu_branch_result = 1'b0;
-			end
+			// `ALO_NOP:	begin
+			// 	rd_value = 0; alu_branch_result = 1'b0;
+			// end
 			/* arithmetic */
 			`ALO_ADD:	begin
 				rd_value = rd_add; alu_branch_result = 1'b0;// {carry, rd_value} = rd_add; alu_branch_result = 1'b0;

@@ -1,6 +1,3 @@
-
-#TODO: complete the isc
-
 from argparse import ArgumentParser
 import os
 import sys
@@ -14,7 +11,7 @@ ADR_BIT = 0
 IMM_BIT = 0
 OPC_BIT = 0
 
-version = "23.12.19.1.0"
+version = "23.12.19.2.0"
 
 def show_version():
     return version
@@ -68,10 +65,39 @@ def imm_proc(user_imm:str, f, line_index):
 			imm_type = "bin "
 			imm = int(user_imm, 2)
 	except:
-		ce_print(f"unable to convert the given imm {user_imm} to {imm_type}number, please check it", f, line_index)
+		ce_print(f"unable to convert the given imm {user_imm} to {imm_type}integer, please check it", f, line_index)
 	if imm >= (1 << IMM_BIT):
 		ce_print(f"converted imm is larger than {(1 << IMM_BIT) - 1}, consider reduce it", f, line_index)
 	return (imm & 0xffff)
+
+line_num = 1
+
+def machine_code_print(code:str, cmd_type:str):
+	global line_num
+	res = list(code)
+	op_code = 0
+	if cmd_type == "R":
+		res.insert(32-6, " ")
+		res.insert(32-11, " ")
+		res.insert(32-16, " ")
+		res.insert(32-21, " ")
+		res.insert(32-26, " ")
+		op_code = int("".join(res[31:]), 2)
+	elif cmd_type == "I":
+		res.insert(32-16, " ")
+		res.insert(32-21, " ")
+		res.insert(32-26, " ")
+		op_code = int("".join(res[0:6]), 2)
+		im_code = int("".join(res[19:]), 2)
+		res.append("\t" + str(im_code))
+	elif cmd_type == "J":
+		res.insert(32-26, " ")
+		op_code = int("".join(res[0:6]), 2)
+		ad_code = int("".join(res[17:]), 2)
+		res.append("  \t" + str(ad_code))
+	res.insert(0, str(line_num) + " " +str(op_code) + " ")
+	print("".join(res))
+	line_num += 1
 
 class isc_code:
 	OP_DISP = 26
@@ -174,7 +200,7 @@ def load_macro():
 				OPC_BIT = int(line.split()[2])
 				print(f"OPC BIT:{OPC_BIT}")
 	info_print(f"all isc found:{i} items") # should be 28 in this version
-	print(macro_dict)
+	# print(macro_dict)
 	
 
 def check_cli_arg_correctness():
@@ -191,6 +217,7 @@ def check_cli_arg_correctness():
 			file.close() # this will clear the contents of the original file
 
 def compile():
+	cmd_type = None
 	with open(cli_args.raw_file_name) as f:
 		for (index, line) in enumerate(f.readlines()):
 			line = line.strip()
@@ -200,6 +227,7 @@ def compile():
 				ic = isc_code()
 				line = line.upper().replace(",", "").split()
 				if line[0] in R_set:
+					cmd_type = "R"
 					if line[0] in ("ADD", "SUB", "ORL", "AND", "XOR", "SLL", "SRL", "SRA", "SLS"):
 						if len(line) != 4:
 							ce_print(f"cmd {line[0]} should be followed by 3 reg, but {len(line)} items are given", f, index)
@@ -210,18 +238,55 @@ def compile():
 							try:
 								reg_num = int(reg_num)
 							except:
-								ce_print(f"reg should have a form like \"R7\", but unrecognizable form {reg} are found", f, index)
+								ce_print(f"reg should have a form like \"Rx\" where x is a integer, but unrecognizable form {reg} are found", f, index)
 							if reg_pos == 0:
 								ic.add_rd(reg_num, f, index)
 							elif reg_pos == 1:
 								ic.add_rs(reg_num, f, index)
 							elif reg_pos == 2:
 								ic.add_rt(reg_num, f, index)
-						ic.add_fc(macro_dict[line[0]], f, index)
+					elif line[0] in ("NOT"):
+						if len(line) != 3:
+							ce_print(f"cmd {line[0]} should be followed by 2 reg, but {len(line)} items are given", f, index)
+						for (reg_pos, reg) in enumerate(line[1:]):
+							if not reg.startswith("R"):
+								ce_print(f"expect reg, but \"{reg}\" found", f, index)
+							reg_num = reg[1:]
+							try:
+								reg_num = int(reg_num)
+							except:
+								ce_print(f"reg should have a form like \"Rx\" where x is a integer, but unrecognizable form {reg} are found", f, index)
+							if reg_pos == 0:
+								ic.add_rt(reg_num, f, index)
+							elif reg_pos == 1:
+								ic.add_rs(reg_num, f, index)
+					ic.add_fc(macro_dict[line[0]], f, index)
 				elif line[0] in I_set:
+					cmd_type = "I"
 					if line[0] in ("ADDI", "SUBI", "ORLI", "ANDI", "XORI", "BEQ", "BNE", "SLSI", "LDW", "SVW"):
 						if len(line) != 4:
 							ce_print(f"cmd {line[0]} should be followed by 2 reg and 1 imm, but {len(line)} items are given", f, index)
+						for (rim_pos, rim) in enumerate(line[1:]):
+							if rim_pos == 0:
+								if not rim.startswith("R"):
+									ce_print(f"expect reg, but \"{rim}\" found", f, index)
+								rim_num = rim[1:]
+								try:
+									rim_num = int(rim_num)
+								except:
+									ce_print(f"rim should have a form like \"Rx\" where x is a integer, but unrecognizable form {rim} are found", f, index)
+								ic.add_rt(rim_num, f, index)
+							elif rim_pos == 1:
+								if not rim.startswith("R"):
+									ce_print(f"expect reg, but \"{rim}\" found", f, index)
+								rim_num = rim[1:]
+								try:
+									rim_num = int(rim_num)
+								except:
+									ce_print(f"rim should have a form like \"Rx\" where x is a integer, but unrecognizable form {rim} are found", f, index)
+								ic.add_rs(rim_num, f, index)				
+							elif rim_pos == 2:
+								ic.add_im(imm_proc(rim, f, index), f, index)
 					elif line[0] in ("NOTI", "MIRL", "MIRH"):
 						if len(line) != 3:
 							ce_print(f"cmd {line[0]} should be followed by 1 reg and 1 imm, but {len(line)} items are given", f, index)
@@ -233,12 +298,13 @@ def compile():
 								try:
 									rim_num = int(rim_num)
 								except:
-									ce_print(f"rim should have a form like \"Rx\" where x is a number, but unrecognizable form {rim} are found", f, index)
+									ce_print(f"rim should have a form like \"Rx\" where x is a integer, but unrecognizable form {rim} are found", f, index)
 								ic.add_rt(rim_num, f, index)
 							elif rim_pos == 1:
 								ic.add_im(imm_proc(rim, f, index), f, index)
 					ic.add_op(macro_dict[line[0]], f, index)
 				elif line[0] in J_set:
+					cmd_type = "J"
 					if line[0] in ("JMP"):
 						if len(line) != 2:
 							ce_print(f"cmd {line[0]} should be followed by 1 imm, but {len(line)} items are given", f, index)
@@ -246,12 +312,14 @@ def compile():
 							if imm_pos == 0:
 								ic.add_im(imm_proc(imm, f, index), f, index)
 					ic.add_op(macro_dict[line[0]], f, index)
+				else:
+					ce_print(f"unrecognized cmd:{line[0]}, try correct it", f, index)
 				with open(cli_args.output, "a") as output:
 					output.write(f"{ic.code()}\n")
-				print(ic.code())
+				machine_code_print(ic.code(), cmd_type)
 	
 if __name__ == "__main__":
 	load_macro()
 	check_cli_arg_correctness()
-	print(cli_args.raw_file_name, cli_args.output)
+	print(f"output file:{cli_args.output}")
 	compile()

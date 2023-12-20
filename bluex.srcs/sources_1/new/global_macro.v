@@ -73,3 +73,19 @@
 /** error code **/
 `define ERR_NOE			`ERR_BIT'b00	// no error
 `define ERR_SNS			`ERR_BIT'b01	// shift number surpass range
+
+/*
+R类指令: 2+4+3=9
+    运算            ALO_ADD  ALO_SUB  ALO_SLS(比较) 
+    逻辑运算        ALO_NOT  ALO_ORL  ALO_AND  ALO_XOR  
+    移位运算        ALO_SLL  ALO_SRL  ALO_SRA
+    
+I类指令:
+    运算            ALO_ADDI ALO_SUBI ALO_SLSI(比较)
+    逻辑运算        ALO_NOTI ALO_ORLI ALO_ANDI ALO_XORI 
+    分支            ALO_BEQ  ALO_BNE                        相对寻址
+    访存            ALO_LDW  ALO_SVW                        变址寻址
+    位运算          ALO_MIRL ALO_MIRH
+J类指令:
+    分支            ALO_JMP                                 相对寻址
+*/

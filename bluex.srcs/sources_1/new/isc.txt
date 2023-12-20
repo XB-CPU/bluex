@@ -2,6 +2,6 @@ mirl r1, 20
 mirl r5, 20h
 add r3, r1, r2
 addi r4, r3, 10
-orl r3, r1, r2
+orl r3, r1, r2  r5 
 # because here is actually relative displacement
 jmp -1

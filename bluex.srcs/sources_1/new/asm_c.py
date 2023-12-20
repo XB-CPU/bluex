@@ -11,7 +11,7 @@ ADR_BIT = 0
 IMM_BIT = 0
 OPC_BIT = 0
 
-version = "23.12.19.2.0"
+version = "23.12.20.1.0"
 
 def show_version():
     return version
@@ -20,6 +20,8 @@ cli_parser = ArgumentParser(description='Calculate volume of a cylinder')
 cli_parser.add_argument("raw_file_name", help="the raw file name with its path")
 cli_parser.add_argument("-o", "--output", metavar="'name of output file'", help="output file position")
 cli_parser.add_argument('-v', '--version', action='version', version=show_version(),help='show version')
+cli_parser.add_argument("-p", "--print_code", action="store_false", help="print machine code", default=True)
+cli_parser.add_argument("-V", "--verbose", action="store_false", help="print compile process verbosely", default=True)
 cli_args = cli_parser.parse_args()
 
 macro_dict = dict()
@@ -33,15 +35,17 @@ def note_print(messsage:str):
 def error_print(messsage:str):
 	print(f"\033[0;91merror:\033[0m {messsage}")
 
-def ce_print(mes:str, file=None, line_index:int=None, line_content:str=None):
-    if line_index is None:
-        print(f"\033[0;91mCompile error:\033[0m {mes}.")
-    else:
-        print(f"\033[0;91mCompile error in line {line_index + 1}:\033[0m {mes}.")
-    if file is not None:
-        file.seek(0)
-        print(f"error content:{file.readlines()[line_index]}")
-    sys.exit(1)
+def ce_print(mes:str, file=None, line_index:int=None):
+	if line_index is None:
+		print(f"\033[0;91mCompile error:\033[0m {mes}.")
+	else:
+		print(f"\033[0;91mCompile error\033[0m in line \033[0;91m{line_index + 1}:\033[0m {mes}.")
+	if file is not None:
+		file.seek(0)
+		print(f"error content: \033[0;91m{file.readlines()[line_index]}\033[0m")
+	with open(cli_args.output, "w") as f:
+		f.close()
+	sys.exit(1)
 
 def imm_proc(user_imm:str, f, line_index):
 	hex_flag = False
@@ -189,17 +193,18 @@ def load_macro():
 				i += 1
 			elif line.startswith("`define GPR_ADR"):
 				GPR_ADR = int(line.split()[2])
-				print(f"GPR ADR:{GPR_ADR}")
 			elif line.startswith("`define ADR_BIT"):
 				ADR_BIT = int(line.split()[2])
-				print(f"ADR BIT:{ADR_BIT}")
 			elif line.startswith("`define IMM_BIT"):
 				IMM_BIT = int(line.split()[2])
-				print(f"IMM BIT:{IMM_BIT}")
 			elif line.startswith("`define OPC_BIT"):
 				OPC_BIT = int(line.split()[2])
-				print(f"OPC BIT:{OPC_BIT}")
-	info_print(f"all isc found:{i} items") # should be 28 in this version
+	if cli_args.verbose:
+		info_print(f"GPR ADR:{GPR_ADR}")
+		info_print(f"ADR BIT:{ADR_BIT}")
+		info_print(f"IMM BIT:{IMM_BIT}")
+		info_print(f"OPC BIT:{OPC_BIT}")
+		info_print(f"all isc found:{i} items") # should be 24 in this version
 	# print(macro_dict)
 	
 
@@ -215,6 +220,8 @@ def check_cli_arg_correctness():
 		cli_args.output = f"{main_path}_machine_code.txt"
 		with open(cli_args.output, "w") as file:
 			file.close() # this will clear the contents of the original file
+	if cli_args.verbose:
+		info_print(f"output file:{cli_args.output}")
 
 def compile():
 	cmd_type = None
@@ -230,7 +237,10 @@ def compile():
 					cmd_type = "R"
 					if line[0] in ("ADD", "SUB", "ORL", "AND", "XOR", "SLL", "SRL", "SRA", "SLS"):
 						if len(line) != 4:
-							ce_print(f"cmd {line[0]} should be followed by 3 reg, but {len(line)} items are given", f, index)
+							if line[4].startswith("#") or line[4].startswith("//"):
+								line = line[0:4]
+							else:
+								ce_print(f"cmd {line[0]} should be followed by 3 reg, but {len(line) - 1} items are given", f, index)
 						for (reg_pos, reg) in enumerate(line[1:]):
 							if not reg.startswith("R"):
 								ce_print(f"expect reg, but \"{reg}\" found", f, index)
@@ -247,7 +257,10 @@ def compile():
 								ic.add_rt(reg_num, f, index)
 					elif line[0] in ("NOT"):
 						if len(line) != 3:
-							ce_print(f"cmd {line[0]} should be followed by 2 reg, but {len(line)} items are given", f, index)
+							if line[3].startswith("#") or line[3].startswith("//"):
+								line = line[0:3]
+							else:
+								ce_print(f"cmd {line[0]} should be followed by 2 reg, but {len(line) - 1} items are given", f, index)
 						for (reg_pos, reg) in enumerate(line[1:]):
 							if not reg.startswith("R"):
 								ce_print(f"expect reg, but \"{reg}\" found", f, index)
@@ -265,7 +278,10 @@ def compile():
 					cmd_type = "I"
 					if line[0] in ("ADDI", "SUBI", "ORLI", "ANDI", "XORI", "BEQ", "BNE", "SLSI", "LDW", "SVW"):
 						if len(line) != 4:
-							ce_print(f"cmd {line[0]} should be followed by 2 reg and 1 imm, but {len(line)} items are given", f, index)
+							if line[4].startswith("#") or line[4].startswith("//"):
+								line = line[0:4]
+							else:
+								ce_print(f"cmd {line[0]} should be followed by 2 reg and 1 imm, but {len(line) - 1} items are given", f, index)
 						for (rim_pos, rim) in enumerate(line[1:]):
 							if rim_pos == 0:
 								if not rim.startswith("R"):
@@ -289,7 +305,10 @@ def compile():
 								ic.add_im(imm_proc(rim, f, index), f, index)
 					elif line[0] in ("NOTI", "MIRL", "MIRH"):
 						if len(line) != 3:
-							ce_print(f"cmd {line[0]} should be followed by 1 reg and 1 imm, but {len(line)} items are given", f, index)
+							if line[3].startswith("#") or line[3].startswith("//"):
+								line = line[0:3]
+							else:
+								ce_print(f"cmd {line[0]} should be followed by 1 reg and 1 imm, but {len(line) - 1} items are given", f, index)
 						for (rim_pos, rim) in enumerate(line[1:]):
 							if rim_pos == 0:
 								if not rim.startswith("R"):
@@ -307,7 +326,10 @@ def compile():
 					cmd_type = "J"
 					if line[0] in ("JMP"):
 						if len(line) != 2:
-							ce_print(f"cmd {line[0]} should be followed by 1 imm, but {len(line)} items are given", f, index)
+							if line[2].startswith("#") or line[2].startswith("//"):
+								line = line[0:2]
+							else:
+								ce_print(f"cmd {line[0]} should be followed by 1 imm, but {len(line) - 1} items are given", f, index)
 						for (imm_pos, imm) in enumerate(line[1:]):
 							if imm_pos == 0:
 								ic.add_im(imm_proc(imm, f, index), f, index)
@@ -316,10 +338,10 @@ def compile():
 					ce_print(f"unrecognized cmd:{line[0]}, try correct it", f, index)
 				with open(cli_args.output, "a") as output:
 					output.write(f"{ic.code()}\n")
-				machine_code_print(ic.code(), cmd_type)
+				if cli_args.print_code:
+					machine_code_print(ic.code(), cmd_type)
 	
 if __name__ == "__main__":
 	load_macro()
 	check_cli_arg_correctness()
-	print(f"output file:{cli_args.output}")
 	compile()

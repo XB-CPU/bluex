@@ -2,14 +2,17 @@
 `include ".//global_macro.v"
 
 module alu_ex (
+	/*clk and rst_n signal input*/
 	input									clk,
 	input									rst_n,
+	/*ID data input*/
 	input			[`GPR_BIT - 1 : 0] 		rs_inw,
 	input			[`GPR_BIT - 1 : 0] 		rt_inw,
 	input	signed	[`GPR_BIT - 1 : 0]		imm_inw,
+	/*redirection data input*/
 	input			[`GPR_BIT - 1 : 0] 		write_back_data,
 	input			[`GPR_BIT - 1 : 0] 		alu_result_back,
-
+	/*control signal input*/
 	input			[`OPC_BIT - 1 : 0]		alu_op_inw,
 	input			[1 : 0]					rs_forward_inw,
 	input			[1 : 0]					rt_forward_inw,
@@ -17,17 +20,21 @@ module alu_ex (
 	input									memory_write_inw,
 	input									memory_to_reg_inw,
 	input									reg_write_inw,
-
+	input									branch_isc_flag_inw,		//分支指令标志	
+	/*part of branch adder: PC input*/
 	input			[`ADR_BIT - 1 : 0]		pc_next_inw,
+	/*write target reg address input*/
 	input			[`GPR_ADR - 1 : 0]		write_reg_addr_in_inw,
-	input									branch_isc_flag_inw,
+	
 	// input			[`SFT_BIT - 1 : 0]		shift_num_inw,
-
+	/*ALU data output*/
 	output	reg		[`GPR_BIT - 1 : 0]		rd_value,
 	// output	reg		[`GPR_BIT - 1 : 0]		rc_value,
 	output			[`GPR_BIT - 1 : 0]		write_data,
+	/*branch*/
 	output									branch_jump_flag,
 	output			[`ADR_BIT - 1 : 0]		branch_addr,
+	/*redirection*/
 	output	reg		[`GPR_ADR - 1 : 0]		write_reg_addr_out,
 	output	reg 							memory_write,
 	output	reg								memory_to_reg,
@@ -36,9 +43,9 @@ module alu_ex (
 	// output	reg		[`ERR_BIT - 1 : 0]		error_type,
 	// output	reg		[`ERR_BIT - 1 : 0]		carry
 );
-	reg  			[`GPR_BIT - 1 : 0] 		alu_src_s;
-	reg  			[`GPR_BIT - 1 : 0] 		alu_src_t_tmp;
-	reg  			[`GPR_BIT - 1 : 0] 		alu_src_t;
+	reg  			[`GPR_BIT - 1 : 0] 		alu_src_s;					//ALU源寄存器输入
+	reg  			[`GPR_BIT - 1 : 0] 		alu_src_t_tmp;			
+	reg  			[`GPR_BIT - 1 : 0] 		alu_src_t;					//ALU目的寄存器输入
 
 	reg										alu_branch_result;
 	
@@ -46,9 +53,9 @@ module alu_ex (
 	reg 			[`GPR_BIT - 1 : 0]		rt;
 	reg 			[`GPR_BIT - 1 : 0]		imm;
 	reg 			[`OPC_BIT - 1 : 0]		alu_op;
-	reg 			[1 : 0]					rs_forward;
+	reg 			[1 : 0]					rs_forward;					//输入ALU信号选择
 	reg 			[1 : 0]					rt_forward;
-	reg 									alu_src;
+	reg 									alu_src;					//imm和RT选择
 	// reg 									memory_write;
 	// reg 									memory_to_reg;
 	// reg 									reg_write;

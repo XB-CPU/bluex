@@ -31,4 +31,13 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==bluex_PC_0_
 # IP: bd/bluex/ip/bluex_wrapper_mem_0_0/bluex_wrapper_mem_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==bluex_wrapper_mem_0_0 || ORIG_REF_NAME==bluex_wrapper_mem_0_0} -quiet] -quiet
 
+# IP: bd/bluex/ip/bluex_PS_to_CPU_controller_0_0/bluex_PS_to_CPU_controller_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==bluex_PS_to_CPU_controller_0_0 || ORIG_REF_NAME==bluex_PS_to_CPU_controller_0_0} -quiet] -quiet
+
+# IP: bd/bluex/ip/bluex_util_vector_logic_0_0/bluex_util_vector_logic_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==bluex_util_vector_logic_0_0 || ORIG_REF_NAME==bluex_util_vector_logic_0_0} -quiet] -quiet
+
+# IP: bd/bluex/ip/bluex_util_vector_logic_1_0/bluex_util_vector_logic_1_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==bluex_util_vector_logic_1_0 || ORIG_REF_NAME==bluex_util_vector_logic_1_0} -quiet] -quiet
+
 # XDC: d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/bluex_ooc.xdc

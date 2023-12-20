@@ -70,6 +70,7 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 4
 set_msg_config -id {HDL-1065} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7z020clg400-2
@@ -86,7 +87,7 @@ set_property ip_output_repo d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.cache
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/hdl/bluex_wrapper.v
+read_verilog -library xil_defaultlib D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/hdl/bluex_wrapper.v
 add_files D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/bd/bluex/bluex.bd
 set_property used_in_implementation false [get_files -all d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/bluex_ooc.xdc]
 

@@ -14,7 +14,7 @@ ECHO 处于关闭状态。
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source bluex_wrapper.tcl -notrace
-create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 471.641 ; gain = 185.430
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 471.367 ; gain = 184.906
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Softwares/XILINX/Vivado/2023.2/data/ip'.
@@ -30,50 +30,65 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 2004
+INFO: [Synth 8-7075] Helper process launched with PID 10540
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1344.797 ; gain = 439.684
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1345.156 ; gain = 439.570
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'bluex_wrapper' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/hdl/bluex_wrapper.v:13]
+INFO: [Synth 8-6157] synthesizing module 'bluex_wrapper' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/hdl/bluex_wrapper.v:13]
 INFO: [Synth 8-6157] synthesizing module 'bluex' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:13]
-INFO: [Synth 8-6157] synthesizing module 'bluex_PC_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_PC_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bluex_PC_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_PC_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'bluex_alu_ex_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_alu_ex_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bluex_alu_ex_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_alu_ex_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'bluex_aux_id_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_aux_id_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bluex_aux_id_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_aux_id_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'bluex_controller_id_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_controller_id_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bluex_controller_id_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_controller_id_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'bluex_demux_id_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_demux_id_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bluex_demux_id_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_demux_id_0_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'op' of module 'bluex_demux_id_0_0' is unconnected for instance 'demux_id_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:139]
-WARNING: [Synth 8-7071] port 'shamt' of module 'bluex_demux_id_0_0' is unconnected for instance 'demux_id_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:139]
-WARNING: [Synth 8-7071] port 'rfunct' of module 'bluex_demux_id_0_0' is unconnected for instance 'demux_id_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:139]
-WARNING: [Synth 8-7071] port 'addr' of module 'bluex_demux_id_0_0' is unconnected for instance 'demux_id_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:139]
-WARNING: [Synth 8-7023] instance 'demux_id_0' of module 'bluex_demux_id_0_0' has 15 connections declared, but only 11 given [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:139]
-INFO: [Synth 8-6157] synthesizing module 'bluex_redirection_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_redirection_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bluex_redirection_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_redirection_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'bluex_reg_heap_id_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_reg_heap_id_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bluex_reg_heap_id_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_reg_heap_id_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'bluex_reg_wb_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_reg_wb_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bluex_reg_wb_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_reg_wb_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'bluex_wrapper_mem_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_wrapper_mem_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bluex_wrapper_mem_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-18580-DESKTOP-50PL36L/realtime/bluex_wrapper_mem_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bluex_PC_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_PC_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_PC_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_PC_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bluex_PS_to_CPU_controller_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_PS_to_CPU_controller_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_PS_to_CPU_controller_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_PS_to_CPU_controller_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'S_AXI_AWREADY' of module 'bluex_PS_to_CPU_controller_0_0' is unconnected for instance 'PS_to_CPU_controller_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:102]
+WARNING: [Synth 8-7071] port 'S_AXI_WREADY' of module 'bluex_PS_to_CPU_controller_0_0' is unconnected for instance 'PS_to_CPU_controller_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:102]
+WARNING: [Synth 8-7071] port 'S_AXI_BRESP' of module 'bluex_PS_to_CPU_controller_0_0' is unconnected for instance 'PS_to_CPU_controller_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:102]
+WARNING: [Synth 8-7071] port 'S_AXI_BVALID' of module 'bluex_PS_to_CPU_controller_0_0' is unconnected for instance 'PS_to_CPU_controller_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:102]
+WARNING: [Synth 8-7071] port 'S_AXI_ARREADY' of module 'bluex_PS_to_CPU_controller_0_0' is unconnected for instance 'PS_to_CPU_controller_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:102]
+WARNING: [Synth 8-7071] port 'S_AXI_RDATA' of module 'bluex_PS_to_CPU_controller_0_0' is unconnected for instance 'PS_to_CPU_controller_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:102]
+WARNING: [Synth 8-7071] port 'S_AXI_RRESP' of module 'bluex_PS_to_CPU_controller_0_0' is unconnected for instance 'PS_to_CPU_controller_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:102]
+WARNING: [Synth 8-7071] port 'S_AXI_RVALID' of module 'bluex_PS_to_CPU_controller_0_0' is unconnected for instance 'PS_to_CPU_controller_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:102]
+WARNING: [Synth 8-7023] instance 'PS_to_CPU_controller_0' of module 'bluex_PS_to_CPU_controller_0_0' has 24 connections declared, but only 16 given [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:102]
+INFO: [Synth 8-6157] synthesizing module 'bluex_alu_ex_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_alu_ex_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_alu_ex_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_alu_ex_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bluex_aux_id_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_aux_id_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_aux_id_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_aux_id_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bluex_controller_id_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_controller_id_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_controller_id_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_controller_id_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bluex_demux_id_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_demux_id_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_demux_id_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_demux_id_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'op' of module 'bluex_demux_id_0_0' is unconnected for instance 'demux_id_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:160]
+WARNING: [Synth 8-7071] port 'shamt' of module 'bluex_demux_id_0_0' is unconnected for instance 'demux_id_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:160]
+WARNING: [Synth 8-7071] port 'rfunct' of module 'bluex_demux_id_0_0' is unconnected for instance 'demux_id_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:160]
+WARNING: [Synth 8-7071] port 'addr' of module 'bluex_demux_id_0_0' is unconnected for instance 'demux_id_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:160]
+WARNING: [Synth 8-7023] instance 'demux_id_0' of module 'bluex_demux_id_0_0' has 15 connections declared, but only 11 given [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:160]
+INFO: [Synth 8-6157] synthesizing module 'bluex_redirection_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_redirection_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_redirection_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_redirection_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bluex_reg_heap_id_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_reg_heap_id_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_reg_heap_id_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_reg_heap_id_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bluex_reg_wb_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_reg_wb_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_reg_wb_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_reg_wb_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bluex_util_vector_logic_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_util_vector_logic_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_util_vector_logic_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_util_vector_logic_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bluex_util_vector_logic_1_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_util_vector_logic_1_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_util_vector_logic_1_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_util_vector_logic_1_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bluex_wrapper_mem_0_0' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_wrapper_mem_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_wrapper_mem_0_0' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/.Xil/Vivado-22152-DESKTOP-50PL36L/realtime/bluex_wrapper_mem_0_0_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'bluex' (0#1) [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/synth/bluex.v:13]
-INFO: [Synth 8-6155] done synthesizing module 'bluex_wrapper' (0#1) [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/hdl/bluex_wrapper.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'bluex_wrapper' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/hdl/bluex_wrapper.v:13]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1451.918 ; gain = 546.805
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1452.195 ; gain = 546.609
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1451.918 ; gain = 546.805
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1452.195 ; gain = 546.609
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1451.918 ; gain = 546.805
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1452.195 ; gain = 546.609
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1451.918 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1452.195 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -96,27 +111,33 @@ Parsing XDC File [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/b
 Finished Parsing XDC File [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_PC_0_0/bluex_PC_0_0/bluex_PC_0_0_in_context.xdc] for cell 'bluex_i/PC_0'
 Parsing XDC File [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_wrapper_mem_0_0/bluex_wrapper_mem_0_0/bluex_wrapper_mem_0_0_in_context.xdc] for cell 'bluex_i/wrapper_mem_0'
 Finished Parsing XDC File [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_wrapper_mem_0_0/bluex_wrapper_mem_0_0/bluex_wrapper_mem_0_0_in_context.xdc] for cell 'bluex_i/wrapper_mem_0'
+Parsing XDC File [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_PS_to_CPU_controller_0_0/bluex_PS_to_CPU_controller_0_0/bluex_PS_to_CPU_controller_0_0_in_context.xdc] for cell 'bluex_i/PS_to_CPU_controller_0'
+Finished Parsing XDC File [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_PS_to_CPU_controller_0_0/bluex_PS_to_CPU_controller_0_0/bluex_PS_to_CPU_controller_0_0_in_context.xdc] for cell 'bluex_i/PS_to_CPU_controller_0'
+Parsing XDC File [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_0/bluex_util_vector_logic_0_0/bluex_util_vector_logic_0_0_in_context.xdc] for cell 'bluex_i/util_vector_logic_0'
+Finished Parsing XDC File [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_0/bluex_util_vector_logic_0_0/bluex_util_vector_logic_0_0_in_context.xdc] for cell 'bluex_i/util_vector_logic_0'
+Parsing XDC File [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_0/bluex_util_vector_logic_1_0/bluex_util_vector_logic_1_0_in_context.xdc] for cell 'bluex_i/util_vector_logic_1'
+Finished Parsing XDC File [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_0/bluex_util_vector_logic_1_0/bluex_util_vector_logic_1_0_in_context.xdc] for cell 'bluex_i/util_vector_logic_1'
 Parsing XDC File [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1452.543 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1463.449 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 系统找不到指定的路径。
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1452.543 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1463.449 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1463.449 ; gain = 557.863
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1463.449 ; gain = 557.863
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -131,11 +152,14 @@ Applied set_property KEEP_HIERARCHY = SOFT for bluex_i/alu_ex_0. (constraint fil
 Applied set_property KEEP_HIERARCHY = SOFT for bluex_i/reg_heap_id_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for bluex_i/PC_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for bluex_i/wrapper_mem_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for bluex_i/PS_to_CPU_controller_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for bluex_i/util_vector_logic_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for bluex_i/util_vector_logic_1. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1463.449 ; gain = 557.863
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1463.449 ; gain = 557.863
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -158,25 +182,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1463.449 ; gain = 557.863
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1463.449 ; gain = 557.863
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1463.449 ; gain = 557.863
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 1463.449 ; gain = 557.863
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -194,94 +218,100 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1467.141 ; gain = 561.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1467.141 ; gain = 561.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1467.141 ; gain = 561.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1467.141 ; gain = 561.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1467.141 ; gain = 561.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1467.141 ; gain = 561.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 Report BlackBoxes: 
-+------+------------------------+----------+
-|      |BlackBox name           |Instances |
-+------+------------------------+----------+
-|1     |bluex_PC_0_0            |         1|
-|2     |bluex_alu_ex_0_0        |         1|
-|3     |bluex_aux_id_0_0        |         1|
-|4     |bluex_controller_id_0_0 |         1|
-|5     |bluex_demux_id_0_0      |         1|
-|6     |bluex_redirection_0_0   |         1|
-|7     |bluex_reg_heap_id_0_0   |         1|
-|8     |bluex_reg_wb_0_0        |         1|
-|9     |bluex_wrapper_mem_0_0   |         1|
-+------+------------------------+----------+
++------+-------------------------------+----------+
+|      |BlackBox name                  |Instances |
++------+-------------------------------+----------+
+|1     |bluex_PC_0_0                   |         1|
+|2     |bluex_PS_to_CPU_controller_0_0 |         1|
+|3     |bluex_alu_ex_0_0               |         1|
+|4     |bluex_aux_id_0_0               |         1|
+|5     |bluex_controller_id_0_0        |         1|
+|6     |bluex_demux_id_0_0             |         1|
+|7     |bluex_redirection_0_0          |         1|
+|8     |bluex_reg_heap_id_0_0          |         1|
+|9     |bluex_reg_wb_0_0               |         1|
+|10    |bluex_util_vector_logic_0_0    |         1|
+|11    |bluex_util_vector_logic_1_0    |         1|
+|12    |bluex_wrapper_mem_0_0          |         1|
++------+-------------------------------+----------+
 
 Report Cell Usage: 
-+------+----------------------+------+
-|      |Cell                  |Count |
-+------+----------------------+------+
-|1     |bluex_PC_0            |     1|
-|2     |bluex_alu_ex_0        |     1|
-|3     |bluex_aux_id_0        |     1|
-|4     |bluex_controller_id_0 |     1|
-|5     |bluex_demux_id_0      |     1|
-|6     |bluex_redirection_0   |     1|
-|7     |bluex_reg_heap_id_0   |     1|
-|8     |bluex_reg_wb_0        |     1|
-|9     |bluex_wrapper_mem_0   |     1|
-|10    |IBUF                  |    66|
-|11    |OBUF                  |    66|
-+------+----------------------+------+
++------+-----------------------------+------+
+|      |Cell                         |Count |
++------+-----------------------------+------+
+|1     |bluex_PC_0                   |     1|
+|2     |bluex_PS_to_CPU_controller_0 |     1|
+|3     |bluex_alu_ex_0               |     1|
+|4     |bluex_aux_id_0               |     1|
+|5     |bluex_controller_id_0        |     1|
+|6     |bluex_demux_id_0             |     1|
+|7     |bluex_redirection_0          |     1|
+|8     |bluex_reg_heap_id_0          |     1|
+|9     |bluex_reg_wb_0               |     1|
+|10    |bluex_util_vector_logic_0    |     1|
+|11    |bluex_util_vector_logic_1    |     1|
+|12    |bluex_wrapper_mem_0          |     1|
+|13    |IBUF                         |    66|
+|14    |OBUF                         |    51|
++------+-----------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1467.141 ; gain = 561.555
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:21 . Memory (MB): peak = 1452.543 ; gain = 546.805
-Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1452.543 ; gain = 547.430
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:25 . Memory (MB): peak = 1467.141 ; gain = 550.301
+Synthesis Optimization Complete : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1467.141 ; gain = 561.555
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1460.387 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1479.211 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1468.004 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1482.859 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 系统找不到指定的路径。
-Synth Design complete | Checksum: b404c6fa
+Synth Design complete | Checksum: d0326b2c
 INFO: [Common 17-83] Releasing license: Synthesis
-43 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
+49 Infos, 15 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 1468.004 ; gain = 988.359
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1468.004 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:33 . Memory (MB): peak = 1482.859 ; gain = 997.512
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1482.859 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/synth_1/bluex_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file bluex_wrapper_utilization_synth.rpt -pb bluex_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Dec 18 14:34:49 2023...
+INFO: [Common 17-206] Exiting Vivado at Wed Dec 20 23:29:47 2023...

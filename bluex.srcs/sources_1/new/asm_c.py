@@ -273,6 +273,8 @@ def compile():
 								ic.add_rt(reg_num, f, index)
 							elif reg_pos == 1:
 								ic.add_rs(reg_num, f, index)
+					else:
+						ce_print(f"unsupported cmd {line[0]} in {cmd_type} instruction set. Please contact compiler author for this problem", f, index)
 					ic.add_fc(macro_dict[line[0]], f, index)
 				elif line[0] in I_set:
 					cmd_type = "I"
@@ -321,6 +323,8 @@ def compile():
 								ic.add_rt(rim_num, f, index)
 							elif rim_pos == 1:
 								ic.add_im(imm_proc(rim, f, index), f, index)
+					else:
+						ce_print(f"unsupported cmd {line[0]} in {cmd_type} instruction set. Please contact compiler author for this problem", f, index)
 					ic.add_op(macro_dict[line[0]], f, index)
 				elif line[0] in J_set:
 					cmd_type = "J"
@@ -333,6 +337,8 @@ def compile():
 						for (imm_pos, imm) in enumerate(line[1:]):
 							if imm_pos == 0:
 								ic.add_im(imm_proc(imm, f, index), f, index)
+					else:
+						ce_print(f"unsupported cmd {line[0]} in {cmd_type} instruction set. Please contact compiler author for this problem", f, index)
 					ic.add_op(macro_dict[line[0]], f, index)
 				else:
 					ce_print(f"unrecognized cmd:{line[0]}, try correct it", f, index)

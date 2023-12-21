@@ -89,10 +89,9 @@ set_property ip_output_repo d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.cache
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib {
-  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/global_macro.v
-  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/demux_id.v
-}
+read_verilog D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/global_macro.v
+set_property file_type "Verilog Header" [get_files D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/global_macro.v]
+read_verilog -library xil_defaultlib D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/demux_id.v
 read_ip -quiet D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/bd/bluex/ip/bluex_demux_id_0_0/bluex_demux_id_0_0.xci
 
 OPTRACE "Adding files" END { }

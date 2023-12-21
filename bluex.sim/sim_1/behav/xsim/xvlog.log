@@ -1,4 +1,46 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/DSP_sim/DSP_sim.srcs/sources_1/new/PC.v" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/reg_wb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module reg_wb
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/redirection.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module redirection
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/demux_id.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module demux_id
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/controller_id.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module controller_id
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/aux_id.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module aux_id
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/alu_ex.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu_ex
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/reg_heap_id.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module reg_heap_id
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/PC.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module PC
-INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sim_1/new/tb_PC.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module tb_PC
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/wrapper_mem.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module wrapper_mem
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_reg_wb_0_0/sim/bluex_reg_wb_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_reg_wb_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_redirection_0_0/sim/bluex_redirection_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_redirection_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_demux_id_0_0/sim/bluex_demux_id_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_demux_id_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_controller_id_0_0/sim/bluex_controller_id_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_controller_id_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_aux_id_0_0/sim/bluex_aux_id_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_aux_id_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_alu_ex_0_0/sim/bluex_alu_ex_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_alu_ex_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_reg_heap_id_0_0/sim/bluex_reg_heap_id_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_reg_heap_id_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_PC_0_0/sim/bluex_PC_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_PC_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_wrapper_mem_0_0/sim/bluex_wrapper_mem_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_wrapper_mem_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_0/sim/bluex_util_vector_logic_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_util_vector_logic_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_0/sim/bluex_util_vector_logic_1_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_util_vector_logic_1_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/sim/bluex.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/hdl/bluex_wrapper.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_wrapper
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sim_1/new/tb_ROM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_ROM

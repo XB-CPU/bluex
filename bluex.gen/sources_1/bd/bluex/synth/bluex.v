@@ -2,7 +2,7 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-//Date        : Wed Dec 20 23:29:00 2023
+//Date        : Thu Dec 21 22:40:09 2023
 //Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 //Command     : generate_target bluex.bd
 //Design      : bluex
@@ -10,10 +10,11 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "bluex,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bluex,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=12,numReposBlks=12,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=10,numPkgbdBlks=0,bdsource=USER,da_clkrst_cnt=9,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "bluex.hwdef" *) 
+(* CORE_GENERATION_INFO = "bluex,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bluex,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=11,numReposBlks=11,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=9,numPkgbdBlks=0,bdsource=USER,da_clkrst_cnt=9,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "bluex.hwdef" *) 
 module bluex
-   (CPU_done_0,
-    clk,
+   (clk,
+    current_addr_0,
+    enable_CPU,
     isc,
     read_mem_out_inw,
     rst_n,
@@ -21,8 +22,9 @@ module bluex
     write_mem_clk,
     write_mem_data,
     write_mem_en);
-  output CPU_done_0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_RESET rst_n, CLK_DOMAIN bluex_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input clk;
+  output [15:0]current_addr_0;
+  input [0:0]enable_CPU;
   input [31:0]isc;
   input [31:0]read_mem_out_inw;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RST_N RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RST_N, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input rst_n;
@@ -31,10 +33,9 @@ module bluex
   output [31:0]write_mem_data;
   output write_mem_en;
 
+  wire [0:0]Op1_0_1;
   wire [15:0]PC_0_current_addr;
   wire [15:0]PC_0_next_addr_output;
-  wire PS_to_CPU_controller_0_CPU_done;
-  wire PS_to_CPU_controller_0_enable_CPU;
   wire [15:0]alu_ex_0_branch_addr;
   wire alu_ex_0_branch_jump_flag;
   wire alu_ex_0_memory_to_reg;
@@ -82,8 +83,9 @@ module bluex
   wire wrapper_mem_0_write_mem_en;
   wire [4:0]wrapper_mem_0_write_reg_addr;
 
-  assign CPU_done_0 = PS_to_CPU_controller_0_CPU_done;
+  assign Op1_0_1 = enable_CPU[0];
   assign clk_0_1 = clk;
+  assign current_addr_0[15:0] = PC_0_current_addr;
   assign isc_0_1 = isc[31:0];
   assign read_mem_out_inw_0_1 = read_mem_out_inw[31:0];
   assign rst_n_0_1 = rst_n;
@@ -99,23 +101,6 @@ module bluex
         .next_addr_branch(alu_ex_0_branch_addr),
         .next_addr_output(PC_0_next_addr_output),
         .rst_n(rst_n_0_1));
-  bluex_PS_to_CPU_controller_0_0 PS_to_CPU_controller_0
-       (.CPU_done(PS_to_CPU_controller_0_CPU_done),
-        .PC_cnt(PC_0_current_addr),
-        .S_AXI_ACLK(clk_0_1),
-        .S_AXI_ARADDR({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_ARESETN(rst_n_0_1),
-        .S_AXI_ARPROT({1'b0,1'b0,1'b0}),
-        .S_AXI_ARVALID(1'b0),
-        .S_AXI_AWADDR({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_AWPROT({1'b0,1'b0,1'b0}),
-        .S_AXI_AWVALID(1'b0),
-        .S_AXI_BREADY(1'b0),
-        .S_AXI_RREADY(1'b0),
-        .S_AXI_WDATA({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_WSTRB({1'b1,1'b1,1'b1,1'b1}),
-        .S_AXI_WVALID(1'b0),
-        .enable_CPU(PS_to_CPU_controller_0_enable_CPU));
   bluex_alu_ex_0_0 alu_ex_0
        (.alu_op_inw(demux_id_0_real_op),
         .alu_result_back(wrapper_mem_0_alu_result),
@@ -167,7 +152,7 @@ module bluex
         .rd(demux_id_0_rd),
         .real_op(demux_id_0_real_op),
         .rs(demux_id_0_rs),
-        .rst_n(rst_n_0_1),
+        .rst_n(alu_ex_0_branch_jump_flag),
         .rt(demux_id_0_rt));
   bluex_redirection_0_0 redirection_0
        (.branch_taken_ex(alu_ex_0_branch_jump_flag),
@@ -205,7 +190,7 @@ module bluex
         .write_reg_addr(reg_wb_0_write_reg_addr),
         .write_reg_addr_inw(wrapper_mem_0_write_reg_addr));
   bluex_util_vector_logic_0_0 util_vector_logic_0
-       (.Op1(PS_to_CPU_controller_0_enable_CPU),
+       (.Op1(Op1_0_1),
         .Res(util_vector_logic_0_Res));
   bluex_util_vector_logic_1_0 util_vector_logic_1
        (.Op1(redirection_0_stall),

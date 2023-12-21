@@ -94,8 +94,8 @@ module alu_ex (
 		endcase
 	end
 
-	always @(posedge clk or negedge rst_n) begin
-		if (!rst_n) begin
+	always @(posedge clk or posedge rst_n) begin
+		if (rst_n) begin
 			write_reg_addr_out <= {(`GPR_ADR){1'b0}};
 		end
 		else begin
@@ -103,8 +103,8 @@ module alu_ex (
 		end
 	end
 
-	always @(posedge clk or negedge rst_n) begin
-		if (!rst_n) begin
+	always @(posedge clk or posedge rst_n) begin
+		if (rst_n) begin
 			rs <= 0;
 			rt <= 0;
 			imm <= 0;

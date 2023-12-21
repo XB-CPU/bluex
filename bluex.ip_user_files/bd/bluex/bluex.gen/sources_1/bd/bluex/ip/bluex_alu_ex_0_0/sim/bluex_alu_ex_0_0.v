@@ -69,9 +69,9 @@ module bluex_alu_ex_0_0 (
   memory_write_inw,
   memory_to_reg_inw,
   reg_write_inw,
+  branch_isc_flag_inw,
   pc_next_inw,
   write_reg_addr_in_inw,
-  branch_isc_flag_inw,
   rd_value,
   write_data,
   branch_jump_flag,
@@ -79,8 +79,7 @@ module bluex_alu_ex_0_0 (
   write_reg_addr_out,
   memory_write,
   memory_to_reg,
-  reg_write,
-  carry
+  reg_write
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *)
@@ -101,9 +100,9 @@ input wire alu_src_inw;
 input wire memory_write_inw;
 input wire memory_to_reg_inw;
 input wire reg_write_inw;
+input wire branch_isc_flag_inw;
 input wire [15 : 0] pc_next_inw;
 input wire [4 : 0] write_reg_addr_in_inw;
-input wire branch_isc_flag_inw;
 output wire [31 : 0] rd_value;
 output wire [31 : 0] write_data;
 output wire branch_jump_flag;
@@ -112,7 +111,6 @@ output wire [4 : 0] write_reg_addr_out;
 output wire memory_write;
 output wire memory_to_reg;
 output wire reg_write;
-output wire [1 : 0] carry;
 
   alu_ex inst (
     .clk(clk),
@@ -129,9 +127,9 @@ output wire [1 : 0] carry;
     .memory_write_inw(memory_write_inw),
     .memory_to_reg_inw(memory_to_reg_inw),
     .reg_write_inw(reg_write_inw),
+    .branch_isc_flag_inw(branch_isc_flag_inw),
     .pc_next_inw(pc_next_inw),
     .write_reg_addr_in_inw(write_reg_addr_in_inw),
-    .branch_isc_flag_inw(branch_isc_flag_inw),
     .rd_value(rd_value),
     .write_data(write_data),
     .branch_jump_flag(branch_jump_flag),
@@ -139,7 +137,6 @@ output wire [1 : 0] carry;
     .write_reg_addr_out(write_reg_addr_out),
     .memory_write(memory_write),
     .memory_to_reg(memory_to_reg),
-    .reg_write(reg_write),
-    .carry(carry)
+    .reg_write(reg_write)
   );
 endmodule

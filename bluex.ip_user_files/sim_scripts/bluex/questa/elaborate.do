@@ -1,1 +1,1 @@
-vopt -l elaborate.log +acc=npr -suppress 10016  -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -work xil_defaultlib xil_defaultlib.bluex xil_defaultlib.glbl -o bluex_opt
+vopt -l elaborate.log +acc=npr -suppress 10016  -L xil_defaultlib -L util_vector_logic_v2_0_3 -L unisims_ver -L unimacro_ver -L secureip -work xil_defaultlib xil_defaultlib.bluex xil_defaultlib.glbl -o bluex_opt

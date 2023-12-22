@@ -58,7 +58,7 @@
 /* compare */
 // set if little signed
 `define ALO_SLS			6'd1			//R R[rd]=(R[rs]<R[rt]) ? 1 : 0
-`define ALO_SLSI		6'd0			//I R[rt]=(R[rs]<Imm) ? 1 : 0
+`define ALO_SLSI		6'd40			//I R[rt]=(R[rs]<Imm) ? 1 : 0
 /* load/save */
 `define ALO_LDW			6'd20			//I R[rt]=M[R[rs]+Imm]
 `define ALO_SVW			6'd21			//I M[R[rs]+Imm]=R[rt]
@@ -75,17 +75,17 @@
 `define ERR_SNS			`ERR_BIT'b01	// shift number surpass range
 
 /*
-RÀàÖ¸Áî: 2+4+3=9
-    ÔËËã            ALO_ADD  ALO_SUB  ALO_SLS(±È½Ï) 
-    Âß¼­ÔËËã        ALO_NOT  ALO_ORL  ALO_AND  ALO_XOR  
-    ÒÆÎ»ÔËËã        ALO_SLL  ALO_SRL  ALO_SRA
+Rï¿½ï¿½Ö¸ï¿½ï¿½: 2+4+3=9
+    ï¿½ï¿½ï¿½ï¿½            ALO_ADD  ALO_SUB  ALO_SLS(ï¿½È½ï¿½) 
+    ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½        ALO_NOT  ALO_ORL  ALO_AND  ALO_XOR  
+    ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½        ALO_SLL  ALO_SRL  ALO_SRA
     
-IÀàÖ¸Áî:
-    ÔËËã            ALO_ADDI ALO_SUBI ALO_SLSI(±È½Ï)
-    Âß¼­ÔËËã        ALO_NOTI ALO_ORLI ALO_ANDI ALO_XORI 
-    ·ÖÖ§            ALO_BEQ  ALO_BNE                        Ïà¶ÔÑ°Ö·
-    ·Ã´æ            ALO_LDW  ALO_SVW                        ±äÖ·Ñ°Ö·
-    Î»ÔËËã          ALO_MIRL ALO_MIRH
-JÀàÖ¸Áî:
-    ·ÖÖ§            ALO_JMP                                 Ïà¶ÔÑ°Ö·
+Iï¿½ï¿½Ö¸ï¿½ï¿½:
+    ï¿½ï¿½ï¿½ï¿½            ALO_ADDI ALO_SUBI ALO_SLSI(ï¿½È½ï¿½)
+    ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½        ALO_NOTI ALO_ORLI ALO_ANDI ALO_XORI 
+    ï¿½ï¿½Ö§            ALO_BEQ  ALO_BNE                        ï¿½ï¿½ï¿½Ñ°Ö·
+    ï¿½Ã´ï¿½            ALO_LDW  ALO_SVW                        ï¿½ï¿½Ö·Ñ°Ö·
+    Î»ï¿½ï¿½ï¿½ï¿½          ALO_MIRL ALO_MIRH
+Jï¿½ï¿½Ö¸ï¿½ï¿½:
+    ï¿½ï¿½Ö§            ALO_JMP                                 ï¿½ï¿½ï¿½Ñ°Ö·
 */

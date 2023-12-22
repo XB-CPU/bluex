@@ -220,15 +220,13 @@ def check_cli_arg_correctness():
 		cli_args.output = f"{main_path}_machine_code.txt"
 		with open(cli_args.output, "w") as file:
 			file.close() # this will clear the contents of the original file
-	if cli_args.verbose:
-		info_print(f"output file:{cli_args.output}")
 
 def compile():
 	cmd_type = None
 	with open(cli_args.raw_file_name) as f:
 		for (index, line) in enumerate(f.readlines()):
 			line = line.strip()
-			if line.startswith("#") or line.startswith("//"):
+			if line.startswith("#") or line.startswith("//") or line == "":
 				continue
 			else:
 				ic = isc_code()
@@ -346,8 +344,11 @@ def compile():
 					output.write(f"{ic.code()}\n")
 				if cli_args.print_code:
 					machine_code_print(ic.code(), cmd_type)
+	if cli_args.verbose:
+		info_print(f"output file:{cli_args.output}")
 	
 if __name__ == "__main__":
 	load_macro()
 	check_cli_arg_correctness()
 	compile()
+# python .\asm_c.py .\isc.txt

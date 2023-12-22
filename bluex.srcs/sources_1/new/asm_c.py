@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 import os
 import sys
+from typing import List
 
 R_set = set()
 I_set = set()
@@ -10,6 +11,8 @@ GPR_ADR = 0
 ADR_BIT = 0
 IMM_BIT = 0
 OPC_BIT = 0
+
+isc_code_list = []
 
 version = "23.12.22.1.0"
 
@@ -233,8 +236,55 @@ def check_cli_arg_correctness():
 		with open(cli_args.output, "w") as file:
 			file.close() # this will clear the contents of the original file
 
+class seg_symbol:
+	def __init__(self, symb:str, dec_line:int = None, use_line:int = None) -> None:
+		self.symbol = symb
+		self.existence = "unknown"
+		if dec_line is not None:
+			self.existence = "declaration"
+			self.dec_line = dec_line
+		if use_line is not None:
+			if self.existence == "declaration":
+				self.existence = "checked"
+			else:
+				self.existence = "use"
+			self.use_line_list = [use_line]
+		assert (self.existence == "use" or self.existence == "declaration"), "existence unknown"
+
+class seg_symbol_container:
+	def __init__(self, f) -> None:
+		self.container:List[seg_symbol] = []
+		self.f = f
+		self.code_line_dict = {}
+
+	# def check_symb(self, symb:str):
+
+
+	def try_dec_symb(self, symb:str, index:int=None):
+		for ss in self.container:
+			if ss.symbol == symb:
+				if (ss.existence == "checked" or ss.existence == "declaration"):
+					ce_print(f"seg symbol {symb} already declared in line {ss.dec_line}", self.f, index)
+				elif ss.existence == "use":
+					ss.existence = "checked"
+					ss.dec_line = index
+					return
+				elif ss.existence == "known":
+					assert False, "known error"
+		new_ss = seg_symbol(symb, dec_line=index)
+		self.container.append(new_ss)
+
+	def try_use_symb(self, symb:str, index:int=None):
+		for ss in self.container:
+			if ss.symbol == symb:
+				if ss.existence == "declaration":
+					ss.existence = "checked"
+					ss.use_line_list.append(index)
+					return
+		new_ss = seg_symbol(symb, use_line=index)
+		self.container.append(new_ss)
+
 def compile():
-	cmd_type = None
 	try:
 		with open(cli_args.raw_file_name, errors="strict") as f:
 			f.close()
@@ -243,7 +293,10 @@ def compile():
 			warning_print(f'read "{cli_args.raw_file_name}" using "ignore" mode.')
 		else:
 			ce_print(f'"{cli_args.raw_file_name}" has unrecognizable encoding! Abort.')
-	with open(cli_args.raw_file_name) as f:
+	cmd_type = None
+	last_ass_line = 0
+	with open(cli_args.raw_file_name, errors="ignore") as f:
+		seg_symbol_list = seg_symbol_container(f=f)
 		for (index, line) in enumerate(f.readlines()):
 			line = line.strip()
 			if line.startswith("#") or line.startswith("//") or line == "":
@@ -251,6 +304,11 @@ def compile():
 			else:
 				ic = isc_code()
 				line = line.upper().replace(",", "").split()
+				if len(line) == 1 and line.endswith(":"):
+					symbol = line[0][:-1]
+					print(symbol)
+					seg_symbol_list.try_dec_symb(symbol, index)
+					continue
 				if line[0] in R_set:
 					cmd_type = "R"
 					if line[0] in ("ADD", "SUB", "ORL", "AND", "XOR", "SLL", "SRL", "SRA", "SLS"):
@@ -296,7 +354,7 @@ def compile():
 					ic.add_fc(macro_dict[line[0]], f, index)
 				elif line[0] in I_set:
 					cmd_type = "I"
-					if line[0] in ("ADDI", "SUBI", "ORLI", "ANDI", "XORI", "BEQ", "BNE", "SLSI", "LDW", "SVW"):
+					if line[0] in ("ADDI", "SUBI", "ORLI", "ANDI", "XORI", "SLSI", "LDW", "SVW"):
 						if len(line) != 4:
 							if line[4].startswith("#") or line[4].startswith("//"):
 								line = line[0:4]
@@ -323,6 +381,36 @@ def compile():
 								ic.add_rs(rim_num, f, index)				
 							elif rim_pos == 2:
 								ic.add_im(imm_proc(rim, f, index), f, index)
+					elif line[0] in ("BEQ", "BNE"): 
+						if len(line) != 4:
+							if line[4].startswith("#") or line[4].startswith("//"):
+								line = line[0:4]
+							else:
+								ce_print(f"cmd {line[0]} should be followed by 2 reg and 1 imm or symbol, but {len(line) - 1} items are given", f, index)
+						for (rim_pos, rim) in enumerate(line[1:]):
+							if rim_pos == 0:
+								if not rim.startswith("R"):
+									ce_print(f"expect reg, but \"{rim}\" found", f, index)
+								rim_num = rim[1:]
+								try:
+									rim_num = int(rim_num)
+								except:
+									ce_print(f"rim should have a form like \"Rx\" where x is a integer, but unrecognizable form {rim} are found", f, index)
+								ic.add_rt(rim_num, f, index)
+							elif rim_pos == 1:
+								if not rim.startswith("R"):
+									ce_print(f"expect reg, but \"{rim}\" found", f, index)
+								rim_num = rim[1:]
+								try:
+									rim_num = int(rim_num)
+								except:
+									ce_print(f"rim should have a form like \"Rx\" where x is a integer, but unrecognizable form {rim} are found", f, index)
+								ic.add_rs(rim_num, f, index)				
+							elif rim_pos == 2:
+								if (rim[0] == "-" and rim[1].isdigit()) or rim[0].isdigit():
+									ic.add_im(imm_proc(rim, f, index), f, index)
+								else:
+									seg_symbol_list.try_use_symb(rim, index)
 					elif line[0] in ("NOTI", "MIRL", "MIRH"):
 						if len(line) != 3:
 							if line[3].startswith("#") or line[3].startswith("//"):
@@ -354,21 +442,36 @@ def compile():
 								ce_print(f"cmd {line[0]} should be followed by 1 imm, but {len(line) - 1} items are given", f, index)
 						for (imm_pos, imm) in enumerate(line[1:]):
 							if imm_pos == 0:
-								ic.add_im(imm_proc(imm, f, index), f, index)
+								if (imm[0] == "-" and imm[1].isdigit()) or imm[0].isdigit():
+									ic.add_im(imm_proc(imm, f, index), f, index)
+								else:
+									seg_symbol_list.try_use_symb(imm, index)
 					else:
 						ce_print(f"unsupported cmd {line[0]} in {cmd_type} instruction set. Please contact compiler author for this problem", f, index)
 					ic.add_op(macro_dict[line[0]], f, index)
 				else:
 					ce_print(f"unrecognized cmd:{line[0]}, try correct it", f, index)
-				with open(cli_args.output, "a") as output:
-					output.write(f"{ic.code()}\n")
+				isc_code_list.append(ic.code(False))
 				if cli_args.print_code:
 					machine_code_print(ic.code(), cmd_type)
+				last_ass_line = last_ass_line + 1
+				seg_symbol_list.code_line_dict[index] = last_ass_line
 	if cli_args.verbose:
 		info_print(f"output file:{cli_args.output}")
-	
+	return seg_symbol_list
+
+def link(ssl:seg_symbol_container):
+	pass
+
+def output_to_file():
+	with open(cli_args.output, "a") as output:
+		for ic_code in isc_code_list:
+			output.write(f"{bin(ic_code)[2:].zfill(32)}\n")
+
 if __name__ == "__main__":
 	load_macro()
 	check_cli_arg_correctness()
-	compile()
+	ssl = compile()
+	link(ssl)
+	output_to_file()
 # python .\asm_c.py .\isc.txt

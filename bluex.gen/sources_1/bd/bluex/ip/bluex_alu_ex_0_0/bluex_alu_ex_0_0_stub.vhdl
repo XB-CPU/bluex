@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
--- Date        : Thu Dec 21 22:38:39 2023
+-- Date        : Fri Dec 22 10:10:10 2023
 -- Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_alu_ex_0_0/bluex_alu_ex_0_0_stub.vhdl
@@ -16,7 +16,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity bluex_alu_ex_0_0 is
   Port ( 
     clk : in STD_LOGIC;
-    rst_n : in STD_LOGIC;
+    rst : in STD_LOGIC;
     rs_inw : in STD_LOGIC_VECTOR ( 31 downto 0 );
     rt_inw : in STD_LOGIC_VECTOR ( 31 downto 0 );
     imm_inw : in STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -48,7 +48,7 @@ architecture stub of bluex_alu_ex_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "clk,rst_n,rs_inw[31:0],rt_inw[31:0],imm_inw[31:0],write_back_data[31:0],alu_result_back[31:0],alu_op_inw[5:0],rs_forward_inw[1:0],rt_forward_inw[1:0],alu_src_inw,memory_write_inw,memory_to_reg_inw,reg_write_inw,branch_isc_flag_inw,pc_next_inw[15:0],write_reg_addr_in_inw[4:0],rd_value[31:0],write_data[31:0],branch_jump_flag,branch_addr[15:0],write_reg_addr_out[4:0],memory_write,memory_to_reg,reg_write";
+attribute black_box_pad_pin of stub : architecture is "clk,rst,rs_inw[31:0],rt_inw[31:0],imm_inw[31:0],write_back_data[31:0],alu_result_back[31:0],alu_op_inw[5:0],rs_forward_inw[1:0],rt_forward_inw[1:0],alu_src_inw,memory_write_inw,memory_to_reg_inw,reg_write_inw,branch_isc_flag_inw,pc_next_inw[15:0],write_reg_addr_in_inw[4:0],rd_value[31:0],write_data[31:0],branch_jump_flag,branch_addr[15:0],write_reg_addr_out[4:0],memory_write,memory_to_reg,reg_write";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "alu_ex,Vivado 2023.2";
 begin

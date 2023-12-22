@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
--- Date        : Thu Dec 21 22:38:39 2023
+-- Date        : Fri Dec 22 10:10:10 2023
 -- Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_alu_ex_0_0/bluex_alu_ex_0_0_sim_netlist.vhdl
@@ -29,7 +29,7 @@ entity bluex_alu_ex_0_0_alu_ex is
     write_back_data : in STD_LOGIC_VECTOR ( 31 downto 0 );
     alu_op_inw : in STD_LOGIC_VECTOR ( 5 downto 0 );
     clk : in STD_LOGIC;
-    rst_n : in STD_LOGIC;
+    rst : in STD_LOGIC;
     rt_forward_inw : in STD_LOGIC_VECTOR ( 1 downto 0 );
     rt_inw : in STD_LOGIC_VECTOR ( 31 downto 0 );
     alu_src_inw : in STD_LOGIC;
@@ -751,7 +751,7 @@ begin
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => alu_op_inw(0),
       Q => \alu_op_reg_n_0_[0]\
     );
@@ -759,7 +759,7 @@ begin
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => alu_op_inw(1),
       Q => \alu_op_reg_n_0_[1]\
     );
@@ -767,7 +767,7 @@ begin
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => alu_op_inw(2),
       Q => \alu_op_reg_n_0_[2]\
     );
@@ -775,7 +775,7 @@ begin
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => alu_op_inw(3),
       Q => \alu_op_reg_n_0_[3]\
     );
@@ -783,7 +783,7 @@ begin
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => alu_op_inw(4),
       Q => \alu_op_reg_n_0_[4]\
     );
@@ -791,7 +791,7 @@ begin
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => alu_op_inw(5),
       Q => alu_op(5)
     );
@@ -799,7 +799,7 @@ alu_src_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => alu_src_inw,
       Q => alu_src
     );
@@ -1023,7 +1023,7 @@ branch_isc_flag_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => branch_isc_flag_inw,
       Q => branch_isc_flag
     );
@@ -1437,7 +1437,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(0),
       Q => \imm_reg_n_0_[0]\
     );
@@ -1445,7 +1445,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(10),
       Q => \imm_reg_n_0_[10]\
     );
@@ -1453,7 +1453,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(11),
       Q => \imm_reg_n_0_[11]\
     );
@@ -1461,7 +1461,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(12),
       Q => \imm_reg_n_0_[12]\
     );
@@ -1469,7 +1469,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(13),
       Q => \imm_reg_n_0_[13]\
     );
@@ -1477,7 +1477,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(14),
       Q => \imm_reg_n_0_[14]\
     );
@@ -1485,7 +1485,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(15),
       Q => \imm_reg_n_0_[15]\
     );
@@ -1493,7 +1493,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(16),
       Q => \imm_reg_n_0_[16]\
     );
@@ -1501,7 +1501,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(17),
       Q => \imm_reg_n_0_[17]\
     );
@@ -1509,7 +1509,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(18),
       Q => \imm_reg_n_0_[18]\
     );
@@ -1517,7 +1517,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(19),
       Q => \imm_reg_n_0_[19]\
     );
@@ -1525,7 +1525,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(1),
       Q => \imm_reg_n_0_[1]\
     );
@@ -1533,7 +1533,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(20),
       Q => \imm_reg_n_0_[20]\
     );
@@ -1541,7 +1541,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(21),
       Q => \imm_reg_n_0_[21]\
     );
@@ -1549,7 +1549,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(22),
       Q => \imm_reg_n_0_[22]\
     );
@@ -1557,7 +1557,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(23),
       Q => \imm_reg_n_0_[23]\
     );
@@ -1565,7 +1565,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(24),
       Q => \imm_reg_n_0_[24]\
     );
@@ -1573,7 +1573,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(25),
       Q => \imm_reg_n_0_[25]\
     );
@@ -1581,7 +1581,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(26),
       Q => \imm_reg_n_0_[26]\
     );
@@ -1589,7 +1589,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(27),
       Q => \imm_reg_n_0_[27]\
     );
@@ -1597,7 +1597,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(28),
       Q => \imm_reg_n_0_[28]\
     );
@@ -1605,7 +1605,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(29),
       Q => \imm_reg_n_0_[29]\
     );
@@ -1613,7 +1613,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(2),
       Q => \imm_reg_n_0_[2]\
     );
@@ -1621,7 +1621,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(30),
       Q => \imm_reg_n_0_[30]\
     );
@@ -1629,7 +1629,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(31),
       Q => \imm_reg_n_0_[31]\
     );
@@ -1637,7 +1637,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(3),
       Q => \imm_reg_n_0_[3]\
     );
@@ -1645,7 +1645,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(4),
       Q => \imm_reg_n_0_[4]\
     );
@@ -1653,7 +1653,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(5),
       Q => \imm_reg_n_0_[5]\
     );
@@ -1661,7 +1661,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(6),
       Q => \imm_reg_n_0_[6]\
     );
@@ -1669,7 +1669,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(7),
       Q => \imm_reg_n_0_[7]\
     );
@@ -1677,7 +1677,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(8),
       Q => \imm_reg_n_0_[8]\
     );
@@ -1685,7 +1685,7 @@ branch_jump_flag_INST_0_i_9: unisim.vcomponents.CARRY4
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => imm_inw(9),
       Q => \imm_reg_n_0_[9]\
     );
@@ -1693,7 +1693,7 @@ memory_to_reg_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => memory_to_reg_inw,
       Q => memory_to_reg
     );
@@ -1701,7 +1701,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => memory_write_inw,
       Q => memory_write
     );
@@ -1709,7 +1709,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(0),
       Q => pc_next(0)
     );
@@ -1717,7 +1717,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(10),
       Q => pc_next(10)
     );
@@ -1725,7 +1725,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(11),
       Q => pc_next(11)
     );
@@ -1733,7 +1733,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(12),
       Q => pc_next(12)
     );
@@ -1741,7 +1741,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(13),
       Q => pc_next(13)
     );
@@ -1749,7 +1749,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(14),
       Q => pc_next(14)
     );
@@ -1757,7 +1757,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(15),
       Q => pc_next(15)
     );
@@ -1765,7 +1765,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(1),
       Q => pc_next(1)
     );
@@ -1773,7 +1773,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(2),
       Q => pc_next(2)
     );
@@ -1781,7 +1781,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(3),
       Q => pc_next(3)
     );
@@ -1789,7 +1789,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(4),
       Q => pc_next(4)
     );
@@ -1797,7 +1797,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(5),
       Q => pc_next(5)
     );
@@ -1805,7 +1805,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(6),
       Q => pc_next(6)
     );
@@ -1813,7 +1813,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(7),
       Q => pc_next(7)
     );
@@ -1821,7 +1821,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(8),
       Q => pc_next(8)
     );
@@ -1829,7 +1829,7 @@ memory_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => pc_next_inw(9),
       Q => pc_next(9)
     );
@@ -7719,7 +7719,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => reg_write_inw,
       Q => reg_write
     );
@@ -7727,7 +7727,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_forward_inw(0),
       Q => rs_forward(0)
     );
@@ -7735,7 +7735,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_forward_inw(1),
       Q => rs_forward(1)
     );
@@ -7743,7 +7743,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(0),
       Q => rs(0)
     );
@@ -7751,7 +7751,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(10),
       Q => rs(10)
     );
@@ -7759,7 +7759,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(11),
       Q => rs(11)
     );
@@ -7767,7 +7767,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(12),
       Q => rs(12)
     );
@@ -7775,7 +7775,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(13),
       Q => rs(13)
     );
@@ -7783,7 +7783,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(14),
       Q => rs(14)
     );
@@ -7791,7 +7791,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(15),
       Q => rs(15)
     );
@@ -7799,7 +7799,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(16),
       Q => rs(16)
     );
@@ -7807,7 +7807,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(17),
       Q => rs(17)
     );
@@ -7815,7 +7815,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(18),
       Q => rs(18)
     );
@@ -7823,7 +7823,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(19),
       Q => rs(19)
     );
@@ -7831,7 +7831,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(1),
       Q => rs(1)
     );
@@ -7839,7 +7839,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(20),
       Q => rs(20)
     );
@@ -7847,7 +7847,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(21),
       Q => rs(21)
     );
@@ -7855,7 +7855,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(22),
       Q => rs(22)
     );
@@ -7863,7 +7863,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(23),
       Q => rs(23)
     );
@@ -7871,7 +7871,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(24),
       Q => rs(24)
     );
@@ -7879,7 +7879,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(25),
       Q => rs(25)
     );
@@ -7887,7 +7887,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(26),
       Q => rs(26)
     );
@@ -7895,7 +7895,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(27),
       Q => rs(27)
     );
@@ -7903,7 +7903,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(28),
       Q => rs(28)
     );
@@ -7911,7 +7911,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(29),
       Q => rs(29)
     );
@@ -7919,7 +7919,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(2),
       Q => rs(2)
     );
@@ -7927,7 +7927,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(30),
       Q => rs(30)
     );
@@ -7935,7 +7935,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(31),
       Q => rs(31)
     );
@@ -7943,7 +7943,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(3),
       Q => rs(3)
     );
@@ -7951,7 +7951,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(4),
       Q => rs(4)
     );
@@ -7959,7 +7959,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(5),
       Q => rs(5)
     );
@@ -7967,7 +7967,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(6),
       Q => rs(6)
     );
@@ -7975,7 +7975,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(7),
       Q => rs(7)
     );
@@ -7983,7 +7983,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(8),
       Q => rs(8)
     );
@@ -7991,7 +7991,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rs_inw(9),
       Q => rs(9)
     );
@@ -7999,7 +7999,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_forward_inw(0),
       Q => rt_forward(0)
     );
@@ -8007,7 +8007,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_forward_inw(1),
       Q => rt_forward(1)
     );
@@ -8015,7 +8015,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(0),
       Q => rt(0)
     );
@@ -8023,7 +8023,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(10),
       Q => rt(10)
     );
@@ -8031,7 +8031,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(11),
       Q => rt(11)
     );
@@ -8039,7 +8039,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(12),
       Q => rt(12)
     );
@@ -8047,7 +8047,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(13),
       Q => rt(13)
     );
@@ -8055,7 +8055,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(14),
       Q => rt(14)
     );
@@ -8063,7 +8063,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(15),
       Q => rt(15)
     );
@@ -8071,7 +8071,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(16),
       Q => rt(16)
     );
@@ -8079,7 +8079,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(17),
       Q => rt(17)
     );
@@ -8087,7 +8087,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(18),
       Q => rt(18)
     );
@@ -8095,7 +8095,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(19),
       Q => rt(19)
     );
@@ -8103,7 +8103,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(1),
       Q => rt(1)
     );
@@ -8111,7 +8111,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(20),
       Q => rt(20)
     );
@@ -8119,7 +8119,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(21),
       Q => rt(21)
     );
@@ -8127,7 +8127,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(22),
       Q => rt(22)
     );
@@ -8135,7 +8135,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(23),
       Q => rt(23)
     );
@@ -8143,7 +8143,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(24),
       Q => rt(24)
     );
@@ -8151,7 +8151,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(25),
       Q => rt(25)
     );
@@ -8159,7 +8159,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(26),
       Q => rt(26)
     );
@@ -8167,7 +8167,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(27),
       Q => rt(27)
     );
@@ -8175,7 +8175,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(28),
       Q => rt(28)
     );
@@ -8183,7 +8183,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(29),
       Q => rt(29)
     );
@@ -8191,7 +8191,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(2),
       Q => rt(2)
     );
@@ -8199,7 +8199,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(30),
       Q => rt(30)
     );
@@ -8207,7 +8207,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(31),
       Q => rt(31)
     );
@@ -8215,7 +8215,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(3),
       Q => rt(3)
     );
@@ -8223,7 +8223,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(4),
       Q => rt(4)
     );
@@ -8231,7 +8231,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(5),
       Q => rt(5)
     );
@@ -8239,7 +8239,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(6),
       Q => rt(6)
     );
@@ -8247,7 +8247,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(7),
       Q => rt(7)
     );
@@ -8255,7 +8255,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(8),
       Q => rt(8)
     );
@@ -8263,7 +8263,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => rt_inw(9),
       Q => rt(9)
     );
@@ -8655,7 +8655,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => write_reg_addr_in_inw(0),
       Q => write_reg_addr_in(0)
     );
@@ -8663,7 +8663,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => write_reg_addr_in_inw(1),
       Q => write_reg_addr_in(1)
     );
@@ -8671,7 +8671,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => write_reg_addr_in_inw(2),
       Q => write_reg_addr_in(2)
     );
@@ -8679,7 +8679,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => write_reg_addr_in_inw(3),
       Q => write_reg_addr_in(3)
     );
@@ -8687,7 +8687,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => write_reg_addr_in_inw(4),
       Q => write_reg_addr_in(4)
     );
@@ -8695,7 +8695,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => write_reg_addr_in(0),
       Q => write_reg_addr_out(0)
     );
@@ -8703,7 +8703,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => write_reg_addr_in(1),
       Q => write_reg_addr_out(1)
     );
@@ -8711,7 +8711,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => write_reg_addr_in(2),
       Q => write_reg_addr_out(2)
     );
@@ -8719,7 +8719,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => write_reg_addr_in(3),
       Q => write_reg_addr_out(3)
     );
@@ -8727,7 +8727,7 @@ reg_write_reg: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => '1',
-      CLR => rst_n,
+      CLR => rst,
       D => write_reg_addr_in(4),
       Q => write_reg_addr_out(4)
     );
@@ -8739,7 +8739,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity bluex_alu_ex_0_0 is
   port (
     clk : in STD_LOGIC;
-    rst_n : in STD_LOGIC;
+    rst : in STD_LOGIC;
     rs_inw : in STD_LOGIC_VECTOR ( 31 downto 0 );
     rt_inw : in STD_LOGIC_VECTOR ( 31 downto 0 );
     imm_inw : in STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -8780,9 +8780,9 @@ architecture STRUCTURE of bluex_alu_ex_0_0 is
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0";
-  attribute X_INTERFACE_INFO of rst_n : signal is "xilinx.com:signal:reset:1.0 rst_n RST";
-  attribute X_INTERFACE_PARAMETER of rst_n : signal is "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0";
+  attribute X_INTERFACE_INFO of rst : signal is "xilinx.com:signal:reset:1.0 rst RST";
+  attribute X_INTERFACE_PARAMETER of rst : signal is "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0";
 begin
 inst: entity work.bluex_alu_ex_0_0_alu_ex
      port map (
@@ -8804,7 +8804,7 @@ inst: entity work.bluex_alu_ex_0_0_alu_ex
       reg_write_inw => reg_write_inw,
       rs_forward_inw(1 downto 0) => rs_forward_inw(1 downto 0),
       rs_inw(31 downto 0) => rs_inw(31 downto 0),
-      rst_n => rst_n,
+      rst => rst,
       rt_forward_inw(1 downto 0) => rt_forward_inw(1 downto 0),
       rt_inw(31 downto 0) => rt_inw(31 downto 0),
       write_back_data(31 downto 0) => write_back_data(31 downto 0),

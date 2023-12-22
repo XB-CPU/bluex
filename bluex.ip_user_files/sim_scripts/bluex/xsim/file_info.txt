@@ -9,5 +9,7 @@ bluex_PC_0_0.v,verilog,xil_defaultlib,../../../../bluex.gen/sources_1/bd/bluex/i
 bluex_wrapper_mem_0_0.v,verilog,xil_defaultlib,../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_wrapper_mem_0_0/sim/bluex_wrapper_mem_0_0.v,
 bluex_util_vector_logic_0_0.v,verilog,xil_defaultlib,../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_0/sim/bluex_util_vector_logic_0_0.v,
 bluex_util_vector_logic_1_0.v,verilog,xil_defaultlib,../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_0/sim/bluex_util_vector_logic_1_0.v,
+bluex_util_vector_logic_0_1.v,verilog,xil_defaultlib,../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_1/sim/bluex_util_vector_logic_0_1.v,
+bluex_util_vector_logic_1_1.v,verilog,xil_defaultlib,../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_1/sim/bluex_util_vector_logic_1_1.v,
 bluex.v,verilog,xil_defaultlib,../../../../bluex.gen/sources_1/bd/bluex/sim/bluex.v,
 glbl.v,Verilog,xil_defaultlib,glbl.v

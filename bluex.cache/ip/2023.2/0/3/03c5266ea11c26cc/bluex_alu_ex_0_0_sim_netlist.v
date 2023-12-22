@@ -2,10 +2,10 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-// Date        : Thu Dec 21 22:38:39 2023
+// Date        : Fri Dec 22 10:10:10 2023
 // Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_alu_ex_0_0/bluex_alu_ex_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
+//               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ bluex_alu_ex_0_0_sim_netlist.v
 // Design      : bluex_alu_ex_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -13,117 +13,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "bluex_alu_ex_0_0,alu_ex,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "alu_ex,Vivado 2023.2" *) 
-(* NotValidForBitStream *)
-module bluex_alu_ex_0_0
-   (clk,
-    rst_n,
-    rs_inw,
-    rt_inw,
-    imm_inw,
-    write_back_data,
-    alu_result_back,
-    alu_op_inw,
-    rs_forward_inw,
-    rt_forward_inw,
-    alu_src_inw,
-    memory_write_inw,
-    memory_to_reg_inw,
-    reg_write_inw,
-    branch_isc_flag_inw,
-    pc_next_inw,
-    write_reg_addr_in_inw,
-    rd_value,
-    write_data,
-    branch_jump_flag,
-    branch_addr,
-    write_reg_addr_out,
-    memory_write,
-    memory_to_reg,
-    reg_write);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rst_n;
-  input [31:0]rs_inw;
-  input [31:0]rt_inw;
-  input [31:0]imm_inw;
-  input [31:0]write_back_data;
-  input [31:0]alu_result_back;
-  input [5:0]alu_op_inw;
-  input [1:0]rs_forward_inw;
-  input [1:0]rt_forward_inw;
-  input alu_src_inw;
-  input memory_write_inw;
-  input memory_to_reg_inw;
-  input reg_write_inw;
-  input branch_isc_flag_inw;
-  input [15:0]pc_next_inw;
-  input [4:0]write_reg_addr_in_inw;
-  output [31:0]rd_value;
-  output [31:0]write_data;
-  output branch_jump_flag;
-  output [15:0]branch_addr;
-  output [4:0]write_reg_addr_out;
-  output memory_write;
-  output memory_to_reg;
-  output reg_write;
-
-  wire [5:0]alu_op_inw;
-  wire [31:0]alu_result_back;
-  wire alu_src_inw;
-  wire [15:0]branch_addr;
-  wire branch_isc_flag_inw;
-  wire branch_jump_flag;
-  wire clk;
-  wire [31:0]imm_inw;
-  wire memory_to_reg;
-  wire memory_to_reg_inw;
-  wire memory_write;
-  wire memory_write_inw;
-  wire [15:0]pc_next_inw;
-  wire [31:0]rd_value;
-  wire reg_write;
-  wire reg_write_inw;
-  wire [1:0]rs_forward_inw;
-  wire [31:0]rs_inw;
-  wire rst_n;
-  wire [1:0]rt_forward_inw;
-  wire [31:0]rt_inw;
-  wire [31:0]write_back_data;
-  wire [31:0]write_data;
-  wire [4:0]write_reg_addr_in_inw;
-  wire [4:0]write_reg_addr_out;
-
-  bluex_alu_ex_0_0_alu_ex inst
-       (.alu_op_inw(alu_op_inw),
-        .alu_result_back(alu_result_back),
-        .alu_src_inw(alu_src_inw),
-        .branch_addr(branch_addr),
-        .branch_isc_flag_inw(branch_isc_flag_inw),
-        .branch_jump_flag(branch_jump_flag),
-        .clk(clk),
-        .imm_inw(imm_inw),
-        .memory_to_reg(memory_to_reg),
-        .memory_to_reg_inw(memory_to_reg_inw),
-        .memory_write(memory_write),
-        .memory_write_inw(memory_write_inw),
-        .pc_next_inw(pc_next_inw),
-        .rd_value(rd_value),
-        .reg_write(reg_write),
-        .reg_write_inw(reg_write_inw),
-        .rs_forward_inw(rs_forward_inw),
-        .rs_inw(rs_inw),
-        .rst_n(rst_n),
-        .rt_forward_inw(rt_forward_inw),
-        .rt_inw(rt_inw),
-        .write_back_data(write_back_data),
-        .write_data(write_data),
-        .write_reg_addr_in_inw(write_reg_addr_in_inw),
-        .write_reg_addr_out(write_reg_addr_out));
-endmodule
-
-(* ORIG_REF_NAME = "alu_ex" *) 
-module bluex_alu_ex_0_0_alu_ex
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_alu_ex
    (rd_value,
     write_data,
     write_reg_addr_out,
@@ -136,7 +26,7 @@ module bluex_alu_ex_0_0_alu_ex
     write_back_data,
     alu_op_inw,
     clk,
-    rst_n,
+    rst,
     rt_forward_inw,
     rt_inw,
     alu_src_inw,
@@ -161,7 +51,7 @@ module bluex_alu_ex_0_0_alu_ex
   input [31:0]write_back_data;
   input [5:0]alu_op_inw;
   input clk;
-  input rst_n;
+  input rst;
   input [1:0]rt_forward_inw;
   input [31:0]rt_inw;
   input alu_src_inw;
@@ -752,7 +642,7 @@ module bluex_alu_ex_0_0_alu_ex
   wire [1:0]rs_forward;
   wire [1:0]rs_forward_inw;
   wire [31:0]rs_inw;
-  wire rst_n;
+  wire rst;
   wire [31:0]rt;
   wire [1:0]rt_forward;
   wire [1:0]rt_forward_inw;
@@ -781,43 +671,43 @@ module bluex_alu_ex_0_0_alu_ex
   FDCE \alu_op_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(alu_op_inw[0]),
         .Q(\alu_op_reg_n_0_[0] ));
   FDCE \alu_op_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(alu_op_inw[1]),
         .Q(\alu_op_reg_n_0_[1] ));
   FDCE \alu_op_reg[2] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(alu_op_inw[2]),
         .Q(\alu_op_reg_n_0_[2] ));
   FDCE \alu_op_reg[3] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(alu_op_inw[3]),
         .Q(\alu_op_reg_n_0_[3] ));
   FDCE \alu_op_reg[4] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(alu_op_inw[4]),
         .Q(\alu_op_reg_n_0_[4] ));
   FDCE \alu_op_reg[5] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(alu_op_inw[5]),
         .Q(alu_op));
   FDCE alu_src_reg
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(alu_src_inw),
         .Q(alu_src));
   (* ADDER_THRESHOLD = "35" *) 
@@ -951,7 +841,7 @@ module bluex_alu_ex_0_0_alu_ex
   FDCE branch_isc_flag_reg
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(branch_isc_flag_inw),
         .Q(branch_isc_flag));
   LUT6 #(
@@ -1241,301 +1131,301 @@ module bluex_alu_ex_0_0_alu_ex
   FDCE \imm_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[0]),
         .Q(\imm_reg_n_0_[0] ));
   FDCE \imm_reg[10] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[10]),
         .Q(\imm_reg_n_0_[10] ));
   FDCE \imm_reg[11] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[11]),
         .Q(\imm_reg_n_0_[11] ));
   FDCE \imm_reg[12] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[12]),
         .Q(\imm_reg_n_0_[12] ));
   FDCE \imm_reg[13] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[13]),
         .Q(\imm_reg_n_0_[13] ));
   FDCE \imm_reg[14] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[14]),
         .Q(\imm_reg_n_0_[14] ));
   FDCE \imm_reg[15] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[15]),
         .Q(\imm_reg_n_0_[15] ));
   FDCE \imm_reg[16] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[16]),
         .Q(\imm_reg_n_0_[16] ));
   FDCE \imm_reg[17] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[17]),
         .Q(\imm_reg_n_0_[17] ));
   FDCE \imm_reg[18] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[18]),
         .Q(\imm_reg_n_0_[18] ));
   FDCE \imm_reg[19] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[19]),
         .Q(\imm_reg_n_0_[19] ));
   FDCE \imm_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[1]),
         .Q(\imm_reg_n_0_[1] ));
   FDCE \imm_reg[20] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[20]),
         .Q(\imm_reg_n_0_[20] ));
   FDCE \imm_reg[21] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[21]),
         .Q(\imm_reg_n_0_[21] ));
   FDCE \imm_reg[22] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[22]),
         .Q(\imm_reg_n_0_[22] ));
   FDCE \imm_reg[23] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[23]),
         .Q(\imm_reg_n_0_[23] ));
   FDCE \imm_reg[24] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[24]),
         .Q(\imm_reg_n_0_[24] ));
   FDCE \imm_reg[25] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[25]),
         .Q(\imm_reg_n_0_[25] ));
   FDCE \imm_reg[26] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[26]),
         .Q(\imm_reg_n_0_[26] ));
   FDCE \imm_reg[27] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[27]),
         .Q(\imm_reg_n_0_[27] ));
   FDCE \imm_reg[28] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[28]),
         .Q(\imm_reg_n_0_[28] ));
   FDCE \imm_reg[29] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[29]),
         .Q(\imm_reg_n_0_[29] ));
   FDCE \imm_reg[2] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[2]),
         .Q(\imm_reg_n_0_[2] ));
   FDCE \imm_reg[30] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[30]),
         .Q(\imm_reg_n_0_[30] ));
   FDCE \imm_reg[31] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[31]),
         .Q(\imm_reg_n_0_[31] ));
   FDCE \imm_reg[3] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[3]),
         .Q(\imm_reg_n_0_[3] ));
   FDCE \imm_reg[4] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[4]),
         .Q(\imm_reg_n_0_[4] ));
   FDCE \imm_reg[5] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[5]),
         .Q(\imm_reg_n_0_[5] ));
   FDCE \imm_reg[6] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[6]),
         .Q(\imm_reg_n_0_[6] ));
   FDCE \imm_reg[7] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[7]),
         .Q(\imm_reg_n_0_[7] ));
   FDCE \imm_reg[8] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[8]),
         .Q(\imm_reg_n_0_[8] ));
   FDCE \imm_reg[9] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(imm_inw[9]),
         .Q(\imm_reg_n_0_[9] ));
   FDCE memory_to_reg_reg
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(memory_to_reg_inw),
         .Q(memory_to_reg));
   FDCE memory_write_reg
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(memory_write_inw),
         .Q(memory_write));
   FDCE \pc_next_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[0]),
         .Q(pc_next[0]));
   FDCE \pc_next_reg[10] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[10]),
         .Q(pc_next[10]));
   FDCE \pc_next_reg[11] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[11]),
         .Q(pc_next[11]));
   FDCE \pc_next_reg[12] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[12]),
         .Q(pc_next[12]));
   FDCE \pc_next_reg[13] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[13]),
         .Q(pc_next[13]));
   FDCE \pc_next_reg[14] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[14]),
         .Q(pc_next[14]));
   FDCE \pc_next_reg[15] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[15]),
         .Q(pc_next[15]));
   FDCE \pc_next_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[1]),
         .Q(pc_next[1]));
   FDCE \pc_next_reg[2] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[2]),
         .Q(pc_next[2]));
   FDCE \pc_next_reg[3] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[3]),
         .Q(pc_next[3]));
   FDCE \pc_next_reg[4] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[4]),
         .Q(pc_next[4]));
   FDCE \pc_next_reg[5] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[5]),
         .Q(pc_next[5]));
   FDCE \pc_next_reg[6] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[6]),
         .Q(pc_next[6]));
   FDCE \pc_next_reg[7] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[7]),
         .Q(pc_next[7]));
   FDCE \pc_next_reg[8] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[8]),
         .Q(pc_next[8]));
   FDCE \pc_next_reg[9] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(pc_next_inw[9]),
         .Q(pc_next[9]));
   (* ADDER_THRESHOLD = "35" *) 
@@ -5968,415 +5858,415 @@ module bluex_alu_ex_0_0_alu_ex
   FDCE reg_write_reg
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(reg_write_inw),
         .Q(reg_write));
   FDCE \rs_forward_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_forward_inw[0]),
         .Q(rs_forward[0]));
   FDCE \rs_forward_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_forward_inw[1]),
         .Q(rs_forward[1]));
   FDCE \rs_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[0]),
         .Q(rs[0]));
   FDCE \rs_reg[10] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[10]),
         .Q(rs[10]));
   FDCE \rs_reg[11] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[11]),
         .Q(rs[11]));
   FDCE \rs_reg[12] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[12]),
         .Q(rs[12]));
   FDCE \rs_reg[13] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[13]),
         .Q(rs[13]));
   FDCE \rs_reg[14] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[14]),
         .Q(rs[14]));
   FDCE \rs_reg[15] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[15]),
         .Q(rs[15]));
   FDCE \rs_reg[16] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[16]),
         .Q(rs[16]));
   FDCE \rs_reg[17] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[17]),
         .Q(rs[17]));
   FDCE \rs_reg[18] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[18]),
         .Q(rs[18]));
   FDCE \rs_reg[19] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[19]),
         .Q(rs[19]));
   FDCE \rs_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[1]),
         .Q(rs[1]));
   FDCE \rs_reg[20] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[20]),
         .Q(rs[20]));
   FDCE \rs_reg[21] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[21]),
         .Q(rs[21]));
   FDCE \rs_reg[22] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[22]),
         .Q(rs[22]));
   FDCE \rs_reg[23] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[23]),
         .Q(rs[23]));
   FDCE \rs_reg[24] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[24]),
         .Q(rs[24]));
   FDCE \rs_reg[25] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[25]),
         .Q(rs[25]));
   FDCE \rs_reg[26] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[26]),
         .Q(rs[26]));
   FDCE \rs_reg[27] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[27]),
         .Q(rs[27]));
   FDCE \rs_reg[28] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[28]),
         .Q(rs[28]));
   FDCE \rs_reg[29] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[29]),
         .Q(rs[29]));
   FDCE \rs_reg[2] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[2]),
         .Q(rs[2]));
   FDCE \rs_reg[30] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[30]),
         .Q(rs[30]));
   FDCE \rs_reg[31] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[31]),
         .Q(rs[31]));
   FDCE \rs_reg[3] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[3]),
         .Q(rs[3]));
   FDCE \rs_reg[4] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[4]),
         .Q(rs[4]));
   FDCE \rs_reg[5] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[5]),
         .Q(rs[5]));
   FDCE \rs_reg[6] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[6]),
         .Q(rs[6]));
   FDCE \rs_reg[7] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[7]),
         .Q(rs[7]));
   FDCE \rs_reg[8] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[8]),
         .Q(rs[8]));
   FDCE \rs_reg[9] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rs_inw[9]),
         .Q(rs[9]));
   FDCE \rt_forward_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_forward_inw[0]),
         .Q(rt_forward[0]));
   FDCE \rt_forward_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_forward_inw[1]),
         .Q(rt_forward[1]));
   FDCE \rt_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[0]),
         .Q(rt[0]));
   FDCE \rt_reg[10] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[10]),
         .Q(rt[10]));
   FDCE \rt_reg[11] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[11]),
         .Q(rt[11]));
   FDCE \rt_reg[12] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[12]),
         .Q(rt[12]));
   FDCE \rt_reg[13] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[13]),
         .Q(rt[13]));
   FDCE \rt_reg[14] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[14]),
         .Q(rt[14]));
   FDCE \rt_reg[15] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[15]),
         .Q(rt[15]));
   FDCE \rt_reg[16] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[16]),
         .Q(rt[16]));
   FDCE \rt_reg[17] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[17]),
         .Q(rt[17]));
   FDCE \rt_reg[18] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[18]),
         .Q(rt[18]));
   FDCE \rt_reg[19] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[19]),
         .Q(rt[19]));
   FDCE \rt_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[1]),
         .Q(rt[1]));
   FDCE \rt_reg[20] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[20]),
         .Q(rt[20]));
   FDCE \rt_reg[21] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[21]),
         .Q(rt[21]));
   FDCE \rt_reg[22] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[22]),
         .Q(rt[22]));
   FDCE \rt_reg[23] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[23]),
         .Q(rt[23]));
   FDCE \rt_reg[24] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[24]),
         .Q(rt[24]));
   FDCE \rt_reg[25] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[25]),
         .Q(rt[25]));
   FDCE \rt_reg[26] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[26]),
         .Q(rt[26]));
   FDCE \rt_reg[27] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[27]),
         .Q(rt[27]));
   FDCE \rt_reg[28] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[28]),
         .Q(rt[28]));
   FDCE \rt_reg[29] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[29]),
         .Q(rt[29]));
   FDCE \rt_reg[2] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[2]),
         .Q(rt[2]));
   FDCE \rt_reg[30] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[30]),
         .Q(rt[30]));
   FDCE \rt_reg[31] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[31]),
         .Q(rt[31]));
   FDCE \rt_reg[3] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[3]),
         .Q(rt[3]));
   FDCE \rt_reg[4] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[4]),
         .Q(rt[4]));
   FDCE \rt_reg[5] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[5]),
         .Q(rt[5]));
   FDCE \rt_reg[6] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[6]),
         .Q(rt[6]));
   FDCE \rt_reg[7] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[7]),
         .Q(rt[7]));
   FDCE \rt_reg[8] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[8]),
         .Q(rt[8]));
   FDCE \rt_reg[9] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(rt_inw[9]),
         .Q(rt[9]));
   LUT5 #(
@@ -6670,63 +6560,172 @@ module bluex_alu_ex_0_0_alu_ex
   FDCE \write_reg_addr_in_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(write_reg_addr_in_inw[0]),
         .Q(write_reg_addr_in[0]));
   FDCE \write_reg_addr_in_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(write_reg_addr_in_inw[1]),
         .Q(write_reg_addr_in[1]));
   FDCE \write_reg_addr_in_reg[2] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(write_reg_addr_in_inw[2]),
         .Q(write_reg_addr_in[2]));
   FDCE \write_reg_addr_in_reg[3] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(write_reg_addr_in_inw[3]),
         .Q(write_reg_addr_in[3]));
   FDCE \write_reg_addr_in_reg[4] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(write_reg_addr_in_inw[4]),
         .Q(write_reg_addr_in[4]));
   FDCE \write_reg_addr_out_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(write_reg_addr_in[0]),
         .Q(write_reg_addr_out[0]));
   FDCE \write_reg_addr_out_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(write_reg_addr_in[1]),
         .Q(write_reg_addr_out[1]));
   FDCE \write_reg_addr_out_reg[2] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(write_reg_addr_in[2]),
         .Q(write_reg_addr_out[2]));
   FDCE \write_reg_addr_out_reg[3] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(write_reg_addr_in[3]),
         .Q(write_reg_addr_out[3]));
   FDCE \write_reg_addr_out_reg[4] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(rst_n),
+        .CLR(rst),
         .D(write_reg_addr_in[4]),
         .Q(write_reg_addr_out[4]));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "bluex_alu_ex_0_0,alu_ex,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
+(* X_CORE_INFO = "alu_ex,Vivado 2023.2" *) 
+(* NotValidForBitStream *)
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix
+   (clk,
+    rst,
+    rs_inw,
+    rt_inw,
+    imm_inw,
+    write_back_data,
+    alu_result_back,
+    alu_op_inw,
+    rs_forward_inw,
+    rt_forward_inw,
+    alu_src_inw,
+    memory_write_inw,
+    memory_to_reg_inw,
+    reg_write_inw,
+    branch_isc_flag_inw,
+    pc_next_inw,
+    write_reg_addr_in_inw,
+    rd_value,
+    write_data,
+    branch_jump_flag,
+    branch_addr,
+    write_reg_addr_out,
+    memory_write,
+    memory_to_reg,
+    reg_write);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *) input rst;
+  input [31:0]rs_inw;
+  input [31:0]rt_inw;
+  input [31:0]imm_inw;
+  input [31:0]write_back_data;
+  input [31:0]alu_result_back;
+  input [5:0]alu_op_inw;
+  input [1:0]rs_forward_inw;
+  input [1:0]rt_forward_inw;
+  input alu_src_inw;
+  input memory_write_inw;
+  input memory_to_reg_inw;
+  input reg_write_inw;
+  input branch_isc_flag_inw;
+  input [15:0]pc_next_inw;
+  input [4:0]write_reg_addr_in_inw;
+  output [31:0]rd_value;
+  output [31:0]write_data;
+  output branch_jump_flag;
+  output [15:0]branch_addr;
+  output [4:0]write_reg_addr_out;
+  output memory_write;
+  output memory_to_reg;
+  output reg_write;
+
+  wire [5:0]alu_op_inw;
+  wire [31:0]alu_result_back;
+  wire alu_src_inw;
+  wire [15:0]branch_addr;
+  wire branch_isc_flag_inw;
+  wire branch_jump_flag;
+  wire clk;
+  wire [31:0]imm_inw;
+  wire memory_to_reg;
+  wire memory_to_reg_inw;
+  wire memory_write;
+  wire memory_write_inw;
+  wire [15:0]pc_next_inw;
+  wire [31:0]rd_value;
+  wire reg_write;
+  wire reg_write_inw;
+  wire [1:0]rs_forward_inw;
+  wire [31:0]rs_inw;
+  wire rst;
+  wire [1:0]rt_forward_inw;
+  wire [31:0]rt_inw;
+  wire [31:0]write_back_data;
+  wire [31:0]write_data;
+  wire [4:0]write_reg_addr_in_inw;
+  wire [4:0]write_reg_addr_out;
+
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_alu_ex inst
+       (.alu_op_inw(alu_op_inw),
+        .alu_result_back(alu_result_back),
+        .alu_src_inw(alu_src_inw),
+        .branch_addr(branch_addr),
+        .branch_isc_flag_inw(branch_isc_flag_inw),
+        .branch_jump_flag(branch_jump_flag),
+        .clk(clk),
+        .imm_inw(imm_inw),
+        .memory_to_reg(memory_to_reg),
+        .memory_to_reg_inw(memory_to_reg_inw),
+        .memory_write(memory_write),
+        .memory_write_inw(memory_write_inw),
+        .pc_next_inw(pc_next_inw),
+        .rd_value(rd_value),
+        .reg_write(reg_write),
+        .reg_write_inw(reg_write_inw),
+        .rs_forward_inw(rs_forward_inw),
+        .rs_inw(rs_inw),
+        .rst(rst),
+        .rt_forward_inw(rt_forward_inw),
+        .rt_inw(rt_inw),
+        .write_back_data(write_back_data),
+        .write_data(write_data),
+        .write_reg_addr_in_inw(write_reg_addr_in_inw),
+        .write_reg_addr_out(write_reg_addr_out));
 endmodule
 `ifndef GLBL
 `define GLBL

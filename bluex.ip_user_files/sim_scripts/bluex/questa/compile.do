@@ -24,6 +24,8 @@ vlog -work util_vector_logic_v2_0_3  -incr -mfcu  \
 vlog -work xil_defaultlib  -incr -mfcu  \
 "../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_0/sim/bluex_util_vector_logic_0_0.v" \
 "../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_0/sim/bluex_util_vector_logic_1_0.v" \
+"../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_1/sim/bluex_util_vector_logic_0_1.v" \
+"../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_1/sim/bluex_util_vector_logic_1_1.v" \
 "../../../../bluex.gen/sources_1/bd/bluex/sim/bluex.v" \
 
 vlog -work xil_defaultlib \

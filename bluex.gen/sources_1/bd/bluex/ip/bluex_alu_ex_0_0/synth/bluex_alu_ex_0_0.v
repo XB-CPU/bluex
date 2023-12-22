@@ -57,7 +57,7 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bluex_alu_ex_0_0 (
   clk,
-  rst_n,
+  rst,
   rs_inw,
   rt_inw,
   imm_inw,
@@ -83,12 +83,12 @@ module bluex_alu_ex_0_0 (
   reg_write
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *)
-input wire rst_n;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
+input wire rst;
 input wire [31 : 0] rs_inw;
 input wire [31 : 0] rt_inw;
 input wire [31 : 0] imm_inw;
@@ -115,7 +115,7 @@ output wire reg_write;
 
   alu_ex inst (
     .clk(clk),
-    .rst_n(rst_n),
+    .rst(rst),
     .rs_inw(rs_inw),
     .rt_inw(rt_inw),
     .imm_inw(imm_inw),

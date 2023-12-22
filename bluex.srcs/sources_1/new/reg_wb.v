@@ -44,5 +44,5 @@ module reg_wb (
 		end
 	end
 
-	assign write_back_data = (memory_to_reg == 1'b1) ? alu_result_inr : mem_rd_inr;
+	assign write_back_data = (memory_to_reg == 1'b1) ? mem_rd_inr : alu_result_inr;
 endmodule

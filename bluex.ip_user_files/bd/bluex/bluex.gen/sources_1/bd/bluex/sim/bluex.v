@@ -2,7 +2,7 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-//Date        : Thu Dec 21 22:40:09 2023
+//Date        : Fri Dec 22 10:09:29 2023
 //Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 //Command     : generate_target bluex.bd
 //Design      : bluex
@@ -10,7 +10,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "bluex,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bluex,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=11,numReposBlks=11,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=9,numPkgbdBlks=0,bdsource=USER,da_clkrst_cnt=9,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "bluex.hwdef" *) 
+(* CORE_GENERATION_INFO = "bluex,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bluex,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=13,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=9,numPkgbdBlks=0,bdsource=USER,da_clkrst_cnt=9,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "bluex.hwdef" *) 
 module bluex
    (clk,
     current_addr_0,
@@ -73,6 +73,8 @@ module bluex
   wire rst_n_0_1;
   wire [0:0]util_vector_logic_0_Res;
   wire [0:0]util_vector_logic_1_Res;
+  wire [0:0]util_vector_logic_2_Res;
+  wire [0:0]util_vector_logic_3_Res;
   wire [31:0]wrapper_mem_0_alu_result;
   wire wrapper_mem_0_memory_to_reg;
   wire [31:0]wrapper_mem_0_read_mem_out;
@@ -120,7 +122,7 @@ module bluex
         .reg_write_inw(controller_id_0_reg_write),
         .rs_forward_inw(redirection_0_rs_forward),
         .rs_inw(reg_heap_id_0_rs),
-        .rst_n(redirection_0_flush),
+        .rst(util_vector_logic_3_Res),
         .rt_forward_inw(redirection_0_rt_forward),
         .rt_inw(reg_heap_id_0_rt),
         .write_back_data(reg_wb_0_write_back_data),
@@ -196,6 +198,13 @@ module bluex
        (.Op1(redirection_0_stall),
         .Op2(util_vector_logic_0_Res),
         .Res(util_vector_logic_1_Res));
+  bluex_util_vector_logic_0_1 util_vector_logic_2
+       (.Op1(rst_n_0_1),
+        .Res(util_vector_logic_2_Res));
+  bluex_util_vector_logic_1_1 util_vector_logic_3
+       (.Op1(util_vector_logic_2_Res),
+        .Op2(redirection_0_flush),
+        .Res(util_vector_logic_3_Res));
   bluex_wrapper_mem_0_0 wrapper_mem_0
        (.alu_result(wrapper_mem_0_alu_result),
         .alu_result_inw(alu_ex_0_rd_value),

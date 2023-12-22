@@ -21,7 +21,9 @@
       "PC_0": "",
       "wrapper_mem_0": "",
       "util_vector_logic_0": "",
-      "util_vector_logic_1": ""
+      "util_vector_logic_1": "",
+      "util_vector_logic_2": "",
+      "util_vector_logic_3": ""
     },
     "ports": {
       "clk": {
@@ -257,7 +259,17 @@
             "right": "0"
           },
           "flush": {
-            "direction": "O"
+            "direction": "O",
+            "parameters": {
+              "PortType": {
+                "value": "undef",
+                "value_src": "ip_prop"
+              },
+              "PortType.PROP_SRC": {
+                "value": "false",
+                "value_src": "ip_prop"
+              }
+            }
           },
           "stall": {
             "direction": "O",
@@ -486,19 +498,22 @@
             "type": "clk",
             "direction": "I",
             "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
               "CLK_DOMAIN": {
                 "value": "bluex_clk",
                 "value_src": "default_prop"
               }
             }
           },
-          "rst_n": {
+          "rst": {
             "type": "rst",
             "direction": "I",
             "parameters": {
               "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "constant"
+                "value": "ACTIVE_HIGH"
               }
             }
           },
@@ -863,6 +878,36 @@
             "value": "1"
           }
         }
+      },
+      "util_vector_logic_2": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "ip_revision": "3",
+        "xci_name": "bluex_util_vector_logic_0_1",
+        "xci_path": "ip\\bluex_util_vector_logic_0_1\\bluex_util_vector_logic_0_1.xci",
+        "inst_hier_path": "util_vector_logic_2",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "not"
+          },
+          "C_SIZE": {
+            "value": "1"
+          }
+        }
+      },
+      "util_vector_logic_3": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "ip_revision": "3",
+        "xci_name": "bluex_util_vector_logic_1_1",
+        "xci_path": "ip\\bluex_util_vector_logic_1_1\\bluex_util_vector_logic_1_1.xci",
+        "inst_hier_path": "util_vector_logic_3",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "or"
+          },
+          "C_SIZE": {
+            "value": "1"
+          }
+        }
       }
     },
     "nets": {
@@ -952,12 +997,12 @@
       "clk_0_1": {
         "ports": [
           "clk",
-          "reg_wb_0/clk",
           "reg_heap_id_0/clk",
           "PC_0/clk",
           "wrapper_mem_0/clk",
+          "demux_id_0/clk",
           "alu_ex_0/clk",
-          "demux_id_0/clk"
+          "reg_wb_0/clk"
         ]
       },
       "controller_id_0_addr_flag": {
@@ -1052,7 +1097,7 @@
       "redirection_0_flush": {
         "ports": [
           "redirection_0/flush",
-          "alu_ex_0/rst_n"
+          "util_vector_logic_3/Op2"
         ]
       },
       "redirection_0_rs_forward": {
@@ -1108,10 +1153,11 @@
       "rst_n_0_1": {
         "ports": [
           "rst_n",
-          "reg_wb_0/rst_n",
           "reg_heap_id_0/rst_n",
           "PC_0/rst_n",
-          "wrapper_mem_0/rst_n"
+          "wrapper_mem_0/rst_n",
+          "util_vector_logic_2/Op1",
+          "reg_wb_0/rst_n"
         ]
       },
       "util_vector_logic_0_Res": {
@@ -1126,11 +1172,23 @@
           "PC_0/ena_n"
         ]
       },
+      "util_vector_logic_2_Res": {
+        "ports": [
+          "util_vector_logic_2/Res",
+          "util_vector_logic_3/Op1"
+        ]
+      },
+      "util_vector_logic_3_Res": {
+        "ports": [
+          "util_vector_logic_3/Res",
+          "alu_ex_0/rst"
+        ]
+      },
       "wrapper_mem_0_alu_result": {
         "ports": [
           "wrapper_mem_0/alu_result",
-          "reg_wb_0/alu_result_inw",
-          "alu_ex_0/alu_result_back"
+          "alu_ex_0/alu_result_back",
+          "reg_wb_0/alu_result_inw"
         ]
       },
       "wrapper_mem_0_memory_to_reg": {
@@ -1148,8 +1206,8 @@
       "wrapper_mem_0_reg_write": {
         "ports": [
           "wrapper_mem_0/reg_write",
-          "reg_wb_0/reg_write_inw",
-          "redirection_0/reg_write_mem"
+          "redirection_0/reg_write_mem",
+          "reg_wb_0/reg_write_inw"
         ]
       },
       "wrapper_mem_0_write_mem_addr": {
@@ -1179,8 +1237,8 @@
       "wrapper_mem_0_write_reg_addr": {
         "ports": [
           "wrapper_mem_0/write_reg_addr",
-          "reg_wb_0/write_reg_addr_inw",
-          "redirection_0/write_reg_addr_mem"
+          "redirection_0/write_reg_addr_mem",
+          "reg_wb_0/write_reg_addr_inw"
         ]
       }
     }

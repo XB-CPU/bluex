@@ -2,9 +2,9 @@
 `include ".//global_macro.v"
 
 module alu_ex (
-	/*clk and rst_n signal input*/
+	/*clk and rst signal input*/
 	input									clk,
-	input									rst_n,
+	input									rst,
 	/*ID data input*/
 	input			[`GPR_BIT - 1 : 0] 		rs_inw,
 	input			[`GPR_BIT - 1 : 0] 		rt_inw,
@@ -94,8 +94,8 @@ module alu_ex (
 		endcase
 	end
 
-	always @(posedge clk or posedge rst_n) begin
-		if (rst_n) begin
+	always @(posedge clk or posedge rst) begin
+		if (rst) begin
 			write_reg_addr_out <= {(`GPR_ADR){1'b0}};
 		end
 		else begin
@@ -103,8 +103,8 @@ module alu_ex (
 		end
 	end
 
-	always @(posedge clk or posedge rst_n) begin
-		if (rst_n) begin
+	always @(posedge clk or posedge rst) begin
+		if (rst) begin
 			rs <= 0;
 			rt <= 0;
 			imm <= 0;

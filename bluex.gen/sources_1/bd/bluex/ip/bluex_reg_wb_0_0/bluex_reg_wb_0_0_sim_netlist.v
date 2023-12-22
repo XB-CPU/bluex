@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-// Date        : Mon Dec 18 14:34:04 2023
+// Date        : Fri Dec 22 10:10:07 2023
 // Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_reg_wb_0_0/bluex_reg_wb_0_0_sim_netlist.v
@@ -69,8 +69,8 @@ module bluex_reg_wb_0_0_reg_wb
     reg_write,
     memory_to_reg_inw,
     clk,
-    mem_rd_inw,
     alu_result_inw,
+    mem_rd_inw,
     write_reg_addr_inw,
     reg_write_inw,
     rst_n);
@@ -79,8 +79,8 @@ module bluex_reg_wb_0_0_reg_wb
   output reg_write;
   input memory_to_reg_inw;
   input clk;
-  input [31:0]mem_rd_inw;
   input [31:0]alu_result_inw;
+  input [31:0]mem_rd_inw;
   input [4:0]write_reg_addr_inw;
   input reg_write_inw;
   input rst_n;
@@ -500,256 +500,256 @@ module bluex_reg_wb_0_0_reg_wb
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[0]_INST_0 
-       (.I0(alu_result_inr[0]),
-        .I1(mem_rd_inr[0]),
+       (.I0(mem_rd_inr[0]),
+        .I1(alu_result_inr[0]),
         .I2(memory_to_reg),
         .O(write_back_data[0]));
   (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[10]_INST_0 
-       (.I0(alu_result_inr[10]),
-        .I1(mem_rd_inr[10]),
+       (.I0(mem_rd_inr[10]),
+        .I1(alu_result_inr[10]),
         .I2(memory_to_reg),
         .O(write_back_data[10]));
   (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[11]_INST_0 
-       (.I0(alu_result_inr[11]),
-        .I1(mem_rd_inr[11]),
+       (.I0(mem_rd_inr[11]),
+        .I1(alu_result_inr[11]),
         .I2(memory_to_reg),
         .O(write_back_data[11]));
   (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[12]_INST_0 
-       (.I0(alu_result_inr[12]),
-        .I1(mem_rd_inr[12]),
+       (.I0(mem_rd_inr[12]),
+        .I1(alu_result_inr[12]),
         .I2(memory_to_reg),
         .O(write_back_data[12]));
   (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[13]_INST_0 
-       (.I0(alu_result_inr[13]),
-        .I1(mem_rd_inr[13]),
+       (.I0(mem_rd_inr[13]),
+        .I1(alu_result_inr[13]),
         .I2(memory_to_reg),
         .O(write_back_data[13]));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[14]_INST_0 
-       (.I0(alu_result_inr[14]),
-        .I1(mem_rd_inr[14]),
+       (.I0(mem_rd_inr[14]),
+        .I1(alu_result_inr[14]),
         .I2(memory_to_reg),
         .O(write_back_data[14]));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[15]_INST_0 
-       (.I0(alu_result_inr[15]),
-        .I1(mem_rd_inr[15]),
+       (.I0(mem_rd_inr[15]),
+        .I1(alu_result_inr[15]),
         .I2(memory_to_reg),
         .O(write_back_data[15]));
   (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[16]_INST_0 
-       (.I0(alu_result_inr[16]),
-        .I1(mem_rd_inr[16]),
+       (.I0(mem_rd_inr[16]),
+        .I1(alu_result_inr[16]),
         .I2(memory_to_reg),
         .O(write_back_data[16]));
   (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[17]_INST_0 
-       (.I0(alu_result_inr[17]),
-        .I1(mem_rd_inr[17]),
+       (.I0(mem_rd_inr[17]),
+        .I1(alu_result_inr[17]),
         .I2(memory_to_reg),
         .O(write_back_data[17]));
   (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[18]_INST_0 
-       (.I0(alu_result_inr[18]),
-        .I1(mem_rd_inr[18]),
+       (.I0(mem_rd_inr[18]),
+        .I1(alu_result_inr[18]),
         .I2(memory_to_reg),
         .O(write_back_data[18]));
   (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[19]_INST_0 
-       (.I0(alu_result_inr[19]),
-        .I1(mem_rd_inr[19]),
+       (.I0(mem_rd_inr[19]),
+        .I1(alu_result_inr[19]),
         .I2(memory_to_reg),
         .O(write_back_data[19]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[1]_INST_0 
-       (.I0(alu_result_inr[1]),
-        .I1(mem_rd_inr[1]),
+       (.I0(mem_rd_inr[1]),
+        .I1(alu_result_inr[1]),
         .I2(memory_to_reg),
         .O(write_back_data[1]));
   (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[20]_INST_0 
-       (.I0(alu_result_inr[20]),
-        .I1(mem_rd_inr[20]),
+       (.I0(mem_rd_inr[20]),
+        .I1(alu_result_inr[20]),
         .I2(memory_to_reg),
         .O(write_back_data[20]));
   (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[21]_INST_0 
-       (.I0(alu_result_inr[21]),
-        .I1(mem_rd_inr[21]),
+       (.I0(mem_rd_inr[21]),
+        .I1(alu_result_inr[21]),
         .I2(memory_to_reg),
         .O(write_back_data[21]));
   (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[22]_INST_0 
-       (.I0(alu_result_inr[22]),
-        .I1(mem_rd_inr[22]),
+       (.I0(mem_rd_inr[22]),
+        .I1(alu_result_inr[22]),
         .I2(memory_to_reg),
         .O(write_back_data[22]));
   (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[23]_INST_0 
-       (.I0(alu_result_inr[23]),
-        .I1(mem_rd_inr[23]),
+       (.I0(mem_rd_inr[23]),
+        .I1(alu_result_inr[23]),
         .I2(memory_to_reg),
         .O(write_back_data[23]));
   (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[24]_INST_0 
-       (.I0(alu_result_inr[24]),
-        .I1(mem_rd_inr[24]),
+       (.I0(mem_rd_inr[24]),
+        .I1(alu_result_inr[24]),
         .I2(memory_to_reg),
         .O(write_back_data[24]));
   (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[25]_INST_0 
-       (.I0(alu_result_inr[25]),
-        .I1(mem_rd_inr[25]),
+       (.I0(mem_rd_inr[25]),
+        .I1(alu_result_inr[25]),
         .I2(memory_to_reg),
         .O(write_back_data[25]));
   (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[26]_INST_0 
-       (.I0(alu_result_inr[26]),
-        .I1(mem_rd_inr[26]),
+       (.I0(mem_rd_inr[26]),
+        .I1(alu_result_inr[26]),
         .I2(memory_to_reg),
         .O(write_back_data[26]));
   (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[27]_INST_0 
-       (.I0(alu_result_inr[27]),
-        .I1(mem_rd_inr[27]),
+       (.I0(mem_rd_inr[27]),
+        .I1(alu_result_inr[27]),
         .I2(memory_to_reg),
         .O(write_back_data[27]));
   (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[28]_INST_0 
-       (.I0(alu_result_inr[28]),
-        .I1(mem_rd_inr[28]),
+       (.I0(mem_rd_inr[28]),
+        .I1(alu_result_inr[28]),
         .I2(memory_to_reg),
         .O(write_back_data[28]));
   (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[29]_INST_0 
-       (.I0(alu_result_inr[29]),
-        .I1(mem_rd_inr[29]),
+       (.I0(mem_rd_inr[29]),
+        .I1(alu_result_inr[29]),
         .I2(memory_to_reg),
         .O(write_back_data[29]));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[2]_INST_0 
-       (.I0(alu_result_inr[2]),
-        .I1(mem_rd_inr[2]),
+       (.I0(mem_rd_inr[2]),
+        .I1(alu_result_inr[2]),
         .I2(memory_to_reg),
         .O(write_back_data[2]));
   (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[30]_INST_0 
-       (.I0(alu_result_inr[30]),
-        .I1(mem_rd_inr[30]),
+       (.I0(mem_rd_inr[30]),
+        .I1(alu_result_inr[30]),
         .I2(memory_to_reg),
         .O(write_back_data[30]));
   (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[31]_INST_0 
-       (.I0(alu_result_inr[31]),
-        .I1(mem_rd_inr[31]),
+       (.I0(mem_rd_inr[31]),
+        .I1(alu_result_inr[31]),
         .I2(memory_to_reg),
         .O(write_back_data[31]));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[3]_INST_0 
-       (.I0(alu_result_inr[3]),
-        .I1(mem_rd_inr[3]),
+       (.I0(mem_rd_inr[3]),
+        .I1(alu_result_inr[3]),
         .I2(memory_to_reg),
         .O(write_back_data[3]));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[4]_INST_0 
-       (.I0(alu_result_inr[4]),
-        .I1(mem_rd_inr[4]),
+       (.I0(mem_rd_inr[4]),
+        .I1(alu_result_inr[4]),
         .I2(memory_to_reg),
         .O(write_back_data[4]));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[5]_INST_0 
-       (.I0(alu_result_inr[5]),
-        .I1(mem_rd_inr[5]),
+       (.I0(mem_rd_inr[5]),
+        .I1(alu_result_inr[5]),
         .I2(memory_to_reg),
         .O(write_back_data[5]));
   (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[6]_INST_0 
-       (.I0(alu_result_inr[6]),
-        .I1(mem_rd_inr[6]),
+       (.I0(mem_rd_inr[6]),
+        .I1(alu_result_inr[6]),
         .I2(memory_to_reg),
         .O(write_back_data[6]));
   (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[7]_INST_0 
-       (.I0(alu_result_inr[7]),
-        .I1(mem_rd_inr[7]),
+       (.I0(mem_rd_inr[7]),
+        .I1(alu_result_inr[7]),
         .I2(memory_to_reg),
         .O(write_back_data[7]));
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[8]_INST_0 
-       (.I0(alu_result_inr[8]),
-        .I1(mem_rd_inr[8]),
+       (.I0(mem_rd_inr[8]),
+        .I1(alu_result_inr[8]),
         .I2(memory_to_reg),
         .O(write_back_data[8]));
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[9]_INST_0 
-       (.I0(alu_result_inr[9]),
-        .I1(mem_rd_inr[9]),
+       (.I0(mem_rd_inr[9]),
+        .I1(alu_result_inr[9]),
         .I2(memory_to_reg),
         .O(write_back_data[9]));
   LUT1 #(

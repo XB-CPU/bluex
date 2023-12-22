@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Dec 22 14:18:36 2023" VIVADOVERSION="2023.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Dec 22 20:55:01 2023" VIVADOVERSION="2023.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="bluex" PACKAGE="clg400" SPEEDGRADE="-2"/>
 
@@ -10,8 +10,8 @@
         <CONNECTION INSTANCE="PC_0" PORT="clk"/>
         <CONNECTION INSTANCE="wrapper_mem_0" PORT="clk"/>
         <CONNECTION INSTANCE="reg_wb_0" PORT="clk"/>
-        <CONNECTION INSTANCE="alu_ex_0" PORT="clk"/>
         <CONNECTION INSTANCE="demux_id_0" PORT="clk"/>
+        <CONNECTION INSTANCE="alu_ex_0" PORT="clk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" LEFT="15" NAME="current_addr_0" RIGHT="0" SIGIS="undef" SIGNAME="PC_0_current_addr">
@@ -75,9 +75,9 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" NAME="branch_taken_ex" SIGIS="undef" SIGNAME="alu_ex_0_branch_jump_flag">
+        <PORT DIR="I" NAME="branch_taken_ex" SIGIS="undef" SIGNAME="alu_ex_0_branch_PC">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="alu_ex_0" PORT="branch_jump_flag"/>
+            <CONNECTION INSTANCE="alu_ex_0" PORT="branch_PC"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
@@ -135,6 +135,11 @@
             <CONNECTION INSTANCE="controller_id_0" PORT="alu_src"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="branch_PC" SIGIS="undef" SIGNAME="alu_ex_0_branch_PC">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="PC_0" PORT="branch_taken_ex"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" LEFT="15" NAME="branch_addr" RIGHT="0" SIGIS="undef" SIGNAME="alu_ex_0_branch_addr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="PC_0" PORT="next_addr_branch"/>
@@ -147,7 +152,6 @@
         </PORT>
         <PORT DIR="O" NAME="branch_jump_flag" SIGIS="undef" SIGNAME="alu_ex_0_branch_jump_flag">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="PC_0" PORT="branch_taken_ex"/>
             <CONNECTION INSTANCE="redirection_0" PORT="branch_taken_ex"/>
             <CONNECTION INSTANCE="demux_id_0" PORT="branch_taken"/>
           </CONNECTIONS>
@@ -682,8 +686,8 @@
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="Res" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="undef" SIGNAME="util_vector_logic_2_Res">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="alu_ex_0" PORT="rst"/>
             <CONNECTION INSTANCE="demux_id_0" PORT="rst"/>
+            <CONNECTION INSTANCE="alu_ex_0" PORT="rst"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

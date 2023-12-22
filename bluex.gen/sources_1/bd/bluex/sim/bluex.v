@@ -2,7 +2,7 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-//Date        : Fri Dec 22 14:18:35 2023
+//Date        : Fri Dec 22 20:55:01 2023
 //Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 //Command     : generate_target bluex.bd
 //Design      : bluex
@@ -36,6 +36,7 @@ module bluex
   wire [0:0]Op1_0_1;
   wire [15:0]PC_0_current_addr;
   wire [15:0]PC_0_next_addr_output;
+  wire alu_ex_0_branch_PC;
   wire [15:0]alu_ex_0_branch_addr;
   wire alu_ex_0_branch_jump_flag;
   wire alu_ex_0_memory_to_reg;
@@ -95,7 +96,7 @@ module bluex
   assign write_mem_data[31:0] = wrapper_mem_0_write_mem_data;
   assign write_mem_en = wrapper_mem_0_write_mem_en;
   bluex_PC_0_0 PC_0
-       (.branch_taken_ex(alu_ex_0_branch_jump_flag),
+       (.branch_taken_ex(alu_ex_0_branch_PC),
         .clk(clk_0_1),
         .current_addr(PC_0_current_addr),
         .ena_n(util_vector_logic_1_Res),
@@ -106,6 +107,7 @@ module bluex
        (.alu_op_inw(demux_id_0_real_op),
         .alu_result_back(wrapper_mem_0_alu_result),
         .alu_src_inw(controller_id_0_alu_src),
+        .branch_PC(alu_ex_0_branch_PC),
         .branch_addr(alu_ex_0_branch_addr),
         .branch_isc_flag_inw(controller_id_0_branch),
         .branch_jump_flag(alu_ex_0_branch_jump_flag),

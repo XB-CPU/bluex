@@ -76,6 +76,7 @@ module bluex_alu_ex_0_0 (
   rd_value,
   write_data,
   branch_jump_flag,
+  branch_PC,
   branch_addr,
   write_reg_addr_out,
   memory_write,
@@ -108,6 +109,7 @@ input wire [4 : 0] write_reg_addr_in_inw;
 output wire [31 : 0] rd_value;
 output wire [31 : 0] write_data;
 output wire branch_jump_flag;
+output wire branch_PC;
 output wire [15 : 0] branch_addr;
 output wire [4 : 0] write_reg_addr_out;
 output wire memory_write;
@@ -136,6 +138,7 @@ output wire reg_write;
     .rd_value(rd_value),
     .write_data(write_data),
     .branch_jump_flag(branch_jump_flag),
+    .branch_PC(branch_PC),
     .branch_addr(branch_addr),
     .write_reg_addr_out(write_reg_addr_out),
     .memory_write(memory_write),

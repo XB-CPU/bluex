@@ -11,7 +11,7 @@ ADR_BIT = 0
 IMM_BIT = 0
 OPC_BIT = 0
 
-version = "23.12.20.1.0"
+version = "23.12.22.1.0"
 
 def show_version():
     return version
@@ -22,18 +22,22 @@ cli_parser.add_argument("-o", "--output", metavar="'name of output file'", help=
 cli_parser.add_argument('-v', '--version', action='version', version=show_version(),help='show version')
 cli_parser.add_argument("-p", "--print_code", action="store_false", help="print machine code", default=True)
 cli_parser.add_argument("-V", "--verbose", action="store_false", help="print compile process verbosely", default=True)
+cli_parser.add_argument("-rii", "--read_in_ignore", action="store_true", help="permit read in ignore mode when the encoding of some file is unrecognizable", default=True)
 cli_args = cli_parser.parse_args()
 
 macro_dict = dict()
 
-def info_print(messsage:str):
-	print(f"\033[0;93minfo:\033[0m {messsage}")
+def info_print(message:str):
+	print(f"\033[0;93minfo:\033[0m {message}")
 
-def note_print(messsage:str):
-	print(f"\033[0;36mnote:\033[0m {messsage}")
+def note_print(message:str):
+	print(f"\033[0;36mnote:\033[0m {message}")
+
+def warning_print(message:str):
+	print(f"\033[0;95merror:\033[0m {message}")
 	
-def error_print(messsage:str):
-	print(f"\033[0;91merror:\033[0m {messsage}")
+def error_print(message:str):
+	print(f"\033[0;91merror:\033[0m {message}")
 
 def ce_print(mes:str, file=None, line_index:int=None):
 	if line_index is None:
@@ -175,7 +179,15 @@ def load_macro():
 	i = 0
 	if not os.path.exists("./global_macro.v"):
 		error_print("global_macro.v not found! Abort.")
-	with open("./global_macro.v") as f:
+	try:
+		with open("./global_macro.v", errors="strict") as f:
+			f.close()
+	except:
+		if cli_args.read_in_ignore:
+			warning_print('read "global_macro.v" using "ignore" mode.')
+		else:
+			error_print('"global_macro.v" has unrecognizable encoding! Abort.')
+	with open("./global_macro.v", errors="ignore") as f:
 		for line in f.readlines():
 			if line.startswith("`define ALO_"):
 				line = line.split()[1:4]
@@ -223,6 +235,14 @@ def check_cli_arg_correctness():
 
 def compile():
 	cmd_type = None
+	try:
+		with open(cli_args.raw_file_name, errors="strict") as f:
+			f.close()
+	except:
+		if cli_args.read_in_ignore:
+			warning_print(f'read "{cli_args.raw_file_name}" using "ignore" mode.')
+		else:
+			ce_print(f'"{cli_args.raw_file_name}" has unrecognizable encoding! Abort.')
 	with open(cli_args.raw_file_name) as f:
 		for (index, line) in enumerate(f.readlines()):
 			line = line.strip()

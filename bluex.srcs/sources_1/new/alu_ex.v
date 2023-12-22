@@ -34,6 +34,7 @@ module alu_ex (
 	output			[`GPR_BIT - 1 : 0]		write_data,
 	/*branch*/
 	output									branch_jump_flag,
+	output									branch_PC,
 	output			[`ADR_BIT - 1 : 0]		branch_addr,
 	/*redirection*/
 	output	reg		[`GPR_ADR - 1 : 0]		write_reg_addr_out,
@@ -70,6 +71,7 @@ module alu_ex (
 	assign branch_addr = imm + pc_next;
 	assign write_data = alu_src_t_tmp;
 	assign branch_jump_flag = branch_isc_flag & alu_branch_result;
+	assign branch_PC = branch_isc_flag & alu_branch_result;
 
 	always @(*) begin
 		case (rs_forward)
@@ -146,94 +148,107 @@ module alu_ex (
 		// error_type = `ERR_NOE;
 		case (alu_op)
 			// `ALO_NOP:	begin
-			// 	rd_value = 0; alu_branch_result = 1'b0;
+			// 	rd_value = 0;
 			// end
 			/* arithmetic */
 			`ALO_ADD:	begin
-				rd_value = rd_add; alu_branch_result = 1'b0;// {carry, rd_value} = rd_add; alu_branch_result = 1'b0;
+				rd_value = rd_add;// {carry, rd_value} = rd_add;
 			end
 			`ALO_SUB:	begin
-				rd_value = rd_sub; alu_branch_result = 1'b0;// {carry, rd_value} = rd_sub; alu_branch_result = 1'b0;
+				rd_value = rd_sub;// {carry, rd_value} = rd_sub;
 			end
 			`ALO_ADDI:	begin
-				rd_value = rd_add; alu_branch_result = 1'b0;// {carry, rd_value} = rd_add; alu_branch_result = 1'b0;
+				rd_value = rd_add;// {carry, rd_value} = rd_add;
 			end
 			`ALO_SUBI:	begin
-				rd_value = rd_sub; alu_branch_result = 1'b0;// {carry, rd_value} = rd_sub; alu_branch_result = 1'b0;
+				rd_value = rd_sub;// {carry, rd_value} = rd_sub;
 			end
 			/* logic */
 			`ALO_NOT:	begin
-				rd_value = ~alu_src_s; alu_branch_result = 1'b0;
+				rd_value = ~alu_src_s;
 			end
 			`ALO_ORL:	begin
-				rd_value = alu_src_s | alu_src_t; alu_branch_result = 1'b0;
+				rd_value = alu_src_s | alu_src_t;
 			end
 			`ALO_AND:	begin
-				rd_value = alu_src_s & alu_src_t; alu_branch_result = 1'b0;
+				rd_value = alu_src_s & alu_src_t;
 			end
 			`ALO_XOR:	begin
-				rd_value = alu_src_s ^ alu_src_t; alu_branch_result = 1'b0;
+				rd_value = alu_src_s ^ alu_src_t;
 			end
 			`ALO_NOTI:	begin
-				rd_value = ~alu_src_t; alu_branch_result = 1'b0;
+				rd_value = ~alu_src_t;
 			end
 			`ALO_ORLI:	begin
-				rd_value = alu_src_s | alu_src_t; alu_branch_result = 1'b0;
+				rd_value = alu_src_s | alu_src_t;
 			end
 			`ALO_ANDI:	begin
-				rd_value = alu_src_s & alu_src_t; alu_branch_result = 1'b0;
+				rd_value = alu_src_s & alu_src_t;
 			end
 			`ALO_XORI:	begin
-				rd_value = alu_src_s ^ alu_src_t; alu_branch_result = 1'b0;
+				rd_value = alu_src_s ^ alu_src_t;
 			end
 			/* shift */
 			`ALO_SLL:	begin
-				rd_value = alu_src_t << alu_src_t; alu_branch_result = 1'b0;
+				rd_value = alu_src_t << alu_src_t;
 			end
 			`ALO_SRL:	begin
-				rd_value = alu_src_t >> alu_src_t; alu_branch_result = 1'b0;
+				rd_value = alu_src_t >> alu_src_t;
 			end
 			`ALO_SRA:	begin
-				rd_value = alu_src_t >>> alu_src_t; alu_branch_result = 1'b0;
+				rd_value = alu_src_t >>> alu_src_t;
 			end
 			/* branch */
 			`ALO_BEQ:	begin
-				alu_branch_result = (alu_src_s == alu_src_t) ? 1'b1 : 1'b0; rd_value = 1'b0;
+				rd_value = 1'b0;
 			end
 			`ALO_BNE:	begin
-				alu_branch_result = (alu_src_s != alu_src_t) ? 1'b1 : 1'b0; rd_value = 1'b0;
+				rd_value = 1'b0;
 			end
 			`ALO_JMP:	begin
-				alu_branch_result = 1'b1; rd_value = 1'b0;
+				rd_value = 1'b0;
 			end
 			/* compare */
 			`ALO_SLS:	begin
-				rd_value = (alu_src_s < alu_src_t) ? 1'b1 : 1'b0; alu_branch_result = 1'b0;
+				rd_value = (alu_src_s < alu_src_t) ? 1'b1 : 1'b0;
 			end
 			`ALO_SLSI:	begin
-				rd_value = (alu_src_s < alu_src_t) ? 1'b1 : 1'b0; alu_branch_result = 1'b0; // here, imm is alu_src_t 
+				rd_value = (alu_src_s < alu_src_t) ? 1'b1 : 1'b0; // here, imm is alu_src_t 
 			end
 			/* load/save */
 			`ALO_LDW:	begin
-				rd_value = alu_src_s + alu_src_t; alu_branch_result = 1'b0;
+				rd_value = alu_src_s + alu_src_t;
 			end
 			`ALO_SVW:	begin
-				rd_value = alu_src_s + alu_src_t; alu_branch_result = 1'b0;
+				rd_value = alu_src_s + alu_src_t;
 			end
 			/* move */
 			// `ALO_MVRR:	begin
-			// 	rd_value = alu_src_s; alu_branch_result = 1'b0;
+			// 	rd_value = alu_src_s;
 			// end
 			`ALO_MIRL:	begin
-				rd_value = alu_src_t & 32'h0000FFFF; alu_branch_result = 1'b0;
+				rd_value = alu_src_t & 32'h0000FFFF;
 			end
 			`ALO_MIRH:	begin
-				rd_value = alu_src_t << (`GPR_BIT - `IMM_BIT); alu_branch_result = 1'b0;
+				rd_value = alu_src_t << (`GPR_BIT - `IMM_BIT);
 			end
 			default: begin
 				rd_value = {(`GPR_BIT){1'b0}};
-				alu_branch_result = 1'b0;
 			end
 		endcase
+	end
+
+	always @(negedge clk or posedge branch_rst) begin
+		if (branch_rst) begin
+			alu_branch_result <= 1'b0;
+		end
+		else begin
+			case (alu_op)
+				`ALO_BEQ: alu_branch_result <= (alu_src_s == alu_src_t) ? 1'b1 : 1'b0;
+				`ALO_BNE: alu_branch_result <= (alu_src_s != alu_src_t) ? 1'b1 : 1'b0;
+				`ALO_JMP: alu_branch_result <= 1'b1;
+				default: alu_branch_result <= 1'b0;
+			endcase
+		end
 	end
 endmodule

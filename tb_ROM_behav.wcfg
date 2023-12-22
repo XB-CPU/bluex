@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="91.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="144.901 ns"></ZoomEndTime>
-      <Cursor1Time time="129.100 ns"></Cursor1Time>
+      <ZoomStartTime time="1,764.583 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,819.084 ns"></ZoomEndTime>
+      <Cursor1Time time="1,769.783 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="299"></NameColumnWidth>
+      <NameColumnWidth column_width="293"></NameColumnWidth>
       <ValueColumnWidth column_width="90"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="32" />
+   <WVObjectSize size="40" />
    <wvobject fp_name="/tb_ROM/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -146,21 +146,89 @@
       <obj_property name="ElementShortName">stall</obj_property>
       <obj_property name="ObjectShortName">stall</obj_property>
    </wvobject>
-   <wvobject fp_name="group88" type="group">
-      <obj_property name="label">demux_branch</obj_property>
+   <wvobject fp_name="group61" type="group">
+      <obj_property name="label">demux</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/real_rst" type="logic">
          <obj_property name="ElementShortName">real_rst</obj_property>
          <obj_property name="ObjectShortName">real_rst</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/real_op" type="array">
-         <obj_property name="ElementShortName">real_op[5:0]</obj_property>
-         <obj_property name="ObjectShortName">real_op[5:0]</obj_property>
-      </wvobject>
       <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/branch_taken" type="logic">
          <obj_property name="ElementShortName">branch_taken</obj_property>
          <obj_property name="ObjectShortName">branch_taken</obj_property>
       </wvobject>
+      <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/op" type="array">
+         <obj_property name="ElementShortName">op[5:0]</obj_property>
+         <obj_property name="ObjectShortName">op[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/rs" type="array">
+         <obj_property name="ElementShortName">rs[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rs[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/rt" type="array">
+         <obj_property name="ElementShortName">rt[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rt[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/rd" type="array">
+         <obj_property name="ElementShortName">rd[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rd[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/shamt" type="array">
+         <obj_property name="ElementShortName">shamt[4:0]</obj_property>
+         <obj_property name="ObjectShortName">shamt[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/rfunct" type="array">
+         <obj_property name="ElementShortName">rfunct[5:0]</obj_property>
+         <obj_property name="ObjectShortName">rfunct[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/imm" type="array">
+         <obj_property name="ElementShortName">imm[15:0]</obj_property>
+         <obj_property name="ObjectShortName">imm[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/addr" type="array">
+         <obj_property name="ElementShortName">addr[15:0]</obj_property>
+         <obj_property name="ObjectShortName">addr[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/real_op" type="array">
+         <obj_property name="ElementShortName">real_op[5:0]</obj_property>
+         <obj_property name="ObjectShortName">real_op[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/pc_next" type="array">
+         <obj_property name="ElementShortName">pc_next[15:0]</obj_property>
+         <obj_property name="ObjectShortName">pc_next[15:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/branch_isc_flag_inw" type="logic">
+      <obj_property name="ElementShortName">branch_isc_flag_inw</obj_property>
+      <obj_property name="ObjectShortName">branch_isc_flag_inw</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/branch_jump_flag" type="logic">
+      <obj_property name="ElementShortName">branch_jump_flag</obj_property>
+      <obj_property name="ObjectShortName">branch_jump_flag</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/alu_branch_result" type="logic">
+      <obj_property name="ElementShortName">alu_branch_result</obj_property>
+      <obj_property name="ObjectShortName">alu_branch_result</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/PC_0/inst/next_addr_branch" type="array">
+      <obj_property name="ElementShortName">next_addr_branch[15:0]</obj_property>
+      <obj_property name="ObjectShortName">next_addr_branch[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/PC_0/inst/branch_taken_ex" type="logic">
+      <obj_property name="ElementShortName">branch_taken_ex</obj_property>
+      <obj_property name="ObjectShortName">branch_taken_ex</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/PC_0/inst/next_addr_in_use" type="array">
+      <obj_property name="ElementShortName">next_addr_in_use[15:0]</obj_property>
+      <obj_property name="ObjectShortName">next_addr_in_use[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/branch_PC" type="logic">
+      <obj_property name="ElementShortName">branch_PC</obj_property>
+      <obj_property name="ObjectShortName">branch_PC</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/PC_0/inst/current_addr" type="array">
+      <obj_property name="ElementShortName">current_addr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">current_addr[15:0]</obj_property>
    </wvobject>
 </wave_config>

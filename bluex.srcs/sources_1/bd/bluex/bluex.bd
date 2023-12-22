@@ -643,6 +643,19 @@
               }
             }
           },
+          "branch_PC": {
+            "direction": "O",
+            "parameters": {
+              "PortType": {
+                "value": "undef",
+                "value_src": "ip_prop"
+              },
+              "PortType.PROP_SRC": {
+                "value": "false",
+                "value_src": "ip_prop"
+              }
+            }
+          },
           "branch_addr": {
             "direction": "O",
             "left": "15",
@@ -972,6 +985,12 @@
           "demux_id_0/pc_next_inw"
         ]
       },
+      "alu_ex_0_branch_PC": {
+        "ports": [
+          "alu_ex_0/branch_PC",
+          "PC_0/branch_taken_ex"
+        ]
+      },
       "alu_ex_0_branch_addr": {
         "ports": [
           "alu_ex_0/branch_addr",
@@ -981,7 +1000,6 @@
       "alu_ex_0_branch_jump_flag": {
         "ports": [
           "alu_ex_0/branch_jump_flag",
-          "PC_0/branch_taken_ex",
           "redirection_0/branch_taken_ex",
           "demux_id_0/branch_taken"
         ]
@@ -1044,8 +1062,8 @@
           "PC_0/clk",
           "wrapper_mem_0/clk",
           "reg_wb_0/clk",
-          "alu_ex_0/clk",
-          "demux_id_0/clk"
+          "demux_id_0/clk",
+          "alu_ex_0/clk"
         ]
       },
       "controller_id_0_addr_flag": {
@@ -1218,8 +1236,8 @@
       "util_vector_logic_2_Res": {
         "ports": [
           "util_vector_logic_2/Res",
-          "alu_ex_0/rst",
-          "demux_id_0/rst"
+          "demux_id_0/rst",
+          "alu_ex_0/rst"
         ]
       },
       "wrapper_mem_0_alu_result": {

@@ -11,18 +11,22 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="54.801 ns"></ZoomEndTime>
-      <Cursor1Time time="66.700 ns"></Cursor1Time>
+      <ZoomStartTime time="65.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="117.101 ns"></ZoomEndTime>
+      <Cursor1Time time="85.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="290"></NameColumnWidth>
-      <ValueColumnWidth column_width="90"></ValueColumnWidth>
+      <NameColumnWidth column_width="316"></NameColumnWidth>
+      <ValueColumnWidth column_width="91"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="98" />
+   <WVObjectSize size="63" />
    <wvobject fp_name="/tb_ROM/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_ROM/enable_CPU" type="array">
       <obj_property name="ElementShortName">enable_CPU[0:0]</obj_property>
@@ -41,184 +45,114 @@
       <obj_property name="ObjectShortName">real_op[5:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/rs_inw" type="array">
-      <obj_property name="ElementShortName">rs_inw[31:0]</obj_property>
-      <obj_property name="ObjectShortName">rs_inw[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/rt_inw" type="array">
-      <obj_property name="ElementShortName">rt_inw[31:0]</obj_property>
-      <obj_property name="ObjectShortName">rt_inw[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/imm_inw" type="array">
-      <obj_property name="ElementShortName">imm_inw[31:0]</obj_property>
-      <obj_property name="ObjectShortName">imm_inw[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/imm" type="array">
-      <obj_property name="ElementShortName">imm[31:0]</obj_property>
-      <obj_property name="ObjectShortName">imm[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/write_back_data" type="array">
-      <obj_property name="ElementShortName">write_back_data[31:0]</obj_property>
-      <obj_property name="ObjectShortName">write_back_data[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/alu_result_back" type="array">
-      <obj_property name="ElementShortName">alu_result_back[31:0]</obj_property>
-      <obj_property name="ObjectShortName">alu_result_back[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/alu_op_inw" type="array">
-      <obj_property name="ElementShortName">alu_op_inw[5:0]</obj_property>
-      <obj_property name="ObjectShortName">alu_op_inw[5:0]</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/alu_op" type="array">
+      <obj_property name="ElementShortName">alu_op[5:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_op[5:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/rs_forward_inw" type="array">
-      <obj_property name="ElementShortName">rs_forward_inw[1:0]</obj_property>
-      <obj_property name="ObjectShortName">rs_forward_inw[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/rt_forward_inw" type="array">
-      <obj_property name="ElementShortName">rt_forward_inw[1:0]</obj_property>
-      <obj_property name="ObjectShortName">rt_forward_inw[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/alu_src_inw" type="logic">
-      <obj_property name="ElementShortName">alu_src_inw</obj_property>
-      <obj_property name="ObjectShortName">alu_src_inw</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/memory_write_inw" type="logic">
-      <obj_property name="ElementShortName">memory_write_inw</obj_property>
-      <obj_property name="ObjectShortName">memory_write_inw</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/memory_to_reg_inw" type="logic">
-      <obj_property name="ElementShortName">memory_to_reg_inw</obj_property>
-      <obj_property name="ObjectShortName">memory_to_reg_inw</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/reg_write_inw" type="logic">
-      <obj_property name="ElementShortName">reg_write_inw</obj_property>
-      <obj_property name="ObjectShortName">reg_write_inw</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/branch_isc_flag_inw" type="logic">
-      <obj_property name="ElementShortName">branch_isc_flag_inw</obj_property>
-      <obj_property name="ObjectShortName">branch_isc_flag_inw</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/pc_next_inw" type="array">
-      <obj_property name="ElementShortName">pc_next_inw[15:0]</obj_property>
-      <obj_property name="ObjectShortName">pc_next_inw[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/write_reg_addr_in_inw" type="array">
-      <obj_property name="ElementShortName">write_reg_addr_in_inw[4:0]</obj_property>
-      <obj_property name="ObjectShortName">write_reg_addr_in_inw[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/rd_value" type="array">
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/rd_value" type="array">
       <obj_property name="ElementShortName">rd_value[31:0]</obj_property>
       <obj_property name="ObjectShortName">rd_value[31:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/pc_next" type="array">
+      <obj_property name="ElementShortName">pc_next[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_next[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/alu_src_s" type="array">
       <obj_property name="ElementShortName">alu_src_s[31:0]</obj_property>
       <obj_property name="ObjectShortName">alu_src_s[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/alu_src_t_tmp" type="array">
-      <obj_property name="ElementShortName">alu_src_t_tmp[31:0]</obj_property>
-      <obj_property name="ObjectShortName">alu_src_t_tmp[31:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/alu_src_t" type="array">
       <obj_property name="ElementShortName">alu_src_t[31:0]</obj_property>
       <obj_property name="ObjectShortName">alu_src_t[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/write_data" type="array">
-      <obj_property name="ElementShortName">write_data[31:0]</obj_property>
-      <obj_property name="ObjectShortName">write_data[31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/alu_src" type="logic">
       <obj_property name="ElementShortName">alu_src</obj_property>
       <obj_property name="ObjectShortName">alu_src</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/branch_jump_flag" type="logic">
-      <obj_property name="ElementShortName">branch_jump_flag</obj_property>
-      <obj_property name="ObjectShortName">branch_jump_flag</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/write_back_data" type="array">
+      <obj_property name="ElementShortName">write_back_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">write_back_data[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/branch_addr" type="array">
-      <obj_property name="ElementShortName">branch_addr[15:0]</obj_property>
-      <obj_property name="ObjectShortName">branch_addr[15:0]</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/alu_result_back" type="array">
+      <obj_property name="ElementShortName">alu_result_back[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_result_back[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/write_reg_addr_out" type="array">
-      <obj_property name="ElementShortName">write_reg_addr_out[4:0]</obj_property>
-      <obj_property name="ObjectShortName">write_reg_addr_out[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/memory_write" type="logic">
-      <obj_property name="ElementShortName">memory_write</obj_property>
-      <obj_property name="ObjectShortName">memory_write</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/memory_to_reg" type="logic">
-      <obj_property name="ElementShortName">memory_to_reg</obj_property>
-      <obj_property name="ObjectShortName">memory_to_reg</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/reg_write" type="logic">
-      <obj_property name="ElementShortName">reg_write</obj_property>
-      <obj_property name="ObjectShortName">reg_write</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/rs" type="array">
-      <obj_property name="ElementShortName">rs[4:0]</obj_property>
-      <obj_property name="ObjectShortName">rs[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/rt" type="array">
-      <obj_property name="ElementShortName">rt[4:0]</obj_property>
-      <obj_property name="ObjectShortName">rt[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/reg_write_ex" type="logic">
-      <obj_property name="ElementShortName">reg_write_ex</obj_property>
-      <obj_property name="ObjectShortName">reg_write_ex</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/write_reg_addr_ex" type="array">
-      <obj_property name="ElementShortName">write_reg_addr_ex[4:0]</obj_property>
-      <obj_property name="ObjectShortName">write_reg_addr_ex[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/mem_rd_ex" type="logic">
-      <obj_property name="ElementShortName">mem_rd_ex</obj_property>
-      <obj_property name="ObjectShortName">mem_rd_ex</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/branch_taken_ex" type="logic">
-      <obj_property name="ElementShortName">branch_taken_ex</obj_property>
-      <obj_property name="ObjectShortName">branch_taken_ex</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/reg_write_mem" type="logic">
-      <obj_property name="ElementShortName">reg_write_mem</obj_property>
-      <obj_property name="ObjectShortName">reg_write_mem</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/write_reg_addr_mem" type="array">
-      <obj_property name="ElementShortName">write_reg_addr_mem[4:0]</obj_property>
-      <obj_property name="ObjectShortName">write_reg_addr_mem[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/real_op" type="array">
-      <obj_property name="ElementShortName">real_op[5:0]</obj_property>
-      <obj_property name="ObjectShortName">real_op[5:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/flush" type="logic">
-      <obj_property name="ElementShortName">flush</obj_property>
-      <obj_property name="ObjectShortName">flush</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/stall" type="logic">
-      <obj_property name="ElementShortName">stall</obj_property>
-      <obj_property name="ObjectShortName">stall</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/rs_forward" type="array">
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/rs_forward" type="array">
       <obj_property name="ElementShortName">rs_forward[1:0]</obj_property>
       <obj_property name="ObjectShortName">rs_forward[1:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/rt_forward" type="array">
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/rt_forward" type="array">
       <obj_property name="ElementShortName">rt_forward[1:0]</obj_property>
       <obj_property name="ObjectShortName">rt_forward[1:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/rs_load_use" type="logic">
-      <obj_property name="ElementShortName">rs_load_use</obj_property>
-      <obj_property name="ObjectShortName">rs_load_use</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/rs" type="array">
+      <obj_property name="ElementShortName">rs[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rs[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/rt_load_use" type="logic">
-      <obj_property name="ElementShortName">rt_load_use</obj_property>
-      <obj_property name="ObjectShortName">rt_load_use</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/rt" type="array">
+      <obj_property name="ElementShortName">rt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rt[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/load_use" type="logic">
-      <obj_property name="ElementShortName">load_use</obj_property>
-      <obj_property name="ObjectShortName">load_use</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/imm" type="array">
+      <obj_property name="ElementShortName">imm[31:0]</obj_property>
+      <obj_property name="ObjectShortName">imm[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/write_data" type="array">
+      <obj_property name="ElementShortName">write_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">write_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/branch_jump_flag" type="logic">
+      <obj_property name="ElementShortName">branch_jump_flag</obj_property>
+      <obj_property name="ObjectShortName">branch_jump_flag</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/branch_addr" type="array">
+      <obj_property name="ElementShortName">branch_addr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">branch_addr[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/write_reg_addr_out" type="array">
+      <obj_property name="ElementShortName">write_reg_addr_out[4:0]</obj_property>
+      <obj_property name="ObjectShortName">write_reg_addr_out[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/memory_write" type="logic">
+      <obj_property name="ElementShortName">memory_write</obj_property>
+      <obj_property name="ObjectShortName">memory_write</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/memory_to_reg" type="logic">
+      <obj_property name="ElementShortName">memory_to_reg</obj_property>
+      <obj_property name="ObjectShortName">memory_to_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/reg_write" type="logic">
+      <obj_property name="ElementShortName">reg_write</obj_property>
+      <obj_property name="ObjectShortName">reg_write</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/alu_src_t_tmp" type="array">
+      <obj_property name="ElementShortName">alu_src_t_tmp[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_src_t_tmp[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/alu_branch_result" type="logic">
+      <obj_property name="ElementShortName">alu_branch_result</obj_property>
+      <obj_property name="ObjectShortName">alu_branch_result</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/alu_ex_0/inst/branch_isc_flag" type="logic">
+      <obj_property name="ElementShortName">branch_isc_flag</obj_property>
+      <obj_property name="ObjectShortName">branch_isc_flag</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/flush" type="logic">
+      <obj_property name="ElementShortName">flush</obj_property>
+      <obj_property name="ObjectShortName">flush</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/stall" type="logic">
+      <obj_property name="ElementShortName">stall</obj_property>
+      <obj_property name="ObjectShortName">stall</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/rs_forward" type="array">
+      <obj_property name="ElementShortName">rs_forward[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rs_forward[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/rt_forward" type="array">
+      <obj_property name="ElementShortName">rt_forward[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rt_forward[1:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/read_rs" type="logic">
       <obj_property name="ElementShortName">read_rs</obj_property>
@@ -236,9 +170,25 @@
       <obj_property name="ElementShortName">write_reg_addr_mem_not_zero</obj_property>
       <obj_property name="ObjectShortName">write_reg_addr_mem_not_zero</obj_property>
    </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/write_reg_addr_ex" type="array">
+      <obj_property name="ElementShortName">write_reg_addr_ex[4:0]</obj_property>
+      <obj_property name="ObjectShortName">write_reg_addr_ex[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/write_reg_addr_mem" type="array">
+      <obj_property name="ElementShortName">write_reg_addr_mem[4:0]</obj_property>
+      <obj_property name="ObjectShortName">write_reg_addr_mem[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/rs" type="array">
+      <obj_property name="ElementShortName">rs[4:0]</obj_property>
+      <obj_property name="ObjectShortName">rs[4:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/write_reg_addr_ex_is_rs" type="logic">
       <obj_property name="ElementShortName">write_reg_addr_ex_is_rs</obj_property>
       <obj_property name="ObjectShortName">write_reg_addr_ex_is_rs</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/rt" type="array">
+      <obj_property name="ElementShortName">rt[4:0]</obj_property>
+      <obj_property name="ObjectShortName">rt[4:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/write_reg_addr_ex_is_rt" type="logic">
       <obj_property name="ElementShortName">write_reg_addr_ex_is_rt</obj_property>
@@ -252,168 +202,76 @@
       <obj_property name="ElementShortName">write_reg_addr_mem_is_rt</obj_property>
       <obj_property name="ObjectShortName">write_reg_addr_mem_is_rt</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/read_mem_out_inw" type="array">
-      <obj_property name="ElementShortName">read_mem_out_inw[31:0]</obj_property>
-      <obj_property name="ObjectShortName">read_mem_out_inw[31:0]</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/redir_rs_ex" type="logic">
+      <obj_property name="ElementShortName">redir_rs_ex</obj_property>
+      <obj_property name="ObjectShortName">redir_rs_ex</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/write_mem_addr" type="array">
-      <obj_property name="ElementShortName">write_mem_addr[15:0]</obj_property>
-      <obj_property name="ObjectShortName">write_mem_addr[15:0]</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/redir_rs_mem" type="logic">
+      <obj_property name="ElementShortName">redir_rs_mem</obj_property>
+      <obj_property name="ObjectShortName">redir_rs_mem</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/write_mem_clk" type="logic">
-      <obj_property name="ElementShortName">write_mem_clk</obj_property>
-      <obj_property name="ObjectShortName">write_mem_clk</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/redir_rt_ex" type="logic">
+      <obj_property name="ElementShortName">redir_rt_ex</obj_property>
+      <obj_property name="ObjectShortName">redir_rt_ex</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/write_mem_data" type="array">
-      <obj_property name="ElementShortName">write_mem_data[31:0]</obj_property>
-      <obj_property name="ObjectShortName">write_mem_data[31:0]</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/redir_rt_mem" type="logic">
+      <obj_property name="ElementShortName">redir_rt_mem</obj_property>
+      <obj_property name="ObjectShortName">redir_rt_mem</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/write_mem_en" type="logic">
-      <obj_property name="ElementShortName">write_mem_en</obj_property>
-      <obj_property name="ObjectShortName">write_mem_en</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/rs_load_use" type="logic">
+      <obj_property name="ElementShortName">rs_load_use</obj_property>
+      <obj_property name="ObjectShortName">rs_load_use</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/RAM" type="array">
-      <obj_property name="ElementShortName">RAM[39:0][31:0]</obj_property>
-      <obj_property name="ObjectShortName">RAM[39:0][31:0]</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/rt_load_use" type="logic">
+      <obj_property name="ElementShortName">rt_load_use</obj_property>
+      <obj_property name="ObjectShortName">rt_load_use</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/PC_0/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/load_use" type="logic">
+      <obj_property name="ElementShortName">load_use</obj_property>
+      <obj_property name="ObjectShortName">load_use</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/PC_0/rst_n" type="logic">
-      <obj_property name="ElementShortName">rst_n</obj_property>
-      <obj_property name="ObjectShortName">rst_n</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/reg_write_ex" type="logic">
+      <obj_property name="ElementShortName">reg_write_ex</obj_property>
+      <obj_property name="ObjectShortName">reg_write_ex</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/PC_0/ena_n" type="logic">
-      <obj_property name="ElementShortName">ena_n</obj_property>
-      <obj_property name="ObjectShortName">ena_n</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/reg_write_mem" type="logic">
+      <obj_property name="ElementShortName">reg_write_mem</obj_property>
+      <obj_property name="ObjectShortName">reg_write_mem</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/PC_0/next_addr_branch" type="array">
-      <obj_property name="ElementShortName">next_addr_branch[15:0]</obj_property>
-      <obj_property name="ObjectShortName">next_addr_branch[15:0]</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/mem_rd_ex" type="logic">
+      <obj_property name="ElementShortName">mem_rd_ex</obj_property>
+      <obj_property name="ObjectShortName">mem_rd_ex</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/PC_0/branch_taken_ex" type="logic">
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/branch_taken_ex" type="logic">
       <obj_property name="ElementShortName">branch_taken_ex</obj_property>
       <obj_property name="ObjectShortName">branch_taken_ex</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/PC_0/current_addr" type="array">
-      <obj_property name="ElementShortName">current_addr[15:0]</obj_property>
-      <obj_property name="ObjectShortName">current_addr[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/PC_0/next_addr_output" type="array">
-      <obj_property name="ElementShortName">next_addr_output[15:0]</obj_property>
-      <obj_property name="ObjectShortName">next_addr_output[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/rst_n" type="logic">
-      <obj_property name="ElementShortName">rst_n</obj_property>
-      <obj_property name="ObjectShortName">rst_n</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/ena_n" type="logic">
-      <obj_property name="ElementShortName">ena_n</obj_property>
-      <obj_property name="ObjectShortName">ena_n</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/isc" type="array">
-      <obj_property name="ElementShortName">isc[31:0]</obj_property>
-      <obj_property name="ObjectShortName">isc[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/pc_next_inw" type="array">
-      <obj_property name="ElementShortName">pc_next_inw[15:0]</obj_property>
-      <obj_property name="ObjectShortName">pc_next_inw[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/op" type="array">
-      <obj_property name="ElementShortName">op[5:0]</obj_property>
-      <obj_property name="ObjectShortName">op[5:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/rs" type="array">
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/rs" type="array">
       <obj_property name="ElementShortName">rs[4:0]</obj_property>
       <obj_property name="ObjectShortName">rs[4:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/rt" type="array">
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/rt" type="array">
       <obj_property name="ElementShortName">rt[4:0]</obj_property>
       <obj_property name="ObjectShortName">rt[4:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/rd" type="array">
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/rd" type="array">
       <obj_property name="ElementShortName">rd[4:0]</obj_property>
       <obj_property name="ObjectShortName">rd[4:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/shamt" type="array">
-      <obj_property name="ElementShortName">shamt[4:0]</obj_property>
-      <obj_property name="ObjectShortName">shamt[4:0]</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/rfunct" type="array">
-      <obj_property name="ElementShortName">rfunct[5:0]</obj_property>
-      <obj_property name="ObjectShortName">rfunct[5:0]</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/inst/ena_n" type="logic">
+      <obj_property name="ElementShortName">ena_n</obj_property>
+      <obj_property name="ObjectShortName">ena_n</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/imm" type="array">
-      <obj_property name="ElementShortName">imm[15:0]</obj_property>
-      <obj_property name="ObjectShortName">imm[15:0]</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/controller_id_0/inst/branch" type="logic">
+      <obj_property name="ElementShortName">branch</obj_property>
+      <obj_property name="ObjectShortName">branch</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/addr" type="array">
-      <obj_property name="ElementShortName">addr[15:0]</obj_property>
-      <obj_property name="ObjectShortName">addr[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/real_op" type="array">
-      <obj_property name="ElementShortName">real_op[5:0]</obj_property>
-      <obj_property name="ObjectShortName">real_op[5:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/demux_id_0/pc_next" type="array">
-      <obj_property name="ElementShortName">pc_next[15:0]</obj_property>
-      <obj_property name="ObjectShortName">pc_next[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/reg_wb_0/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/reg_wb_0/rst_n" type="logic">
-      <obj_property name="ElementShortName">rst_n</obj_property>
-      <obj_property name="ObjectShortName">rst_n</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/reg_wb_0/alu_result_inw" type="array">
-      <obj_property name="ElementShortName">alu_result_inw[31:0]</obj_property>
-      <obj_property name="ObjectShortName">alu_result_inw[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/reg_wb_0/mem_rd_inw" type="array">
-      <obj_property name="ElementShortName">mem_rd_inw[31:0]</obj_property>
-      <obj_property name="ObjectShortName">mem_rd_inw[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/reg_wb_0/write_reg_addr_inw" type="array">
-      <obj_property name="ElementShortName">write_reg_addr_inw[4:0]</obj_property>
-      <obj_property name="ObjectShortName">write_reg_addr_inw[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/reg_wb_0/reg_write_inw" type="logic">
-      <obj_property name="ElementShortName">reg_write_inw</obj_property>
-      <obj_property name="ObjectShortName">reg_write_inw</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/reg_wb_0/memory_to_reg_inw" type="logic">
-      <obj_property name="ElementShortName">memory_to_reg_inw</obj_property>
-      <obj_property name="ObjectShortName">memory_to_reg_inw</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/reg_wb_0/write_back_data" type="array">
-      <obj_property name="ElementShortName">write_back_data[31:0]</obj_property>
-      <obj_property name="ObjectShortName">write_back_data[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/reg_wb_0/write_reg_addr" type="array">
-      <obj_property name="ElementShortName">write_reg_addr[4:0]</obj_property>
-      <obj_property name="ObjectShortName">write_reg_addr[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/reg_wb_0/reg_write" type="logic">
-      <obj_property name="ElementShortName">reg_write</obj_property>
-      <obj_property name="ObjectShortName">reg_write</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/ROM" type="array">
-      <obj_property name="ElementShortName">ROM[39:0][31:0]</obj_property>
-      <obj_property name="ObjectShortName">ROM[39:0][31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/RAM" type="array">
-      <obj_property name="ElementShortName">RAM[39:0][31:0]</obj_property>
-      <obj_property name="ObjectShortName">RAM[39:0][31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/wrapper_mem_0/alu_result" type="array">
-      <obj_property name="ElementShortName">alu_result[31:0]</obj_property>
-      <obj_property name="ObjectShortName">alu_result[31:0]</obj_property>
+   <wvobject fp_name="/tb_ROM/u_bluex_wrapper/bluex_i/redirection_0/inst/branch_taken_ex" type="logic">
+      <obj_property name="ElementShortName">branch_taken_ex</obj_property>
+      <obj_property name="ObjectShortName">branch_taken_ex</obj_property>
    </wvobject>
 </wave_config>

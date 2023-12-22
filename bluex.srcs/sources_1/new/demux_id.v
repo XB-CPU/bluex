@@ -3,7 +3,7 @@
 
 module demux_id (
 	input									clk,
-	input									rst_n,
+	input									rst,
 	input									ena_n,
 	input			[`ISC_BIT - 1 : 0] 		isc,
 
@@ -21,8 +21,8 @@ module demux_id (
 	output	reg		[`OPC_BIT - 1 : 0]		real_op,
 	output	reg		[`ADR_BIT - 1 : 0]		pc_next
 );
-	always @(posedge clk or posedge rst_n) begin
-		if (rst_n) begin
+	always @(posedge clk or posedge rst) begin
+		if (rst) begin
 			op <= 0;
 			rs <= 0;
 			rt <= 0;

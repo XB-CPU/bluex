@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
--- Date        : Mon Dec 18 14:34:05 2023
+-- Date        : Fri Dec 22 12:14:37 2023
 -- Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_redirection_0_0/bluex_redirection_0_0_sim_netlist.vhdl
@@ -51,11 +51,11 @@ architecture STRUCTURE of bluex_redirection_0_0 is
   signal flush_INST_0_i_5_n_0 : STD_LOGIC;
   signal flush_INST_0_i_6_n_0 : STD_LOGIC;
   signal flush_INST_0_i_7_n_0 : STD_LOGIC;
-  signal \rs_forward[1]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \rs_forward[1]_INST_0_i_2_n_0\ : STD_LOGIC;
-  signal \rs_forward[1]_INST_0_i_3_n_0\ : STD_LOGIC;
-  signal \rt_forward[1]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \rt_forward[1]_INST_0_i_2_n_0\ : STD_LOGIC;
+  signal \rs_forward[0]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \rs_forward[0]_INST_0_i_2_n_0\ : STD_LOGIC;
+  signal \rs_forward[0]_INST_0_i_3_n_0\ : STD_LOGIC;
+  signal \rt_forward[0]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \rt_forward[0]_INST_0_i_2_n_0\ : STD_LOGIC;
 begin
 flush_INST_0: unisim.vcomponents.LUT6
     generic map(
@@ -160,28 +160,18 @@ flush_INST_0_i_7: unisim.vcomponents.LUT6
       I5 => rt(3),
       O => flush_INST_0_i_7_n_0
     );
-\rs_forward[0]_INST_0\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"02"
-    )
-        port map (
-      I0 => reg_write_ex,
-      I1 => flush_INST_0_i_1_n_0,
-      I2 => flush_INST_0_i_2_n_0,
-      O => rs_forward(0)
-    );
-\rs_forward[1]_INST_0\: unisim.vcomponents.LUT4
+\rs_forward[0]_INST_0\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"0002"
     )
         port map (
       I0 => flush_INST_0_i_2_n_0,
       I1 => flush_INST_0_i_1_n_0,
-      I2 => \rs_forward[1]_INST_0_i_1_n_0\,
-      I3 => \rs_forward[1]_INST_0_i_2_n_0\,
-      O => rs_forward(1)
+      I2 => \rs_forward[0]_INST_0_i_1_n_0\,
+      I3 => \rs_forward[0]_INST_0_i_2_n_0\,
+      O => rs_forward(0)
     );
-\rs_forward[1]_INST_0_i_1\: unisim.vcomponents.LUT6
+\rs_forward[0]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"5555555555555557"
     )
@@ -192,9 +182,9 @@ flush_INST_0_i_7: unisim.vcomponents.LUT6
       I3 => write_reg_addr_mem(2),
       I4 => write_reg_addr_mem(4),
       I5 => write_reg_addr_mem(1),
-      O => \rs_forward[1]_INST_0_i_1_n_0\
+      O => \rs_forward[0]_INST_0_i_1_n_0\
     );
-\rs_forward[1]_INST_0_i_2\: unisim.vcomponents.LUT5
+\rs_forward[0]_INST_0_i_2\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"FFFF6FF6"
     )
@@ -203,23 +193,69 @@ flush_INST_0_i_7: unisim.vcomponents.LUT6
       I1 => rs(2),
       I2 => write_reg_addr_mem(0),
       I3 => rs(0),
-      I4 => \rs_forward[1]_INST_0_i_3_n_0\,
-      O => \rs_forward[1]_INST_0_i_2_n_0\
+      I4 => \rs_forward[0]_INST_0_i_3_n_0\,
+      O => \rs_forward[0]_INST_0_i_2_n_0\
     );
-\rs_forward[1]_INST_0_i_3\: unisim.vcomponents.LUT6
+\rs_forward[0]_INST_0_i_3\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"6FF6FFFFFFFF6FF6"
     )
         port map (
-      I0 => rs(4),
-      I1 => write_reg_addr_mem(4),
-      I2 => write_reg_addr_mem(1),
-      I3 => rs(1),
-      I4 => write_reg_addr_mem(3),
-      I5 => rs(3),
-      O => \rs_forward[1]_INST_0_i_3_n_0\
+      I0 => rs(3),
+      I1 => write_reg_addr_mem(3),
+      I2 => write_reg_addr_mem(4),
+      I3 => rs(4),
+      I4 => write_reg_addr_mem(1),
+      I5 => rs(1),
+      O => \rs_forward[0]_INST_0_i_3_n_0\
+    );
+\rs_forward[1]_INST_0\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"02"
+    )
+        port map (
+      I0 => reg_write_ex,
+      I1 => flush_INST_0_i_1_n_0,
+      I2 => flush_INST_0_i_2_n_0,
+      O => rs_forward(1)
     );
 \rt_forward[0]_INST_0\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"02"
+    )
+        port map (
+      I0 => flush_INST_0_i_3_n_0,
+      I1 => \rt_forward[0]_INST_0_i_1_n_0\,
+      I2 => flush_INST_0_i_4_n_0,
+      O => rt_forward(0)
+    );
+\rt_forward[0]_INST_0_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"EFFEFFFFFFFFEFFE"
+    )
+        port map (
+      I0 => \rs_forward[0]_INST_0_i_1_n_0\,
+      I1 => \rt_forward[0]_INST_0_i_2_n_0\,
+      I2 => rt(0),
+      I3 => write_reg_addr_mem(0),
+      I4 => rt(1),
+      I5 => write_reg_addr_mem(1),
+      O => \rt_forward[0]_INST_0_i_1_n_0\
+    );
+\rt_forward[0]_INST_0_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"6FF6FFFFFFFF6FF6"
+    )
+        port map (
+      I0 => rt(2),
+      I1 => write_reg_addr_mem(2),
+      I2 => write_reg_addr_mem(4),
+      I3 => rt(4),
+      I4 => write_reg_addr_mem(3),
+      I5 => rt(3),
+      O => \rt_forward[0]_INST_0_i_2_n_0\
+    );
+\rt_forward[1]_INST_0\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"80"
     )
@@ -227,43 +263,7 @@ flush_INST_0_i_7: unisim.vcomponents.LUT6
       I0 => reg_write_ex,
       I1 => flush_INST_0_i_3_n_0,
       I2 => flush_INST_0_i_4_n_0,
-      O => rt_forward(0)
-    );
-\rt_forward[1]_INST_0\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"02"
-    )
-        port map (
-      I0 => flush_INST_0_i_3_n_0,
-      I1 => \rt_forward[1]_INST_0_i_1_n_0\,
-      I2 => flush_INST_0_i_4_n_0,
       O => rt_forward(1)
-    );
-\rt_forward[1]_INST_0_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"EFFEFFFFFFFFEFFE"
-    )
-        port map (
-      I0 => \rs_forward[1]_INST_0_i_1_n_0\,
-      I1 => \rt_forward[1]_INST_0_i_2_n_0\,
-      I2 => rt(3),
-      I3 => write_reg_addr_mem(3),
-      I4 => rt(0),
-      I5 => write_reg_addr_mem(0),
-      O => \rt_forward[1]_INST_0_i_1_n_0\
-    );
-\rt_forward[1]_INST_0_i_2\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"6FF6FFFFFFFF6FF6"
-    )
-        port map (
-      I0 => rt(2),
-      I1 => write_reg_addr_mem(2),
-      I2 => write_reg_addr_mem(1),
-      I3 => rt(1),
-      I4 => write_reg_addr_mem(4),
-      I5 => rt(4),
-      O => \rt_forward[1]_INST_0_i_2_n_0\
     );
 stall_INST_0: unisim.vcomponents.LUT5
     generic map(

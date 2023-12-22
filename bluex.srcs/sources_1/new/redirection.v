@@ -41,19 +41,19 @@ module redirection (
 
 	always @(*) begin
 		if (redir_rs_ex) begin
-			rs_forward = `RSF_WBD;
+			rs_forward = `RSF_ALU;
 		end
 		else if (redir_rs_mem) begin
-			rs_forward = `RSF_ALU;
+			rs_forward = `RSF_WBD;
 		end
 		else begin
 			rs_forward = `RSF_RSF;
 		end
 		if (redir_rt_ex) begin
-			rt_forward = `RTF_WBD;
+			rt_forward = `RTF_ALU;
 		end
 		else if (redir_rt_mem) begin
-			rt_forward = `RTF_ALU;
+			rt_forward = `RTF_WBD;
 		end
 		else begin
 			rt_forward = `RTF_RTF;

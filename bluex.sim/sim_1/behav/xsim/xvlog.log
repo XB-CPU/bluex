@@ -42,6 +42,8 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/
 INFO: [VRFC 10-311] analyzing module bluex_util_vector_logic_0_1
 INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_1/sim/bluex_util_vector_logic_1_1.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module bluex_util_vector_logic_1_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_3_0/sim/bluex_util_vector_logic_3_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bluex_util_vector_logic_3_0
 INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/sim/bluex.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module bluex
 INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/hdl/bluex_wrapper.v" into library xil_defaultlib

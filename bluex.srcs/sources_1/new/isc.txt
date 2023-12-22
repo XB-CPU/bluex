@@ -1,7 +1,7 @@
-mirl r1, 20
-mirl r5, 20h
-add r3, r1, r2
-addi r4, r3, 10
-orl r3, r1, r2 # r3=r1 | r2
+mirl r1, 20 # rd=20
+mirl r5, 20h # rd=32
+add r3, r1, r2 # rd=20, data hazard with 1
+addi r4, r3, 10 # rd=30, data hazard with 3
+orl r3, r1, r2 # r3=r1 | r2 # rd=20
 # because here is actually relative displacement
 jmp -1

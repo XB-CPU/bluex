@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-// Date        : Mon Dec 18 14:34:05 2023
+// Date        : Fri Dec 22 12:14:37 2023
 // Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_redirection_0_0/bluex_redirection_0_0_sim_netlist.v
@@ -59,13 +59,13 @@ module bluex_redirection_0_0
   wire reg_write_mem;
   wire [4:0]rs;
   wire [1:0]rs_forward;
-  wire \rs_forward[1]_INST_0_i_1_n_0 ;
-  wire \rs_forward[1]_INST_0_i_2_n_0 ;
-  wire \rs_forward[1]_INST_0_i_3_n_0 ;
+  wire \rs_forward[0]_INST_0_i_1_n_0 ;
+  wire \rs_forward[0]_INST_0_i_2_n_0 ;
+  wire \rs_forward[0]_INST_0_i_3_n_0 ;
   wire [4:0]rt;
   wire [1:0]rt_forward;
-  wire \rt_forward[1]_INST_0_i_1_n_0 ;
-  wire \rt_forward[1]_INST_0_i_2_n_0 ;
+  wire \rt_forward[0]_INST_0_i_1_n_0 ;
+  wire \rt_forward[0]_INST_0_i_2_n_0 ;
   wire stall;
   wire [4:0]write_reg_addr_ex;
   wire [4:0]write_reg_addr_mem;
@@ -149,84 +149,84 @@ module bluex_redirection_0_0
         .I4(write_reg_addr_ex[3]),
         .I5(rt[3]),
         .O(flush_INST_0_i_7_n_0));
-  LUT3 #(
-    .INIT(8'h02)) 
-    \rs_forward[0]_INST_0 
-       (.I0(reg_write_ex),
-        .I1(flush_INST_0_i_1_n_0),
-        .I2(flush_INST_0_i_2_n_0),
-        .O(rs_forward[0]));
   LUT4 #(
     .INIT(16'h0002)) 
-    \rs_forward[1]_INST_0 
+    \rs_forward[0]_INST_0 
        (.I0(flush_INST_0_i_2_n_0),
         .I1(flush_INST_0_i_1_n_0),
-        .I2(\rs_forward[1]_INST_0_i_1_n_0 ),
-        .I3(\rs_forward[1]_INST_0_i_2_n_0 ),
-        .O(rs_forward[1]));
+        .I2(\rs_forward[0]_INST_0_i_1_n_0 ),
+        .I3(\rs_forward[0]_INST_0_i_2_n_0 ),
+        .O(rs_forward[0]));
   LUT6 #(
     .INIT(64'h5555555555555557)) 
-    \rs_forward[1]_INST_0_i_1 
+    \rs_forward[0]_INST_0_i_1 
        (.I0(reg_write_mem),
         .I1(write_reg_addr_mem[0]),
         .I2(write_reg_addr_mem[3]),
         .I3(write_reg_addr_mem[2]),
         .I4(write_reg_addr_mem[4]),
         .I5(write_reg_addr_mem[1]),
-        .O(\rs_forward[1]_INST_0_i_1_n_0 ));
+        .O(\rs_forward[0]_INST_0_i_1_n_0 ));
   LUT5 #(
     .INIT(32'hFFFF6FF6)) 
-    \rs_forward[1]_INST_0_i_2 
+    \rs_forward[0]_INST_0_i_2 
        (.I0(write_reg_addr_mem[2]),
         .I1(rs[2]),
         .I2(write_reg_addr_mem[0]),
         .I3(rs[0]),
-        .I4(\rs_forward[1]_INST_0_i_3_n_0 ),
-        .O(\rs_forward[1]_INST_0_i_2_n_0 ));
+        .I4(\rs_forward[0]_INST_0_i_3_n_0 ),
+        .O(\rs_forward[0]_INST_0_i_2_n_0 ));
   LUT6 #(
     .INIT(64'h6FF6FFFFFFFF6FF6)) 
-    \rs_forward[1]_INST_0_i_3 
-       (.I0(rs[4]),
-        .I1(write_reg_addr_mem[4]),
-        .I2(write_reg_addr_mem[1]),
-        .I3(rs[1]),
+    \rs_forward[0]_INST_0_i_3 
+       (.I0(rs[3]),
+        .I1(write_reg_addr_mem[3]),
+        .I2(write_reg_addr_mem[4]),
+        .I3(rs[4]),
+        .I4(write_reg_addr_mem[1]),
+        .I5(rs[1]),
+        .O(\rs_forward[0]_INST_0_i_3_n_0 ));
+  LUT3 #(
+    .INIT(8'h02)) 
+    \rs_forward[1]_INST_0 
+       (.I0(reg_write_ex),
+        .I1(flush_INST_0_i_1_n_0),
+        .I2(flush_INST_0_i_2_n_0),
+        .O(rs_forward[1]));
+  LUT3 #(
+    .INIT(8'h02)) 
+    \rt_forward[0]_INST_0 
+       (.I0(flush_INST_0_i_3_n_0),
+        .I1(\rt_forward[0]_INST_0_i_1_n_0 ),
+        .I2(flush_INST_0_i_4_n_0),
+        .O(rt_forward[0]));
+  LUT6 #(
+    .INIT(64'hEFFEFFFFFFFFEFFE)) 
+    \rt_forward[0]_INST_0_i_1 
+       (.I0(\rs_forward[0]_INST_0_i_1_n_0 ),
+        .I1(\rt_forward[0]_INST_0_i_2_n_0 ),
+        .I2(rt[0]),
+        .I3(write_reg_addr_mem[0]),
+        .I4(rt[1]),
+        .I5(write_reg_addr_mem[1]),
+        .O(\rt_forward[0]_INST_0_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h6FF6FFFFFFFF6FF6)) 
+    \rt_forward[0]_INST_0_i_2 
+       (.I0(rt[2]),
+        .I1(write_reg_addr_mem[2]),
+        .I2(write_reg_addr_mem[4]),
+        .I3(rt[4]),
         .I4(write_reg_addr_mem[3]),
-        .I5(rs[3]),
-        .O(\rs_forward[1]_INST_0_i_3_n_0 ));
+        .I5(rt[3]),
+        .O(\rt_forward[0]_INST_0_i_2_n_0 ));
   LUT3 #(
     .INIT(8'h80)) 
-    \rt_forward[0]_INST_0 
+    \rt_forward[1]_INST_0 
        (.I0(reg_write_ex),
         .I1(flush_INST_0_i_3_n_0),
         .I2(flush_INST_0_i_4_n_0),
-        .O(rt_forward[0]));
-  LUT3 #(
-    .INIT(8'h02)) 
-    \rt_forward[1]_INST_0 
-       (.I0(flush_INST_0_i_3_n_0),
-        .I1(\rt_forward[1]_INST_0_i_1_n_0 ),
-        .I2(flush_INST_0_i_4_n_0),
         .O(rt_forward[1]));
-  LUT6 #(
-    .INIT(64'hEFFEFFFFFFFFEFFE)) 
-    \rt_forward[1]_INST_0_i_1 
-       (.I0(\rs_forward[1]_INST_0_i_1_n_0 ),
-        .I1(\rt_forward[1]_INST_0_i_2_n_0 ),
-        .I2(rt[3]),
-        .I3(write_reg_addr_mem[3]),
-        .I4(rt[0]),
-        .I5(write_reg_addr_mem[0]),
-        .O(\rt_forward[1]_INST_0_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h6FF6FFFFFFFF6FF6)) 
-    \rt_forward[1]_INST_0_i_2 
-       (.I0(rt[2]),
-        .I1(write_reg_addr_mem[2]),
-        .I2(write_reg_addr_mem[1]),
-        .I3(rt[1]),
-        .I4(write_reg_addr_mem[4]),
-        .I5(rt[4]),
-        .O(\rt_forward[1]_INST_0_i_2_n_0 ));
   LUT5 #(
     .INIT(32'h808080AA)) 
     stall_INST_0

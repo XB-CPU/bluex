@@ -56,11 +56,7 @@ module alu_ex (
 	reg 			[1 : 0]					rs_forward;					//输入ALU信号选择
 	reg 			[1 : 0]					rt_forward;
 	reg 									alu_src;					//imm和RT选择
-	// reg 									memory_write;
-	// reg 									memory_to_reg;
-	// reg 									reg_write;
 	reg 			[`ADR_BIT - 1 : 0]		pc_next;
-	reg 			[`GPR_ADR - 1 : 0]		write_reg_addr_in;
 	reg 									branch_isc_flag;
 	// reg				[`SFT_BIT - 1 : 0]		shift_num;
 	
@@ -96,15 +92,6 @@ module alu_ex (
 
 	always @(posedge clk or posedge rst) begin
 		if (rst) begin
-			write_reg_addr_out <= {(`GPR_ADR){1'b0}};
-		end
-		else begin
-			write_reg_addr_out <= write_reg_addr_in;
-		end
-	end
-
-	always @(posedge clk or posedge rst) begin
-		if (rst) begin
 			rs <= 0;
 			rt <= 0;
 			imm <= 0;
@@ -116,7 +103,7 @@ module alu_ex (
 			memory_to_reg <= 0;
 			reg_write <= 0;
 			pc_next <= 0;
-			write_reg_addr_in <= 0;
+			write_reg_addr_out <= 0;
 			branch_isc_flag <= 0;
 			// shift_num <= 0;
 		end
@@ -132,7 +119,7 @@ module alu_ex (
 			memory_to_reg <= memory_to_reg_inw;
 			reg_write <= reg_write_inw;
 			pc_next <= pc_next_inw;
-			write_reg_addr_in <= write_reg_addr_in_inw;
+			write_reg_addr_out <= write_reg_addr_in_inw;
 			branch_isc_flag <= branch_isc_flag_inw;
 			// shift_num <= shift_num_inw;
 		end

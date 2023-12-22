@@ -56,7 +56,7 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bluex_demux_id_0_0 (
   clk,
-  rst_n,
+  rst,
   ena_n,
   isc,
   pc_next_inw,
@@ -72,12 +72,12 @@ module bluex_demux_id_0_0 (
   pc_next
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *)
-input wire rst_n;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
+input wire rst;
 input wire ena_n;
 input wire [31 : 0] isc;
 input wire [15 : 0] pc_next_inw;
@@ -94,7 +94,7 @@ output wire [15 : 0] pc_next;
 
   demux_id inst (
     .clk(clk),
-    .rst_n(rst_n),
+    .rst(rst),
     .ena_n(ena_n),
     .isc(isc),
     .pc_next_inw(pc_next_inw),

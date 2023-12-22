@@ -4,6 +4,7 @@
 module demux_id (
 	input									clk,
 	input									rst,
+	input									branch_taken,
 	input									ena_n,
 	input			[`ISC_BIT - 1 : 0] 		isc,
 
@@ -21,8 +22,12 @@ module demux_id (
 	output	reg		[`OPC_BIT - 1 : 0]		real_op,
 	output	reg		[`ADR_BIT - 1 : 0]		pc_next
 );
-	always @(posedge clk or posedge rst) begin
-		if (rst) begin
+
+	wire 									real_rst;
+	assign real_rst = rst | branch_taken;
+
+	always @(posedge clk or posedge real_rst) begin
+		if (real_rst) begin
 			op <= 0;
 			rs <= 0;
 			rt <= 0;

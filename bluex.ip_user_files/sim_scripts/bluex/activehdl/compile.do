@@ -28,8 +28,6 @@ vlog -work xil_defaultlib  -v2k5 -l xil_defaultlib -l util_vector_logic_v2_0_3 \
 "../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_0/sim/bluex_util_vector_logic_0_0.v" \
 "../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_0/sim/bluex_util_vector_logic_1_0.v" \
 "../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_1/sim/bluex_util_vector_logic_0_1.v" \
-"../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_1/sim/bluex_util_vector_logic_1_1.v" \
-"../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_3_0/sim/bluex_util_vector_logic_3_0.v" \
 "../../../../bluex.gen/sources_1/bd/bluex/sim/bluex.v" \
 
 vlog -work xil_defaultlib \

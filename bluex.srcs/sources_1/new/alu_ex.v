@@ -5,6 +5,7 @@ module alu_ex (
 	/*clk and rst signal input*/
 	input									clk,
 	input									rst,
+	input									flush,
 	/*ID data input*/
 	input			[`GPR_BIT - 1 : 0] 		rs_inw,
 	input			[`GPR_BIT - 1 : 0] 		rt_inw,
@@ -59,6 +60,12 @@ module alu_ex (
 	reg 			[`ADR_BIT - 1 : 0]		pc_next;
 	reg 									branch_isc_flag;
 	// reg				[`SFT_BIT - 1 : 0]		shift_num;
+
+	wire 									read_write_rst;
+	wire 									branch_rst;
+
+	assign read_write_rst = flush | rst;
+	assign branch_rst = rst;
 	
 	assign branch_addr = imm + pc_next;
 	assign write_data = alu_src_t_tmp;
@@ -90,38 +97,45 @@ module alu_ex (
 		endcase
 	end
 
-	always @(posedge clk or posedge rst) begin
-		if (rst) begin
-			rs <= 0;
-			rt <= 0;
-			imm <= 0;
-			alu_op <= 0;
-			rs_forward <= 0;
-			rt_forward <= 0;
-			alu_src <= 0;
+	always @(posedge clk or posedge read_write_rst) begin
+		if (read_write_rst) begin
 			memory_write <= 0;
 			memory_to_reg <= 0;
 			reg_write <= 0;
-			pc_next <= 0;
 			write_reg_addr_out <= 0;
-			branch_isc_flag <= 0;
 			// shift_num <= 0;
 		end
 		else begin
-			rs <= rs_inw;
-			rt <= rt_inw;
-			imm <= imm_inw;
-			alu_op <= alu_op_inw;
-			rs_forward <= rs_forward_inw;
-			rt_forward <= rt_forward_inw;
-			alu_src <= alu_src_inw;
 			memory_write <= memory_write_inw;
 			memory_to_reg <= memory_to_reg_inw;
 			reg_write <= reg_write_inw;
-			pc_next <= pc_next_inw;
 			write_reg_addr_out <= write_reg_addr_in_inw;
-			branch_isc_flag <= branch_isc_flag_inw;
 			// shift_num <= shift_num_inw;
+		end
+	end
+
+	always @(posedge clk or posedge branch_rst) begin
+		if (branch_rst) begin
+			imm <= 0;
+			alu_op <= 0;
+			pc_next <= 0;
+			branch_isc_flag <= 0;
+			rs <= 0;
+			rt <= 0;
+			rs_forward <= 0;
+			rt_forward <= 0;
+			alu_src <= 0;
+		end
+		else begin
+			imm <= imm_inw;
+			alu_op <= alu_op_inw;
+			pc_next <= pc_next_inw;
+			branch_isc_flag <= branch_isc_flag_inw;
+			rs <= rs_inw;
+			rt <= rt_inw;
+			rs_forward <= rs_forward_inw;
+			rt_forward <= rt_forward_inw;
+			alu_src <= alu_src_inw;
 		end
 	end
 

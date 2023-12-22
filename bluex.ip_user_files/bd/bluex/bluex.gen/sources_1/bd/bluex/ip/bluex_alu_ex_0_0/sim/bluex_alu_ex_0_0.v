@@ -57,6 +57,7 @@
 module bluex_alu_ex_0_0 (
   clk,
   rst,
+  flush,
   rs_inw,
   rt_inw,
   imm_inw,
@@ -88,6 +89,7 @@ input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
 input wire rst;
+input wire flush;
 input wire [31 : 0] rs_inw;
 input wire [31 : 0] rt_inw;
 input wire [31 : 0] imm_inw;
@@ -115,6 +117,7 @@ output wire reg_write;
   alu_ex inst (
     .clk(clk),
     .rst(rst),
+    .flush(flush),
     .rs_inw(rs_inw),
     .rt_inw(rt_inw),
     .imm_inw(imm_inw),

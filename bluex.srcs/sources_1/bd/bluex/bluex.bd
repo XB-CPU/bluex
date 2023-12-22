@@ -22,9 +22,7 @@
       "wrapper_mem_0": "",
       "util_vector_logic_0": "",
       "util_vector_logic_1": "",
-      "util_vector_logic_2": "",
-      "util_vector_logic_3": "",
-      "util_vector_logic_4": ""
+      "util_vector_logic_2": ""
     },
     "ports": {
       "clk": {
@@ -342,6 +340,19 @@
               }
             }
           },
+          "branch_taken": {
+            "direction": "I",
+            "parameters": {
+              "PortType": {
+                "value": "undef",
+                "value_src": "ip_prop"
+              },
+              "PortType.PROP_SRC": {
+                "value": "false",
+                "value_src": "ip_prop"
+              }
+            }
+          },
           "ena_n": {
             "direction": "I",
             "parameters": {
@@ -528,6 +539,19 @@
             "parameters": {
               "POLARITY": {
                 "value": "ACTIVE_HIGH"
+              }
+            }
+          },
+          "flush": {
+            "direction": "I",
+            "parameters": {
+              "PortType": {
+                "value": "undef",
+                "value_src": "ip_prop"
+              },
+              "PortType.PROP_SRC": {
+                "value": "false",
+                "value_src": "ip_prop"
               }
             }
           },
@@ -927,36 +951,6 @@
             "value": "1"
           }
         }
-      },
-      "util_vector_logic_3": {
-        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
-        "ip_revision": "3",
-        "xci_name": "bluex_util_vector_logic_1_1",
-        "xci_path": "ip\\bluex_util_vector_logic_1_1\\bluex_util_vector_logic_1_1.xci",
-        "inst_hier_path": "util_vector_logic_3",
-        "parameters": {
-          "C_OPERATION": {
-            "value": "or"
-          },
-          "C_SIZE": {
-            "value": "1"
-          }
-        }
-      },
-      "util_vector_logic_4": {
-        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
-        "ip_revision": "3",
-        "xci_name": "bluex_util_vector_logic_3_0",
-        "xci_path": "ip\\bluex_util_vector_logic_3_0\\bluex_util_vector_logic_3_0.xci",
-        "inst_hier_path": "util_vector_logic_4",
-        "parameters": {
-          "C_OPERATION": {
-            "value": "or"
-          },
-          "C_SIZE": {
-            "value": "1"
-          }
-        }
       }
     },
     "nets": {
@@ -988,8 +982,8 @@
         "ports": [
           "alu_ex_0/branch_jump_flag",
           "PC_0/branch_taken_ex",
-          "util_vector_logic_4/Op2",
-          "redirection_0/branch_taken_ex"
+          "redirection_0/branch_taken_ex",
+          "demux_id_0/branch_taken"
         ]
       },
       "alu_ex_0_memory_to_reg": {
@@ -1050,8 +1044,8 @@
           "PC_0/clk",
           "wrapper_mem_0/clk",
           "reg_wb_0/clk",
-          "demux_id_0/clk",
-          "alu_ex_0/clk"
+          "alu_ex_0/clk",
+          "demux_id_0/clk"
         ]
       },
       "controller_id_0_addr_flag": {
@@ -1146,7 +1140,7 @@
       "redirection_0_flush": {
         "ports": [
           "redirection_0/flush",
-          "util_vector_logic_3/Op2"
+          "alu_ex_0/flush"
         ]
       },
       "redirection_0_rs_forward": {
@@ -1224,19 +1218,7 @@
       "util_vector_logic_2_Res": {
         "ports": [
           "util_vector_logic_2/Res",
-          "util_vector_logic_3/Op1",
-          "util_vector_logic_4/Op1"
-        ]
-      },
-      "util_vector_logic_3_Res": {
-        "ports": [
-          "util_vector_logic_3/Res",
-          "alu_ex_0/rst"
-        ]
-      },
-      "util_vector_logic_4_Res": {
-        "ports": [
-          "util_vector_logic_4/Res",
+          "alu_ex_0/rst",
           "demux_id_0/rst"
         ]
       },

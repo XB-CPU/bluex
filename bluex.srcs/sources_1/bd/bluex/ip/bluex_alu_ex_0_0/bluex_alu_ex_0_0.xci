@@ -38,6 +38,7 @@
       "ports": {
         "clk": [ { "direction": "in" } ],
         "rst": [ { "direction": "in" } ],
+        "flush": [ { "direction": "in" } ],
         "rs_inw": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
         "rt_inw": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
         "imm_inw": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],

@@ -21,8 +21,6 @@ verilog xil_defaultlib  --include "../../../../bluex.srcs/sources_1/new" \
 "../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_0/sim/bluex_util_vector_logic_0_0.v" \
 "../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_0/sim/bluex_util_vector_logic_1_0.v" \
 "../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_1/sim/bluex_util_vector_logic_0_1.v" \
-"../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_1/sim/bluex_util_vector_logic_1_1.v" \
-"../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_3_0/sim/bluex_util_vector_logic_3_0.v" \
 "../../../../bluex.gen/sources_1/bd/bluex/sim/bluex.v" \
 "../../../../bluex.gen/sources_1/bd/bluex/hdl/bluex_wrapper.v" \
 "../../../../bluex.srcs/sim_1/new/tb_ROM.v" \

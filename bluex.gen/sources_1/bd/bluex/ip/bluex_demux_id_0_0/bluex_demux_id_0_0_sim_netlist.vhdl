@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
--- Date        : Fri Dec 22 10:40:10 2023
+-- Date        : Fri Dec 22 14:19:13 2023
 -- Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_demux_id_0_0/bluex_demux_id_0_0_sim_netlist.vhdl
@@ -25,9 +25,10 @@ entity bluex_demux_id_0_0_demux_id is
     imm : out STD_LOGIC_VECTOR ( 15 downto 0 );
     isc : in STD_LOGIC_VECTOR ( 31 downto 0 );
     clk : in STD_LOGIC;
-    rst : in STD_LOGIC;
     pc_next_inw : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    ena_n : in STD_LOGIC
+    ena_n : in STD_LOGIC;
+    rst : in STD_LOGIC;
+    branch_taken : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of bluex_demux_id_0_0_demux_id : entity is "demux_id";
@@ -38,6 +39,7 @@ architecture STRUCTURE of bluex_demux_id_0_0_demux_id is
   signal \real_op[3]_i_2_n_0\ : STD_LOGIC;
   signal \real_op[5]_i_2_n_0\ : STD_LOGIC;
   signal real_op_0 : STD_LOGIC_VECTOR ( 5 downto 0 );
+  signal real_rst : STD_LOGIC;
 begin
 \op[5]_i_1\: unisim.vcomponents.LUT1
     generic map(
@@ -47,11 +49,20 @@ begin
       I0 => ena_n,
       O => p_0_in
     );
+\op[5]_i_2\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"E"
+    )
+        port map (
+      I0 => rst,
+      I1 => branch_taken,
+      O => real_rst
+    );
 \op_reg[0]\: unisim.vcomponents.FDCE
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(26),
       Q => op(0)
     );
@@ -59,7 +70,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(27),
       Q => op(1)
     );
@@ -67,7 +78,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(28),
       Q => op(2)
     );
@@ -75,7 +86,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(29),
       Q => op(3)
     );
@@ -83,7 +94,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(30),
       Q => op(4)
     );
@@ -91,7 +102,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(31),
       Q => op(5)
     );
@@ -99,7 +110,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(0),
       Q => pc_next(0)
     );
@@ -107,7 +118,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(10),
       Q => pc_next(10)
     );
@@ -115,7 +126,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(11),
       Q => pc_next(11)
     );
@@ -123,7 +134,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(12),
       Q => pc_next(12)
     );
@@ -131,7 +142,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(13),
       Q => pc_next(13)
     );
@@ -139,7 +150,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(14),
       Q => pc_next(14)
     );
@@ -147,7 +158,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(15),
       Q => pc_next(15)
     );
@@ -155,7 +166,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(1),
       Q => pc_next(1)
     );
@@ -163,7 +174,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(2),
       Q => pc_next(2)
     );
@@ -171,7 +182,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(3),
       Q => pc_next(3)
     );
@@ -179,7 +190,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(4),
       Q => pc_next(4)
     );
@@ -187,7 +198,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(5),
       Q => pc_next(5)
     );
@@ -195,7 +206,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(6),
       Q => pc_next(6)
     );
@@ -203,7 +214,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(7),
       Q => pc_next(7)
     );
@@ -211,7 +222,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(8),
       Q => pc_next(8)
     );
@@ -219,7 +230,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => pc_next_inw(9),
       Q => pc_next(9)
     );
@@ -227,7 +238,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(11),
       Q => imm(11)
     );
@@ -235,7 +246,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(12),
       Q => imm(12)
     );
@@ -243,7 +254,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(13),
       Q => imm(13)
     );
@@ -251,7 +262,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(14),
       Q => imm(14)
     );
@@ -259,7 +270,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(15),
       Q => imm(15)
     );
@@ -363,7 +374,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => real_op_0(0),
       Q => real_op(0)
     );
@@ -371,7 +382,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => real_op_0(1),
       Q => real_op(1)
     );
@@ -379,7 +390,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => real_op_0(2),
       Q => real_op(2)
     );
@@ -387,7 +398,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => real_op_0(3),
       Q => real_op(3)
     );
@@ -395,7 +406,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => real_op_0(4),
       Q => real_op(4)
     );
@@ -403,7 +414,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => real_op_0(5),
       Q => real_op(5)
     );
@@ -411,7 +422,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(0),
       Q => imm(0)
     );
@@ -419,7 +430,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(1),
       Q => imm(1)
     );
@@ -427,7 +438,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(2),
       Q => imm(2)
     );
@@ -435,7 +446,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(3),
       Q => imm(3)
     );
@@ -443,7 +454,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(4),
       Q => imm(4)
     );
@@ -451,7 +462,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(5),
       Q => imm(5)
     );
@@ -459,7 +470,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(21),
       Q => rs(0)
     );
@@ -467,7 +478,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(22),
       Q => rs(1)
     );
@@ -475,7 +486,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(23),
       Q => rs(2)
     );
@@ -483,7 +494,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(24),
       Q => rs(3)
     );
@@ -491,7 +502,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(25),
       Q => rs(4)
     );
@@ -499,7 +510,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(16),
       Q => rt(0)
     );
@@ -507,7 +518,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(17),
       Q => rt(1)
     );
@@ -515,7 +526,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(18),
       Q => rt(2)
     );
@@ -523,7 +534,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(19),
       Q => rt(3)
     );
@@ -531,7 +542,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(20),
       Q => rt(4)
     );
@@ -539,7 +550,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(6),
       Q => imm(6)
     );
@@ -547,7 +558,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(7),
       Q => imm(7)
     );
@@ -555,7 +566,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(8),
       Q => imm(8)
     );
@@ -563,7 +574,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(9),
       Q => imm(9)
     );
@@ -571,7 +582,7 @@ begin
      port map (
       C => clk,
       CE => p_0_in,
-      CLR => rst,
+      CLR => real_rst,
       D => isc(10),
       Q => imm(10)
     );
@@ -584,6 +595,7 @@ entity bluex_demux_id_0_0 is
   port (
     clk : in STD_LOGIC;
     rst : in STD_LOGIC;
+    branch_taken : in STD_LOGIC;
     ena_n : in STD_LOGIC;
     isc : in STD_LOGIC_VECTOR ( 31 downto 0 );
     pc_next_inw : in STD_LOGIC_VECTOR ( 15 downto 0 );
@@ -626,6 +638,7 @@ begin
   shamt(4 downto 0) <= \^imm\(10 downto 6);
 inst: entity work.bluex_demux_id_0_0_demux_id
      port map (
+      branch_taken => branch_taken,
       clk => clk,
       ena_n => ena_n,
       imm(15 downto 0) => \^imm\(15 downto 0),

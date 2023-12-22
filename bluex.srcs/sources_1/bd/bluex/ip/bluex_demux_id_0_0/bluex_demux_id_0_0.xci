@@ -38,6 +38,7 @@
       "ports": {
         "clk": [ { "direction": "in" } ],
         "rst": [ { "direction": "in" } ],
+        "branch_taken": [ { "direction": "in" } ],
         "ena_n": [ { "direction": "in" } ],
         "isc": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
         "pc_next_inw": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],

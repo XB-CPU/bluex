@@ -57,6 +57,7 @@
 module bluex_demux_id_0_0 (
   clk,
   rst,
+  branch_taken,
   ena_n,
   isc,
   pc_next_inw,
@@ -78,6 +79,7 @@ input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
 input wire rst;
+input wire branch_taken;
 input wire ena_n;
 input wire [31 : 0] isc;
 input wire [15 : 0] pc_next_inw;
@@ -95,6 +97,7 @@ output wire [15 : 0] pc_next;
   demux_id inst (
     .clk(clk),
     .rst(rst),
+    .branch_taken(branch_taken),
     .ena_n(ena_n),
     .isc(isc),
     .pc_next_inw(pc_next_inw),

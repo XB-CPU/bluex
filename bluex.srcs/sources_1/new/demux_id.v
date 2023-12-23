@@ -6,6 +6,7 @@ module demux_id (
 	input									rst,
 	input									branch_taken,
 	input									ena_n,
+	input									enable_CPU,
 	input			[`ISC_BIT - 1 : 0] 		isc,
 
 	input			[`ADR_BIT - 1 : 0] 		pc_next_inw,
@@ -40,7 +41,7 @@ module demux_id (
 			pc_next <= 0;
 		end
 		else begin
-			if (~ena_n) begin
+			if ((~ena_n) & enable_CPU) begin
 				op <= isc[31:26];
 				rs <= isc[25:21];
 				rt <= isc[20:16];

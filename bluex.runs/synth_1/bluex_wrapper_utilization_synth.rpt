@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Wed Dec 20 23:29:47 2023
+| Date         : Sat Dec 23 23:56:07 2023
 | Host         : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 | Command      : report_utilization -file bluex_wrapper_utilization_synth.rpt -pb bluex_wrapper_utilization_synth.pb
 | Design       : bluex_wrapper
@@ -89,24 +89,24 @@ Warning! LUT value is adjusted to account for LUT combining.
 4. IO and GT Specific
 ---------------------
 
-+-----------------------------+------+-------+------------+-----------+-------+
-|          Site Type          | Used | Fixed | Prohibited | Available | Util% |
-+-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |  117 |     0 |          0 |       125 | 93.60 |
-| Bonded IPADs                |    0 |     0 |          0 |         2 |  0.00 |
-| Bonded IOPADs               |    0 |     0 |          0 |       130 |  0.00 |
-| PHY_CONTROL                 |    0 |     0 |          0 |         4 |  0.00 |
-| PHASER_REF                  |    0 |     0 |          0 |         4 |  0.00 |
-| OUT_FIFO                    |    0 |     0 |          0 |        16 |  0.00 |
-| IN_FIFO                     |    0 |     0 |          0 |        16 |  0.00 |
-| IDELAYCTRL                  |    0 |     0 |          0 |         4 |  0.00 |
-| IBUFDS                      |    0 |     0 |          0 |       121 |  0.00 |
-| PHASER_OUT/PHASER_OUT_PHY   |    0 |     0 |          0 |        16 |  0.00 |
-| PHASER_IN/PHASER_IN_PHY     |    0 |     0 |          0 |        16 |  0.00 |
-| IDELAYE2/IDELAYE2_FINEDELAY |    0 |     0 |          0 |       200 |  0.00 |
-| ILOGIC                      |    0 |     0 |          0 |       125 |  0.00 |
-| OLOGIC                      |    0 |     0 |          0 |       125 |  0.00 |
-+-----------------------------+------+-------+------------+-----------+-------+
++-----------------------------+------+-------+------------+-----------+--------+
+|          Site Type          | Used | Fixed | Prohibited | Available |  Util% |
++-----------------------------+------+-------+------------+-----------+--------+
+| Bonded IOB                  |  241 |     0 |          0 |       125 | 192.80 |
+| Bonded IPADs                |    0 |     0 |          0 |         2 |   0.00 |
+| Bonded IOPADs               |    0 |     0 |          0 |       130 |   0.00 |
+| PHY_CONTROL                 |    0 |     0 |          0 |         4 |   0.00 |
+| PHASER_REF                  |    0 |     0 |          0 |         4 |   0.00 |
+| OUT_FIFO                    |    0 |     0 |          0 |        16 |   0.00 |
+| IN_FIFO                     |    0 |     0 |          0 |        16 |   0.00 |
+| IDELAYCTRL                  |    0 |     0 |          0 |         4 |   0.00 |
+| IBUFDS                      |    0 |     0 |          0 |       121 |   0.00 |
+| PHASER_OUT/PHASER_OUT_PHY   |    0 |     0 |          0 |        16 |   0.00 |
+| PHASER_IN/PHASER_IN_PHY     |    0 |     0 |          0 |        16 |   0.00 |
+| IDELAYE2/IDELAYE2_FINEDELAY |    0 |     0 |          0 |       200 |   0.00 |
+| ILOGIC                      |    0 |     0 |          0 |       125 |   0.00 |
+| OLOGIC                      |    0 |     0 |          0 |       125 |   0.00 |
++-----------------------------+------+-------+------------+-----------+--------+
 
 
 5. Clocking
@@ -148,30 +148,30 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| IBUF     |   66 |                  IO |
-| OBUF     |   51 |                  IO |
+| OBUF     |  140 |                  IO |
+| IBUF     |  101 |                  IO |
 +----------+------+---------------------+
 
 
 8. Black Boxes
 --------------
 
-+--------------------------------+------+
-|            Ref Name            | Used |
-+--------------------------------+------+
-| bluex_wrapper_mem_0_0          |    1 |
-| bluex_util_vector_logic_1_0    |    1 |
-| bluex_util_vector_logic_0_0    |    1 |
-| bluex_reg_wb_0_0               |    1 |
-| bluex_reg_heap_id_0_0          |    1 |
-| bluex_redirection_0_0          |    1 |
-| bluex_demux_id_0_0             |    1 |
-| bluex_controller_id_0_0        |    1 |
-| bluex_aux_id_0_0               |    1 |
-| bluex_alu_ex_0_0               |    1 |
-| bluex_PS_to_CPU_controller_0_0 |    1 |
-| bluex_PC_0_0                   |    1 |
-+--------------------------------+------+
++-----------------------------+------+
+|           Ref Name          | Used |
++-----------------------------+------+
+| bluex_wrapper_mem_0_0       |    1 |
+| bluex_util_vector_logic_1_0 |    1 |
+| bluex_util_vector_logic_0_1 |    1 |
+| bluex_util_vector_logic_0_0 |    1 |
+| bluex_reg_wb_0_0            |    1 |
+| bluex_reg_heap_id_0_0       |    1 |
+| bluex_redirection_0_0       |    1 |
+| bluex_demux_id_0_0          |    1 |
+| bluex_controller_id_0_0     |    1 |
+| bluex_aux_id_0_0            |    1 |
+| bluex_alu_ex_0_0            |    1 |
+| bluex_PC_0_0                |    1 |
++-----------------------------+------+
 
 
 9. Instantiated Netlists

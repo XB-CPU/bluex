@@ -83,6 +83,11 @@ set_property webtalk.parent_dir D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.c
 set_property parent.project_path D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
+set_property ip_repo_paths {
+  d:/MyWorks/Programs/Verilog/vivado/ipr/ip_repo/bluex
+  d:/MyWorks/Programs/Verilog/vivado/bluex/ip_repo
+} [current_project]
+update_ip_catalog
 set_property ip_output_repo d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
@@ -100,6 +105,9 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/constrs_1/new/timing_constrain.xdc
+set_property used_in_implementation false [get_files D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/constrs_1/new/timing_constrain.xdc]
+
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1

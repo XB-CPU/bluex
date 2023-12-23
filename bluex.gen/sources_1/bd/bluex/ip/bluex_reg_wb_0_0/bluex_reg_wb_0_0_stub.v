@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-// Date        : Fri Dec 22 10:10:07 2023
+// Date        : Sat Dec 23 23:12:29 2023
 // Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_reg_wb_0_0/bluex_reg_wb_0_0_stub.v
@@ -15,13 +15,14 @@
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* X_CORE_INFO = "reg_wb,Vivado 2023.2" *)
-module bluex_reg_wb_0_0(clk, rst_n, alu_result_inw, mem_rd_inw, 
-  write_reg_addr_inw, reg_write_inw, memory_to_reg_inw, write_back_data, write_reg_addr, 
-  reg_write)
-/* synthesis syn_black_box black_box_pad_pin="rst_n,alu_result_inw[31:0],mem_rd_inw[31:0],write_reg_addr_inw[4:0],reg_write_inw,memory_to_reg_inw,write_back_data[31:0],write_reg_addr[4:0],reg_write" */
+module bluex_reg_wb_0_0(clk, rst_n, enable_CPU, alu_result_inw, 
+  mem_rd_inw, write_reg_addr_inw, reg_write_inw, memory_to_reg_inw, write_back_data, 
+  write_reg_addr, reg_write)
+/* synthesis syn_black_box black_box_pad_pin="rst_n,enable_CPU,alu_result_inw[31:0],mem_rd_inw[31:0],write_reg_addr_inw[4:0],reg_write_inw,memory_to_reg_inw,write_back_data[31:0],write_reg_addr[4:0],reg_write" */
 /* synthesis syn_force_seq_prim="clk" */;
   input clk /* synthesis syn_isclock = 1 */;
   input rst_n;
+  input enable_CPU;
   input [31:0]alu_result_inw;
   input [31:0]mem_rd_inw;
   input [4:0]write_reg_addr_inw;

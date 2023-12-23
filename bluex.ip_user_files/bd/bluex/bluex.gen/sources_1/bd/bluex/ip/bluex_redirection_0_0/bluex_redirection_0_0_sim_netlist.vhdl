@@ -4,8 +4,8 @@
 -- Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
 -- Date        : Fri Dec 22 12:14:37 2023
 -- Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_redirection_0_0/bluex_redirection_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top bluex_redirection_0_0 -prefix
+--               bluex_redirection_0_0_ bluex_redirection_0_0_sim_netlist.vhdl
 -- Design      : bluex_redirection_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.

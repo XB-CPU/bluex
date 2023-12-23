@@ -14,10 +14,12 @@ ECHO 处于关闭状态。
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source bluex_wrapper_mem_0_0.tcl -notrace
-create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 471.449 ; gain = 183.359
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 470.125 ; gain = 183.047
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/MyWorks/Programs/Verilog/vivado/ipr/ip_repo/bluex'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/MyWorks/Programs/Verilog/vivado/bluex/ip_repo'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Softwares/XILINX/Vivado/2023.2/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:user:bluex:1.0'. The one found in IP location 'd:/MyWorks/Programs/Verilog/vivado/ipr/ip_repo/bluex' will take precedence over the same IP in location d:/MyWorks/Programs/Verilog/vivado/bluex/ip_repo/bluex
 INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: bluex_wrapper_mem_0_0
 Command: synth_design -top bluex_wrapper_mem_0_0 -part xc7z020clg400-2 -incremental_mode off -mode out_of_context
 Starting synth_design
@@ -26,30 +28,30 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 10212
+INFO: [Synth 8-7075] Helper process launched with PID 24992
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 929.129 ; gain = 438.895
+Starting Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 931.836 ; gain = 440.461
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'bluex_wrapper_mem_0_0' [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_wrapper_mem_0_0/synth/bluex_wrapper_mem_0_0.v:53]
 INFO: [Synth 8-6157] synthesizing module 'wrapper_mem' [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/wrapper_mem.v:4]
 INFO: [Synth 8-6155] done synthesizing module 'wrapper_mem' (0#1) [D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/wrapper_mem.v:4]
 INFO: [Synth 8-6155] done synthesizing module 'bluex_wrapper_mem_0_0' (0#1) [d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_wrapper_mem_0_0/synth/bluex_wrapper_mem_0_0.v:53]
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 1035.355 ; gain = 545.121
+Finished Synthesize : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1038.574 ; gain = 547.199
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1035.355 ; gain = 545.121
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1038.574 ; gain = 547.199
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1035.355 ; gain = 545.121
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1038.574 ; gain = 547.199
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7z020clg400-2
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1035.355 ; gain = 545.121
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1038.574 ; gain = 547.199
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
@@ -77,21 +79,22 @@ No constraint files found.
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+INFO: [Synth 8-3917] design bluex_wrapper_mem_0_0 has port write_mem_en driven by constant 1
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:23 . Memory (MB): peak = 1236.508 ; gain = 746.273
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:18 . Memory (MB): peak = 1239.152 ; gain = 747.777
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:23 . Memory (MB): peak = 1236.508 ; gain = 746.273
+Finished Timing Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:18 . Memory (MB): peak = 1240.082 ; gain = 748.707
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:15 ; elapsed = 00:00:23 . Memory (MB): peak = 1236.508 ; gain = 746.273
+Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:18 . Memory (MB): peak = 1240.082 ; gain = 748.707
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -109,37 +112,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 1236.508 ; gain = 746.273
+Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1240.996 ; gain = 749.621
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 1236.508 ; gain = 746.273
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1240.996 ; gain = 749.621
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 1236.508 ; gain = 746.273
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1240.996 ; gain = 749.621
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 1236.508 ; gain = 746.273
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1240.996 ; gain = 749.621
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 1236.508 ; gain = 746.273
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1240.996 ; gain = 749.621
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 1236.508 ; gain = 746.273
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1240.996 ; gain = 749.621
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -167,29 +170,29 @@ Report Instance Areas:
 |2     |  inst   |wrapper_mem |    73|
 +------+---------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 1236.508 ; gain = 746.273
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1240.996 ; gain = 749.621
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 1236.508 ; gain = 746.273
-Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 1236.508 ; gain = 746.273
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1240.996 ; gain = 749.621
+Synthesis Optimization Complete : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1240.996 ; gain = 749.621
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1238.438 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1253.082 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1339.969 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1354.938 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 系统找不到指定的路径。
-Synth Design complete | Checksum: 5981a224
+Synth Design complete | Checksum: febdf700
 INFO: [Common 17-83] Releasing license: Synthesis
-19 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+21 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:37 . Memory (MB): peak = 1339.969 ; gain = 854.695
+synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:26 . Memory (MB): peak = 1354.938 ; gain = 870.574
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 INFO: [Common 17-1381] The checkpoint 'D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/bluex_wrapper_mem_0_0_synth_1/bluex_wrapper_mem_0_0.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1666.910 ; gain = 326.941
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bluex_wrapper_mem_0_0, cache-ID = b191317bfa071b0f
+write_checkpoint: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1680.957 ; gain = 326.020
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bluex_wrapper_mem_0_0, cache-ID = febaf65ddeba9069
 INFO: [Common 17-1381] The checkpoint 'D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/bluex_wrapper_mem_0_0_synth_1/bluex_wrapper_mem_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file bluex_wrapper_mem_0_0_utilization_synth.rpt -pb bluex_wrapper_mem_0_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Dec 18 14:34:05 2023...
+INFO: [Common 17-206] Exiting Vivado at Sat Dec 23 23:12:29 2023...

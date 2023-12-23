@@ -58,6 +58,7 @@
 module bluex_alu_ex_0_0 (
   clk,
   rst,
+  enable_CPU,
   flush,
   rs_inw,
   rt_inw,
@@ -85,12 +86,12 @@ module bluex_alu_ex_0_0 (
   reg_write
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
+(* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 user_lcd CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
 input wire rst;
+input wire enable_CPU;
 input wire flush;
 input wire [31 : 0] rs_inw;
 input wire [31 : 0] rt_inw;
@@ -120,6 +121,7 @@ output wire reg_write;
   alu_ex inst (
     .clk(clk),
     .rst(rst),
+    .enable_CPU(enable_CPU),
     .flush(flush),
     .rs_inw(rs_inw),
     .rt_inw(rt_inw),

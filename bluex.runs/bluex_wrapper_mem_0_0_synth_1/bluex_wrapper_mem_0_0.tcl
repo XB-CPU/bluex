@@ -84,15 +84,18 @@ set_property webtalk.parent_dir D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.c
 set_property parent.project_path D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
+set_property ip_repo_paths {
+  d:/MyWorks/Programs/Verilog/vivado/ipr/ip_repo/bluex
+  d:/MyWorks/Programs/Verilog/vivado/bluex/ip_repo
+} [current_project]
 update_ip_catalog
 set_property ip_output_repo d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib {
-  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/global_macro.v
-  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/wrapper_mem.v
-}
+read_verilog D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/global_macro.v
+set_property file_type "Verilog Header" [get_files D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/global_macro.v]
+read_verilog -library xil_defaultlib D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/wrapper_mem.v
 read_ip -quiet D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/bd/bluex/ip/bluex_wrapper_mem_0_0/bluex_wrapper_mem_0_0.xci
 
 OPTRACE "Adding files" END { }

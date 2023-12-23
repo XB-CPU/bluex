@@ -92,15 +92,14 @@ output wire [31 : 0] rt;
 input wire wr_en_i;
 input wire wr_en_t;
 output wire wr_en_o;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME ram_clk, ASSOCIATED_RESET ram_rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_reg_heap_id_0_0_ram_clk, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 ram_clk CLK" *)
+(* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 ram CLK" *)
 output wire ram_clk;
 input wire [31 : 0] ram_rd_data;
 output wire ram_en;
 output wire [31 : 0] ram_addr;
 output wire [3 : 0] ram_we;
 output wire [31 : 0] ram_wr_data;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME ram_rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME ram_rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 ram_rst RST" *)
 output wire ram_rst;
 

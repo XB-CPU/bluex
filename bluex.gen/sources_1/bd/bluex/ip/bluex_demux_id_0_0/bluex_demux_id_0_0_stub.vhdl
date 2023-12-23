@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
--- Date        : Fri Dec 22 14:19:13 2023
+-- Date        : Sat Dec 23 23:12:29 2023
 -- Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_demux_id_0_0/bluex_demux_id_0_0_stub.vhdl
@@ -19,6 +19,7 @@ entity bluex_demux_id_0_0 is
     rst : in STD_LOGIC;
     branch_taken : in STD_LOGIC;
     ena_n : in STD_LOGIC;
+    enable_CPU : in STD_LOGIC;
     isc : in STD_LOGIC_VECTOR ( 31 downto 0 );
     pc_next_inw : in STD_LOGIC_VECTOR ( 15 downto 0 );
     op : out STD_LOGIC_VECTOR ( 5 downto 0 );
@@ -39,7 +40,7 @@ architecture stub of bluex_demux_id_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "clk,rst,branch_taken,ena_n,isc[31:0],pc_next_inw[15:0],op[5:0],rs[4:0],rt[4:0],rd[4:0],shamt[4:0],rfunct[5:0],imm[15:0],addr[15:0],real_op[5:0],pc_next[15:0]";
+attribute black_box_pad_pin of stub : architecture is "clk,rst,branch_taken,ena_n,enable_CPU,isc[31:0],pc_next_inw[15:0],op[5:0],rs[4:0],rt[4:0],rd[4:0],shamt[4:0],rfunct[5:0],imm[15:0],addr[15:0],real_op[5:0],pc_next[15:0]";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "demux_id,Vivado 2023.2";
 begin

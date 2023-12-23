@@ -63,7 +63,17 @@ module bluex_reg_heap_id_0_0 (
   wd,
   we,
   rs,
-  rt
+  rt,
+  wr_en_i,
+  wr_en_t,
+  wr_en_o,
+  ram_clk,
+  ram_rd_data,
+  ram_en,
+  ram_addr,
+  ram_we,
+  ram_wr_data,
+  ram_rst
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *)
@@ -79,6 +89,19 @@ input wire [31 : 0] wd;
 input wire we;
 output wire [31 : 0] rs;
 output wire [31 : 0] rt;
+input wire wr_en_i;
+input wire wr_en_t;
+output wire wr_en_o;
+(* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 ram CLK" *)
+output wire ram_clk;
+input wire [31 : 0] ram_rd_data;
+output wire ram_en;
+output wire [31 : 0] ram_addr;
+output wire [3 : 0] ram_we;
+output wire [31 : 0] ram_wr_data;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME ram_rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 ram_rst RST" *)
+output wire ram_rst;
 
   reg_heap_id inst (
     .clk(clk),
@@ -89,6 +112,16 @@ output wire [31 : 0] rt;
     .wd(wd),
     .we(we),
     .rs(rs),
-    .rt(rt)
+    .rt(rt),
+    .wr_en_i(wr_en_i),
+    .wr_en_t(wr_en_t),
+    .wr_en_o(wr_en_o),
+    .ram_clk(ram_clk),
+    .ram_rd_data(ram_rd_data),
+    .ram_en(ram_en),
+    .ram_addr(ram_addr),
+    .ram_we(ram_we),
+    .ram_wr_data(ram_wr_data),
+    .ram_rst(ram_rst)
   );
 endmodule

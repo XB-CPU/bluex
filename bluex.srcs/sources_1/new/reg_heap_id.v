@@ -18,7 +18,7 @@ module reg_heap_id (
 	input									wr_en_t,
 	output									wr_en_o,
 	output              					ram_clk    , //BRAM clk
-    input        	[`GPR_BIT - 11: 0]  	ram_rd_data, //RAM中读出的数据
+    input        	[`GPR_BIT - 1 : 0]  	ram_rd_data, //RAM中读出的数据
     output  reg          					ram_en     , //RAM使能信号
     output  reg  	[`GPR_BIT - 1 : 0]  	ram_addr   , //RAM地址
     output  reg  	[3			  : 0]   	ram_we     , //RAM读写控制信号
@@ -27,6 +27,7 @@ module reg_heap_id (
 
 );
 	reg [`GPR_BIT - 1 : 0] ram_reg [`GPR_NUM - 1 : 0];
+	assign ram_rst = ~rst_n;
 
 	integer i;
 	always @(negedge clk or negedge rst_n) begin

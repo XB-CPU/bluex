@@ -5,7 +5,7 @@
     "cell_name": "util_vector_logic_2",
     "component_reference": "xilinx.com:ip:util_vector_logic:2.0",
     "ip_revision": "3",
-    "gen_directory": "../../../../../../../../xilinx/fpga_prjs/dzy/bluex/bluex.tmp/bluex_wrapper_v1_0_project/bluex_wrapper_v1_0_project.gen/sources_1/ip/bluex_util_vector_logic_0_1",
+    "gen_directory": "../../../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_1",
     "parameters": {
       "component_parameters": {
         "Component_Name": [ { "value": "bluex_util_vector_logic_0_1", "resolve_type": "user", "usage": "all" } ],
@@ -34,11 +34,11 @@
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
         "IPREVISION": [ { "value": "3" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../../../../../xilinx/fpga_prjs/dzy/bluex/bluex.tmp/bluex_wrapper_v1_0_project/bluex_wrapper_v1_0_project.gen/sources_1/ip/bluex_util_vector_logic_0_1" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_1" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
-        "SHAREDDIR": [ { "value": "." } ],
+        "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2023.2" } ],
-        "SYNTHESISFLOW": [ { "value": "GLOBAL" } ]
+        "SYNTHESISFLOW": [ { "value": "OUT_OF_CONTEXT" } ]
       }
     },
     "boundary": {

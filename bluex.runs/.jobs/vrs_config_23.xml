@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="bluex_alu_ex_0_0_synth_1" LaunchDir="D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/bluex_alu_ex_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="bluex_demux_id_0_0_synth_1" LaunchDir="D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/bluex_demux_id_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="bluex_reg_wb_0_0_synth_1" LaunchDir="D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/bluex_reg_wb_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="bluex_wrapper_mem_0_0_synth_1" LaunchDir="D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.runs/bluex_wrapper_mem_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>
+		<Parameter Name="general.shortenLongPath" Val="true" Type="bool"/>
+	</Parameters>
+	<ProductInfo Name="vivado"/>
+</Runs>
+

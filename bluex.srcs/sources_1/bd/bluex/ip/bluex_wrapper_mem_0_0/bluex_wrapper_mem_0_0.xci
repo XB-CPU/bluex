@@ -38,6 +38,7 @@
       "ports": {
         "clk": [ { "direction": "in" } ],
         "rst_n": [ { "direction": "in" } ],
+        "enable_CPU": [ { "direction": "in" } ],
         "reg_write_inw": [ { "direction": "in" } ],
         "memory_to_reg_inw": [ { "direction": "in" } ],
         "memory_write_inw": [ { "direction": "in" } ],
@@ -50,12 +51,22 @@
         "write_mem_addr": [ { "direction": "out", "size_left": "15", "size_right": "0" } ],
         "write_mem_data": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
         "write_mem_en": [ { "direction": "out" } ],
+        "write_mem_we": [ { "direction": "out" } ],
         "write_mem_clk": [ { "direction": "out" } ],
+        "write_mem_rst": [ { "direction": "out" } ],
         "alu_result": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
         "read_mem_out": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
         "write_reg_addr": [ { "direction": "out", "size_left": "4", "size_right": "0" } ]
       },
       "interfaces": {
+        "write_mem": {
+          "vlnv": "xilinx.com:user:lcd:1.0",
+          "abstraction_type": "xilinx.com:user:lcd_rtl:1.0",
+          "mode": "slave",
+          "port_maps": {
+            "CLK": [ { "physical_name": "write_mem_clk" } ]
+          }
+        },
         "rst_n": {
           "vlnv": "xilinx.com:signal:reset:1.0",
           "abstraction_type": "xilinx.com:signal:reset_rtl:1.0",
@@ -66,6 +77,18 @@
           },
           "port_maps": {
             "RST": [ { "physical_name": "rst_n" } ]
+          }
+        },
+        "write_mem_rst": {
+          "vlnv": "xilinx.com:signal:reset:1.0",
+          "abstraction_type": "xilinx.com:signal:reset_rtl:1.0",
+          "mode": "master",
+          "parameters": {
+            "POLARITY": [ { "value": "ACTIVE_HIGH", "value_src": "user", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
+            "INSERT_VIP": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "simulation.rtl", "is_ips_inferred": true, "is_static_object": false } ]
+          },
+          "port_maps": {
+            "RST": [ { "physical_name": "write_mem_rst" } ]
           }
         },
         "clk": {
@@ -84,24 +107,6 @@
           },
           "port_maps": {
             "CLK": [ { "physical_name": "clk" } ]
-          }
-        },
-        "write_mem_clk": {
-          "vlnv": "xilinx.com:signal:clock:1.0",
-          "abstraction_type": "xilinx.com:signal:clock_rtl:1.0",
-          "mode": "master",
-          "parameters": {
-            "FREQ_HZ": [ { "value": "100000000", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
-            "FREQ_TOLERANCE_HZ": [ { "value": "0", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
-            "PHASE": [ { "value": "0.0", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "float", "is_ips_inferred": true, "is_static_object": false } ],
-            "CLK_DOMAIN": [ { "value": "bluex_wrapper_mem_0_0_write_mem_clk", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
-            "ASSOCIATED_BUSIF": [ { "value": "", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
-            "ASSOCIATED_PORT": [ { "value": "", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
-            "ASSOCIATED_RESET": [ { "value": "", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
-            "INSERT_VIP": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "simulation.rtl", "is_ips_inferred": true, "is_static_object": false } ]
-          },
-          "port_maps": {
-            "CLK": [ { "physical_name": "write_mem_clk" } ]
           }
         }
       }

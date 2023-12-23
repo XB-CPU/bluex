@@ -5,6 +5,7 @@ module alu_ex (
 	/*clk and rst signal input*/
 	input									clk,
 	input									rst,
+	input									enable_CPU,
 	input									flush,
 	/*ID data input*/
 	input			[`GPR_BIT - 1 : 0] 		rs_inw,
@@ -108,11 +109,13 @@ module alu_ex (
 			// shift_num <= 0;
 		end
 		else begin
-			memory_write <= memory_write_inw;
-			memory_to_reg <= memory_to_reg_inw;
-			reg_write <= reg_write_inw;
-			write_reg_addr_out <= write_reg_addr_in_inw;
-			// shift_num <= shift_num_inw;
+			if (enable_CPU) begin
+				memory_write <= memory_write_inw;
+				memory_to_reg <= memory_to_reg_inw;
+				reg_write <= reg_write_inw;
+				write_reg_addr_out <= write_reg_addr_in_inw;
+				// shift_num <= shift_num_inw;
+			end
 		end
 	end
 
@@ -129,15 +132,17 @@ module alu_ex (
 			alu_src <= 0;
 		end
 		else begin
-			imm <= imm_inw;
-			alu_op <= alu_op_inw;
-			pc_next <= pc_next_inw;
-			branch_isc_flag <= branch_isc_flag_inw;
-			rs <= rs_inw;
-			rt <= rt_inw;
-			rs_forward <= rs_forward_inw;
-			rt_forward <= rt_forward_inw;
-			alu_src <= alu_src_inw;
+			if (enable_CPU) begin
+				imm <= imm_inw;
+				alu_op <= alu_op_inw;
+				pc_next <= pc_next_inw;
+				branch_isc_flag <= branch_isc_flag_inw;
+				rs <= rs_inw;
+				rt <= rt_inw;
+				rs_forward <= rs_forward_inw;
+				rt_forward <= rt_forward_inw;
+				alu_src <= alu_src_inw;
+			end
 		end
 	end
 
@@ -243,12 +248,14 @@ module alu_ex (
 			alu_branch_result <= 1'b0;
 		end
 		else begin
-			case (alu_op)
-				`ALO_BEQ: alu_branch_result <= (alu_src_s == alu_src_t) ? 1'b1 : 1'b0;
-				`ALO_BNE: alu_branch_result <= (alu_src_s != alu_src_t) ? 1'b1 : 1'b0;
-				`ALO_JMP: alu_branch_result <= 1'b1;
-				default: alu_branch_result <= 1'b0;
-			endcase
+			if (enable_CPU) begin
+				case (alu_op)
+					`ALO_BEQ: alu_branch_result <= (alu_src_s == alu_src_t) ? 1'b1 : 1'b0;
+					`ALO_BNE: alu_branch_result <= (alu_src_s != alu_src_t) ? 1'b1 : 1'b0;
+					`ALO_JMP: alu_branch_result <= 1'b1;
+					default: alu_branch_result <= 1'b0;
+				endcase
+			end
 		end
 	end
 endmodule

@@ -57,6 +57,7 @@
 module bluex_wrapper_mem_0_0 (
   clk,
   rst_n,
+  enable_CPU,
   reg_write_inw,
   memory_to_reg_inw,
   memory_write_inw,
@@ -69,7 +70,9 @@ module bluex_wrapper_mem_0_0 (
   write_mem_addr,
   write_mem_data,
   write_mem_en,
+  write_mem_we,
   write_mem_clk,
+  write_mem_rst,
   alu_result,
   read_mem_out,
   write_reg_addr
@@ -81,6 +84,7 @@ input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *)
 input wire rst_n;
+input wire enable_CPU;
 input wire reg_write_inw;
 input wire memory_to_reg_inw;
 input wire memory_write_inw;
@@ -93,9 +97,12 @@ output wire memory_to_reg;
 output wire [15 : 0] write_mem_addr;
 output wire [31 : 0] write_mem_data;
 output wire write_mem_en;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME write_mem_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_wrapper_mem_0_0_write_mem_clk, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 write_mem_clk CLK" *)
+output wire write_mem_we;
+(* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 write_mem CLK" *)
 output wire write_mem_clk;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME write_mem_rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 write_mem_rst RST" *)
+output wire write_mem_rst;
 output wire [31 : 0] alu_result;
 output wire [31 : 0] read_mem_out;
 output wire [4 : 0] write_reg_addr;
@@ -103,6 +110,7 @@ output wire [4 : 0] write_reg_addr;
   wrapper_mem inst (
     .clk(clk),
     .rst_n(rst_n),
+    .enable_CPU(enable_CPU),
     .reg_write_inw(reg_write_inw),
     .memory_to_reg_inw(memory_to_reg_inw),
     .memory_write_inw(memory_write_inw),
@@ -115,7 +123,9 @@ output wire [4 : 0] write_reg_addr;
     .write_mem_addr(write_mem_addr),
     .write_mem_data(write_mem_data),
     .write_mem_en(write_mem_en),
+    .write_mem_we(write_mem_we),
     .write_mem_clk(write_mem_clk),
+    .write_mem_rst(write_mem_rst),
     .alu_result(alu_result),
     .read_mem_out(read_mem_out),
     .write_reg_addr(write_reg_addr)

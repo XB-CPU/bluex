@@ -2,8 +2,8 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-//Date        : Sat Dec 23 16:37:53 2023
-//Host        : xyh running 64-bit major release  (build 9200)
+//Date        : Sat Dec 23 23:27:20 2023
+//Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 //Command     : generate_target bluex.bd
 //Design      : bluex
 //Purpose     : IP block netlist
@@ -31,16 +31,18 @@ module bluex
     write_mem_addr,
     write_mem_clk,
     write_mem_data,
-    write_mem_en);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_RESET rst_n, CLK_DOMAIN bluex_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input clk;
+    write_mem_en,
+    write_mem_rst,
+    write_mem_we);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, CLK_DOMAIN bluex_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input clk;
   output [15:0]current_addr;
   input [0:0]enable_CPU;
   input [31:0]isc;
   output [31:0]ram_addr;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.RAM_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.RAM_CLK, CLK_DOMAIN bluex_reg_heap_id_0_0_ram_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output ram_clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.RAM_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.RAM_CLK, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output ram_clk;
   output ram_en;
   input [31:0]ram_rd_data;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RAM_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RAM_RST, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) output ram_rst;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RAM_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RAM_RST, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) output ram_rst;
   output [3:0]ram_we;
   output [31:0]ram_wr_data;
   input [31:0]read_mem_out_inw;
@@ -52,6 +54,8 @@ module bluex
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.WRITE_MEM_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.WRITE_MEM_CLK, CLK_DOMAIN bluex_wrapper_mem_0_0_write_mem_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output write_mem_clk;
   output [31:0]write_mem_data;
   output write_mem_en;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.WRITE_MEM_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.WRITE_MEM_RST, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) output write_mem_rst;
+  output write_mem_we;
 
   wire [0:0]Op1_0_1;
   wire [15:0]PC_0_current_addr;
@@ -113,6 +117,8 @@ module bluex
   wire wrapper_mem_0_write_mem_clk;
   wire [31:0]wrapper_mem_0_write_mem_data;
   wire wrapper_mem_0_write_mem_en;
+  wire wrapper_mem_0_write_mem_rst;
+  wire wrapper_mem_0_write_mem_we;
   wire [4:0]wrapper_mem_0_write_reg_addr;
 
   assign Op1_0_1 = enable_CPU[0];
@@ -135,6 +141,8 @@ module bluex
   assign write_mem_clk = wrapper_mem_0_write_mem_clk;
   assign write_mem_data[31:0] = wrapper_mem_0_write_mem_data;
   assign write_mem_en = wrapper_mem_0_write_mem_en;
+  assign write_mem_rst = wrapper_mem_0_write_mem_rst;
+  assign write_mem_we = wrapper_mem_0_write_mem_we;
   bluex_PC_0_0 PC_0
        (.branch_taken_ex(alu_ex_0_branch_PC),
         .clk(clk_0_1),
@@ -152,6 +160,7 @@ module bluex
         .branch_isc_flag_inw(controller_id_0_branch),
         .branch_jump_flag(alu_ex_0_branch_jump_flag),
         .clk(clk_0_1),
+        .enable_CPU(Op1_0_1),
         .flush(redirection_0_flush),
         .imm_inw(aux_id_0_sext_imm),
         .memory_to_reg(alu_ex_0_memory_to_reg),
@@ -190,6 +199,7 @@ module bluex
        (.branch_taken(alu_ex_0_branch_jump_flag),
         .clk(clk_0_1),
         .ena_n(redirection_0_stall),
+        .enable_CPU(Op1_0_1),
         .imm(demux_id_0_imm),
         .isc(isc_0_1),
         .pc_next(demux_id_0_pc_next),
@@ -236,6 +246,7 @@ module bluex
   bluex_reg_wb_0_0 reg_wb_0
        (.alu_result_inw(wrapper_mem_0_alu_result),
         .clk(clk_0_1),
+        .enable_CPU(Op1_0_1),
         .mem_rd_inw(wrapper_mem_0_read_mem_out),
         .memory_to_reg_inw(wrapper_mem_0_memory_to_reg),
         .reg_write(reg_wb_0_reg_write),
@@ -258,6 +269,7 @@ module bluex
        (.alu_result(wrapper_mem_0_alu_result),
         .alu_result_inw(alu_ex_0_rd_value),
         .clk(clk_0_1),
+        .enable_CPU(Op1_0_1),
         .memory_to_reg(wrapper_mem_0_memory_to_reg),
         .memory_to_reg_inw(alu_ex_0_memory_to_reg),
         .memory_write_inw(alu_ex_0_memory_write),
@@ -271,6 +283,8 @@ module bluex
         .write_mem_clk(wrapper_mem_0_write_mem_clk),
         .write_mem_data(wrapper_mem_0_write_mem_data),
         .write_mem_en(wrapper_mem_0_write_mem_en),
+        .write_mem_rst(wrapper_mem_0_write_mem_rst),
+        .write_mem_we(wrapper_mem_0_write_mem_we),
         .write_reg_addr(wrapper_mem_0_write_reg_addr),
         .write_reg_addr_inw(alu_ex_0_write_reg_addr_out));
 endmodule

@@ -58,6 +58,7 @@
 module bluex_reg_wb_0_0 (
   clk,
   rst_n,
+  enable_CPU,
   alu_result_inw,
   mem_rd_inw,
   write_reg_addr_inw,
@@ -68,12 +69,12 @@ module bluex_reg_wb_0_0 (
   reg_write
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
+(* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 user_lcd CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *)
 input wire rst_n;
+input wire enable_CPU;
 input wire [31 : 0] alu_result_inw;
 input wire [31 : 0] mem_rd_inw;
 input wire [4 : 0] write_reg_addr_inw;
@@ -86,6 +87,7 @@ output wire reg_write;
   reg_wb inst (
     .clk(clk),
     .rst_n(rst_n),
+    .enable_CPU(enable_CPU),
     .alu_result_inw(alu_result_inw),
     .mem_rd_inw(mem_rd_inw),
     .write_reg_addr_inw(write_reg_addr_inw),

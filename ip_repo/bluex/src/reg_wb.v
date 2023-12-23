@@ -4,6 +4,7 @@
 module reg_wb (
 	input									clk,
 	input									rst_n,
+	input									enable_CPU,
 	input			[`GPR_BIT - 1 : 0] 		alu_result_inw,
 	input			[`GPR_BIT - 1 : 0] 		mem_rd_inw,
 
@@ -26,8 +27,10 @@ module reg_wb (
 			mem_rd_inr <= {`GPR_BIT{1'b0}};
 		end
 		else begin
-			alu_result_inr <= alu_result_inw;
-			mem_rd_inr <= mem_rd_inw;
+			if (enable_CPU) begin
+				alu_result_inr <= alu_result_inw;
+				mem_rd_inr <= mem_rd_inw;
+			end
 		end
 	end
 
@@ -38,9 +41,11 @@ module reg_wb (
 			memory_to_reg <= 0;
 		end
 		else begin
-			write_reg_addr <= write_reg_addr_inw;
-			reg_write <= reg_write_inw;
-			memory_to_reg <= memory_to_reg_inw;
+			if (enable_CPU) begin
+				write_reg_addr <= write_reg_addr_inw;
+				reg_write <= reg_write_inw;
+				memory_to_reg <= memory_to_reg_inw;
+			end
 		end
 	end
 

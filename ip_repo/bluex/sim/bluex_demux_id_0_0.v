@@ -59,6 +59,7 @@ module bluex_demux_id_0_0 (
   rst,
   branch_taken,
   ena_n,
+  enable_CPU,
   isc,
   pc_next_inw,
   op,
@@ -73,14 +74,14 @@ module bluex_demux_id_0_0 (
   pc_next
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
+(* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 user_lcd CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
 input wire rst;
 input wire branch_taken;
 input wire ena_n;
+input wire enable_CPU;
 input wire [31 : 0] isc;
 input wire [15 : 0] pc_next_inw;
 output wire [5 : 0] op;
@@ -99,6 +100,7 @@ output wire [15 : 0] pc_next;
     .rst(rst),
     .branch_taken(branch_taken),
     .ena_n(ena_n),
+    .enable_CPU(enable_CPU),
     .isc(isc),
     .pc_next_inw(pc_next_inw),
     .op(op),

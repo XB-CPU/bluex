@@ -1,14 +1,13 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xE08D1FB1F2B4D3A9",
+      "boundary_crc": "0x80D7BE210CFF2D0D",
       "device": "xc7z020clg400-2",
       "gen_directory": "../../../../bluex.gen/sources_1/bd/bluex",
       "name": "bluex",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2023.2",
-      "validated": "true"
+      "tool_version": "2023.2"
     },
     "design_tree": {
       "reg_wb_0": "",
@@ -27,47 +26,11 @@
     "ports": {
       "clk": {
         "type": "clk",
-        "direction": "I",
-        "parameters": {
-          "ASSOCIATED_RESET": {
-            "value": "rst_n",
-            "value_src": "default"
-          },
-          "CLK_DOMAIN": {
-            "value": "bluex_clk",
-            "value_src": "default"
-          },
-          "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.0",
-            "value_src": "default"
-          }
-        }
+        "direction": "I"
       },
       "rst_n": {
         "type": "rst",
-        "direction": "I",
-        "parameters": {
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "POLARITY": {
-            "value": "ACTIVE_LOW",
-            "value_src": "default"
-          }
-        }
+        "direction": "I"
       },
       "read_mem_out_inw": {
         "direction": "I",
@@ -79,29 +42,7 @@
       },
       "write_mem_clk": {
         "type": "clk",
-        "direction": "O",
-        "parameters": {
-          "CLK_DOMAIN": {
-            "value": "bluex_wrapper_mem_0_0_write_mem_clk",
-            "value_src": "default_prop"
-          },
-          "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.0",
-            "value_src": "default"
-          }
-        }
+        "direction": "O"
       },
       "write_mem_data": {
         "direction": "O",
@@ -118,7 +59,7 @@
         "left": "31",
         "right": "0"
       },
-      "current_addr_0": {
+      "current_addr": {
         "direction": "O",
         "left": "15",
         "right": "0"
@@ -126,17 +67,47 @@
       "enable_CPU": {
         "direction": "I",
         "left": "0",
-        "right": "0",
-        "parameters": {
-          "PortType": {
-            "value": "undef",
-            "value_src": "ip_prop"
-          },
-          "PortType.PROP_SRC": {
-            "value": "false",
-            "value_src": "ip_prop"
-          }
-        }
+        "right": "0"
+      },
+      "ram_addr": {
+        "direction": "O",
+        "left": "31",
+        "right": "0"
+      },
+      "ram_clk": {
+        "type": "clk",
+        "direction": "O"
+      },
+      "ram_en": {
+        "direction": "O"
+      },
+      "ram_rd_data": {
+        "direction": "I",
+        "left": "31",
+        "right": "0"
+      },
+      "ram_rst": {
+        "type": "rst",
+        "direction": "O"
+      },
+      "ram_we": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      },
+      "ram_wr_data": {
+        "direction": "O",
+        "left": "31",
+        "right": "0"
+      },
+      "wr_en_i": {
+        "direction": "I"
+      },
+      "wr_en_o": {
+        "direction": "O"
+      },
+      "wr_en_t": {
+        "direction": "I"
       }
     },
     "components": {
@@ -741,6 +712,52 @@
             "direction": "O",
             "left": "31",
             "right": "0"
+          },
+          "wr_en_i": {
+            "direction": "I"
+          },
+          "wr_en_t": {
+            "direction": "I"
+          },
+          "wr_en_o": {
+            "direction": "O"
+          },
+          "ram_clk": {
+            "type": "clk",
+            "direction": "O",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "ram_rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "ram_rd_data": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "ram_en": {
+            "direction": "O"
+          },
+          "ram_addr": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "ram_we": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "ram_wr_data": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "ram_rst": {
+            "type": "rst",
+            "direction": "O"
           }
         }
       },
@@ -976,7 +993,7 @@
       "PC_0_current_addr": {
         "ports": [
           "PC_0/current_addr",
-          "current_addr_0"
+          "current_addr"
         ]
       },
       "PC_0_next_addr_output": {
@@ -1058,12 +1075,12 @@
       "clk_0_1": {
         "ports": [
           "clk",
-          "reg_heap_id_0/clk",
           "PC_0/clk",
           "wrapper_mem_0/clk",
           "reg_wb_0/clk",
           "demux_id_0/clk",
-          "alu_ex_0/clk"
+          "alu_ex_0/clk",
+          "reg_heap_id_0/clk"
         ]
       },
       "controller_id_0_addr_flag": {
@@ -1131,22 +1148,28 @@
       "demux_id_0_rs": {
         "ports": [
           "demux_id_0/rs",
-          "reg_heap_id_0/addr_rs",
-          "redirection_0/rs"
+          "redirection_0/rs",
+          "reg_heap_id_0/addr_rs"
         ]
       },
       "demux_id_0_rt": {
         "ports": [
           "demux_id_0/rt",
           "aux_id_0/addr_rt",
-          "reg_heap_id_0/addr_rt",
-          "redirection_0/rt"
+          "redirection_0/rt",
+          "reg_heap_id_0/addr_rt"
         ]
       },
       "isc_0_1": {
         "ports": [
           "isc",
           "demux_id_0/isc"
+        ]
+      },
+      "ram_rd_data_0_1": {
+        "ports": [
+          "ram_rd_data",
+          "reg_heap_id_0/ram_rd_data"
         ]
       },
       "read_mem_out_inw_0_1": {
@@ -1180,6 +1203,42 @@
           "demux_id_0/ena_n"
         ]
       },
+      "reg_heap_id_0_ram_addr": {
+        "ports": [
+          "reg_heap_id_0/ram_addr",
+          "ram_addr"
+        ]
+      },
+      "reg_heap_id_0_ram_clk": {
+        "ports": [
+          "reg_heap_id_0/ram_clk",
+          "ram_clk"
+        ]
+      },
+      "reg_heap_id_0_ram_en": {
+        "ports": [
+          "reg_heap_id_0/ram_en",
+          "ram_en"
+        ]
+      },
+      "reg_heap_id_0_ram_rst": {
+        "ports": [
+          "reg_heap_id_0/ram_rst",
+          "ram_rst"
+        ]
+      },
+      "reg_heap_id_0_ram_we": {
+        "ports": [
+          "reg_heap_id_0/ram_we",
+          "ram_we"
+        ]
+      },
+      "reg_heap_id_0_ram_wr_data": {
+        "ports": [
+          "reg_heap_id_0/ram_wr_data",
+          "ram_wr_data"
+        ]
+      },
       "reg_heap_id_0_rs": {
         "ports": [
           "reg_heap_id_0/rs",
@@ -1192,6 +1251,12 @@
           "alu_ex_0/rt_inw"
         ]
       },
+      "reg_heap_id_0_wr_en_o": {
+        "ports": [
+          "reg_heap_id_0/wr_en_o",
+          "wr_en_o"
+        ]
+      },
       "reg_wb_0_reg_write": {
         "ports": [
           "reg_wb_0/reg_write",
@@ -1201,8 +1266,8 @@
       "reg_wb_0_write_back_data": {
         "ports": [
           "reg_wb_0/write_back_data",
-          "reg_heap_id_0/wd",
-          "alu_ex_0/write_back_data"
+          "alu_ex_0/write_back_data",
+          "reg_heap_id_0/wd"
         ]
       },
       "reg_wb_0_write_reg_addr": {
@@ -1214,11 +1279,11 @@
       "rst_n_0_1": {
         "ports": [
           "rst_n",
-          "reg_heap_id_0/rst_n",
           "PC_0/rst_n",
           "wrapper_mem_0/rst_n",
           "util_vector_logic_2/Op1",
-          "reg_wb_0/rst_n"
+          "reg_wb_0/rst_n",
+          "reg_heap_id_0/rst_n"
         ]
       },
       "util_vector_logic_0_Res": {
@@ -1238,6 +1303,18 @@
           "util_vector_logic_2/Res",
           "demux_id_0/rst",
           "alu_ex_0/rst"
+        ]
+      },
+      "wr_en_i_0_1": {
+        "ports": [
+          "wr_en_i",
+          "reg_heap_id_0/wr_en_i"
+        ]
+      },
+      "wr_en_t_0_1": {
+        "ports": [
+          "wr_en_t",
+          "reg_heap_id_0/wr_en_t"
         ]
       },
       "wrapper_mem_0_alu_result": {

@@ -3,10 +3,10 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Tue Dec 19 17:13:25 2023
-# Process ID: 4432
+# Start of session at: Sat Dec 23 16:49:47 2023
+# Process ID: 2028
 # Current directory: E:/Xilinx/FPGA_Prjs/dzy/bluex
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10856 E:\Xilinx\FPGA_Prjs\dzy\bluex\bluex.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent23424 E:\Xilinx\FPGA_Prjs\dzy\bluex\bluex.xpr
 # Log file: E:/Xilinx/FPGA_Prjs/dzy/bluex/vivado.log
 # Journal file: E:/Xilinx/FPGA_Prjs/dzy/bluex\vivado.jou
 # Running On: xyh, OS: Windows, CPU Frequency: 2304 MHz, CPU Physical cores: 8, Host memory: 16889 MB
@@ -57,14 +57,16 @@ WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu208ld:part0:2.0 avail
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at E:/Xilinx/Vivado/2023.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670:part0:2.0 available at E:/Xilinx/Vivado/2023.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670/2.0/board.xml as part xczu67dr-fsve1156-2-i specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at E:/Xilinx/Vivado/2023.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
-INFO: [Project 1-313] Project file moved from 'D:/MyWorks/Programs/Verilog/vivado/bluex' since last save.
 Scanning sources...
 Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'e:/Xilinx/FPGA_Prjs/dzy/bluex/ip_repo'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'E:/Xilinx/Vivado/2023.2/data/ip'.
-open_project: Time (s): cpu = 00:00:19 ; elapsed = 00:00:08 . Memory (MB): peak = 1547.242 ; gain = 347.793
-update_compile_order -fileset sources_1
+WARNING: [BD 41-1661] One or more IPs have been locked in the design 'bluex.bd'. Please run report_ip_status for more details and recommendations on how to fix this issue.
+List of locked IPs:
+bluex_bluex_wrapper_0_2
+
+open_project: Time (s): cpu = 00:00:20 ; elapsed = 00:00:08 . Memory (MB): peak = 1543.098 ; gain = 311.887
 open_bd_design {E:/Xilinx/FPGA_Prjs/dzy/bluex/bluex.srcs/sources_1/bd/bluex/bluex.bd}
 Reading block design file <E:/Xilinx/FPGA_Prjs/dzy/bluex/bluex.srcs/sources_1/bd/bluex/bluex.bd>...
 Adding component instance block -- xilinx.com:module_ref:reg_wb:1.0 - reg_wb_0
@@ -76,8 +78,20 @@ Adding component instance block -- xilinx.com:module_ref:alu_ex:1.0 - alu_ex_0
 Adding component instance block -- xilinx.com:module_ref:reg_heap_id:1.0 - reg_heap_id_0
 Adding component instance block -- xilinx.com:module_ref:PC:1.0 - PC_0
 Adding component instance block -- xilinx.com:module_ref:wrapper_mem:1.0 - wrapper_mem_0
+Adding component instance block -- xilinx.com:ip:util_vector_logic:2.0 - util_vector_logic_0
+Adding component instance block -- xilinx.com:ip:util_vector_logic:2.0 - util_vector_logic_1
+Adding component instance block -- xilinx.com:ip:util_vector_logic:2.0 - util_vector_logic_2
+Adding component instance block -- xilinx.com:user:bluex_wrapper:1.0 - bluex_wrapper_0
 Successfully read diagram <bluex> from block design file <E:/Xilinx/FPGA_Prjs/dzy/bluex/bluex.srcs/sources_1/bd/bluex/bluex.bd>
-open_bd_design {E:/Xilinx/FPGA_Prjs/dzy/bluex/bluex.srcs/sources_1/bd/bluex/bluex.bd}
-open_bd_design {E:/Xilinx/FPGA_Prjs/dzy/bluex/bluex.srcs/sources_1/bd/bluex/bluex.bd}
+open_bd_design: Time (s): cpu = 00:00:04 ; elapsed = 00:00:12 . Memory (MB): peak = 1592.520 ; gain = 26.125
+update_compile_order -fileset sources_1
+delete_bd_objs [get_bd_cells bluex_wrapper_0]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:user:bluex:1.0 bluex_0
+endgroup
+delete_bd_objs [get_bd_cells bluex_0]
+save_bd_design
+Wrote  : <E:\Xilinx\FPGA_Prjs\dzy\bluex\bluex.srcs\sources_1\bd\bluex\bluex.bd> 
+Wrote  : <E:/Xilinx/FPGA_Prjs/dzy/bluex/bluex.srcs/sources_1/bd/bluex/ui/bd_f8a66afe.ui> 
 exit
-INFO: [Common 17-206] Exiting Vivado at Tue Dec 19 17:24:15 2023...
+INFO: [Common 17-206] Exiting Vivado at Sat Dec 23 16:52:47 2023...

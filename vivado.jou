@@ -3,17 +3,21 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Tue Dec 19 17:13:25 2023
-# Process ID: 4432
+# Start of session at: Sat Dec 23 16:49:47 2023
+# Process ID: 2028
 # Current directory: E:/Xilinx/FPGA_Prjs/dzy/bluex
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10856 E:\Xilinx\FPGA_Prjs\dzy\bluex\bluex.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent23424 E:\Xilinx\FPGA_Prjs\dzy\bluex\bluex.xpr
 # Log file: E:/Xilinx/FPGA_Prjs/dzy/bluex/vivado.log
 # Journal file: E:/Xilinx/FPGA_Prjs/dzy/bluex\vivado.jou
 # Running On: xyh, OS: Windows, CPU Frequency: 2304 MHz, CPU Physical cores: 8, Host memory: 16889 MB
 #-----------------------------------------------------------
 start_gui
 open_project E:/Xilinx/FPGA_Prjs/dzy/bluex/bluex.xpr
+open_bd_design {E:/Xilinx/FPGA_Prjs/dzy/bluex/bluex.srcs/sources_1/bd/bluex/bluex.bd}
 update_compile_order -fileset sources_1
-open_bd_design {E:/Xilinx/FPGA_Prjs/dzy/bluex/bluex.srcs/sources_1/bd/bluex/bluex.bd}
-open_bd_design {E:/Xilinx/FPGA_Prjs/dzy/bluex/bluex.srcs/sources_1/bd/bluex/bluex.bd}
-open_bd_design {E:/Xilinx/FPGA_Prjs/dzy/bluex/bluex.srcs/sources_1/bd/bluex/bluex.bd}
+delete_bd_objs [get_bd_cells bluex_wrapper_0]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:user:bluex:1.0 bluex_0
+endgroup
+delete_bd_objs [get_bd_cells bluex_0]
+save_bd_design

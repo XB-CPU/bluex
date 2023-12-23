@@ -13,8 +13,6 @@
 
 #param, r1:sum, r2:i, r3:tmp, r4:1, r5:0x10
 mirl r4, 1b
-mirl r6, 80h
-mirl r7, 78h
 mirl r5, 10h
 mirl r2, 40H
 mirl r1, 20H
@@ -22,19 +20,17 @@ mirl r0, 40h # r0 is still 0
 mirl r1, 30H
 add r1, r0, r0 # r1 is still 0
 subi r2, r0, 0 # r2 is still 0
-
-#for
+for:
 andi r3, r2, 1b
-#xor r7, r7, r6
-beq r3, r4, 3
-#even
+beq r3, r4, odd
+even:
 add r1, r1, r2
-jmp 2
-#odd
-xor r7, r7, r6
+jmp for_done
+odd:
 sub r1, r1, r2
+for_done:
 addi r2, r2, 1
-bne r2, r5, -8
+bne r2, r5, for
 
 #over
 jmp -1

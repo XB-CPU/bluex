@@ -129,11 +129,11 @@
     <Step Id="synth_design"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="bluex_controller_id_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_aux_id_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="bluex_reg_wb_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="bluex_aux_id_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="bluex_redirection_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_PC_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="bluex_demux_id_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="bluex_PC_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="bluex_reg_heap_id_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="bluex_wrapper_mem_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="bluex_alu_ex_0_0"/>

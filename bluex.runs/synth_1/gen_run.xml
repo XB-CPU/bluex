@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg400-2" LaunchTime="1703386658" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/PC.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-2" LaunchTime="1703389931" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/PC.dcp">
   <File Type="PA-TCL" Name="bluex_wrapper.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="bluex_wrapper_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="bluex_wrapper_reports.tcl"/>
@@ -134,14 +134,4 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_controller_id_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_reg_wb_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_util_vector_logic_1_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_aux_id_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_demux_id_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_PC_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_util_vector_logic_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_alu_ex_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_wrapper_mem_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="bluex_reg_heap_id_0_0"/>
 </GenRun>

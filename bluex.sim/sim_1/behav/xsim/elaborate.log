@@ -6,34 +6,4 @@ Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
 Completed static elaboration
-Starting simulation data flow analysis
-Completed simulation data flow analysis
-Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.PC
-Compiling module xil_defaultlib.bluex_PC_0_0
-Compiling module xil_defaultlib.alu_ex
-Compiling module xil_defaultlib.bluex_alu_ex_0_0
-Compiling module xil_defaultlib.aux_id
-Compiling module xil_defaultlib.bluex_aux_id_0_0
-Compiling module xil_defaultlib.controller_id
-Compiling module xil_defaultlib.bluex_controller_id_0_0
-Compiling module xil_defaultlib.demux_id
-Compiling module xil_defaultlib.bluex_demux_id_0_0
-Compiling module xil_defaultlib.redirection
-Compiling module xil_defaultlib.bluex_redirection_0_0
-Compiling module xil_defaultlib.reg_heap_id
-Compiling module xil_defaultlib.bluex_reg_heap_id_0_0
-Compiling module xil_defaultlib.reg_wb
-Compiling module xil_defaultlib.bluex_reg_wb_0_0
-Compiling module util_vector_logic_v2_0_3.util_vector_logic_v2_0_3_util_ve...
-Compiling module xil_defaultlib.bluex_util_vector_logic_0_0
-Compiling module util_vector_logic_v2_0_3.util_vector_logic_v2_0_3_util_ve...
-Compiling module xil_defaultlib.bluex_util_vector_logic_1_0
-Compiling module xil_defaultlib.bluex_util_vector_logic_0_1
-Compiling module xil_defaultlib.wrapper_mem
-Compiling module xil_defaultlib.bluex_wrapper_mem_0_0
-Compiling module xil_defaultlib.bluex
-Compiling module xil_defaultlib.bluex_wrapper
-Compiling module xil_defaultlib.tb_ROM
-Compiling module xil_defaultlib.glbl
-Built simulation snapshot tb_ROM_behav
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel

@@ -7,7 +7,7 @@
 module tb_ROM;
 
 // bluex_wrapper Parameters
-parameter PERIOD  = 10;
+parameter PERIOD  = 20;
 parameter MEM_UNIT = 40;
 
 

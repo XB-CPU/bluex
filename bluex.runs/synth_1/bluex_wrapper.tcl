@@ -90,7 +90,20 @@ set_property ip_output_repo d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.cache
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/hdl/bluex_wrapper.v
+read_verilog D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/global_macro.v
+set_property file_type "Verilog Header" [get_files D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/global_macro.v]
+read_verilog -library xil_defaultlib {
+  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/reg_wb.v
+  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/redirection.v
+  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/demux_id.v
+  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/controller_id.v
+  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/aux_id.v
+  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/alu_ex.v
+  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/reg_heap_id.v
+  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/PC.v
+  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/new/wrapper_mem.v
+  D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/hdl/bluex_wrapper.v
+}
 add_files D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.srcs/sources_1/bd/bluex/bluex.bd
 set_property used_in_implementation false [get_files -all d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/bluex_ooc.xdc]
 

@@ -6,7 +6,7 @@
       "gen_directory": "../../../../bluex.gen/sources_1/bd/bluex",
       "name": "bluex",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
-      "synth_flow_mode": "Hierarchical",
+      "synth_flow_mode": "None",
       "tool_version": "2023.2",
       "validated": "true"
     },

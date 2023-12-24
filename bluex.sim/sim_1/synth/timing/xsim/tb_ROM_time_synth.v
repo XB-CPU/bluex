@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-// Date        : Sun Dec 24 10:00:29 2023
+// Date        : Sun Dec 24 11:57:27 2023
 // Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 // Command     : write_verilog -mode timesim -nolib -sdf_anno true -force -file
 //               D:/MyWorks/Programs/Verilog/vivado/bluex/bluex.sim/sim_1/synth/timing/xsim/tb_ROM_time_synth.v
@@ -14,357 +14,7 @@
 `timescale 1 ps / 1 ps
 `define XIL_TIMING
 
-(* HW_HANDOFF = "bluex.hwdef" *) 
-module bluex
-   (clk,
-    current_addr,
-    enable_CPU,
-    isc,
-    ram_addr,
-    ram_clk,
-    ram_en,
-    ram_rd_data,
-    ram_rst,
-    ram_we,
-    ram_wr_data,
-    read_mem_out_inw,
-    rst_n,
-    wr_en_i,
-    wr_en_o,
-    wr_en_t,
-    write_mem_addr,
-    write_mem_clk,
-    write_mem_data,
-    write_mem_en,
-    write_mem_rst,
-    write_mem_we);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, CLK_DOMAIN bluex_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input clk;
-  output [15:0]current_addr;
-  input [0:0]enable_CPU;
-  input [31:0]isc;
-  output [31:0]ram_addr;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.RAM_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.RAM_CLK, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output ram_clk;
-  output ram_en;
-  input [31:0]ram_rd_data;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RAM_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RAM_RST, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) output ram_rst;
-  output [3:0]ram_we;
-  output [31:0]ram_wr_data;
-  input [31:0]read_mem_out_inw;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RST_N RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RST_N, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input rst_n;
-  input wr_en_i;
-  output wr_en_o;
-  input wr_en_t;
-  output [15:0]write_mem_addr;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.WRITE_MEM_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.WRITE_MEM_CLK, CLK_DOMAIN bluex_wrapper_mem_0_0_write_mem_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output write_mem_clk;
-  output [31:0]write_mem_data;
-  output write_mem_en;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.WRITE_MEM_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.WRITE_MEM_RST, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) output write_mem_rst;
-  output write_mem_we;
-
-  wire [15:0]PC_0_next_addr_output;
-  wire alu_ex_0_branch_PC;
-  wire [15:0]alu_ex_0_branch_addr;
-  wire alu_ex_0_branch_jump_flag;
-  wire alu_ex_0_memory_to_reg;
-  wire alu_ex_0_memory_write;
-  wire [31:0]alu_ex_0_rd_value;
-  wire alu_ex_0_reg_write;
-  wire [31:0]alu_ex_0_write_data;
-  wire [4:0]alu_ex_0_write_reg_addr_out;
-  wire [4:0]aux_id_0_addr_reg;
-  wire [31:0]aux_id_0_sext_imm;
-  wire clk;
-  wire controller_id_0_addr_flag;
-  wire controller_id_0_alu_src;
-  wire controller_id_0_branch;
-  wire controller_id_0_memory_to_reg;
-  wire controller_id_0_memory_write;
-  wire controller_id_0_reg_write;
-  wire [15:0]current_addr;
-  wire [15:0]demux_id_0_imm;
-  wire [15:0]demux_id_0_pc_next;
-  wire [4:0]demux_id_0_rd;
-  wire [5:0]demux_id_0_real_op;
-  wire [4:0]demux_id_0_rs;
-  wire [4:0]demux_id_0_rt;
-  wire [0:0]enable_CPU;
-  wire [31:0]isc;
-  wire [31:0]ram_addr;
-  wire ram_clk;
-  wire ram_en;
-  wire [31:0]ram_rd_data;
-  wire ram_rst;
-  wire [3:0]ram_we;
-  wire [31:0]ram_wr_data;
-  wire [31:0]read_mem_out_inw;
-  wire redirection_0_flush;
-  wire [1:0]redirection_0_rs_forward;
-  wire [1:0]redirection_0_rt_forward;
-  wire redirection_0_stall;
-  wire [31:0]reg_heap_id_0_rs;
-  wire [31:0]reg_heap_id_0_rt;
-  wire reg_wb_0_reg_write;
-  wire [31:0]reg_wb_0_write_back_data;
-  wire [4:0]reg_wb_0_write_reg_addr;
-  wire rst_n;
-  wire util_vector_logic_0_Res;
-  wire util_vector_logic_1_Res;
-  wire util_vector_logic_2_Res;
-  wire wr_en_i;
-  wire wr_en_o;
-  wire wr_en_t;
-  wire [31:0]wrapper_mem_0_alu_result;
-  wire wrapper_mem_0_memory_to_reg;
-  wire [31:0]wrapper_mem_0_read_mem_out;
-  wire wrapper_mem_0_reg_write;
-  wire [4:0]wrapper_mem_0_write_reg_addr;
-  wire [15:0]write_mem_addr;
-  wire write_mem_clk;
-  wire [31:0]write_mem_data;
-  wire write_mem_en;
-  wire write_mem_rst;
-  wire write_mem_we;
-  wire [15:0]NLW_demux_id_0_addr_UNCONNECTED;
-  wire [5:0]NLW_demux_id_0_op_UNCONNECTED;
-  wire [5:0]NLW_demux_id_0_rfunct_UNCONNECTED;
-  wire [4:0]NLW_demux_id_0_shamt_UNCONNECTED;
-
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_PC_0_0/bluex_PC_0_0.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "PC,Vivado 2023.2" *) 
-  bluex_PC_0_0 PC_0
-       (.branch_taken_ex(alu_ex_0_branch_PC),
-        .clk(clk),
-        .current_addr(current_addr),
-        .ena_n(util_vector_logic_1_Res),
-        .next_addr_branch(alu_ex_0_branch_addr),
-        .next_addr_output(PC_0_next_addr_output),
-        .rst_n(rst_n));
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_alu_ex_0_0/bluex_alu_ex_0_0.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "alu_ex,Vivado 2023.2" *) 
-  bluex_alu_ex_0_0 alu_ex_0
-       (.alu_op_inw(demux_id_0_real_op),
-        .alu_result_back(wrapper_mem_0_alu_result),
-        .alu_src_inw(controller_id_0_alu_src),
-        .branch_PC(alu_ex_0_branch_PC),
-        .branch_addr(alu_ex_0_branch_addr),
-        .branch_isc_flag_inw(controller_id_0_branch),
-        .branch_jump_flag(alu_ex_0_branch_jump_flag),
-        .clk(clk),
-        .enable_CPU(enable_CPU),
-        .flush(redirection_0_flush),
-        .imm_inw(aux_id_0_sext_imm),
-        .memory_to_reg(alu_ex_0_memory_to_reg),
-        .memory_to_reg_inw(controller_id_0_memory_to_reg),
-        .memory_write(alu_ex_0_memory_write),
-        .memory_write_inw(controller_id_0_memory_write),
-        .pc_next_inw(demux_id_0_pc_next),
-        .rd_value(alu_ex_0_rd_value),
-        .reg_write(alu_ex_0_reg_write),
-        .reg_write_inw(controller_id_0_reg_write),
-        .rs_forward_inw(redirection_0_rs_forward),
-        .rs_inw(reg_heap_id_0_rs),
-        .rst(util_vector_logic_2_Res),
-        .rt_forward_inw(redirection_0_rt_forward),
-        .rt_inw(reg_heap_id_0_rt),
-        .write_back_data(reg_wb_0_write_back_data),
-        .write_data(alu_ex_0_write_data),
-        .write_reg_addr_in_inw(aux_id_0_addr_reg),
-        .write_reg_addr_out(alu_ex_0_write_reg_addr_out));
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_aux_id_0_0/bluex_aux_id_0_0.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "aux_id,Vivado 2023.2" *) 
-  bluex_aux_id_0_0 aux_id_0
-       (.addr_flag(controller_id_0_addr_flag),
-        .addr_rd(demux_id_0_rd),
-        .addr_reg(aux_id_0_addr_reg),
-        .addr_rt(demux_id_0_rt),
-        .imm(demux_id_0_imm),
-        .sext_imm(aux_id_0_sext_imm));
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_controller_id_0_0/bluex_controller_id_0_0.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "controller_id,Vivado 2023.2" *) 
-  bluex_controller_id_0_0 controller_id_0
-       (.addr_flag(controller_id_0_addr_flag),
-        .alu_src(controller_id_0_alu_src),
-        .branch(controller_id_0_branch),
-        .memory_to_reg(controller_id_0_memory_to_reg),
-        .memory_write(controller_id_0_memory_write),
-        .real_op(demux_id_0_real_op),
-        .reg_write(controller_id_0_reg_write));
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_demux_id_0_0/bluex_demux_id_0_0.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "demux_id,Vivado 2023.2" *) 
-  bluex_demux_id_0_0 demux_id_0
-       (.addr(NLW_demux_id_0_addr_UNCONNECTED[15:0]),
-        .branch_taken(alu_ex_0_branch_jump_flag),
-        .clk(clk),
-        .ena_n(redirection_0_stall),
-        .enable_CPU(enable_CPU),
-        .imm(demux_id_0_imm),
-        .isc(isc),
-        .op(NLW_demux_id_0_op_UNCONNECTED[5:0]),
-        .pc_next(demux_id_0_pc_next),
-        .pc_next_inw(PC_0_next_addr_output),
-        .rd(demux_id_0_rd),
-        .real_op(demux_id_0_real_op),
-        .rfunct(NLW_demux_id_0_rfunct_UNCONNECTED[5:0]),
-        .rs(demux_id_0_rs),
-        .rst(util_vector_logic_2_Res),
-        .rt(demux_id_0_rt),
-        .shamt(NLW_demux_id_0_shamt_UNCONNECTED[4:0]));
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_redirection_0_0/bluex_redirection_0_0.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "redirection,Vivado 2023.2" *) 
-  bluex_redirection_0_0 redirection_0
-       (.branch_taken_ex(alu_ex_0_branch_jump_flag),
-        .flush(redirection_0_flush),
-        .mem_rd_ex(alu_ex_0_memory_to_reg),
-        .real_op(demux_id_0_real_op),
-        .reg_write_ex(alu_ex_0_reg_write),
-        .reg_write_mem(wrapper_mem_0_reg_write),
-        .rs(demux_id_0_rs),
-        .rs_forward(redirection_0_rs_forward),
-        .rt(demux_id_0_rt),
-        .rt_forward(redirection_0_rt_forward),
-        .stall(redirection_0_stall),
-        .write_reg_addr_ex(alu_ex_0_write_reg_addr_out),
-        .write_reg_addr_mem(wrapper_mem_0_write_reg_addr));
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_reg_heap_id_0_0/bluex_reg_heap_id_0_0.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "reg_heap_id,Vivado 2023.2" *) 
-  bluex_reg_heap_id_0_0 reg_heap_id_0
-       (.addr_rs(demux_id_0_rs),
-        .addr_rt(demux_id_0_rt),
-        .addr_wr(reg_wb_0_write_reg_addr),
-        .clk(clk),
-        .ram_addr(ram_addr),
-        .ram_clk(ram_clk),
-        .ram_en(ram_en),
-        .ram_rd_data(ram_rd_data),
-        .ram_rst(ram_rst),
-        .ram_we(ram_we),
-        .ram_wr_data(ram_wr_data),
-        .rs(reg_heap_id_0_rs),
-        .rst_n(rst_n),
-        .rt(reg_heap_id_0_rt),
-        .wd(reg_wb_0_write_back_data),
-        .we(reg_wb_0_reg_write),
-        .wr_en_i(wr_en_i),
-        .wr_en_o(wr_en_o),
-        .wr_en_t(wr_en_t));
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_reg_wb_0_0/bluex_reg_wb_0_0.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "reg_wb,Vivado 2023.2" *) 
-  bluex_reg_wb_0_0 reg_wb_0
-       (.alu_result_inw(wrapper_mem_0_alu_result),
-        .clk(clk),
-        .enable_CPU(enable_CPU),
-        .mem_rd_inw(wrapper_mem_0_read_mem_out),
-        .memory_to_reg_inw(wrapper_mem_0_memory_to_reg),
-        .reg_write(reg_wb_0_reg_write),
-        .reg_write_inw(wrapper_mem_0_reg_write),
-        .rst_n(rst_n),
-        .write_back_data(reg_wb_0_write_back_data),
-        .write_reg_addr(reg_wb_0_write_reg_addr),
-        .write_reg_addr_inw(wrapper_mem_0_write_reg_addr));
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_0/bluex_util_vector_logic_0_0.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
-  bluex_util_vector_logic_0_0 util_vector_logic_0
-       (.Op1(enable_CPU),
-        .Res(util_vector_logic_0_Res));
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_1_0/bluex_util_vector_logic_1_0.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
-  bluex_util_vector_logic_1_0 util_vector_logic_1
-       (.Op1(redirection_0_stall),
-        .Op2(util_vector_logic_0_Res),
-        .Res(util_vector_logic_1_Res));
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_util_vector_logic_0_1/bluex_util_vector_logic_0_1.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
-  bluex_util_vector_logic_0_1 util_vector_logic_2
-       (.Op1(rst_n),
-        .Res(util_vector_logic_2_Res));
-  (* IMPORTED_FROM = "d:/MyWorks/Programs/Verilog/vivado/bluex/bluex.gen/sources_1/bd/bluex/ip/bluex_wrapper_mem_0_0/bluex_wrapper_mem_0_0.dcp" *) 
-  (* IMPORTED_TYPE = "CHECKPOINT" *) 
-  (* IS_IMPORTED *) 
-  (* X_CORE_INFO = "wrapper_mem,Vivado 2023.2" *) 
-  bluex_wrapper_mem_0_0 wrapper_mem_0
-       (.alu_result(wrapper_mem_0_alu_result),
-        .alu_result_inw(alu_ex_0_rd_value),
-        .clk(clk),
-        .enable_CPU(enable_CPU),
-        .memory_to_reg(wrapper_mem_0_memory_to_reg),
-        .memory_to_reg_inw(alu_ex_0_memory_to_reg),
-        .memory_write_inw(alu_ex_0_memory_write),
-        .read_mem_out(wrapper_mem_0_read_mem_out),
-        .read_mem_out_inw(read_mem_out_inw),
-        .reg_write(wrapper_mem_0_reg_write),
-        .reg_write_inw(alu_ex_0_reg_write),
-        .rst_n(rst_n),
-        .write_data_inw(alu_ex_0_write_data),
-        .write_mem_addr(write_mem_addr),
-        .write_mem_clk(write_mem_clk),
-        .write_mem_data(write_mem_data),
-        .write_mem_en(write_mem_en),
-        .write_mem_rst(write_mem_rst),
-        .write_mem_we(write_mem_we),
-        .write_reg_addr(wrapper_mem_0_write_reg_addr),
-        .write_reg_addr_inw(alu_ex_0_write_reg_addr_out));
-endmodule
-
-(* CHECK_LICENSE_TYPE = "bluex_PC_0_0,PC,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "PC,Vivado 2023.2" *) 
-module bluex_PC_0_0
-   (clk,
-    rst_n,
-    ena_n,
-    next_addr_branch,
-    branch_taken_ex,
-    current_addr,
-    next_addr_output);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rst_n;
-  input ena_n;
-  input [15:0]next_addr_branch;
-  input branch_taken_ex;
-  output [15:0]current_addr;
-  output [15:0]next_addr_output;
-
-  wire branch_taken_ex;
-  wire clk;
-  wire [15:0]current_addr;
-  wire ena_n;
-  wire [15:0]next_addr_branch;
-  wire [15:0]next_addr_output;
-  wire rst_n;
-
-  bluex_PC_0_0_PC inst
-       (.branch_taken_ex(branch_taken_ex),
-        .clk(clk),
-        .current_addr(current_addr),
-        .ena_n(ena_n),
-        .next_addr_branch(next_addr_branch),
-        .next_addr_output(next_addr_output),
-        .rst_n(rst_n));
-endmodule
-
-(* ORIG_REF_NAME = "PC" *) 
-module bluex_PC_0_0_PC
+module PC
    (current_addr,
     next_addr_output,
     next_addr_branch,
@@ -783,132 +433,13 @@ module bluex_PC_0_0_PC
         .S({1'b0,current_addr[15:13]}));
 endmodule
 
-(* CHECK_LICENSE_TYPE = "bluex_alu_ex_0_0,alu_ex,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "alu_ex,Vivado 2023.2" *) 
-module bluex_alu_ex_0_0
-   (clk,
-    rst,
-    enable_CPU,
-    flush,
-    rs_inw,
-    rt_inw,
-    imm_inw,
-    write_back_data,
-    alu_result_back,
-    alu_op_inw,
-    rs_forward_inw,
-    rt_forward_inw,
-    alu_src_inw,
-    memory_write_inw,
-    memory_to_reg_inw,
-    reg_write_inw,
-    branch_isc_flag_inw,
-    pc_next_inw,
-    write_reg_addr_in_inw,
-    rd_value,
-    write_data,
-    branch_jump_flag,
-    branch_PC,
-    branch_addr,
-    write_reg_addr_out,
-    memory_write,
-    memory_to_reg,
-    reg_write);
-  (* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 user_lcd CLK" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *) input rst;
-  input enable_CPU;
-  input flush;
-  input [31:0]rs_inw;
-  input [31:0]rt_inw;
-  input [31:0]imm_inw;
-  input [31:0]write_back_data;
-  input [31:0]alu_result_back;
-  input [5:0]alu_op_inw;
-  input [1:0]rs_forward_inw;
-  input [1:0]rt_forward_inw;
-  input alu_src_inw;
-  input memory_write_inw;
-  input memory_to_reg_inw;
-  input reg_write_inw;
-  input branch_isc_flag_inw;
-  input [15:0]pc_next_inw;
-  input [4:0]write_reg_addr_in_inw;
-  output [31:0]rd_value;
-  output [31:0]write_data;
-  output branch_jump_flag;
-  output branch_PC;
-  output [15:0]branch_addr;
-  output [4:0]write_reg_addr_out;
-  output memory_write;
-  output memory_to_reg;
-  output reg_write;
-
-  wire [5:0]alu_op_inw;
-  wire [31:0]alu_result_back;
-  wire alu_src_inw;
-  wire [15:0]branch_addr;
-  wire branch_isc_flag_inw;
-  wire branch_jump_flag;
-  wire clk;
-  wire enable_CPU;
-  wire flush;
-  wire [31:0]imm_inw;
-  wire memory_to_reg;
-  wire memory_to_reg_inw;
-  wire memory_write;
-  wire memory_write_inw;
-  wire [15:0]pc_next_inw;
-  wire [31:0]rd_value;
-  wire reg_write;
-  wire reg_write_inw;
-  wire [1:0]rs_forward_inw;
-  wire [31:0]rs_inw;
-  wire rst;
-  wire [1:0]rt_forward_inw;
-  wire [31:0]rt_inw;
-  wire [31:0]write_back_data;
-  wire [31:0]write_data;
-  wire [4:0]write_reg_addr_in_inw;
-  wire [4:0]write_reg_addr_out;
-
-  assign branch_PC = branch_jump_flag;
-  bluex_alu_ex_0_0_alu_ex inst
-       (.alu_op_inw(alu_op_inw),
-        .alu_result_back(alu_result_back),
-        .alu_src_inw(alu_src_inw),
-        .branch_addr(branch_addr),
-        .branch_isc_flag_inw(branch_isc_flag_inw),
-        .branch_jump_flag(branch_jump_flag),
-        .clk(clk),
-        .enable_CPU(enable_CPU),
-        .flush(flush),
-        .imm_inw(imm_inw),
-        .memory_to_reg(memory_to_reg),
-        .memory_to_reg_inw(memory_to_reg_inw),
-        .memory_write(memory_write),
-        .memory_write_inw(memory_write_inw),
-        .pc_next_inw(pc_next_inw),
-        .rd_value(rd_value),
-        .reg_write(reg_write),
-        .reg_write_inw(reg_write_inw),
-        .rs_forward_inw(rs_forward_inw),
-        .rs_inw(rs_inw),
-        .rst(rst),
-        .rt_forward_inw(rt_forward_inw),
-        .rt_inw(rt_inw),
-        .write_back_data(write_back_data),
-        .write_data(write_data),
-        .write_reg_addr_in_inw(write_reg_addr_in_inw),
-        .write_reg_addr_out(write_reg_addr_out));
-endmodule
-
-(* ORIG_REF_NAME = "alu_ex" *) 
-module bluex_alu_ex_0_0_alu_ex
+module alu_ex
    (write_reg_addr_out,
     memory_write,
     memory_to_reg,
     reg_write,
     rd_value,
+    \rt_forward_reg[0]_0 ,
     write_data,
     branch_addr,
     branch_jump_flag,
@@ -936,7 +467,8 @@ module bluex_alu_ex_0_0_alu_ex
   output memory_to_reg;
   output reg_write;
   output [31:0]rd_value;
-  output [31:0]write_data;
+  output \rt_forward_reg[0]_0 ;
+  output [30:0]write_data;
   output [15:0]branch_addr;
   output branch_jump_flag;
   input [31:0]write_back_data;
@@ -959,6 +491,7 @@ module bluex_alu_ex_0_0_alu_ex
   input reg_write_inw;
   input flush;
 
+  wire alu_branch_result;
   wire alu_branch_result_i_10_n_0;
   wire alu_branch_result_i_11_n_0;
   wire alu_branch_result_i_12_n_0;
@@ -978,8 +511,8 @@ module bluex_alu_ex_0_0_alu_ex
   wire alu_branch_result_i_27_n_0;
   wire alu_branch_result_i_28_n_0;
   wire alu_branch_result_i_29_n_0;
-  wire alu_branch_result_i_2_n_0;
   wire alu_branch_result_i_30_n_0;
+  wire alu_branch_result_i_4_n_0;
   wire alu_branch_result_i_6_n_0;
   wire alu_branch_result_i_7_n_0;
   wire alu_branch_result_i_8_n_0;
@@ -991,12 +524,12 @@ module bluex_alu_ex_0_0_alu_ex
   wire alu_branch_result_reg_i_18_n_1;
   wire alu_branch_result_reg_i_18_n_2;
   wire alu_branch_result_reg_i_18_n_3;
+  wire alu_branch_result_reg_i_2_n_1;
+  wire alu_branch_result_reg_i_2_n_2;
+  wire alu_branch_result_reg_i_2_n_3;
   wire alu_branch_result_reg_i_3_n_1;
   wire alu_branch_result_reg_i_3_n_2;
   wire alu_branch_result_reg_i_3_n_3;
-  wire alu_branch_result_reg_i_4_n_1;
-  wire alu_branch_result_reg_i_4_n_2;
-  wire alu_branch_result_reg_i_4_n_3;
   wire alu_branch_result_reg_i_5_n_0;
   wire alu_branch_result_reg_i_5_n_1;
   wire alu_branch_result_reg_i_5_n_2;
@@ -1005,21 +538,13 @@ module bluex_alu_ex_0_0_alu_ex
   wire alu_branch_result_reg_i_9_n_1;
   wire alu_branch_result_reg_i_9_n_2;
   wire alu_branch_result_reg_i_9_n_3;
-  wire alu_branch_result_reg_n_0;
-  wire [5:5]alu_op;
+  wire [5:0]alu_op;
   wire [5:0]alu_op_inw;
-  wire \alu_op_reg_n_0_[0] ;
-  wire \alu_op_reg_n_0_[1] ;
-  wire \alu_op_reg_n_0_[2] ;
-  wire \alu_op_reg_n_0_[3] ;
-  wire \alu_op_reg_n_0_[4] ;
   wire [31:0]alu_result_back;
   wire alu_src;
   wire alu_src_inw;
   wire [30:0]alu_src_s;
-  wire [31:31]alu_src_s__96;
-  wire [30:0]alu_src_t;
-  wire [31:31]alu_src_t__95;
+  wire [15:0]alu_src_t;
   wire [15:0]branch_addr;
   wire branch_addr_carry__0_i_1_n_0;
   wire branch_addr_carry__0_i_2_n_0;
@@ -1100,128 +625,81 @@ module bluex_alu_ex_0_0_alu_ex
   wire memory_write_inw;
   wire [15:0]pc_next;
   wire [15:0]pc_next_inw;
-  wire rd_add_carry__0_i_5_n_0;
-  wire rd_add_carry__0_i_6_n_0;
-  wire rd_add_carry__0_i_7_n_0;
-  wire rd_add_carry__0_i_8_n_0;
-  wire rd_add_carry__0_n_0;
-  wire rd_add_carry__0_n_1;
-  wire rd_add_carry__0_n_2;
-  wire rd_add_carry__0_n_3;
-  wire rd_add_carry__1_i_5_n_0;
-  wire rd_add_carry__1_i_6_n_0;
-  wire rd_add_carry__1_i_7_n_0;
-  wire rd_add_carry__1_i_8_n_0;
-  wire rd_add_carry__1_n_0;
-  wire rd_add_carry__1_n_1;
-  wire rd_add_carry__1_n_2;
-  wire rd_add_carry__1_n_3;
-  wire rd_add_carry__2_i_5_n_0;
-  wire rd_add_carry__2_i_6_n_0;
-  wire rd_add_carry__2_i_7_n_0;
-  wire rd_add_carry__2_i_8_n_0;
-  wire rd_add_carry__2_n_0;
-  wire rd_add_carry__2_n_1;
-  wire rd_add_carry__2_n_2;
-  wire rd_add_carry__2_n_3;
-  wire rd_add_carry__3_i_5_n_0;
-  wire rd_add_carry__3_i_6_n_0;
-  wire rd_add_carry__3_i_7_n_0;
-  wire rd_add_carry__3_i_8_n_0;
-  wire rd_add_carry__3_n_0;
-  wire rd_add_carry__3_n_1;
-  wire rd_add_carry__3_n_2;
-  wire rd_add_carry__3_n_3;
-  wire rd_add_carry__4_i_5_n_0;
-  wire rd_add_carry__4_i_6_n_0;
-  wire rd_add_carry__4_i_7_n_0;
-  wire rd_add_carry__4_i_8_n_0;
-  wire rd_add_carry__4_n_0;
-  wire rd_add_carry__4_n_1;
-  wire rd_add_carry__4_n_2;
-  wire rd_add_carry__4_n_3;
-  wire rd_add_carry__5_i_5_n_0;
-  wire rd_add_carry__5_i_6_n_0;
-  wire rd_add_carry__5_i_7_n_0;
-  wire rd_add_carry__5_i_8_n_0;
-  wire rd_add_carry__5_n_0;
-  wire rd_add_carry__5_n_1;
-  wire rd_add_carry__5_n_2;
-  wire rd_add_carry__5_n_3;
-  wire rd_add_carry__6_i_4_n_0;
-  wire rd_add_carry__6_i_5_n_0;
-  wire rd_add_carry__6_i_6_n_0;
-  wire rd_add_carry__6_i_7_n_0;
-  wire rd_add_carry__6_n_1;
-  wire rd_add_carry__6_n_2;
-  wire rd_add_carry__6_n_3;
-  wire rd_add_carry_i_5_n_0;
-  wire rd_add_carry_i_6_n_0;
-  wire rd_add_carry_i_7_n_0;
-  wire rd_add_carry_i_8_n_0;
-  wire rd_add_carry_n_0;
-  wire rd_add_carry_n_1;
-  wire rd_add_carry_n_2;
-  wire rd_add_carry_n_3;
-  wire rd_sub_carry__0_i_1_n_0;
-  wire rd_sub_carry__0_i_2_n_0;
-  wire rd_sub_carry__0_i_3_n_0;
-  wire rd_sub_carry__0_i_4_n_0;
+  wire rd_sub_carry__0_i_5_n_0;
+  wire rd_sub_carry__0_i_6_n_0;
+  wire rd_sub_carry__0_i_7_n_0;
+  wire rd_sub_carry__0_i_8_n_0;
   wire rd_sub_carry__0_n_0;
   wire rd_sub_carry__0_n_1;
   wire rd_sub_carry__0_n_2;
   wire rd_sub_carry__0_n_3;
-  wire rd_sub_carry__1_i_1_n_0;
-  wire rd_sub_carry__1_i_2_n_0;
-  wire rd_sub_carry__1_i_3_n_0;
-  wire rd_sub_carry__1_i_4_n_0;
+  wire rd_sub_carry__1_i_5_n_0;
+  wire rd_sub_carry__1_i_6_n_0;
+  wire rd_sub_carry__1_i_7_n_0;
+  wire rd_sub_carry__1_i_8_n_0;
   wire rd_sub_carry__1_n_0;
   wire rd_sub_carry__1_n_1;
   wire rd_sub_carry__1_n_2;
   wire rd_sub_carry__1_n_3;
-  wire rd_sub_carry__2_i_1_n_0;
-  wire rd_sub_carry__2_i_2_n_0;
-  wire rd_sub_carry__2_i_3_n_0;
-  wire rd_sub_carry__2_i_4_n_0;
+  wire rd_sub_carry__2_i_5_n_0;
+  wire rd_sub_carry__2_i_6_n_0;
+  wire rd_sub_carry__2_i_7_n_0;
+  wire rd_sub_carry__2_i_8_n_0;
   wire rd_sub_carry__2_n_0;
   wire rd_sub_carry__2_n_1;
   wire rd_sub_carry__2_n_2;
   wire rd_sub_carry__2_n_3;
-  wire rd_sub_carry__3_i_1_n_0;
-  wire rd_sub_carry__3_i_2_n_0;
-  wire rd_sub_carry__3_i_3_n_0;
-  wire rd_sub_carry__3_i_4_n_0;
+  wire rd_sub_carry__3_i_10_n_0;
+  wire rd_sub_carry__3_i_11_n_0;
+  wire rd_sub_carry__3_i_12_n_0;
+  wire rd_sub_carry__3_i_5_n_0;
+  wire rd_sub_carry__3_i_6_n_0;
+  wire rd_sub_carry__3_i_7_n_0;
+  wire rd_sub_carry__3_i_8_n_0;
+  wire rd_sub_carry__3_i_9_n_0;
   wire rd_sub_carry__3_n_0;
   wire rd_sub_carry__3_n_1;
   wire rd_sub_carry__3_n_2;
   wire rd_sub_carry__3_n_3;
-  wire rd_sub_carry__4_i_1_n_0;
-  wire rd_sub_carry__4_i_2_n_0;
-  wire rd_sub_carry__4_i_3_n_0;
-  wire rd_sub_carry__4_i_4_n_0;
+  wire rd_sub_carry__4_i_10_n_0;
+  wire rd_sub_carry__4_i_11_n_0;
+  wire rd_sub_carry__4_i_12_n_0;
+  wire rd_sub_carry__4_i_5_n_0;
+  wire rd_sub_carry__4_i_6_n_0;
+  wire rd_sub_carry__4_i_7_n_0;
+  wire rd_sub_carry__4_i_8_n_0;
+  wire rd_sub_carry__4_i_9_n_0;
   wire rd_sub_carry__4_n_0;
   wire rd_sub_carry__4_n_1;
   wire rd_sub_carry__4_n_2;
   wire rd_sub_carry__4_n_3;
-  wire rd_sub_carry__5_i_1_n_0;
-  wire rd_sub_carry__5_i_2_n_0;
-  wire rd_sub_carry__5_i_3_n_0;
-  wire rd_sub_carry__5_i_4_n_0;
+  wire rd_sub_carry__5_i_10_n_0;
+  wire rd_sub_carry__5_i_11_n_0;
+  wire rd_sub_carry__5_i_12_n_0;
+  wire rd_sub_carry__5_i_5_n_0;
+  wire rd_sub_carry__5_i_6_n_0;
+  wire rd_sub_carry__5_i_7_n_0;
+  wire rd_sub_carry__5_i_8_n_0;
+  wire rd_sub_carry__5_i_9_n_0;
   wire rd_sub_carry__5_n_0;
   wire rd_sub_carry__5_n_1;
   wire rd_sub_carry__5_n_2;
   wire rd_sub_carry__5_n_3;
-  wire rd_sub_carry__6_i_1_n_0;
-  wire rd_sub_carry__6_i_2_n_0;
-  wire rd_sub_carry__6_i_3_n_0;
+  wire rd_sub_carry__6_i_10_n_0;
+  wire rd_sub_carry__6_i_11_n_0;
   wire rd_sub_carry__6_i_4_n_0;
+  wire rd_sub_carry__6_i_5_n_0;
+  wire rd_sub_carry__6_i_6_n_0;
+  wire rd_sub_carry__6_i_7_n_0;
+  wire rd_sub_carry__6_i_8_n_0;
+  wire rd_sub_carry__6_i_9_n_0;
   wire rd_sub_carry__6_n_1;
   wire rd_sub_carry__6_n_2;
   wire rd_sub_carry__6_n_3;
-  wire rd_sub_carry_i_1_n_0;
-  wire rd_sub_carry_i_2_n_0;
-  wire rd_sub_carry_i_3_n_0;
-  wire rd_sub_carry_i_4_n_0;
+  wire rd_sub_carry_i_5_n_0;
+  wire rd_sub_carry_i_6_n_0;
+  wire rd_sub_carry_i_7_n_0;
+  wire rd_sub_carry_i_8_n_0;
   wire rd_sub_carry_n_0;
   wire rd_sub_carry_n_1;
   wire rd_sub_carry_n_2;
@@ -1239,6 +717,13 @@ module bluex_alu_ex_0_0_alu_ex
   wire rd_value2_carry__0_n_1;
   wire rd_value2_carry__0_n_2;
   wire rd_value2_carry__0_n_3;
+  wire rd_value2_carry__1_i_10_n_0;
+  wire rd_value2_carry__1_i_11_n_0;
+  wire rd_value2_carry__1_i_12_n_0;
+  wire rd_value2_carry__1_i_13_n_0;
+  wire rd_value2_carry__1_i_14_n_0;
+  wire rd_value2_carry__1_i_15_n_0;
+  wire rd_value2_carry__1_i_16_n_0;
   wire rd_value2_carry__1_i_1_n_0;
   wire rd_value2_carry__1_i_2_n_0;
   wire rd_value2_carry__1_i_3_n_0;
@@ -1247,10 +732,18 @@ module bluex_alu_ex_0_0_alu_ex
   wire rd_value2_carry__1_i_6_n_0;
   wire rd_value2_carry__1_i_7_n_0;
   wire rd_value2_carry__1_i_8_n_0;
+  wire rd_value2_carry__1_i_9_n_0;
   wire rd_value2_carry__1_n_0;
   wire rd_value2_carry__1_n_1;
   wire rd_value2_carry__1_n_2;
   wire rd_value2_carry__1_n_3;
+  wire rd_value2_carry__2_i_10_n_0;
+  wire rd_value2_carry__2_i_11_n_0;
+  wire rd_value2_carry__2_i_12_n_0;
+  wire rd_value2_carry__2_i_13_n_0;
+  wire rd_value2_carry__2_i_14_n_0;
+  wire rd_value2_carry__2_i_15_n_0;
+  wire rd_value2_carry__2_i_16_n_0;
   wire rd_value2_carry__2_i_1_n_0;
   wire rd_value2_carry__2_i_2_n_0;
   wire rd_value2_carry__2_i_3_n_0;
@@ -1275,59 +768,60 @@ module bluex_alu_ex_0_0_alu_ex
   wire rd_value2_carry_n_1;
   wire rd_value2_carry_n_2;
   wire rd_value2_carry_n_3;
-  wire \rd_value[0]_INST_0_i_10_n_0 ;
-  wire \rd_value[0]_INST_0_i_11_n_0 ;
-  wire \rd_value[0]_INST_0_i_12_n_0 ;
-  wire \rd_value[0]_INST_0_i_13_n_0 ;
   wire \rd_value[0]_INST_0_i_1_n_0 ;
   wire \rd_value[0]_INST_0_i_2_n_0 ;
   wire \rd_value[0]_INST_0_i_3_n_0 ;
   wire \rd_value[0]_INST_0_i_4_n_0 ;
-  wire \rd_value[0]_INST_0_i_5_n_0 ;
-  wire \rd_value[0]_INST_0_i_6_n_0 ;
-  wire \rd_value[0]_INST_0_i_7_n_0 ;
-  wire \rd_value[0]_INST_0_i_8_n_0 ;
-  wire \rd_value[0]_INST_0_i_9_n_0 ;
   wire \rd_value[10]_INST_0_i_1_n_0 ;
   wire \rd_value[10]_INST_0_i_2_n_0 ;
+  wire \rd_value[10]_INST_0_i_2_n_1 ;
+  wire \rd_value[10]_INST_0_i_2_n_2 ;
+  wire \rd_value[10]_INST_0_i_2_n_3 ;
   wire \rd_value[10]_INST_0_i_3_n_0 ;
   wire \rd_value[10]_INST_0_i_4_n_0 ;
   wire \rd_value[10]_INST_0_i_5_n_0 ;
   wire \rd_value[10]_INST_0_i_6_n_0 ;
   wire \rd_value[10]_INST_0_i_7_n_0 ;
-  wire \rd_value[11]_INST_0_i_1_n_0 ;
   wire \rd_value[11]_INST_0_i_2_n_0 ;
   wire \rd_value[11]_INST_0_i_3_n_0 ;
   wire \rd_value[11]_INST_0_i_4_n_0 ;
   wire \rd_value[11]_INST_0_i_5_n_0 ;
   wire \rd_value[11]_INST_0_i_6_n_0 ;
   wire \rd_value[11]_INST_0_i_7_n_0 ;
-  wire \rd_value[12]_INST_0_i_1_n_0 ;
   wire \rd_value[12]_INST_0_i_2_n_0 ;
   wire \rd_value[12]_INST_0_i_3_n_0 ;
   wire \rd_value[12]_INST_0_i_4_n_0 ;
   wire \rd_value[12]_INST_0_i_5_n_0 ;
   wire \rd_value[12]_INST_0_i_6_n_0 ;
   wire \rd_value[12]_INST_0_i_7_n_0 ;
-  wire \rd_value[12]_INST_0_i_8_n_0 ;
-  wire \rd_value[13]_INST_0_i_1_n_0 ;
   wire \rd_value[13]_INST_0_i_2_n_0 ;
   wire \rd_value[13]_INST_0_i_3_n_0 ;
   wire \rd_value[13]_INST_0_i_4_n_0 ;
   wire \rd_value[13]_INST_0_i_5_n_0 ;
   wire \rd_value[13]_INST_0_i_6_n_0 ;
   wire \rd_value[13]_INST_0_i_7_n_0 ;
-  wire \rd_value[13]_INST_0_i_8_n_0 ;
   wire \rd_value[14]_INST_0_i_1_n_0 ;
   wire \rd_value[14]_INST_0_i_2_n_0 ;
   wire \rd_value[14]_INST_0_i_3_n_0 ;
   wire \rd_value[14]_INST_0_i_4_n_0 ;
   wire \rd_value[14]_INST_0_i_5_n_0 ;
-  wire \rd_value[14]_INST_0_i_6_n_0 ;
-  wire \rd_value[14]_INST_0_i_7_n_0 ;
+  wire \rd_value[15]_INST_0_i_10_n_0 ;
+  wire \rd_value[15]_INST_0_i_11_n_0 ;
+  wire \rd_value[15]_INST_0_i_12_n_0 ;
+  wire \rd_value[15]_INST_0_i_13_n_0 ;
+  wire \rd_value[15]_INST_0_i_14_n_0 ;
+  wire \rd_value[15]_INST_0_i_15_n_0 ;
+  wire \rd_value[15]_INST_0_i_16_n_0 ;
+  wire \rd_value[15]_INST_0_i_17_n_0 ;
+  wire \rd_value[15]_INST_0_i_18_n_0 ;
+  wire \rd_value[15]_INST_0_i_19_n_0 ;
   wire \rd_value[15]_INST_0_i_1_n_0 ;
+  wire \rd_value[15]_INST_0_i_20_n_0 ;
   wire \rd_value[15]_INST_0_i_2_n_0 ;
   wire \rd_value[15]_INST_0_i_3_n_0 ;
+  wire \rd_value[15]_INST_0_i_3_n_1 ;
+  wire \rd_value[15]_INST_0_i_3_n_2 ;
+  wire \rd_value[15]_INST_0_i_3_n_3 ;
   wire \rd_value[15]_INST_0_i_4_n_0 ;
   wire \rd_value[15]_INST_0_i_5_n_0 ;
   wire \rd_value[15]_INST_0_i_6_n_0 ;
@@ -1335,8 +829,9 @@ module bluex_alu_ex_0_0_alu_ex
   wire \rd_value[15]_INST_0_i_8_n_0 ;
   wire \rd_value[15]_INST_0_i_9_n_0 ;
   wire \rd_value[16]_INST_0_i_10_n_0 ;
-  wire \rd_value[16]_INST_0_i_1_n_0 ;
+  wire \rd_value[16]_INST_0_i_11_n_0 ;
   wire \rd_value[16]_INST_0_i_2_n_0 ;
+  wire \rd_value[16]_INST_0_i_3_n_0 ;
   wire \rd_value[16]_INST_0_i_4_n_0 ;
   wire \rd_value[16]_INST_0_i_5_n_0 ;
   wire \rd_value[16]_INST_0_i_6_n_0 ;
@@ -1344,70 +839,101 @@ module bluex_alu_ex_0_0_alu_ex
   wire \rd_value[16]_INST_0_i_8_n_0 ;
   wire \rd_value[16]_INST_0_i_9_n_0 ;
   wire \rd_value[17]_INST_0_i_10_n_0 ;
-  wire \rd_value[17]_INST_0_i_1_n_0 ;
+  wire \rd_value[17]_INST_0_i_11_n_0 ;
+  wire \rd_value[17]_INST_0_i_12_n_0 ;
+  wire \rd_value[17]_INST_0_i_13_n_0 ;
+  wire \rd_value[17]_INST_0_i_14_n_0 ;
+  wire \rd_value[17]_INST_0_i_15_n_0 ;
+  wire \rd_value[17]_INST_0_i_16_n_0 ;
+  wire \rd_value[17]_INST_0_i_17_n_0 ;
+  wire \rd_value[17]_INST_0_i_18_n_0 ;
   wire \rd_value[17]_INST_0_i_2_n_0 ;
+  wire \rd_value[17]_INST_0_i_3_n_0 ;
   wire \rd_value[17]_INST_0_i_4_n_0 ;
   wire \rd_value[17]_INST_0_i_5_n_0 ;
   wire \rd_value[17]_INST_0_i_6_n_0 ;
   wire \rd_value[17]_INST_0_i_7_n_0 ;
   wire \rd_value[17]_INST_0_i_8_n_0 ;
   wire \rd_value[17]_INST_0_i_9_n_0 ;
-  wire \rd_value[18]_INST_0_i_10_n_0 ;
-  wire \rd_value[18]_INST_0_i_1_n_0 ;
   wire \rd_value[18]_INST_0_i_2_n_0 ;
+  wire \rd_value[18]_INST_0_i_3_n_0 ;
   wire \rd_value[18]_INST_0_i_4_n_0 ;
   wire \rd_value[18]_INST_0_i_5_n_0 ;
   wire \rd_value[18]_INST_0_i_6_n_0 ;
   wire \rd_value[18]_INST_0_i_7_n_0 ;
-  wire \rd_value[18]_INST_0_i_8_n_0 ;
-  wire \rd_value[18]_INST_0_i_9_n_0 ;
   wire \rd_value[19]_INST_0_i_10_n_0 ;
-  wire \rd_value[19]_INST_0_i_1_n_0 ;
+  wire \rd_value[19]_INST_0_i_11_n_0 ;
+  wire \rd_value[19]_INST_0_i_12_n_0 ;
+  wire \rd_value[19]_INST_0_i_13_n_0 ;
+  wire \rd_value[19]_INST_0_i_14_n_0 ;
+  wire \rd_value[19]_INST_0_i_15_n_0 ;
   wire \rd_value[19]_INST_0_i_2_n_0 ;
+  wire \rd_value[19]_INST_0_i_3_n_0 ;
   wire \rd_value[19]_INST_0_i_4_n_0 ;
   wire \rd_value[19]_INST_0_i_5_n_0 ;
   wire \rd_value[19]_INST_0_i_6_n_0 ;
+  wire \rd_value[19]_INST_0_i_6_n_1 ;
+  wire \rd_value[19]_INST_0_i_6_n_2 ;
+  wire \rd_value[19]_INST_0_i_6_n_3 ;
   wire \rd_value[19]_INST_0_i_7_n_0 ;
   wire \rd_value[19]_INST_0_i_8_n_0 ;
   wire \rd_value[19]_INST_0_i_9_n_0 ;
   wire \rd_value[1]_INST_0_i_1_n_0 ;
   wire \rd_value[1]_INST_0_i_2_n_0 ;
   wire \rd_value[1]_INST_0_i_3_n_0 ;
-  wire \rd_value[1]_INST_0_i_4_n_0 ;
-  wire \rd_value[1]_INST_0_i_5_n_0 ;
-  wire \rd_value[1]_INST_0_i_6_n_0 ;
+  wire \rd_value[20]_INST_0_i_10_n_0 ;
   wire \rd_value[20]_INST_0_i_1_n_0 ;
   wire \rd_value[20]_INST_0_i_2_n_0 ;
+  wire \rd_value[20]_INST_0_i_3_n_0 ;
   wire \rd_value[20]_INST_0_i_4_n_0 ;
   wire \rd_value[20]_INST_0_i_5_n_0 ;
   wire \rd_value[20]_INST_0_i_6_n_0 ;
   wire \rd_value[20]_INST_0_i_7_n_0 ;
   wire \rd_value[20]_INST_0_i_8_n_0 ;
   wire \rd_value[20]_INST_0_i_9_n_0 ;
-  wire \rd_value[21]_INST_0_i_1_n_0 ;
+  wire \rd_value[21]_INST_0_i_10_n_0 ;
   wire \rd_value[21]_INST_0_i_2_n_0 ;
+  wire \rd_value[21]_INST_0_i_3_n_0 ;
   wire \rd_value[21]_INST_0_i_4_n_0 ;
   wire \rd_value[21]_INST_0_i_5_n_0 ;
   wire \rd_value[21]_INST_0_i_6_n_0 ;
   wire \rd_value[21]_INST_0_i_7_n_0 ;
   wire \rd_value[21]_INST_0_i_8_n_0 ;
   wire \rd_value[21]_INST_0_i_9_n_0 ;
+  wire \rd_value[22]_INST_0_i_10_n_0 ;
+  wire \rd_value[22]_INST_0_i_11_n_0 ;
+  wire \rd_value[22]_INST_0_i_12_n_0 ;
+  wire \rd_value[22]_INST_0_i_13_n_0 ;
+  wire \rd_value[22]_INST_0_i_14_n_0 ;
+  wire \rd_value[22]_INST_0_i_15_n_0 ;
+  wire \rd_value[22]_INST_0_i_16_n_0 ;
   wire \rd_value[22]_INST_0_i_1_n_0 ;
   wire \rd_value[22]_INST_0_i_2_n_0 ;
+  wire \rd_value[22]_INST_0_i_3_n_0 ;
   wire \rd_value[22]_INST_0_i_4_n_0 ;
   wire \rd_value[22]_INST_0_i_5_n_0 ;
   wire \rd_value[22]_INST_0_i_6_n_0 ;
   wire \rd_value[22]_INST_0_i_7_n_0 ;
   wire \rd_value[22]_INST_0_i_8_n_0 ;
-  wire \rd_value[23]_INST_0_i_1_n_0 ;
+  wire \rd_value[22]_INST_0_i_9_n_0 ;
+  wire \rd_value[23]_INST_0_i_10_n_0 ;
+  wire \rd_value[23]_INST_0_i_11_n_0 ;
+  wire \rd_value[23]_INST_0_i_12_n_0 ;
   wire \rd_value[23]_INST_0_i_2_n_0 ;
+  wire \rd_value[23]_INST_0_i_3_n_0 ;
   wire \rd_value[23]_INST_0_i_4_n_0 ;
   wire \rd_value[23]_INST_0_i_5_n_0 ;
+  wire \rd_value[23]_INST_0_i_5_n_1 ;
+  wire \rd_value[23]_INST_0_i_5_n_2 ;
+  wire \rd_value[23]_INST_0_i_5_n_3 ;
   wire \rd_value[23]_INST_0_i_6_n_0 ;
   wire \rd_value[23]_INST_0_i_7_n_0 ;
   wire \rd_value[23]_INST_0_i_8_n_0 ;
+  wire \rd_value[23]_INST_0_i_9_n_0 ;
+  wire \rd_value[24]_INST_0_i_10_n_0 ;
   wire \rd_value[24]_INST_0_i_1_n_0 ;
   wire \rd_value[24]_INST_0_i_2_n_0 ;
+  wire \rd_value[24]_INST_0_i_3_n_0 ;
   wire \rd_value[24]_INST_0_i_4_n_0 ;
   wire \rd_value[24]_INST_0_i_5_n_0 ;
   wire \rd_value[24]_INST_0_i_6_n_0 ;
@@ -1416,65 +942,96 @@ module bluex_alu_ex_0_0_alu_ex
   wire \rd_value[24]_INST_0_i_9_n_0 ;
   wire \rd_value[25]_INST_0_i_1_n_0 ;
   wire \rd_value[25]_INST_0_i_2_n_0 ;
+  wire \rd_value[25]_INST_0_i_3_n_0 ;
   wire \rd_value[25]_INST_0_i_4_n_0 ;
   wire \rd_value[25]_INST_0_i_5_n_0 ;
   wire \rd_value[25]_INST_0_i_6_n_0 ;
   wire \rd_value[25]_INST_0_i_7_n_0 ;
   wire \rd_value[25]_INST_0_i_8_n_0 ;
   wire \rd_value[25]_INST_0_i_9_n_0 ;
-  wire \rd_value[26]_INST_0_i_1_n_0 ;
+  wire \rd_value[26]_INST_0_i_10_n_0 ;
+  wire \rd_value[26]_INST_0_i_11_n_0 ;
+  wire \rd_value[26]_INST_0_i_12_n_0 ;
+  wire \rd_value[26]_INST_0_i_13_n_0 ;
+  wire \rd_value[26]_INST_0_i_14_n_0 ;
+  wire \rd_value[26]_INST_0_i_15_n_0 ;
   wire \rd_value[26]_INST_0_i_2_n_0 ;
+  wire \rd_value[26]_INST_0_i_3_n_0 ;
   wire \rd_value[26]_INST_0_i_4_n_0 ;
   wire \rd_value[26]_INST_0_i_5_n_0 ;
   wire \rd_value[26]_INST_0_i_6_n_0 ;
+  wire \rd_value[26]_INST_0_i_6_n_1 ;
+  wire \rd_value[26]_INST_0_i_6_n_2 ;
+  wire \rd_value[26]_INST_0_i_6_n_3 ;
   wire \rd_value[26]_INST_0_i_7_n_0 ;
   wire \rd_value[26]_INST_0_i_8_n_0 ;
+  wire \rd_value[26]_INST_0_i_9_n_0 ;
   wire \rd_value[27]_INST_0_i_1_n_0 ;
   wire \rd_value[27]_INST_0_i_2_n_0 ;
+  wire \rd_value[27]_INST_0_i_3_n_0 ;
   wire \rd_value[27]_INST_0_i_4_n_0 ;
   wire \rd_value[27]_INST_0_i_5_n_0 ;
   wire \rd_value[27]_INST_0_i_6_n_0 ;
   wire \rd_value[27]_INST_0_i_7_n_0 ;
   wire \rd_value[27]_INST_0_i_8_n_0 ;
+  wire \rd_value[27]_INST_0_i_9_n_0 ;
+  wire \rd_value[28]_INST_0_i_10_n_0 ;
+  wire \rd_value[28]_INST_0_i_11_n_0 ;
+  wire \rd_value[28]_INST_0_i_12_n_0 ;
+  wire \rd_value[28]_INST_0_i_13_n_0 ;
+  wire \rd_value[28]_INST_0_i_14_n_0 ;
+  wire \rd_value[28]_INST_0_i_15_n_0 ;
+  wire \rd_value[28]_INST_0_i_16_n_0 ;
+  wire \rd_value[28]_INST_0_i_17_n_0 ;
+  wire \rd_value[28]_INST_0_i_18_n_0 ;
+  wire \rd_value[28]_INST_0_i_19_n_0 ;
   wire \rd_value[28]_INST_0_i_1_n_0 ;
   wire \rd_value[28]_INST_0_i_2_n_0 ;
+  wire \rd_value[28]_INST_0_i_3_n_0 ;
   wire \rd_value[28]_INST_0_i_4_n_0 ;
   wire \rd_value[28]_INST_0_i_5_n_0 ;
   wire \rd_value[28]_INST_0_i_6_n_0 ;
   wire \rd_value[28]_INST_0_i_7_n_0 ;
   wire \rd_value[28]_INST_0_i_8_n_0 ;
+  wire \rd_value[28]_INST_0_i_9_n_0 ;
+  wire \rd_value[29]_INST_0_i_10_n_0 ;
+  wire \rd_value[29]_INST_0_i_11_n_0 ;
+  wire \rd_value[29]_INST_0_i_12_n_0 ;
+  wire \rd_value[29]_INST_0_i_13_n_0 ;
   wire \rd_value[29]_INST_0_i_1_n_0 ;
   wire \rd_value[29]_INST_0_i_2_n_0 ;
+  wire \rd_value[29]_INST_0_i_3_n_0 ;
   wire \rd_value[29]_INST_0_i_4_n_0 ;
   wire \rd_value[29]_INST_0_i_5_n_0 ;
   wire \rd_value[29]_INST_0_i_6_n_0 ;
   wire \rd_value[29]_INST_0_i_7_n_0 ;
   wire \rd_value[29]_INST_0_i_8_n_0 ;
+  wire \rd_value[29]_INST_0_i_9_n_0 ;
   wire \rd_value[2]_INST_0_i_1_n_0 ;
   wire \rd_value[2]_INST_0_i_2_n_0 ;
-  wire \rd_value[2]_INST_0_i_3_n_0 ;
-  wire \rd_value[2]_INST_0_i_4_n_0 ;
-  wire \rd_value[2]_INST_0_i_5_n_0 ;
-  wire \rd_value[2]_INST_0_i_6_n_0 ;
   wire \rd_value[30]_INST_0_i_10_n_0 ;
   wire \rd_value[30]_INST_0_i_11_n_0 ;
   wire \rd_value[30]_INST_0_i_12_n_0 ;
-  wire \rd_value[30]_INST_0_i_1_n_0 ;
   wire \rd_value[30]_INST_0_i_2_n_0 ;
+  wire \rd_value[30]_INST_0_i_3_n_0 ;
   wire \rd_value[30]_INST_0_i_4_n_0 ;
   wire \rd_value[30]_INST_0_i_5_n_0 ;
+  wire \rd_value[30]_INST_0_i_6_n_0 ;
   wire \rd_value[30]_INST_0_i_7_n_0 ;
+  wire \rd_value[30]_INST_0_i_8_n_0 ;
   wire \rd_value[30]_INST_0_i_9_n_0 ;
-  wire \rd_value[31]_INST_0_i_10_n_0 ;
+  wire \rd_value[31]_INST_0_i_10_n_1 ;
+  wire \rd_value[31]_INST_0_i_10_n_2 ;
+  wire \rd_value[31]_INST_0_i_10_n_3 ;
   wire \rd_value[31]_INST_0_i_11_n_0 ;
   wire \rd_value[31]_INST_0_i_12_n_0 ;
   wire \rd_value[31]_INST_0_i_13_n_0 ;
   wire \rd_value[31]_INST_0_i_14_n_0 ;
+  wire \rd_value[31]_INST_0_i_15_n_0 ;
   wire \rd_value[31]_INST_0_i_16_n_0 ;
   wire \rd_value[31]_INST_0_i_17_n_0 ;
   wire \rd_value[31]_INST_0_i_18_n_0 ;
   wire \rd_value[31]_INST_0_i_19_n_0 ;
-  wire \rd_value[31]_INST_0_i_1_n_0 ;
   wire \rd_value[31]_INST_0_i_20_n_0 ;
   wire \rd_value[31]_INST_0_i_21_n_0 ;
   wire \rd_value[31]_INST_0_i_22_n_0 ;
@@ -1482,15 +1039,9 @@ module bluex_alu_ex_0_0_alu_ex
   wire \rd_value[31]_INST_0_i_24_n_0 ;
   wire \rd_value[31]_INST_0_i_25_n_0 ;
   wire \rd_value[31]_INST_0_i_26_n_0 ;
-  wire \rd_value[31]_INST_0_i_27_n_0 ;
-  wire \rd_value[31]_INST_0_i_28_n_0 ;
-  wire \rd_value[31]_INST_0_i_29_n_0 ;
   wire \rd_value[31]_INST_0_i_2_n_0 ;
-  wire \rd_value[31]_INST_0_i_30_n_0 ;
-  wire \rd_value[31]_INST_0_i_31_n_0 ;
-  wire \rd_value[31]_INST_0_i_32_n_0 ;
-  wire \rd_value[31]_INST_0_i_33_n_0 ;
   wire \rd_value[31]_INST_0_i_3_n_0 ;
+  wire \rd_value[31]_INST_0_i_4_n_0 ;
   wire \rd_value[31]_INST_0_i_5_n_0 ;
   wire \rd_value[31]_INST_0_i_6_n_0 ;
   wire \rd_value[31]_INST_0_i_7_n_0 ;
@@ -1499,51 +1050,53 @@ module bluex_alu_ex_0_0_alu_ex
   wire \rd_value[3]_INST_0_i_1_n_0 ;
   wire \rd_value[3]_INST_0_i_2_n_0 ;
   wire \rd_value[3]_INST_0_i_3_n_0 ;
+  wire \rd_value[3]_INST_0_i_3_n_1 ;
+  wire \rd_value[3]_INST_0_i_3_n_2 ;
+  wire \rd_value[3]_INST_0_i_3_n_3 ;
   wire \rd_value[3]_INST_0_i_4_n_0 ;
   wire \rd_value[3]_INST_0_i_5_n_0 ;
   wire \rd_value[3]_INST_0_i_6_n_0 ;
   wire \rd_value[3]_INST_0_i_7_n_0 ;
-  wire \rd_value[4]_INST_0_i_1_n_0 ;
+  wire \rd_value[3]_INST_0_i_8_n_0 ;
   wire \rd_value[4]_INST_0_i_2_n_0 ;
   wire \rd_value[4]_INST_0_i_3_n_0 ;
   wire \rd_value[4]_INST_0_i_4_n_0 ;
   wire \rd_value[4]_INST_0_i_5_n_0 ;
-  wire \rd_value[4]_INST_0_i_6_n_0 ;
   wire \rd_value[5]_INST_0_i_1_n_0 ;
   wire \rd_value[5]_INST_0_i_2_n_0 ;
   wire \rd_value[5]_INST_0_i_3_n_0 ;
   wire \rd_value[5]_INST_0_i_4_n_0 ;
   wire \rd_value[5]_INST_0_i_5_n_0 ;
   wire \rd_value[5]_INST_0_i_6_n_0 ;
-  wire \rd_value[5]_INST_0_i_7_n_0 ;
-  wire \rd_value[6]_INST_0_i_1_n_0 ;
+  wire \rd_value[6]_INST_0_i_10_n_0 ;
+  wire \rd_value[6]_INST_0_i_11_n_0 ;
   wire \rd_value[6]_INST_0_i_2_n_0 ;
   wire \rd_value[6]_INST_0_i_3_n_0 ;
   wire \rd_value[6]_INST_0_i_4_n_0 ;
   wire \rd_value[6]_INST_0_i_5_n_0 ;
+  wire \rd_value[6]_INST_0_i_5_n_1 ;
+  wire \rd_value[6]_INST_0_i_5_n_2 ;
+  wire \rd_value[6]_INST_0_i_5_n_3 ;
   wire \rd_value[6]_INST_0_i_6_n_0 ;
   wire \rd_value[6]_INST_0_i_7_n_0 ;
+  wire \rd_value[6]_INST_0_i_8_n_0 ;
+  wire \rd_value[6]_INST_0_i_9_n_0 ;
   wire \rd_value[7]_INST_0_i_1_n_0 ;
   wire \rd_value[7]_INST_0_i_2_n_0 ;
   wire \rd_value[7]_INST_0_i_3_n_0 ;
   wire \rd_value[7]_INST_0_i_4_n_0 ;
   wire \rd_value[7]_INST_0_i_5_n_0 ;
-  wire \rd_value[7]_INST_0_i_6_n_0 ;
-  wire \rd_value[7]_INST_0_i_7_n_0 ;
-  wire \rd_value[8]_INST_0_i_1_n_0 ;
   wire \rd_value[8]_INST_0_i_2_n_0 ;
   wire \rd_value[8]_INST_0_i_3_n_0 ;
   wire \rd_value[8]_INST_0_i_4_n_0 ;
   wire \rd_value[8]_INST_0_i_5_n_0 ;
-  wire \rd_value[8]_INST_0_i_6_n_0 ;
-  wire \rd_value[8]_INST_0_i_7_n_0 ;
-  wire \rd_value[9]_INST_0_i_1_n_0 ;
   wire \rd_value[9]_INST_0_i_2_n_0 ;
   wire \rd_value[9]_INST_0_i_3_n_0 ;
   wire \rd_value[9]_INST_0_i_4_n_0 ;
   wire \rd_value[9]_INST_0_i_5_n_0 ;
   wire \rd_value[9]_INST_0_i_6_n_0 ;
   wire \rd_value[9]_INST_0_i_7_n_0 ;
+  wire \rd_value[9]_INST_0_i_8_n_0 ;
   wire read_write_rst;
   wire reg_write;
   wire reg_write_inw;
@@ -1555,258 +1108,228 @@ module bluex_alu_ex_0_0_alu_ex
   wire [31:0]rt;
   wire [1:0]rt_forward;
   wire [1:0]rt_forward_inw;
+  wire \rt_forward_reg[0]_0 ;
   wire [31:0]rt_inw;
   wire [31:0]write_back_data;
-  wire [31:0]write_data;
+  wire [30:0]write_data;
   wire [4:0]write_reg_addr_in_inw;
   wire [4:0]write_reg_addr_out;
   wire [3:0]NLW_alu_branch_result_reg_i_13_O_UNCONNECTED;
   wire [3:0]NLW_alu_branch_result_reg_i_18_O_UNCONNECTED;
+  wire [3:3]NLW_alu_branch_result_reg_i_2_CO_UNCONNECTED;
+  wire [3:0]NLW_alu_branch_result_reg_i_2_O_UNCONNECTED;
   wire [3:3]NLW_alu_branch_result_reg_i_3_CO_UNCONNECTED;
   wire [3:0]NLW_alu_branch_result_reg_i_3_O_UNCONNECTED;
-  wire [3:3]NLW_alu_branch_result_reg_i_4_CO_UNCONNECTED;
-  wire [3:0]NLW_alu_branch_result_reg_i_4_O_UNCONNECTED;
   wire [3:0]NLW_alu_branch_result_reg_i_5_O_UNCONNECTED;
   wire [3:0]NLW_alu_branch_result_reg_i_9_O_UNCONNECTED;
   wire [3:3]NLW_branch_addr_carry__2_CO_UNCONNECTED;
-  wire [3:3]NLW_rd_add_carry__6_CO_UNCONNECTED;
   wire [3:3]NLW_rd_sub_carry__6_CO_UNCONNECTED;
   wire [3:0]NLW_rd_value2_carry_O_UNCONNECTED;
   wire [3:0]NLW_rd_value2_carry__0_O_UNCONNECTED;
   wire [3:0]NLW_rd_value2_carry__1_O_UNCONNECTED;
   wire [3:0]NLW_rd_value2_carry__2_O_UNCONNECTED;
+  wire [3:3]\NLW_rd_value[31]_INST_0_i_10_CO_UNCONNECTED ;
 
   LUT5 #(
-    .INIT(32'h8A828880)) 
+    .INIT(32'h00005E0E)) 
     alu_branch_result_i_1
-       (.I0(alu_branch_result_i_2_n_0),
-        .I1(\alu_op_reg_n_0_[0] ),
-        .I2(\alu_op_reg_n_0_[2] ),
+       (.I0(alu_op[2]),
+        .I1(alu_branch_result_reg_i_2_n_1),
+        .I2(alu_op[3]),
         .I3(alu_branch_result_reg_i_3_n_1),
-        .I4(alu_branch_result_reg_i_4_n_1),
+        .I4(alu_branch_result_i_4_n_0),
         .O(alu_branch_result_i_1_n_0));
-  LUT3 #(
-    .INIT(8'h09)) 
+  LUT2 #(
+    .INIT(4'h8)) 
     alu_branch_result_i_10
-       (.I0(alu_src_s[30]),
-        .I1(alu_src_t[30]),
-        .I2(rd_value2_carry__2_i_9_n_0),
+       (.I0(rd_value2_carry__2_i_9_n_0),
+        .I1(rd_value2_carry__2_i_10_n_0),
         .O(alu_branch_result_i_10_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
+  LUT3 #(
+    .INIT(8'h80)) 
     alu_branch_result_i_11
-       (.I0(alu_src_t[27]),
-        .I1(alu_src_s[27]),
-        .I2(alu_src_s[28]),
-        .I3(alu_src_t[28]),
-        .I4(alu_src_t[29]),
-        .I5(alu_src_s[29]),
+       (.I0(rd_value2_carry__2_i_13_n_0),
+        .I1(rd_value2_carry__2_i_12_n_0),
+        .I2(rd_value2_carry__2_i_11_n_0),
         .O(alu_branch_result_i_11_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
+  LUT3 #(
+    .INIT(8'h80)) 
     alu_branch_result_i_12
-       (.I0(alu_src_t[24]),
-        .I1(alu_src_s[24]),
-        .I2(alu_src_s[25]),
-        .I3(alu_src_t[25]),
-        .I4(alu_src_t[26]),
-        .I5(alu_src_s[26]),
+       (.I0(rd_value2_carry__2_i_16_n_0),
+        .I1(rd_value2_carry__2_i_15_n_0),
+        .I2(rd_value2_carry__2_i_14_n_0),
         .O(alu_branch_result_i_12_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
+  LUT3 #(
+    .INIT(8'h80)) 
     alu_branch_result_i_14
-       (.I0(alu_src_t[21]),
-        .I1(alu_src_s[21]),
-        .I2(alu_src_s[22]),
-        .I3(alu_src_t[22]),
-        .I4(alu_src_t[23]),
-        .I5(alu_src_s[23]),
+       (.I0(rd_value2_carry__1_i_10_n_0),
+        .I1(rd_value2_carry__1_i_9_n_0),
+        .I2(rd_value2_carry__1_i_11_n_0),
         .O(alu_branch_result_i_14_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
+  LUT3 #(
+    .INIT(8'h80)) 
     alu_branch_result_i_15
-       (.I0(alu_src_t[18]),
-        .I1(alu_src_s[18]),
-        .I2(alu_src_s[19]),
-        .I3(alu_src_t[19]),
-        .I4(alu_src_t[20]),
-        .I5(alu_src_s[20]),
+       (.I0(rd_value2_carry__1_i_14_n_0),
+        .I1(rd_value2_carry__1_i_13_n_0),
+        .I2(rd_value2_carry__1_i_12_n_0),
         .O(alu_branch_result_i_15_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
+  LUT4 #(
+    .INIT(16'h0880)) 
     alu_branch_result_i_16
-       (.I0(alu_src_t[15]),
-        .I1(alu_src_s[15]),
-        .I2(alu_src_s[16]),
-        .I3(alu_src_t[16]),
-        .I4(alu_src_t[17]),
-        .I5(alu_src_s[17]),
+       (.I0(rd_value2_carry__1_i_16_n_0),
+        .I1(rd_value2_carry__1_i_15_n_0),
+        .I2(\rd_value[15]_INST_0_i_5_n_0 ),
+        .I3(alu_src_t[15]),
         .O(alu_branch_result_i_16_n_0));
   LUT6 #(
-    .INIT(64'h9009000000009009)) 
+    .INIT(64'h0000600660060000)) 
     alu_branch_result_i_17
-       (.I0(alu_src_t[12]),
-        .I1(alu_src_s[12]),
-        .I2(alu_src_s[13]),
-        .I3(alu_src_t[13]),
-        .I4(alu_src_t[14]),
-        .I5(alu_src_s[14]),
+       (.I0(\rd_value[12]_INST_0_i_5_n_0 ),
+        .I1(alu_src_t[12]),
+        .I2(alu_src_t[14]),
+        .I3(alu_src_s[14]),
+        .I4(alu_src_t[13]),
+        .I5(\rd_value[13]_INST_0_i_5_n_0 ),
         .O(alu_branch_result_i_17_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
+  LUT3 #(
+    .INIT(8'h80)) 
     alu_branch_result_i_19
-       (.I0(alu_src_t[21]),
-        .I1(alu_src_s[21]),
-        .I2(alu_src_s[22]),
-        .I3(alu_src_t[22]),
-        .I4(alu_src_t[23]),
-        .I5(alu_src_s[23]),
+       (.I0(rd_value2_carry__1_i_10_n_0),
+        .I1(rd_value2_carry__1_i_9_n_0),
+        .I2(rd_value2_carry__1_i_11_n_0),
         .O(alu_branch_result_i_19_n_0));
-  LUT5 #(
-    .INIT(32'h00008100)) 
-    alu_branch_result_i_2
-       (.I0(\alu_op_reg_n_0_[4] ),
-        .I1(\alu_op_reg_n_0_[3] ),
-        .I2(\alu_op_reg_n_0_[2] ),
-        .I3(\alu_op_reg_n_0_[1] ),
-        .I4(alu_op),
-        .O(alu_branch_result_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
+  LUT3 #(
+    .INIT(8'h80)) 
     alu_branch_result_i_20
-       (.I0(alu_src_t[18]),
-        .I1(alu_src_s[18]),
-        .I2(alu_src_s[19]),
-        .I3(alu_src_t[19]),
-        .I4(alu_src_t[20]),
-        .I5(alu_src_s[20]),
+       (.I0(rd_value2_carry__1_i_14_n_0),
+        .I1(rd_value2_carry__1_i_13_n_0),
+        .I2(rd_value2_carry__1_i_12_n_0),
         .O(alu_branch_result_i_20_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
+  LUT4 #(
+    .INIT(16'h0880)) 
     alu_branch_result_i_21
-       (.I0(alu_src_t[15]),
-        .I1(alu_src_s[15]),
-        .I2(alu_src_s[16]),
-        .I3(alu_src_t[16]),
-        .I4(alu_src_t[17]),
-        .I5(alu_src_s[17]),
+       (.I0(rd_value2_carry__1_i_16_n_0),
+        .I1(rd_value2_carry__1_i_15_n_0),
+        .I2(\rd_value[15]_INST_0_i_5_n_0 ),
+        .I3(alu_src_t[15]),
         .O(alu_branch_result_i_21_n_0));
   LUT6 #(
-    .INIT(64'h9009000000009009)) 
+    .INIT(64'h0000600660060000)) 
     alu_branch_result_i_22
-       (.I0(alu_src_t[12]),
-        .I1(alu_src_s[12]),
-        .I2(alu_src_s[13]),
-        .I3(alu_src_t[13]),
-        .I4(alu_src_t[14]),
-        .I5(alu_src_s[14]),
+       (.I0(\rd_value[12]_INST_0_i_5_n_0 ),
+        .I1(alu_src_t[12]),
+        .I2(alu_src_t[14]),
+        .I3(alu_src_s[14]),
+        .I4(alu_src_t[13]),
+        .I5(\rd_value[13]_INST_0_i_5_n_0 ),
         .O(alu_branch_result_i_22_n_0));
   LUT6 #(
-    .INIT(64'h9009000000009009)) 
+    .INIT(64'h0000600660060000)) 
     alu_branch_result_i_23
-       (.I0(alu_src_t[9]),
-        .I1(alu_src_s[9]),
-        .I2(alu_src_s[10]),
-        .I3(alu_src_t[10]),
+       (.I0(\rd_value[9]_INST_0_i_5_n_0 ),
+        .I1(alu_src_t[9]),
+        .I2(alu_src_t[10]),
+        .I3(alu_src_s[10]),
         .I4(alu_src_t[11]),
-        .I5(alu_src_s[11]),
+        .I5(\rd_value[11]_INST_0_i_5_n_0 ),
         .O(alu_branch_result_i_23_n_0));
   LUT6 #(
-    .INIT(64'h9009000000009009)) 
+    .INIT(64'h0000600660060000)) 
     alu_branch_result_i_24
-       (.I0(alu_src_t[6]),
-        .I1(alu_src_s[6]),
-        .I2(alu_src_s[7]),
-        .I3(alu_src_t[7]),
-        .I4(alu_src_t[8]),
-        .I5(alu_src_s[8]),
+       (.I0(\rd_value[6]_INST_0_i_4_n_0 ),
+        .I1(alu_src_t[6]),
+        .I2(alu_src_t[8]),
+        .I3(alu_src_s[8]),
+        .I4(alu_src_t[7]),
+        .I5(\rd_value[7]_INST_0_i_4_n_0 ),
         .O(alu_branch_result_i_24_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     alu_branch_result_i_25
-       (.I0(alu_src_t[3]),
-        .I1(alu_src_s[3]),
-        .I2(alu_src_s[4]),
-        .I3(alu_src_t[4]),
+       (.I0(alu_src_s[3]),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[4]),
+        .I3(alu_src_s[4]),
         .I4(alu_src_t[5]),
         .I5(alu_src_s[5]),
         .O(alu_branch_result_i_25_n_0));
   LUT6 #(
-    .INIT(64'h9009000000009009)) 
+    .INIT(64'h0000900990090000)) 
     alu_branch_result_i_26
-       (.I0(alu_src_t[0]),
-        .I1(alu_src_s[0]),
-        .I2(alu_src_s[1]),
-        .I3(alu_src_t[1]),
-        .I4(alu_src_t[2]),
-        .I5(alu_src_s[2]),
+       (.I0(alu_src_t[1]),
+        .I1(alu_src_s[1]),
+        .I2(alu_src_t[2]),
+        .I3(alu_src_s[2]),
+        .I4(\rd_value[0]_INST_0_i_3_n_0 ),
+        .I5(alu_src_t[0]),
         .O(alu_branch_result_i_26_n_0));
   LUT6 #(
-    .INIT(64'h9009000000009009)) 
+    .INIT(64'h0000600660060000)) 
     alu_branch_result_i_27
-       (.I0(alu_src_t[9]),
-        .I1(alu_src_s[9]),
-        .I2(alu_src_s[10]),
-        .I3(alu_src_t[10]),
+       (.I0(\rd_value[9]_INST_0_i_5_n_0 ),
+        .I1(alu_src_t[9]),
+        .I2(alu_src_t[10]),
+        .I3(alu_src_s[10]),
         .I4(alu_src_t[11]),
-        .I5(alu_src_s[11]),
+        .I5(\rd_value[11]_INST_0_i_5_n_0 ),
         .O(alu_branch_result_i_27_n_0));
   LUT6 #(
-    .INIT(64'h9009000000009009)) 
+    .INIT(64'h0000600660060000)) 
     alu_branch_result_i_28
-       (.I0(alu_src_t[6]),
-        .I1(alu_src_s[6]),
-        .I2(alu_src_s[7]),
-        .I3(alu_src_t[7]),
-        .I4(alu_src_t[8]),
-        .I5(alu_src_s[8]),
+       (.I0(\rd_value[6]_INST_0_i_4_n_0 ),
+        .I1(alu_src_t[6]),
+        .I2(alu_src_t[8]),
+        .I3(alu_src_s[8]),
+        .I4(alu_src_t[7]),
+        .I5(\rd_value[7]_INST_0_i_4_n_0 ),
         .O(alu_branch_result_i_28_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     alu_branch_result_i_29
-       (.I0(alu_src_t[3]),
-        .I1(alu_src_s[3]),
-        .I2(alu_src_s[4]),
-        .I3(alu_src_t[4]),
+       (.I0(alu_src_s[3]),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[4]),
+        .I3(alu_src_s[4]),
         .I4(alu_src_t[5]),
         .I5(alu_src_s[5]),
         .O(alu_branch_result_i_29_n_0));
   LUT6 #(
-    .INIT(64'h9009000000009009)) 
+    .INIT(64'h0000900990090000)) 
     alu_branch_result_i_30
-       (.I0(alu_src_t[0]),
-        .I1(alu_src_s[0]),
-        .I2(alu_src_s[1]),
-        .I3(alu_src_t[1]),
-        .I4(alu_src_t[2]),
-        .I5(alu_src_s[2]),
+       (.I0(alu_src_t[1]),
+        .I1(alu_src_s[1]),
+        .I2(alu_src_t[2]),
+        .I3(alu_src_s[2]),
+        .I4(\rd_value[0]_INST_0_i_3_n_0 ),
+        .I5(alu_src_t[0]),
         .O(alu_branch_result_i_30_n_0));
-  LUT3 #(
-    .INIT(8'h09)) 
+  LUT4 #(
+    .INIT(16'hFBFF)) 
+    alu_branch_result_i_4
+       (.I0(alu_op[5]),
+        .I1(alu_op[0]),
+        .I2(alu_op[1]),
+        .I3(alu_op[4]),
+        .O(alu_branch_result_i_4_n_0));
+  LUT2 #(
+    .INIT(4'h8)) 
     alu_branch_result_i_6
-       (.I0(alu_src_s[30]),
-        .I1(alu_src_t[30]),
-        .I2(rd_value2_carry__2_i_9_n_0),
+       (.I0(rd_value2_carry__2_i_9_n_0),
+        .I1(rd_value2_carry__2_i_10_n_0),
         .O(alu_branch_result_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
+  LUT3 #(
+    .INIT(8'h80)) 
     alu_branch_result_i_7
-       (.I0(alu_src_t[27]),
-        .I1(alu_src_s[27]),
-        .I2(alu_src_s[28]),
-        .I3(alu_src_t[28]),
-        .I4(alu_src_t[29]),
-        .I5(alu_src_s[29]),
+       (.I0(rd_value2_carry__2_i_13_n_0),
+        .I1(rd_value2_carry__2_i_12_n_0),
+        .I2(rd_value2_carry__2_i_11_n_0),
         .O(alu_branch_result_i_7_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
+  LUT3 #(
+    .INIT(8'h80)) 
     alu_branch_result_i_8
-       (.I0(alu_src_t[24]),
-        .I1(alu_src_s[24]),
-        .I2(alu_src_s[25]),
-        .I3(alu_src_t[25]),
-        .I4(alu_src_t[26]),
-        .I5(alu_src_s[26]),
+       (.I0(rd_value2_carry__2_i_16_n_0),
+        .I1(rd_value2_carry__2_i_15_n_0),
+        .I2(rd_value2_carry__2_i_14_n_0),
         .O(alu_branch_result_i_8_n_0));
   FDCE #(
     .INIT(1'b0),
@@ -1816,47 +1339,47 @@ module bluex_alu_ex_0_0_alu_ex
         .CE(enable_CPU),
         .CLR(rst),
         .D(alu_branch_result_i_1_n_0),
-        .Q(alu_branch_result_reg_n_0));
+        .Q(alu_branch_result));
   CARRY4 alu_branch_result_reg_i_13
        (.CI(1'b0),
         .CO({alu_branch_result_reg_i_13_n_0,alu_branch_result_reg_i_13_n_1,alu_branch_result_reg_i_13_n_2,alu_branch_result_reg_i_13_n_3}),
-        .CYINIT(1'b1),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .CYINIT(1'b0),
+        .DI({1'b1,1'b1,1'b1,1'b1}),
         .O(NLW_alu_branch_result_reg_i_13_O_UNCONNECTED[3:0]),
         .S({alu_branch_result_i_23_n_0,alu_branch_result_i_24_n_0,alu_branch_result_i_25_n_0,alu_branch_result_i_26_n_0}));
   CARRY4 alu_branch_result_reg_i_18
        (.CI(1'b0),
         .CO({alu_branch_result_reg_i_18_n_0,alu_branch_result_reg_i_18_n_1,alu_branch_result_reg_i_18_n_2,alu_branch_result_reg_i_18_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b1,1'b1,1'b1,1'b1}),
+        .CYINIT(1'b1),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(NLW_alu_branch_result_reg_i_18_O_UNCONNECTED[3:0]),
         .S({alu_branch_result_i_27_n_0,alu_branch_result_i_28_n_0,alu_branch_result_i_29_n_0,alu_branch_result_i_30_n_0}));
-  CARRY4 alu_branch_result_reg_i_3
+  CARRY4 alu_branch_result_reg_i_2
        (.CI(alu_branch_result_reg_i_5_n_0),
+        .CO({NLW_alu_branch_result_reg_i_2_CO_UNCONNECTED[3],alu_branch_result_reg_i_2_n_1,alu_branch_result_reg_i_2_n_2,alu_branch_result_reg_i_2_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b1,1'b1,1'b1}),
+        .O(NLW_alu_branch_result_reg_i_2_O_UNCONNECTED[3:0]),
+        .S({1'b0,alu_branch_result_i_6_n_0,alu_branch_result_i_7_n_0,alu_branch_result_i_8_n_0}));
+  CARRY4 alu_branch_result_reg_i_3
+       (.CI(alu_branch_result_reg_i_9_n_0),
         .CO({NLW_alu_branch_result_reg_i_3_CO_UNCONNECTED[3],alu_branch_result_reg_i_3_n_1,alu_branch_result_reg_i_3_n_2,alu_branch_result_reg_i_3_n_3}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(NLW_alu_branch_result_reg_i_3_O_UNCONNECTED[3:0]),
-        .S({1'b0,alu_branch_result_i_6_n_0,alu_branch_result_i_7_n_0,alu_branch_result_i_8_n_0}));
-  CARRY4 alu_branch_result_reg_i_4
-       (.CI(alu_branch_result_reg_i_9_n_0),
-        .CO({NLW_alu_branch_result_reg_i_4_CO_UNCONNECTED[3],alu_branch_result_reg_i_4_n_1,alu_branch_result_reg_i_4_n_2,alu_branch_result_reg_i_4_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b1,1'b1,1'b1}),
-        .O(NLW_alu_branch_result_reg_i_4_O_UNCONNECTED[3:0]),
         .S({1'b0,alu_branch_result_i_10_n_0,alu_branch_result_i_11_n_0,alu_branch_result_i_12_n_0}));
   CARRY4 alu_branch_result_reg_i_5
        (.CI(alu_branch_result_reg_i_13_n_0),
         .CO({alu_branch_result_reg_i_5_n_0,alu_branch_result_reg_i_5_n_1,alu_branch_result_reg_i_5_n_2,alu_branch_result_reg_i_5_n_3}),
         .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .DI({1'b1,1'b1,1'b1,1'b1}),
         .O(NLW_alu_branch_result_reg_i_5_O_UNCONNECTED[3:0]),
         .S({alu_branch_result_i_14_n_0,alu_branch_result_i_15_n_0,alu_branch_result_i_16_n_0,alu_branch_result_i_17_n_0}));
   CARRY4 alu_branch_result_reg_i_9
        (.CI(alu_branch_result_reg_i_18_n_0),
         .CO({alu_branch_result_reg_i_9_n_0,alu_branch_result_reg_i_9_n_1,alu_branch_result_reg_i_9_n_2,alu_branch_result_reg_i_9_n_3}),
         .CYINIT(1'b0),
-        .DI({1'b1,1'b1,1'b1,1'b1}),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(NLW_alu_branch_result_reg_i_9_O_UNCONNECTED[3:0]),
         .S({alu_branch_result_i_19_n_0,alu_branch_result_i_20_n_0,alu_branch_result_i_21_n_0,alu_branch_result_i_22_n_0}));
   FDCE #(
@@ -1866,7 +1389,7 @@ module bluex_alu_ex_0_0_alu_ex
         .CE(enable_CPU),
         .CLR(rst),
         .D(alu_op_inw[0]),
-        .Q(\alu_op_reg_n_0_[0] ));
+        .Q(alu_op[0]));
   FDCE #(
     .INIT(1'b0)) 
     \alu_op_reg[1] 
@@ -1874,7 +1397,7 @@ module bluex_alu_ex_0_0_alu_ex
         .CE(enable_CPU),
         .CLR(rst),
         .D(alu_op_inw[1]),
-        .Q(\alu_op_reg_n_0_[1] ));
+        .Q(alu_op[1]));
   FDCE #(
     .INIT(1'b0)) 
     \alu_op_reg[2] 
@@ -1882,7 +1405,7 @@ module bluex_alu_ex_0_0_alu_ex
         .CE(enable_CPU),
         .CLR(rst),
         .D(alu_op_inw[2]),
-        .Q(\alu_op_reg_n_0_[2] ));
+        .Q(alu_op[2]));
   FDCE #(
     .INIT(1'b0)) 
     \alu_op_reg[3] 
@@ -1890,7 +1413,7 @@ module bluex_alu_ex_0_0_alu_ex
         .CE(enable_CPU),
         .CLR(rst),
         .D(alu_op_inw[3]),
-        .Q(\alu_op_reg_n_0_[3] ));
+        .Q(alu_op[3]));
   FDCE #(
     .INIT(1'b0)) 
     \alu_op_reg[4] 
@@ -1898,7 +1421,7 @@ module bluex_alu_ex_0_0_alu_ex
         .CE(enable_CPU),
         .CLR(rst),
         .D(alu_op_inw[4]),
-        .Q(\alu_op_reg_n_0_[4] ));
+        .Q(alu_op[4]));
   FDCE #(
     .INIT(1'b0)) 
     \alu_op_reg[5] 
@@ -1906,7 +1429,7 @@ module bluex_alu_ex_0_0_alu_ex
         .CE(enable_CPU),
         .CLR(rst),
         .D(alu_op_inw[5]),
-        .Q(alu_op));
+        .Q(alu_op[5]));
   FDCE #(
     .INIT(1'b0)) 
     alu_src_reg
@@ -1919,7 +1442,7 @@ module bluex_alu_ex_0_0_alu_ex
     .INIT(4'h8)) 
     branch_PC_INST_0
        (.I0(branch_isc_flag),
-        .I1(alu_branch_result_reg_n_0),
+        .I1(alu_branch_result),
         .O(branch_jump_flag));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 branch_addr_carry
@@ -2004,8 +1527,8 @@ module bluex_alu_ex_0_0_alu_ex
   LUT2 #(
     .INIT(4'h6)) 
     branch_addr_carry__2_i_1
-       (.I0(\imm_reg_n_0_[15] ),
-        .I1(pc_next[15]),
+       (.I0(pc_next[15]),
+        .I1(\imm_reg_n_0_[15] ),
         .O(branch_addr_carry__2_i_1_n_0));
   LUT2 #(
     .INIT(4'h6)) 
@@ -2458,788 +1981,13 @@ module bluex_alu_ex_0_0_alu_ex
         .D(pc_next_inw[9]),
         .Q(pc_next[9]));
   (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 rd_add_carry
-       (.CI(1'b0),
-        .CO({rd_add_carry_n_0,rd_add_carry_n_1,rd_add_carry_n_2,rd_add_carry_n_3}),
-        .CYINIT(1'b0),
-        .DI(alu_src_s[3:0]),
-        .O(data0[3:0]),
-        .S({rd_add_carry_i_5_n_0,rd_add_carry_i_6_n_0,rd_add_carry_i_7_n_0,rd_add_carry_i_8_n_0}));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 rd_add_carry__0
-       (.CI(rd_add_carry_n_0),
-        .CO({rd_add_carry__0_n_0,rd_add_carry__0_n_1,rd_add_carry__0_n_2,rd_add_carry__0_n_3}),
-        .CYINIT(1'b0),
-        .DI(alu_src_s[7:4]),
-        .O(data0[7:4]),
-        .S({rd_add_carry__0_i_5_n_0,rd_add_carry__0_i_6_n_0,rd_add_carry__0_i_7_n_0,rd_add_carry__0_i_8_n_0}));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__0_i_1
-       (.I0(rs[7]),
-        .I1(write_back_data[7]),
-        .I2(alu_result_back[7]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[7]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__0_i_2
-       (.I0(rs[6]),
-        .I1(write_back_data[6]),
-        .I2(alu_result_back[6]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[6]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__0_i_3
-       (.I0(rs[5]),
-        .I1(write_back_data[5]),
-        .I2(alu_result_back[5]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[5]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__0_i_4
-       (.I0(rs[4]),
-        .I1(write_back_data[4]),
-        .I2(alu_result_back[4]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[4]));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__0_i_5
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[7]),
-        .I3(write_back_data[7]),
-        .I4(rs[7]),
-        .I5(alu_src_t[7]),
-        .O(rd_add_carry__0_i_5_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__0_i_6
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[6]),
-        .I3(write_back_data[6]),
-        .I4(rs[6]),
-        .I5(alu_src_t[6]),
-        .O(rd_add_carry__0_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__0_i_7
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[5]),
-        .I3(write_back_data[5]),
-        .I4(rs[5]),
-        .I5(alu_src_t[5]),
-        .O(rd_add_carry__0_i_7_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__0_i_8
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[4]),
-        .I3(write_back_data[4]),
-        .I4(rs[4]),
-        .I5(alu_src_t[4]),
-        .O(rd_add_carry__0_i_8_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 rd_add_carry__1
-       (.CI(rd_add_carry__0_n_0),
-        .CO({rd_add_carry__1_n_0,rd_add_carry__1_n_1,rd_add_carry__1_n_2,rd_add_carry__1_n_3}),
-        .CYINIT(1'b0),
-        .DI(alu_src_s[11:8]),
-        .O(data0[11:8]),
-        .S({rd_add_carry__1_i_5_n_0,rd_add_carry__1_i_6_n_0,rd_add_carry__1_i_7_n_0,rd_add_carry__1_i_8_n_0}));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__1_i_1
-       (.I0(rs[11]),
-        .I1(write_back_data[11]),
-        .I2(alu_result_back[11]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[11]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__1_i_2
-       (.I0(rs[10]),
-        .I1(write_back_data[10]),
-        .I2(alu_result_back[10]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[10]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__1_i_3
-       (.I0(rs[9]),
-        .I1(write_back_data[9]),
-        .I2(alu_result_back[9]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[9]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__1_i_4
-       (.I0(rs[8]),
-        .I1(write_back_data[8]),
-        .I2(alu_result_back[8]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[8]));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__1_i_5
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[11]),
-        .I3(write_back_data[11]),
-        .I4(rs[11]),
-        .I5(alu_src_t[11]),
-        .O(rd_add_carry__1_i_5_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__1_i_6
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[10]),
-        .I3(write_back_data[10]),
-        .I4(rs[10]),
-        .I5(alu_src_t[10]),
-        .O(rd_add_carry__1_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__1_i_7
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[9]),
-        .I3(write_back_data[9]),
-        .I4(rs[9]),
-        .I5(alu_src_t[9]),
-        .O(rd_add_carry__1_i_7_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__1_i_8
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[8]),
-        .I3(write_back_data[8]),
-        .I4(rs[8]),
-        .I5(alu_src_t[8]),
-        .O(rd_add_carry__1_i_8_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 rd_add_carry__2
-       (.CI(rd_add_carry__1_n_0),
-        .CO({rd_add_carry__2_n_0,rd_add_carry__2_n_1,rd_add_carry__2_n_2,rd_add_carry__2_n_3}),
-        .CYINIT(1'b0),
-        .DI(alu_src_s[15:12]),
-        .O(data0[15:12]),
-        .S({rd_add_carry__2_i_5_n_0,rd_add_carry__2_i_6_n_0,rd_add_carry__2_i_7_n_0,rd_add_carry__2_i_8_n_0}));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__2_i_1
-       (.I0(rs[15]),
-        .I1(write_back_data[15]),
-        .I2(alu_result_back[15]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[15]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__2_i_2
-       (.I0(rs[14]),
-        .I1(write_back_data[14]),
-        .I2(alu_result_back[14]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[14]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__2_i_3
-       (.I0(rs[13]),
-        .I1(write_back_data[13]),
-        .I2(alu_result_back[13]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[13]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__2_i_4
-       (.I0(rs[12]),
-        .I1(write_back_data[12]),
-        .I2(alu_result_back[12]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[12]));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__2_i_5
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[15]),
-        .I3(write_back_data[15]),
-        .I4(rs[15]),
-        .I5(alu_src_t[15]),
-        .O(rd_add_carry__2_i_5_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__2_i_6
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[14]),
-        .I3(write_back_data[14]),
-        .I4(rs[14]),
-        .I5(alu_src_t[14]),
-        .O(rd_add_carry__2_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__2_i_7
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[13]),
-        .I3(write_back_data[13]),
-        .I4(rs[13]),
-        .I5(alu_src_t[13]),
-        .O(rd_add_carry__2_i_7_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__2_i_8
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[12]),
-        .I3(write_back_data[12]),
-        .I4(rs[12]),
-        .I5(alu_src_t[12]),
-        .O(rd_add_carry__2_i_8_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 rd_add_carry__3
-       (.CI(rd_add_carry__2_n_0),
-        .CO({rd_add_carry__3_n_0,rd_add_carry__3_n_1,rd_add_carry__3_n_2,rd_add_carry__3_n_3}),
-        .CYINIT(1'b0),
-        .DI(alu_src_s[19:16]),
-        .O(data0[19:16]),
-        .S({rd_add_carry__3_i_5_n_0,rd_add_carry__3_i_6_n_0,rd_add_carry__3_i_7_n_0,rd_add_carry__3_i_8_n_0}));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__3_i_1
-       (.I0(rs[19]),
-        .I1(write_back_data[19]),
-        .I2(alu_result_back[19]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[19]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__3_i_10
-       (.I0(\imm_reg_n_0_[18] ),
-        .I1(alu_src),
-        .I2(write_data[18]),
-        .O(alu_src_t[18]));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__3_i_11
-       (.I0(\imm_reg_n_0_[17] ),
-        .I1(alu_src),
-        .I2(write_data[17]),
-        .O(alu_src_t[17]));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__3_i_12
-       (.I0(\imm_reg_n_0_[16] ),
-        .I1(alu_src),
-        .I2(write_data[16]),
-        .O(alu_src_t[16]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__3_i_2
-       (.I0(rs[18]),
-        .I1(write_back_data[18]),
-        .I2(alu_result_back[18]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[18]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__3_i_3
-       (.I0(rs[17]),
-        .I1(write_back_data[17]),
-        .I2(alu_result_back[17]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[17]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__3_i_4
-       (.I0(rs[16]),
-        .I1(write_back_data[16]),
-        .I2(alu_result_back[16]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[16]));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__3_i_5
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[19]),
-        .I3(write_back_data[19]),
-        .I4(rs[19]),
-        .I5(alu_src_t[19]),
-        .O(rd_add_carry__3_i_5_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__3_i_6
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[18]),
-        .I3(write_back_data[18]),
-        .I4(rs[18]),
-        .I5(alu_src_t[18]),
-        .O(rd_add_carry__3_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__3_i_7
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[17]),
-        .I3(write_back_data[17]),
-        .I4(rs[17]),
-        .I5(alu_src_t[17]),
-        .O(rd_add_carry__3_i_7_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__3_i_8
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[16]),
-        .I3(write_back_data[16]),
-        .I4(rs[16]),
-        .I5(alu_src_t[16]),
-        .O(rd_add_carry__3_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__3_i_9
-       (.I0(\imm_reg_n_0_[19] ),
-        .I1(alu_src),
-        .I2(write_data[19]),
-        .O(alu_src_t[19]));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 rd_add_carry__4
-       (.CI(rd_add_carry__3_n_0),
-        .CO({rd_add_carry__4_n_0,rd_add_carry__4_n_1,rd_add_carry__4_n_2,rd_add_carry__4_n_3}),
-        .CYINIT(1'b0),
-        .DI(alu_src_s[23:20]),
-        .O(data0[23:20]),
-        .S({rd_add_carry__4_i_5_n_0,rd_add_carry__4_i_6_n_0,rd_add_carry__4_i_7_n_0,rd_add_carry__4_i_8_n_0}));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__4_i_1
-       (.I0(rs[23]),
-        .I1(write_back_data[23]),
-        .I2(alu_result_back[23]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[23]));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__4_i_10
-       (.I0(\imm_reg_n_0_[22] ),
-        .I1(alu_src),
-        .I2(write_data[22]),
-        .O(alu_src_t[22]));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__4_i_11
-       (.I0(\imm_reg_n_0_[21] ),
-        .I1(alu_src),
-        .I2(write_data[21]),
-        .O(alu_src_t[21]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__4_i_12
-       (.I0(\imm_reg_n_0_[20] ),
-        .I1(alu_src),
-        .I2(write_data[20]),
-        .O(alu_src_t[20]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__4_i_2
-       (.I0(rs[22]),
-        .I1(write_back_data[22]),
-        .I2(alu_result_back[22]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[22]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__4_i_3
-       (.I0(rs[21]),
-        .I1(write_back_data[21]),
-        .I2(alu_result_back[21]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[21]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__4_i_4
-       (.I0(rs[20]),
-        .I1(write_back_data[20]),
-        .I2(alu_result_back[20]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[20]));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__4_i_5
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[23]),
-        .I3(write_back_data[23]),
-        .I4(rs[23]),
-        .I5(alu_src_t[23]),
-        .O(rd_add_carry__4_i_5_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__4_i_6
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[22]),
-        .I3(write_back_data[22]),
-        .I4(rs[22]),
-        .I5(alu_src_t[22]),
-        .O(rd_add_carry__4_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__4_i_7
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[21]),
-        .I3(write_back_data[21]),
-        .I4(rs[21]),
-        .I5(alu_src_t[21]),
-        .O(rd_add_carry__4_i_7_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__4_i_8
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[20]),
-        .I3(write_back_data[20]),
-        .I4(rs[20]),
-        .I5(alu_src_t[20]),
-        .O(rd_add_carry__4_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__4_i_9
-       (.I0(\imm_reg_n_0_[23] ),
-        .I1(alu_src),
-        .I2(write_data[23]),
-        .O(alu_src_t[23]));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 rd_add_carry__5
-       (.CI(rd_add_carry__4_n_0),
-        .CO({rd_add_carry__5_n_0,rd_add_carry__5_n_1,rd_add_carry__5_n_2,rd_add_carry__5_n_3}),
-        .CYINIT(1'b0),
-        .DI(alu_src_s[27:24]),
-        .O(data0[27:24]),
-        .S({rd_add_carry__5_i_5_n_0,rd_add_carry__5_i_6_n_0,rd_add_carry__5_i_7_n_0,rd_add_carry__5_i_8_n_0}));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__5_i_1
-       (.I0(rs[27]),
-        .I1(write_back_data[27]),
-        .I2(alu_result_back[27]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[27]));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__5_i_10
-       (.I0(\imm_reg_n_0_[26] ),
-        .I1(alu_src),
-        .I2(write_data[26]),
-        .O(alu_src_t[26]));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__5_i_11
-       (.I0(\imm_reg_n_0_[25] ),
-        .I1(alu_src),
-        .I2(write_data[25]),
-        .O(alu_src_t[25]));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__5_i_12
-       (.I0(\imm_reg_n_0_[24] ),
-        .I1(alu_src),
-        .I2(write_data[24]),
-        .O(alu_src_t[24]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__5_i_2
-       (.I0(rs[26]),
-        .I1(write_back_data[26]),
-        .I2(alu_result_back[26]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[26]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__5_i_3
-       (.I0(rs[25]),
-        .I1(write_back_data[25]),
-        .I2(alu_result_back[25]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[25]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__5_i_4
-       (.I0(rs[24]),
-        .I1(write_back_data[24]),
-        .I2(alu_result_back[24]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[24]));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__5_i_5
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[27]),
-        .I3(write_back_data[27]),
-        .I4(rs[27]),
-        .I5(alu_src_t[27]),
-        .O(rd_add_carry__5_i_5_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__5_i_6
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[26]),
-        .I3(write_back_data[26]),
-        .I4(rs[26]),
-        .I5(alu_src_t[26]),
-        .O(rd_add_carry__5_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__5_i_7
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[25]),
-        .I3(write_back_data[25]),
-        .I4(rs[25]),
-        .I5(alu_src_t[25]),
-        .O(rd_add_carry__5_i_7_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__5_i_8
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[24]),
-        .I3(write_back_data[24]),
-        .I4(rs[24]),
-        .I5(alu_src_t[24]),
-        .O(rd_add_carry__5_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__5_i_9
-       (.I0(\imm_reg_n_0_[27] ),
-        .I1(alu_src),
-        .I2(write_data[27]),
-        .O(alu_src_t[27]));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 rd_add_carry__6
-       (.CI(rd_add_carry__5_n_0),
-        .CO({NLW_rd_add_carry__6_CO_UNCONNECTED[3],rd_add_carry__6_n_1,rd_add_carry__6_n_2,rd_add_carry__6_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,alu_src_s[30:28]}),
-        .O(data0[31:28]),
-        .S({rd_add_carry__6_i_4_n_0,rd_add_carry__6_i_5_n_0,rd_add_carry__6_i_6_n_0,rd_add_carry__6_i_7_n_0}));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__6_i_1
-       (.I0(rs[30]),
-        .I1(write_back_data[30]),
-        .I2(alu_result_back[30]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[30]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__6_i_2
-       (.I0(rs[29]),
-        .I1(write_back_data[29]),
-        .I2(alu_result_back[29]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[29]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry__6_i_3
-       (.I0(rs[28]),
-        .I1(write_back_data[28]),
-        .I2(alu_result_back[28]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[28]));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__6_i_4
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[31]),
-        .I3(write_back_data[31]),
-        .I4(rs[31]),
-        .I5(alu_src_t__95),
-        .O(rd_add_carry__6_i_4_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__6_i_5
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[30]),
-        .I3(write_back_data[30]),
-        .I4(rs[30]),
-        .I5(alu_src_t[30]),
-        .O(rd_add_carry__6_i_5_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__6_i_6
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[29]),
-        .I3(write_back_data[29]),
-        .I4(rs[29]),
-        .I5(alu_src_t[29]),
-        .O(rd_add_carry__6_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry__6_i_7
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[28]),
-        .I3(write_back_data[28]),
-        .I4(rs[28]),
-        .I5(alu_src_t[28]),
-        .O(rd_add_carry__6_i_7_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__6_i_8
-       (.I0(\imm_reg_n_0_[29] ),
-        .I1(alu_src),
-        .I2(write_data[29]),
-        .O(alu_src_t[29]));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    rd_add_carry__6_i_9
-       (.I0(\imm_reg_n_0_[28] ),
-        .I1(alu_src),
-        .I2(write_data[28]),
-        .O(alu_src_t[28]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry_i_1
-       (.I0(rs[3]),
-        .I1(write_back_data[3]),
-        .I2(alu_result_back[3]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[3]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry_i_2
-       (.I0(rs[2]),
-        .I1(write_back_data[2]),
-        .I2(alu_result_back[2]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[2]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry_i_3
-       (.I0(rs[1]),
-        .I1(write_back_data[1]),
-        .I2(alu_result_back[1]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[1]));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    rd_add_carry_i_4
-       (.I0(rs[0]),
-        .I1(write_back_data[0]),
-        .I2(alu_result_back[0]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s[0]));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry_i_5
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[3]),
-        .I3(write_back_data[3]),
-        .I4(rs[3]),
-        .I5(alu_src_t[3]),
-        .O(rd_add_carry_i_5_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry_i_6
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[2]),
-        .I3(write_back_data[2]),
-        .I4(rs[2]),
-        .I5(alu_src_t[2]),
-        .O(rd_add_carry_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry_i_7
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[1]),
-        .I3(write_back_data[1]),
-        .I4(rs[1]),
-        .I5(alu_src_t[1]),
-        .O(rd_add_carry_i_7_n_0));
-  LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
-    rd_add_carry_i_8
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[0]),
-        .I3(write_back_data[0]),
-        .I4(rs[0]),
-        .I5(alu_src_t[0]),
-        .O(rd_add_carry_i_8_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
   CARRY4 rd_sub_carry
        (.CI(1'b0),
         .CO({rd_sub_carry_n_0,rd_sub_carry_n_1,rd_sub_carry_n_2,rd_sub_carry_n_3}),
         .CYINIT(1'b1),
         .DI(alu_src_s[3:0]),
         .O(data1[3:0]),
-        .S({rd_sub_carry_i_1_n_0,rd_sub_carry_i_2_n_0,rd_sub_carry_i_3_n_0,rd_sub_carry_i_4_n_0}));
+        .S({rd_sub_carry_i_5_n_0,rd_sub_carry_i_6_n_0,rd_sub_carry_i_7_n_0,rd_sub_carry_i_8_n_0}));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 rd_sub_carry__0
        (.CI(rd_sub_carry_n_0),
@@ -3247,47 +1995,83 @@ module bluex_alu_ex_0_0_alu_ex
         .CYINIT(1'b0),
         .DI(alu_src_s[7:4]),
         .O(data1[7:4]),
-        .S({rd_sub_carry__0_i_1_n_0,rd_sub_carry__0_i_2_n_0,rd_sub_carry__0_i_3_n_0,rd_sub_carry__0_i_4_n_0}));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+        .S({rd_sub_carry__0_i_5_n_0,rd_sub_carry__0_i_6_n_0,rd_sub_carry__0_i_7_n_0,rd_sub_carry__0_i_8_n_0}));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__0_i_1
-       (.I0(alu_src_t[7]),
-        .I1(rs[7]),
-        .I2(write_back_data[7]),
-        .I3(alu_result_back[7]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__0_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[7]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[7]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[7]),
+        .O(alu_src_s[7]));
+  LUT5 #(
+    .INIT(32'h73625140)) 
     rd_sub_carry__0_i_2
-       (.I0(alu_src_t[6]),
-        .I1(rs[6]),
-        .I2(write_back_data[6]),
-        .I3(alu_result_back[6]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__0_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs_forward[0]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[6]),
+        .I3(rs[6]),
+        .I4(write_back_data[6]),
+        .O(alu_src_s[6]));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
     rd_sub_carry__0_i_3
-       (.I0(alu_src_t[5]),
-        .I1(rs[5]),
-        .I2(write_back_data[5]),
-        .I3(alu_result_back[5]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__0_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(write_back_data[5]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[5]),
+        .I3(rs_forward[1]),
+        .I4(rs[5]),
+        .O(alu_src_s[5]));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
     rd_sub_carry__0_i_4
-       (.I0(alu_src_t[4]),
-        .I1(rs[4]),
-        .I2(write_back_data[4]),
-        .I3(alu_result_back[4]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__0_i_4_n_0));
+       (.I0(write_back_data[4]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[4]),
+        .I3(rs_forward[1]),
+        .I4(rs[4]),
+        .O(alu_src_s[4]));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__0_i_5
+       (.I0(rs[7]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[7]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[7]),
+        .I5(alu_src_t[7]),
+        .O(rd_sub_carry__0_i_5_n_0));
+  LUT6 #(
+    .INIT(64'h736251408C9DAEBF)) 
+    rd_sub_carry__0_i_6
+       (.I0(rs_forward[0]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[6]),
+        .I3(rs[6]),
+        .I4(write_back_data[6]),
+        .I5(alu_src_t[6]),
+        .O(rd_sub_carry__0_i_6_n_0));
+  LUT6 #(
+    .INIT(64'h30BB3088CF44CF77)) 
+    rd_sub_carry__0_i_7
+       (.I0(write_back_data[5]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[5]),
+        .I3(rs_forward[1]),
+        .I4(rs[5]),
+        .I5(alu_src_t[5]),
+        .O(rd_sub_carry__0_i_7_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__0_i_8
+       (.I0(rs[4]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[4]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[4]),
+        .I5(alu_src_t[4]),
+        .O(rd_sub_carry__0_i_8_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 rd_sub_carry__1
        (.CI(rd_sub_carry__0_n_0),
@@ -3295,47 +2079,83 @@ module bluex_alu_ex_0_0_alu_ex
         .CYINIT(1'b0),
         .DI(alu_src_s[11:8]),
         .O(data1[11:8]),
-        .S({rd_sub_carry__1_i_1_n_0,rd_sub_carry__1_i_2_n_0,rd_sub_carry__1_i_3_n_0,rd_sub_carry__1_i_4_n_0}));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+        .S({rd_sub_carry__1_i_5_n_0,rd_sub_carry__1_i_6_n_0,rd_sub_carry__1_i_7_n_0,rd_sub_carry__1_i_8_n_0}));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__1_i_1
-       (.I0(alu_src_t[11]),
-        .I1(rs[11]),
-        .I2(write_back_data[11]),
-        .I3(alu_result_back[11]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__1_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[11]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[11]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[11]),
+        .O(alu_src_s[11]));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
     rd_sub_carry__1_i_2
-       (.I0(alu_src_t[10]),
-        .I1(rs[10]),
-        .I2(write_back_data[10]),
-        .I3(alu_result_back[10]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__1_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(write_back_data[10]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[10]),
+        .I3(rs_forward[1]),
+        .I4(rs[10]),
+        .O(alu_src_s[10]));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__1_i_3
-       (.I0(alu_src_t[9]),
-        .I1(rs[9]),
-        .I2(write_back_data[9]),
-        .I3(alu_result_back[9]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__1_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[9]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[9]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[9]),
+        .O(alu_src_s[9]));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
     rd_sub_carry__1_i_4
-       (.I0(alu_src_t[8]),
-        .I1(rs[8]),
-        .I2(write_back_data[8]),
-        .I3(alu_result_back[8]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__1_i_4_n_0));
+       (.I0(write_back_data[8]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[8]),
+        .I3(rs_forward[1]),
+        .I4(rs[8]),
+        .O(alu_src_s[8]));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__1_i_5
+       (.I0(rs[11]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[11]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[11]),
+        .I5(alu_src_t[11]),
+        .O(rd_sub_carry__1_i_5_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__1_i_6
+       (.I0(rs[10]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[10]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[10]),
+        .I5(alu_src_t[10]),
+        .O(rd_sub_carry__1_i_6_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__1_i_7
+       (.I0(rs[9]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[9]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[9]),
+        .I5(alu_src_t[9]),
+        .O(rd_sub_carry__1_i_7_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__1_i_8
+       (.I0(rs[8]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[8]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[8]),
+        .I5(alu_src_t[8]),
+        .O(rd_sub_carry__1_i_8_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 rd_sub_carry__2
        (.CI(rd_sub_carry__1_n_0),
@@ -3343,47 +2163,83 @@ module bluex_alu_ex_0_0_alu_ex
         .CYINIT(1'b0),
         .DI(alu_src_s[15:12]),
         .O(data1[15:12]),
-        .S({rd_sub_carry__2_i_1_n_0,rd_sub_carry__2_i_2_n_0,rd_sub_carry__2_i_3_n_0,rd_sub_carry__2_i_4_n_0}));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+        .S({rd_sub_carry__2_i_5_n_0,rd_sub_carry__2_i_6_n_0,rd_sub_carry__2_i_7_n_0,rd_sub_carry__2_i_8_n_0}));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__2_i_1
-       (.I0(alu_src_t[15]),
-        .I1(rs[15]),
-        .I2(write_back_data[15]),
-        .I3(alu_result_back[15]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__2_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[15]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[15]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[15]),
+        .O(alu_src_s[15]));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
     rd_sub_carry__2_i_2
-       (.I0(alu_src_t[14]),
-        .I1(rs[14]),
-        .I2(write_back_data[14]),
-        .I3(alu_result_back[14]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__2_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(write_back_data[14]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[14]),
+        .I3(rs_forward[1]),
+        .I4(rs[14]),
+        .O(alu_src_s[14]));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__2_i_3
-       (.I0(alu_src_t[13]),
-        .I1(rs[13]),
-        .I2(write_back_data[13]),
-        .I3(alu_result_back[13]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__2_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[13]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[13]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[13]),
+        .O(alu_src_s[13]));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__2_i_4
-       (.I0(alu_src_t[12]),
-        .I1(rs[12]),
-        .I2(write_back_data[12]),
-        .I3(alu_result_back[12]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__2_i_4_n_0));
+       (.I0(rs[12]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[12]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[12]),
+        .O(alu_src_s[12]));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__2_i_5
+       (.I0(rs[15]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[15]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[15]),
+        .I5(alu_src_t[15]),
+        .O(rd_sub_carry__2_i_5_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__2_i_6
+       (.I0(rs[14]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[14]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[14]),
+        .I5(alu_src_t[14]),
+        .O(rd_sub_carry__2_i_6_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__2_i_7
+       (.I0(rs[13]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[13]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[13]),
+        .I5(alu_src_t[13]),
+        .O(rd_sub_carry__2_i_7_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__2_i_8
+       (.I0(rs[12]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[12]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[12]),
+        .I5(alu_src_t[12]),
+        .O(rd_sub_carry__2_i_8_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 rd_sub_carry__3
        (.CI(rd_sub_carry__2_n_0),
@@ -3391,47 +2247,111 @@ module bluex_alu_ex_0_0_alu_ex
         .CYINIT(1'b0),
         .DI(alu_src_s[19:16]),
         .O(data1[19:16]),
-        .S({rd_sub_carry__3_i_1_n_0,rd_sub_carry__3_i_2_n_0,rd_sub_carry__3_i_3_n_0,rd_sub_carry__3_i_4_n_0}));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+        .S({rd_sub_carry__3_i_5_n_0,rd_sub_carry__3_i_6_n_0,rd_sub_carry__3_i_7_n_0,rd_sub_carry__3_i_8_n_0}));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__3_i_1
-       (.I0(alu_src_t[19]),
-        .I1(rs[19]),
-        .I2(write_back_data[19]),
-        .I3(alu_result_back[19]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__3_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[19]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[19]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[19]),
+        .O(alu_src_s[19]));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__3_i_10
+       (.I0(\imm_reg_n_0_[18] ),
+        .I1(alu_src),
+        .I2(write_data[17]),
+        .O(rd_sub_carry__3_i_10_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__3_i_11
+       (.I0(\imm_reg_n_0_[17] ),
+        .I1(alu_src),
+        .I2(write_data[16]),
+        .O(rd_sub_carry__3_i_11_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__3_i_12
+       (.I0(\imm_reg_n_0_[16] ),
+        .I1(alu_src),
+        .I2(write_data[15]),
+        .O(rd_sub_carry__3_i_12_n_0));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__3_i_2
-       (.I0(alu_src_t[18]),
-        .I1(rs[18]),
-        .I2(write_back_data[18]),
-        .I3(alu_result_back[18]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__3_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[18]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[18]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[18]),
+        .O(alu_src_s[18]));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__3_i_3
-       (.I0(alu_src_t[17]),
-        .I1(rs[17]),
-        .I2(write_back_data[17]),
-        .I3(alu_result_back[17]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__3_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[17]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[17]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[17]),
+        .O(alu_src_s[17]));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__3_i_4
-       (.I0(alu_src_t[16]),
-        .I1(rs[16]),
-        .I2(write_back_data[16]),
-        .I3(alu_result_back[16]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__3_i_4_n_0));
+       (.I0(rs[16]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[16]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[16]),
+        .O(alu_src_s[16]));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__3_i_5
+       (.I0(rs[19]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[19]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[19]),
+        .I5(rd_sub_carry__3_i_9_n_0),
+        .O(rd_sub_carry__3_i_5_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__3_i_6
+       (.I0(rs[18]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[18]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[18]),
+        .I5(rd_sub_carry__3_i_10_n_0),
+        .O(rd_sub_carry__3_i_6_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__3_i_7
+       (.I0(rs[17]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[17]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[17]),
+        .I5(rd_sub_carry__3_i_11_n_0),
+        .O(rd_sub_carry__3_i_7_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__3_i_8
+       (.I0(rs[16]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[16]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[16]),
+        .I5(rd_sub_carry__3_i_12_n_0),
+        .O(rd_sub_carry__3_i_8_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__3_i_9
+       (.I0(\imm_reg_n_0_[19] ),
+        .I1(alu_src),
+        .I2(write_data[18]),
+        .O(rd_sub_carry__3_i_9_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 rd_sub_carry__4
        (.CI(rd_sub_carry__3_n_0),
@@ -3439,47 +2359,111 @@ module bluex_alu_ex_0_0_alu_ex
         .CYINIT(1'b0),
         .DI(alu_src_s[23:20]),
         .O(data1[23:20]),
-        .S({rd_sub_carry__4_i_1_n_0,rd_sub_carry__4_i_2_n_0,rd_sub_carry__4_i_3_n_0,rd_sub_carry__4_i_4_n_0}));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+        .S({rd_sub_carry__4_i_5_n_0,rd_sub_carry__4_i_6_n_0,rd_sub_carry__4_i_7_n_0,rd_sub_carry__4_i_8_n_0}));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__4_i_1
-       (.I0(alu_src_t[23]),
-        .I1(rs[23]),
-        .I2(write_back_data[23]),
-        .I3(alu_result_back[23]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__4_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[23]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[23]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[23]),
+        .O(alu_src_s[23]));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__4_i_10
+       (.I0(\imm_reg_n_0_[22] ),
+        .I1(alu_src),
+        .I2(write_data[21]),
+        .O(rd_sub_carry__4_i_10_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__4_i_11
+       (.I0(\imm_reg_n_0_[21] ),
+        .I1(alu_src),
+        .I2(write_data[20]),
+        .O(rd_sub_carry__4_i_11_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__4_i_12
+       (.I0(\imm_reg_n_0_[20] ),
+        .I1(alu_src),
+        .I2(write_data[19]),
+        .O(rd_sub_carry__4_i_12_n_0));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__4_i_2
-       (.I0(alu_src_t[22]),
-        .I1(rs[22]),
-        .I2(write_back_data[22]),
-        .I3(alu_result_back[22]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__4_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[22]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[22]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[22]),
+        .O(alu_src_s[22]));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__4_i_3
-       (.I0(alu_src_t[21]),
-        .I1(rs[21]),
-        .I2(write_back_data[21]),
-        .I3(alu_result_back[21]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__4_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[21]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[21]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[21]),
+        .O(alu_src_s[21]));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__4_i_4
-       (.I0(alu_src_t[20]),
-        .I1(rs[20]),
-        .I2(write_back_data[20]),
-        .I3(alu_result_back[20]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__4_i_4_n_0));
+       (.I0(rs[20]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[20]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[20]),
+        .O(alu_src_s[20]));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__4_i_5
+       (.I0(rs[23]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[23]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[23]),
+        .I5(rd_sub_carry__4_i_9_n_0),
+        .O(rd_sub_carry__4_i_5_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__4_i_6
+       (.I0(rs[22]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[22]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[22]),
+        .I5(rd_sub_carry__4_i_10_n_0),
+        .O(rd_sub_carry__4_i_6_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__4_i_7
+       (.I0(rs[21]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[21]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[21]),
+        .I5(rd_sub_carry__4_i_11_n_0),
+        .O(rd_sub_carry__4_i_7_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__4_i_8
+       (.I0(rs[20]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[20]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[20]),
+        .I5(rd_sub_carry__4_i_12_n_0),
+        .O(rd_sub_carry__4_i_8_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__4_i_9
+       (.I0(\imm_reg_n_0_[23] ),
+        .I1(alu_src),
+        .I2(write_data[22]),
+        .O(rd_sub_carry__4_i_9_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 rd_sub_carry__5
        (.CI(rd_sub_carry__4_n_0),
@@ -3487,47 +2471,111 @@ module bluex_alu_ex_0_0_alu_ex
         .CYINIT(1'b0),
         .DI(alu_src_s[27:24]),
         .O(data1[27:24]),
-        .S({rd_sub_carry__5_i_1_n_0,rd_sub_carry__5_i_2_n_0,rd_sub_carry__5_i_3_n_0,rd_sub_carry__5_i_4_n_0}));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+        .S({rd_sub_carry__5_i_5_n_0,rd_sub_carry__5_i_6_n_0,rd_sub_carry__5_i_7_n_0,rd_sub_carry__5_i_8_n_0}));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__5_i_1
-       (.I0(alu_src_t[27]),
-        .I1(rs[27]),
-        .I2(write_back_data[27]),
-        .I3(alu_result_back[27]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__5_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[27]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[27]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[27]),
+        .O(alu_src_s[27]));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__5_i_10
+       (.I0(\imm_reg_n_0_[26] ),
+        .I1(alu_src),
+        .I2(write_data[25]),
+        .O(rd_sub_carry__5_i_10_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__5_i_11
+       (.I0(\imm_reg_n_0_[25] ),
+        .I1(alu_src),
+        .I2(write_data[24]),
+        .O(rd_sub_carry__5_i_11_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__5_i_12
+       (.I0(\imm_reg_n_0_[24] ),
+        .I1(alu_src),
+        .I2(write_data[23]),
+        .O(rd_sub_carry__5_i_12_n_0));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__5_i_2
-       (.I0(alu_src_t[26]),
-        .I1(rs[26]),
-        .I2(write_back_data[26]),
-        .I3(alu_result_back[26]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__5_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[26]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[26]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[26]),
+        .O(alu_src_s[26]));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__5_i_3
-       (.I0(alu_src_t[25]),
-        .I1(rs[25]),
-        .I2(write_back_data[25]),
-        .I3(alu_result_back[25]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__5_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+       (.I0(rs[25]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[25]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[25]),
+        .O(alu_src_s[25]));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__5_i_4
-       (.I0(alu_src_t[24]),
-        .I1(rs[24]),
-        .I2(write_back_data[24]),
-        .I3(alu_result_back[24]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__5_i_4_n_0));
+       (.I0(rs[24]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[24]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[24]),
+        .O(alu_src_s[24]));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__5_i_5
+       (.I0(rs[27]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[27]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[27]),
+        .I5(rd_sub_carry__5_i_9_n_0),
+        .O(rd_sub_carry__5_i_5_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__5_i_6
+       (.I0(rs[26]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[26]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[26]),
+        .I5(rd_sub_carry__5_i_10_n_0),
+        .O(rd_sub_carry__5_i_6_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__5_i_7
+       (.I0(rs[25]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[25]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[25]),
+        .I5(rd_sub_carry__5_i_11_n_0),
+        .O(rd_sub_carry__5_i_7_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__5_i_8
+       (.I0(rs[24]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[24]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[24]),
+        .I5(rd_sub_carry__5_i_12_n_0),
+        .O(rd_sub_carry__5_i_8_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__5_i_9
+       (.I0(\imm_reg_n_0_[27] ),
+        .I1(alu_src),
+        .I2(write_data[26]),
+        .O(rd_sub_carry__5_i_9_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 rd_sub_carry__6
        (.CI(rd_sub_carry__5_n_0),
@@ -3535,87 +2583,178 @@ module bluex_alu_ex_0_0_alu_ex
         .CYINIT(1'b0),
         .DI({1'b0,alu_src_s[30:28]}),
         .O(data1[31:28]),
-        .S({rd_sub_carry__6_i_1_n_0,rd_sub_carry__6_i_2_n_0,rd_sub_carry__6_i_3_n_0,rd_sub_carry__6_i_4_n_0}));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+        .S({rd_sub_carry__6_i_4_n_0,rd_sub_carry__6_i_5_n_0,rd_sub_carry__6_i_6_n_0,rd_sub_carry__6_i_7_n_0}));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
     rd_sub_carry__6_i_1
-       (.I0(alu_src_t__95),
-        .I1(rs[31]),
-        .I2(write_back_data[31]),
+       (.I0(rs[30]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[30]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[30]),
+        .O(alu_src_s[30]));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__6_i_10
+       (.I0(\imm_reg_n_0_[29] ),
+        .I1(alu_src),
+        .I2(write_data[28]),
+        .O(rd_sub_carry__6_i_10_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__6_i_11
+       (.I0(\imm_reg_n_0_[28] ),
+        .I1(alu_src),
+        .I2(write_data[27]),
+        .O(rd_sub_carry__6_i_11_n_0));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
+    rd_sub_carry__6_i_2
+       (.I0(rs[29]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[29]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[29]),
+        .O(alu_src_s[29]));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
+    rd_sub_carry__6_i_3
+       (.I0(rs[28]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[28]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[28]),
+        .O(alu_src_s[28]));
+  LUT6 #(
+    .INIT(64'h5A559A9A5A559595)) 
+    rd_sub_carry__6_i_4
+       (.I0(rd_sub_carry__6_i_8_n_0),
+        .I1(write_back_data[31]),
+        .I2(rs_forward[0]),
         .I3(alu_result_back[31]),
         .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__6_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
-    rd_sub_carry__6_i_2
-       (.I0(alu_src_t[30]),
-        .I1(rs[30]),
-        .I2(write_back_data[30]),
-        .I3(alu_result_back[30]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__6_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
-    rd_sub_carry__6_i_3
-       (.I0(alu_src_t[29]),
-        .I1(rs[29]),
-        .I2(write_back_data[29]),
-        .I3(alu_result_back[29]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry__6_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
-    rd_sub_carry__6_i_4
-       (.I0(alu_src_t[28]),
-        .I1(rs[28]),
-        .I2(write_back_data[28]),
-        .I3(alu_result_back[28]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
+        .I5(rs[31]),
         .O(rd_sub_carry__6_i_4_n_0));
   LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__6_i_5
+       (.I0(rs[30]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[30]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[30]),
+        .I5(rd_sub_carry__6_i_9_n_0),
+        .O(rd_sub_carry__6_i_5_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__6_i_6
+       (.I0(rs[29]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[29]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[29]),
+        .I5(rd_sub_carry__6_i_10_n_0),
+        .O(rd_sub_carry__6_i_6_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry__6_i_7
+       (.I0(rs[28]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[28]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[28]),
+        .I5(rd_sub_carry__6_i_11_n_0),
+        .O(rd_sub_carry__6_i_7_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__6_i_8
+       (.I0(\imm_reg_n_0_[31] ),
+        .I1(alu_src),
+        .I2(write_data[30]),
+        .O(rd_sub_carry__6_i_8_n_0));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    rd_sub_carry__6_i_9
+       (.I0(\imm_reg_n_0_[30] ),
+        .I1(alu_src),
+        .I2(write_data[29]),
+        .O(rd_sub_carry__6_i_9_n_0));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
     rd_sub_carry_i_1
+       (.I0(write_back_data[3]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[3]),
+        .I3(rs_forward[1]),
+        .I4(rs[3]),
+        .O(alu_src_s[3]));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    rd_sub_carry_i_2
+       (.I0(write_back_data[2]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[2]),
+        .I3(rs_forward[1]),
+        .I4(rs[2]),
+        .O(alu_src_s[2]));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    rd_sub_carry_i_3
+       (.I0(write_back_data[1]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[1]),
+        .I3(rs_forward[1]),
+        .I4(rs[1]),
+        .O(alu_src_s[1]));
+  LUT5 #(
+    .INIT(32'h33E200E2)) 
+    rd_sub_carry_i_4
+       (.I0(rs[0]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[0]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[0]),
+        .O(alu_src_s[0]));
+  LUT6 #(
+    .INIT(64'h5A559A9A5A559595)) 
+    rd_sub_carry_i_5
        (.I0(alu_src_t[3]),
-        .I1(rs[3]),
-        .I2(write_back_data[3]),
+        .I1(write_back_data[3]),
+        .I2(rs_forward[0]),
         .I3(alu_result_back[3]),
         .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry_i_1_n_0));
+        .I5(rs[3]),
+        .O(rd_sub_carry_i_5_n_0));
   LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
-    rd_sub_carry_i_2
-       (.I0(alu_src_t[2]),
-        .I1(rs[2]),
-        .I2(write_back_data[2]),
-        .I3(alu_result_back[2]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry_i_2_n_0));
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_sub_carry_i_6
+       (.I0(rs[2]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[2]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[2]),
+        .I5(alu_src_t[2]),
+        .O(rd_sub_carry_i_6_n_0));
   LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
-    rd_sub_carry_i_3
+    .INIT(64'h5A559A9A5A559595)) 
+    rd_sub_carry_i_7
        (.I0(alu_src_t[1]),
-        .I1(rs[1]),
-        .I2(write_back_data[1]),
+        .I1(write_back_data[1]),
+        .I2(rs_forward[0]),
         .I3(alu_result_back[1]),
         .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry_i_3_n_0));
+        .I5(rs[1]),
+        .O(rd_sub_carry_i_7_n_0));
   LUT6 #(
-    .INIT(64'h5555A5A5AA559999)) 
-    rd_sub_carry_i_4
-       (.I0(alu_src_t[0]),
-        .I1(rs[0]),
-        .I2(write_back_data[0]),
-        .I3(alu_result_back[0]),
-        .I4(rs_forward[1]),
-        .I5(rs_forward[0]),
-        .O(rd_sub_carry_i_4_n_0));
+    .INIT(64'h30BB3088CF44CF77)) 
+    rd_sub_carry_i_8
+       (.I0(write_back_data[0]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[0]),
+        .I3(rs_forward[1]),
+        .I4(rs[0]),
+        .I5(alu_src_t[0]),
+        .O(rd_sub_carry_i_8_n_0));
   (* COMPARATOR_THRESHOLD = "11" *) 
   CARRY4 rd_value2_carry
        (.CI(1'b0),
@@ -3633,68 +2772,68 @@ module bluex_alu_ex_0_0_alu_ex
         .O(NLW_rd_value2_carry__0_O_UNCONNECTED[3:0]),
         .S({rd_value2_carry__0_i_5_n_0,rd_value2_carry__0_i_6_n_0,rd_value2_carry__0_i_7_n_0,rd_value2_carry__0_i_8_n_0}));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'h88E8)) 
     rd_value2_carry__0_i_1
-       (.I0(alu_src_s[14]),
-        .I1(alu_src_t[14]),
-        .I2(alu_src_s[15]),
-        .I3(alu_src_t[15]),
-        .O(rd_value2_carry__0_i_1_n_0));
-  LUT4 #(
-    .INIT(16'h4F04)) 
-    rd_value2_carry__0_i_2
-       (.I0(alu_src_s[12]),
-        .I1(alu_src_t[12]),
-        .I2(alu_src_s[13]),
-        .I3(alu_src_t[13]),
-        .O(rd_value2_carry__0_i_2_n_0));
-  LUT4 #(
-    .INIT(16'h4F04)) 
-    rd_value2_carry__0_i_3
-       (.I0(alu_src_s[10]),
-        .I1(alu_src_t[10]),
-        .I2(alu_src_s[11]),
-        .I3(alu_src_t[11]),
-        .O(rd_value2_carry__0_i_3_n_0));
-  LUT4 #(
-    .INIT(16'h4F04)) 
-    rd_value2_carry__0_i_4
-       (.I0(alu_src_s[8]),
-        .I1(alu_src_t[8]),
-        .I2(alu_src_s[9]),
-        .I3(alu_src_t[9]),
-        .O(rd_value2_carry__0_i_4_n_0));
-  LUT4 #(
-    .INIT(16'h9009)) 
-    rd_value2_carry__0_i_5
-       (.I0(alu_src_t[15]),
-        .I1(alu_src_s[15]),
+       (.I0(\rd_value[15]_INST_0_i_5_n_0 ),
+        .I1(alu_src_t[15]),
         .I2(alu_src_t[14]),
         .I3(alu_src_s[14]),
+        .O(rd_value2_carry__0_i_1_n_0));
+  LUT4 #(
+    .INIT(16'hE888)) 
+    rd_value2_carry__0_i_2
+       (.I0(\rd_value[13]_INST_0_i_5_n_0 ),
+        .I1(alu_src_t[13]),
+        .I2(alu_src_t[12]),
+        .I3(\rd_value[12]_INST_0_i_5_n_0 ),
+        .O(rd_value2_carry__0_i_2_n_0));
+  LUT4 #(
+    .INIT(16'h88E8)) 
+    rd_value2_carry__0_i_3
+       (.I0(\rd_value[11]_INST_0_i_5_n_0 ),
+        .I1(alu_src_t[11]),
+        .I2(alu_src_t[10]),
+        .I3(alu_src_s[10]),
+        .O(rd_value2_carry__0_i_3_n_0));
+  LUT4 #(
+    .INIT(16'h88E8)) 
+    rd_value2_carry__0_i_4
+       (.I0(\rd_value[9]_INST_0_i_5_n_0 ),
+        .I1(alu_src_t[9]),
+        .I2(alu_src_t[8]),
+        .I3(alu_src_s[8]),
+        .O(rd_value2_carry__0_i_4_n_0));
+  LUT4 #(
+    .INIT(16'h0990)) 
+    rd_value2_carry__0_i_5
+       (.I0(alu_src_s[14]),
+        .I1(alu_src_t[14]),
+        .I2(alu_src_t[15]),
+        .I3(\rd_value[15]_INST_0_i_5_n_0 ),
         .O(rd_value2_carry__0_i_5_n_0));
   LUT4 #(
-    .INIT(16'h9009)) 
+    .INIT(16'h0660)) 
     rd_value2_carry__0_i_6
        (.I0(alu_src_t[13]),
-        .I1(alu_src_s[13]),
+        .I1(\rd_value[13]_INST_0_i_5_n_0 ),
         .I2(alu_src_t[12]),
-        .I3(alu_src_s[12]),
+        .I3(\rd_value[12]_INST_0_i_5_n_0 ),
         .O(rd_value2_carry__0_i_6_n_0));
   LUT4 #(
-    .INIT(16'h9009)) 
+    .INIT(16'h6006)) 
     rd_value2_carry__0_i_7
        (.I0(alu_src_t[11]),
-        .I1(alu_src_s[11]),
+        .I1(\rd_value[11]_INST_0_i_5_n_0 ),
         .I2(alu_src_t[10]),
         .I3(alu_src_s[10]),
         .O(rd_value2_carry__0_i_7_n_0));
   LUT4 #(
-    .INIT(16'h9009)) 
+    .INIT(16'h6006)) 
     rd_value2_carry__0_i_8
        (.I0(alu_src_t[9]),
-        .I1(alu_src_s[9]),
-        .I2(alu_src_t[8]),
-        .I3(alu_src_s[8]),
+        .I1(\rd_value[9]_INST_0_i_5_n_0 ),
+        .I2(alu_src_s[8]),
+        .I3(alu_src_t[8]),
         .O(rd_value2_carry__0_i_8_n_0));
   (* COMPARATOR_THRESHOLD = "11" *) 
   CARRY4 rd_value2_carry__1
@@ -3705,69 +2844,141 @@ module bluex_alu_ex_0_0_alu_ex
         .O(NLW_rd_value2_carry__1_O_UNCONNECTED[3:0]),
         .S({rd_value2_carry__1_i_5_n_0,rd_value2_carry__1_i_6_n_0,rd_value2_carry__1_i_7_n_0,rd_value2_carry__1_i_8_n_0}));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'hF880)) 
     rd_value2_carry__1_i_1
-       (.I0(alu_src_s[22]),
-        .I1(alu_src_t[22]),
-        .I2(alu_src_s[23]),
-        .I3(alu_src_t[23]),
+       (.I0(\rd_value[22]_INST_0_i_6_n_0 ),
+        .I1(rd_sub_carry__4_i_10_n_0),
+        .I2(\rd_value[23]_INST_0_i_4_n_0 ),
+        .I3(rd_sub_carry__4_i_9_n_0),
         .O(rd_value2_carry__1_i_1_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__1_i_10
+       (.I0(rs[22]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[22]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[22]),
+        .I5(rd_sub_carry__4_i_10_n_0),
+        .O(rd_value2_carry__1_i_10_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__1_i_11
+       (.I0(rs[21]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[21]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[21]),
+        .I5(rd_sub_carry__4_i_11_n_0),
+        .O(rd_value2_carry__1_i_11_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__1_i_12
+       (.I0(rs[20]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[20]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[20]),
+        .I5(rd_sub_carry__4_i_12_n_0),
+        .O(rd_value2_carry__1_i_12_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__1_i_13
+       (.I0(rs[19]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[19]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[19]),
+        .I5(rd_sub_carry__3_i_9_n_0),
+        .O(rd_value2_carry__1_i_13_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__1_i_14
+       (.I0(rs[18]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[18]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[18]),
+        .I5(rd_sub_carry__3_i_10_n_0),
+        .O(rd_value2_carry__1_i_14_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__1_i_15
+       (.I0(rs[17]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[17]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[17]),
+        .I5(rd_sub_carry__3_i_11_n_0),
+        .O(rd_value2_carry__1_i_15_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__1_i_16
+       (.I0(rs[16]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[16]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[16]),
+        .I5(rd_sub_carry__3_i_12_n_0),
+        .O(rd_value2_carry__1_i_16_n_0));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'hF880)) 
     rd_value2_carry__1_i_2
-       (.I0(alu_src_s[20]),
-        .I1(alu_src_t[20]),
-        .I2(alu_src_s[21]),
-        .I3(alu_src_t[21]),
+       (.I0(\rd_value[20]_INST_0_i_6_n_0 ),
+        .I1(rd_sub_carry__4_i_12_n_0),
+        .I2(\rd_value[21]_INST_0_i_5_n_0 ),
+        .I3(rd_sub_carry__4_i_11_n_0),
         .O(rd_value2_carry__1_i_2_n_0));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'hF880)) 
     rd_value2_carry__1_i_3
-       (.I0(alu_src_s[18]),
-        .I1(alu_src_t[18]),
-        .I2(alu_src_s[19]),
-        .I3(alu_src_t[19]),
+       (.I0(\rd_value[18]_INST_0_i_4_n_0 ),
+        .I1(rd_sub_carry__3_i_10_n_0),
+        .I2(\rd_value[19]_INST_0_i_5_n_0 ),
+        .I3(rd_sub_carry__3_i_9_n_0),
         .O(rd_value2_carry__1_i_3_n_0));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'hF880)) 
     rd_value2_carry__1_i_4
-       (.I0(alu_src_s[16]),
-        .I1(alu_src_t[16]),
-        .I2(alu_src_s[17]),
-        .I3(alu_src_t[17]),
+       (.I0(\rd_value[16]_INST_0_i_5_n_0 ),
+        .I1(rd_sub_carry__3_i_12_n_0),
+        .I2(\rd_value[17]_INST_0_i_4_n_0 ),
+        .I3(rd_sub_carry__3_i_11_n_0),
         .O(rd_value2_carry__1_i_4_n_0));
-  LUT4 #(
-    .INIT(16'h9009)) 
+  LUT2 #(
+    .INIT(4'h8)) 
     rd_value2_carry__1_i_5
-       (.I0(alu_src_t[23]),
-        .I1(alu_src_s[23]),
-        .I2(alu_src_t[22]),
-        .I3(alu_src_s[22]),
+       (.I0(rd_value2_carry__1_i_9_n_0),
+        .I1(rd_value2_carry__1_i_10_n_0),
         .O(rd_value2_carry__1_i_5_n_0));
-  LUT4 #(
-    .INIT(16'h9009)) 
+  LUT2 #(
+    .INIT(4'h8)) 
     rd_value2_carry__1_i_6
-       (.I0(alu_src_t[21]),
-        .I1(alu_src_s[21]),
-        .I2(alu_src_t[20]),
-        .I3(alu_src_s[20]),
+       (.I0(rd_value2_carry__1_i_11_n_0),
+        .I1(rd_value2_carry__1_i_12_n_0),
         .O(rd_value2_carry__1_i_6_n_0));
-  LUT4 #(
-    .INIT(16'h9009)) 
+  LUT2 #(
+    .INIT(4'h8)) 
     rd_value2_carry__1_i_7
-       (.I0(alu_src_t[19]),
-        .I1(alu_src_s[19]),
-        .I2(alu_src_t[18]),
-        .I3(alu_src_s[18]),
+       (.I0(rd_value2_carry__1_i_13_n_0),
+        .I1(rd_value2_carry__1_i_14_n_0),
         .O(rd_value2_carry__1_i_7_n_0));
-  LUT4 #(
-    .INIT(16'h9009)) 
+  LUT2 #(
+    .INIT(4'h8)) 
     rd_value2_carry__1_i_8
-       (.I0(alu_src_t[17]),
-        .I1(alu_src_s[17]),
-        .I2(alu_src_t[16]),
-        .I3(alu_src_s[16]),
+       (.I0(rd_value2_carry__1_i_15_n_0),
+        .I1(rd_value2_carry__1_i_16_n_0),
         .O(rd_value2_carry__1_i_8_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__1_i_9
+       (.I0(rs[23]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[23]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[23]),
+        .I5(rd_sub_carry__4_i_9_n_0),
+        .O(rd_value2_carry__1_i_9_n_0));
   (* COMPARATOR_THRESHOLD = "11" *) 
   CARRY4 rd_value2_carry__2
        (.CI(rd_value2_carry__1_n_0),
@@ -3777,125 +2988,188 @@ module bluex_alu_ex_0_0_alu_ex
         .O(NLW_rd_value2_carry__2_O_UNCONNECTED[3:0]),
         .S({rd_value2_carry__2_i_5_n_0,rd_value2_carry__2_i_6_n_0,rd_value2_carry__2_i_7_n_0,rd_value2_carry__2_i_8_n_0}));
   LUT4 #(
-    .INIT(16'h2F02)) 
+    .INIT(16'h80F8)) 
     rd_value2_carry__2_i_1
-       (.I0(alu_src_t[30]),
-        .I1(alu_src_s[30]),
-        .I2(alu_src_s__96),
-        .I3(alu_src_t__95),
+       (.I0(\rd_value[30]_INST_0_i_5_n_0 ),
+        .I1(rd_sub_carry__6_i_9_n_0),
+        .I2(rd_sub_carry__6_i_8_n_0),
+        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
         .O(rd_value2_carry__2_i_1_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__2_i_10
+       (.I0(rs[30]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[30]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[30]),
+        .I5(rd_sub_carry__6_i_9_n_0),
+        .O(rd_value2_carry__2_i_10_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__2_i_11
+       (.I0(rs[29]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[29]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[29]),
+        .I5(rd_sub_carry__6_i_10_n_0),
+        .O(rd_value2_carry__2_i_11_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__2_i_12
+       (.I0(rs[28]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[28]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[28]),
+        .I5(rd_sub_carry__6_i_11_n_0),
+        .O(rd_value2_carry__2_i_12_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__2_i_13
+       (.I0(rs[27]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[27]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[27]),
+        .I5(rd_sub_carry__5_i_9_n_0),
+        .O(rd_value2_carry__2_i_13_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__2_i_14
+       (.I0(rs[26]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[26]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[26]),
+        .I5(rd_sub_carry__5_i_10_n_0),
+        .O(rd_value2_carry__2_i_14_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__2_i_15
+       (.I0(rs[25]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[25]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[25]),
+        .I5(rd_sub_carry__5_i_11_n_0),
+        .O(rd_value2_carry__2_i_15_n_0));
+  LUT6 #(
+    .INIT(64'h33E200E2CC1DFF1D)) 
+    rd_value2_carry__2_i_16
+       (.I0(rs[24]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[24]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[24]),
+        .I5(rd_sub_carry__5_i_12_n_0),
+        .O(rd_value2_carry__2_i_16_n_0));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'hF880)) 
     rd_value2_carry__2_i_2
-       (.I0(alu_src_s[28]),
-        .I1(alu_src_t[28]),
-        .I2(alu_src_s[29]),
-        .I3(alu_src_t[29]),
+       (.I0(\rd_value[28]_INST_0_i_7_n_0 ),
+        .I1(rd_sub_carry__6_i_11_n_0),
+        .I2(\rd_value[29]_INST_0_i_7_n_0 ),
+        .I3(rd_sub_carry__6_i_10_n_0),
         .O(rd_value2_carry__2_i_2_n_0));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'hF880)) 
     rd_value2_carry__2_i_3
-       (.I0(alu_src_s[26]),
-        .I1(alu_src_t[26]),
-        .I2(alu_src_s[27]),
-        .I3(alu_src_t[27]),
+       (.I0(\rd_value[26]_INST_0_i_5_n_0 ),
+        .I1(rd_sub_carry__5_i_10_n_0),
+        .I2(\rd_value[27]_INST_0_i_6_n_0 ),
+        .I3(rd_sub_carry__5_i_9_n_0),
         .O(rd_value2_carry__2_i_3_n_0));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'hF880)) 
     rd_value2_carry__2_i_4
-       (.I0(alu_src_s[24]),
-        .I1(alu_src_t[24]),
-        .I2(alu_src_s[25]),
-        .I3(alu_src_t[25]),
+       (.I0(\rd_value[24]_INST_0_i_6_n_0 ),
+        .I1(rd_sub_carry__5_i_12_n_0),
+        .I2(\rd_value[25]_INST_0_i_6_n_0 ),
+        .I3(rd_sub_carry__5_i_11_n_0),
         .O(rd_value2_carry__2_i_4_n_0));
-  LUT3 #(
-    .INIT(8'h41)) 
+  LUT2 #(
+    .INIT(4'h8)) 
     rd_value2_carry__2_i_5
        (.I0(rd_value2_carry__2_i_9_n_0),
-        .I1(alu_src_t[30]),
-        .I2(alu_src_s[30]),
+        .I1(rd_value2_carry__2_i_10_n_0),
         .O(rd_value2_carry__2_i_5_n_0));
-  LUT4 #(
-    .INIT(16'h9009)) 
+  LUT2 #(
+    .INIT(4'h8)) 
     rd_value2_carry__2_i_6
-       (.I0(alu_src_t[29]),
-        .I1(alu_src_s[29]),
-        .I2(alu_src_t[28]),
-        .I3(alu_src_s[28]),
+       (.I0(rd_value2_carry__2_i_11_n_0),
+        .I1(rd_value2_carry__2_i_12_n_0),
         .O(rd_value2_carry__2_i_6_n_0));
-  LUT4 #(
-    .INIT(16'h9009)) 
+  LUT2 #(
+    .INIT(4'h8)) 
     rd_value2_carry__2_i_7
-       (.I0(alu_src_t[27]),
-        .I1(alu_src_s[27]),
-        .I2(alu_src_t[26]),
-        .I3(alu_src_s[26]),
+       (.I0(rd_value2_carry__2_i_13_n_0),
+        .I1(rd_value2_carry__2_i_14_n_0),
         .O(rd_value2_carry__2_i_7_n_0));
-  LUT4 #(
-    .INIT(16'h9009)) 
+  LUT2 #(
+    .INIT(4'h8)) 
     rd_value2_carry__2_i_8
-       (.I0(alu_src_t[25]),
-        .I1(alu_src_s[25]),
-        .I2(alu_src_t[24]),
-        .I3(alu_src_s[24]),
+       (.I0(rd_value2_carry__2_i_15_n_0),
+        .I1(rd_value2_carry__2_i_16_n_0),
         .O(rd_value2_carry__2_i_8_n_0));
   LUT6 #(
-    .INIT(64'h8CAE9DBF73516240)) 
+    .INIT(64'h5A559A9A5A559595)) 
     rd_value2_carry__2_i_9
-       (.I0(rs_forward[0]),
-        .I1(rs_forward[1]),
-        .I2(alu_result_back[31]),
-        .I3(write_back_data[31]),
-        .I4(rs[31]),
-        .I5(alu_src_t__95),
+       (.I0(rd_sub_carry__6_i_8_n_0),
+        .I1(write_back_data[31]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[31]),
+        .I4(rs_forward[1]),
+        .I5(rs[31]),
         .O(rd_value2_carry__2_i_9_n_0));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'hE888)) 
     rd_value2_carry_i_1
-       (.I0(alu_src_s[6]),
-        .I1(alu_src_t[6]),
-        .I2(alu_src_s[7]),
-        .I3(alu_src_t[7]),
+       (.I0(\rd_value[7]_INST_0_i_4_n_0 ),
+        .I1(alu_src_t[7]),
+        .I2(alu_src_t[6]),
+        .I3(\rd_value[6]_INST_0_i_4_n_0 ),
         .O(rd_value2_carry_i_1_n_0));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'h44D4)) 
     rd_value2_carry_i_2
-       (.I0(alu_src_s[4]),
-        .I1(alu_src_t[4]),
-        .I2(alu_src_s[5]),
-        .I3(alu_src_t[5]),
+       (.I0(alu_src_s[5]),
+        .I1(alu_src_t[5]),
+        .I2(alu_src_t[4]),
+        .I3(alu_src_s[4]),
         .O(rd_value2_carry_i_2_n_0));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'h44D4)) 
     rd_value2_carry_i_3
-       (.I0(alu_src_s[2]),
-        .I1(alu_src_t[2]),
-        .I2(alu_src_s[3]),
-        .I3(alu_src_t[3]),
+       (.I0(alu_src_s[3]),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[2]),
+        .I3(alu_src_s[2]),
         .O(rd_value2_carry_i_3_n_0));
   LUT4 #(
-    .INIT(16'h4F04)) 
+    .INIT(16'hD444)) 
     rd_value2_carry_i_4
-       (.I0(alu_src_s[0]),
-        .I1(alu_src_t[0]),
-        .I2(alu_src_s[1]),
-        .I3(alu_src_t[1]),
+       (.I0(alu_src_s[1]),
+        .I1(alu_src_t[1]),
+        .I2(alu_src_t[0]),
+        .I3(\rd_value[0]_INST_0_i_3_n_0 ),
         .O(rd_value2_carry_i_4_n_0));
   LUT4 #(
-    .INIT(16'h9009)) 
+    .INIT(16'h0660)) 
     rd_value2_carry_i_5
        (.I0(alu_src_t[7]),
-        .I1(alu_src_s[7]),
-        .I2(alu_src_t[6]),
-        .I3(alu_src_s[6]),
+        .I1(\rd_value[7]_INST_0_i_4_n_0 ),
+        .I2(\rd_value[6]_INST_0_i_4_n_0 ),
+        .I3(alu_src_t[6]),
         .O(rd_value2_carry_i_5_n_0));
   LUT4 #(
     .INIT(16'h9009)) 
     rd_value2_carry_i_6
        (.I0(alu_src_t[5]),
         .I1(alu_src_s[5]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_s[4]),
+        .I2(alu_src_s[4]),
+        .I3(alu_src_t[4]),
         .O(rd_value2_carry_i_6_n_0));
   LUT4 #(
     .INIT(16'h9009)) 
@@ -3906,3028 +3180,3287 @@ module bluex_alu_ex_0_0_alu_ex
         .I3(alu_src_s[2]),
         .O(rd_value2_carry_i_7_n_0));
   LUT4 #(
-    .INIT(16'h9009)) 
+    .INIT(16'h0990)) 
     rd_value2_carry_i_8
        (.I0(alu_src_t[1]),
         .I1(alu_src_s[1]),
         .I2(alu_src_t[0]),
-        .I3(alu_src_s[0]),
+        .I3(\rd_value[0]_INST_0_i_3_n_0 ),
         .O(rd_value2_carry_i_8_n_0));
   LUT6 #(
-    .INIT(64'hFFFFFFFFAAAAAA80)) 
+    .INIT(64'h30BB308830883088)) 
     \rd_value[0]_INST_0 
-       (.I0(\rd_value[0]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[0]_INST_0_i_2_n_0 ),
-        .I2(\rd_value[0]_INST_0_i_3_n_0 ),
-        .I3(\rd_value[0]_INST_0_i_4_n_0 ),
-        .I4(\rd_value[0]_INST_0_i_5_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_6_n_0 ),
+       (.I0(alu_src_t[0]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[0]_INST_0_i_1_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(data9),
+        .I5(\rd_value[0]_INST_0_i_2_n_0 ),
         .O(rd_value[0]));
   LUT6 #(
-    .INIT(64'hFFFFF7FFFFFF7FFF)) 
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \rd_value[0]_INST_0_i_1 
-       (.I0(\alu_op_reg_n_0_[1] ),
-        .I1(\alu_op_reg_n_0_[2] ),
-        .I2(\alu_op_reg_n_0_[3] ),
-        .I3(\alu_op_reg_n_0_[4] ),
-        .I4(alu_op),
-        .I5(\alu_op_reg_n_0_[0] ),
+       (.I0(data1[0]),
+        .I1(\rd_value[0]_INST_0_i_3_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[0]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[0]_INST_0_i_4_n_0 ),
         .O(\rd_value[0]_INST_0_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000001050581F12)) 
-    \rd_value[0]_INST_0_i_10 
-       (.I0(\alu_op_reg_n_0_[0] ),
-        .I1(\alu_op_reg_n_0_[4] ),
-        .I2(\alu_op_reg_n_0_[3] ),
-        .I3(\alu_op_reg_n_0_[2] ),
-        .I4(\alu_op_reg_n_0_[1] ),
-        .I5(alu_op),
-        .O(\rd_value[0]_INST_0_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'hEEDDFFEFFFCFCCCF)) 
-    \rd_value[0]_INST_0_i_11 
-       (.I0(\alu_op_reg_n_0_[0] ),
-        .I1(alu_op),
-        .I2(\alu_op_reg_n_0_[2] ),
-        .I3(\alu_op_reg_n_0_[3] ),
-        .I4(\alu_op_reg_n_0_[4] ),
-        .I5(\alu_op_reg_n_0_[1] ),
-        .O(\rd_value[0]_INST_0_i_11_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[0]_INST_0_i_12 
-       (.I0(data0[0]),
-        .I1(alu_src_s[0]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[0]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[0]_INST_0_i_12_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[0]_INST_0_i_13 
-       (.I0(alu_src_t[0]),
-        .I1(alu_src_t[16]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[24]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[8]),
-        .O(\rd_value[0]_INST_0_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000090000000300)) 
+  LUT5 #(
+    .INIT(32'h00100004)) 
     \rd_value[0]_INST_0_i_2 
-       (.I0(\alu_op_reg_n_0_[1] ),
-        .I1(\alu_op_reg_n_0_[4] ),
-        .I2(\alu_op_reg_n_0_[3] ),
-        .I3(\alu_op_reg_n_0_[2] ),
-        .I4(alu_op),
-        .I5(\alu_op_reg_n_0_[0] ),
+       (.I0(alu_op[1]),
+        .I1(alu_op[3]),
+        .I2(alu_op[5]),
+        .I3(alu_op[2]),
+        .I4(alu_op[4]),
         .O(\rd_value[0]_INST_0_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
     \rd_value[0]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_6_n_0 ),
-        .I1(\rd_value[0]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I3(\rd_value[0]_INST_0_i_8_n_0 ),
-        .I4(\rd_value[1]_INST_0_i_4_n_0 ),
-        .I5(\rd_value[30]_INST_0_i_9_n_0 ),
+       (.I0(write_back_data[0]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[0]),
+        .I3(rs_forward[1]),
+        .I4(rs[0]),
         .O(\rd_value[0]_INST_0_i_3_n_0 ));
   LUT4 #(
-    .INIT(16'h4000)) 
+    .INIT(16'h34A7)) 
     \rd_value[0]_INST_0_i_4 
-       (.I0(\rd_value[0]_INST_0_i_9_n_0 ),
-        .I1(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I2(data9),
-        .I3(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[0]_INST_0_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'h8B8BBB8800000000)) 
-    \rd_value[0]_INST_0_i_5 
-       (.I0(\rd_value[0]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I2(alu_src_s[0]),
-        .I3(data1[0]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_9_n_0 ),
-        .O(\rd_value[0]_INST_0_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
-  LUT2 #(
-    .INIT(4'h8)) 
-    \rd_value[0]_INST_0_i_6 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[0]),
-        .O(\rd_value[0]_INST_0_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
-  LUT4 #(
-    .INIT(16'h1000)) 
-    \rd_value[0]_INST_0_i_7 
-       (.I0(alu_src_t[1]),
-        .I1(alu_src_t[2]),
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
         .I2(alu_src_t[0]),
-        .I3(\rd_value[30]_INST_0_i_7_n_0 ),
-        .O(\rd_value[0]_INST_0_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[0]_INST_0_i_8 
-       (.I0(\rd_value[0]_INST_0_i_13_n_0 ),
-        .I1(\rd_value[4]_INST_0_i_6_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[6]_INST_0_i_7_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[2]_INST_0_i_6_n_0 ),
-        .O(\rd_value[0]_INST_0_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'h000026780000A6F0)) 
-    \rd_value[0]_INST_0_i_9 
-       (.I0(\alu_op_reg_n_0_[1] ),
-        .I1(\alu_op_reg_n_0_[2] ),
-        .I2(\alu_op_reg_n_0_[3] ),
-        .I3(\alu_op_reg_n_0_[4] ),
-        .I4(alu_op),
-        .I5(\alu_op_reg_n_0_[0] ),
-        .O(\rd_value[0]_INST_0_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
+        .I3(\rd_value[0]_INST_0_i_3_n_0 ),
+        .O(\rd_value[0]_INST_0_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  LUT4 #(
+    .INIT(16'h0838)) 
     \rd_value[10]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[10]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
+       (.I0(alu_src_t[10]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_4_n_0 ),
         .I3(\rd_value[10]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[10]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[10]_INST_0_i_3_n_0 ),
         .O(rd_value[10]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[10]_INST_0_i_1 
-       (.I0(\rd_value[10]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[11]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[10]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[10]_INST_0_i_2 
-       (.I0(\rd_value[11]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[10]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[10]_INST_0_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
+    .INIT(64'h303F303FAFAFA0A0)) 
+    \rd_value[10]_INST_0_i_1 
+       (.I0(alu_src_s[10]),
+        .I1(data1[10]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[10]),
+        .I4(\rd_value[10]_INST_0_i_3_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[10]_INST_0_i_1_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \rd_value[10]_INST_0_i_2 
+       (.CI(\rd_value[6]_INST_0_i_5_n_0 ),
+        .CO({\rd_value[10]_INST_0_i_2_n_0 ,\rd_value[10]_INST_0_i_2_n_1 ,\rd_value[10]_INST_0_i_2_n_2 ,\rd_value[10]_INST_0_i_2_n_3 }),
+        .CYINIT(1'b0),
+        .DI(alu_src_s[11:8]),
+        .O(data0[11:8]),
+        .S({\rd_value[10]_INST_0_i_4_n_0 ,\rd_value[10]_INST_0_i_5_n_0 ,\rd_value[10]_INST_0_i_6_n_0 ,\rd_value[10]_INST_0_i_7_n_0 }));
+  LUT4 #(
+    .INIT(16'h58CB)) 
     \rd_value[10]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[10]_INST_0_i_6_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[10]),
         .I3(alu_src_s[10]),
-        .I4(data1[10]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
         .O(\rd_value[10]_INST_0_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    .INIT(64'hCF44CF7730BB3088)) 
     \rd_value[10]_INST_0_i_4 
-       (.I0(\rd_value[16]_INST_0_i_9_n_0 ),
-        .I1(\rd_value[12]_INST_0_i_8_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[14]_INST_0_i_7_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[10]_INST_0_i_7_n_0 ),
+       (.I0(write_back_data[11]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[11]),
+        .I3(rs_forward[1]),
+        .I4(rs[11]),
+        .I5(alu_src_t[11]),
         .O(\rd_value[10]_INST_0_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'h08FF0800)) 
+  LUT6 #(
+    .INIT(64'hCF44CF7730BB3088)) 
     \rd_value[10]_INST_0_i_5 
-       (.I0(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I1(alu_src_t[7]),
-        .I2(alu_src_t[2]),
-        .I3(alu_src_t[1]),
-        .I4(\rd_value[12]_INST_0_i_5_n_0 ),
+       (.I0(write_back_data[10]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[10]),
+        .I3(rs_forward[1]),
+        .I4(rs[10]),
+        .I5(alu_src_t[10]),
         .O(\rd_value[10]_INST_0_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
+    .INIT(64'hCF44CF7730BB3088)) 
     \rd_value[10]_INST_0_i_6 
-       (.I0(data0[10]),
-        .I1(alu_src_s[10]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[10]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
+       (.I0(write_back_data[9]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[9]),
+        .I3(rs_forward[1]),
+        .I4(rs[9]),
+        .I5(alu_src_t[9]),
         .O(\rd_value[10]_INST_0_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
     \rd_value[10]_INST_0_i_7 
-       (.I0(alu_src_t[18]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[26]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[10]),
+       (.I0(alu_src_t[8]),
+        .I1(write_back_data[8]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[8]),
+        .I4(rs_forward[1]),
+        .I5(rs[8]),
         .O(\rd_value[10]_INST_0_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
-    \rd_value[11]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[11]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[11]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[11]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[11]_INST_0_i_3_n_0 ),
-        .O(rd_value[11]));
-  LUT6 #(
-    .INIT(64'hFFB8B8B8FF000000)) 
-    \rd_value[11]_INST_0_i_1 
-       (.I0(\rd_value[12]_INST_0_i_5_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[12]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[11]_INST_0_i_4_n_0 ),
-        .I4(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[11]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[11]_INST_0_i_2 
-       (.I0(\rd_value[12]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[11]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[11]_INST_0_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[11]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[11]_INST_0_i_6_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[11]),
-        .I4(data1[11]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[11]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[11]_INST_0_i_4 
-       (.I0(\rd_value[17]_INST_0_i_9_n_0 ),
-        .I1(\rd_value[13]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[15]_INST_0_i_8_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[11]_INST_0_i_7_n_0 ),
-        .O(\rd_value[11]_INST_0_i_4_n_0 ));
-  LUT4 #(
-    .INIT(16'h2F20)) 
-    \rd_value[11]_INST_0_i_5 
-       (.I0(\rd_value[15]_INST_0_i_9_n_0 ),
-        .I1(alu_src_t[2]),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[13]_INST_0_i_8_n_0 ),
-        .O(\rd_value[11]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[11]_INST_0_i_6 
-       (.I0(data0[11]),
-        .I1(alu_src_s[11]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[11]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[11]_INST_0_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \rd_value[11]_INST_0_i_7 
-       (.I0(alu_src_t[19]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[27]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[11]),
-        .O(\rd_value[11]_INST_0_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
-    \rd_value[12]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[12]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[12]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[12]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[12]_INST_0_i_3_n_0 ),
-        .O(rd_value[12]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[12]_INST_0_i_1 
-       (.I0(\rd_value[12]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[13]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[12]_INST_0_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFB8B8B8FF000000)) 
-    \rd_value[12]_INST_0_i_2 
-       (.I0(\rd_value[12]_INST_0_i_5_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[12]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[13]_INST_0_i_4_n_0 ),
-        .I4(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[12]_INST_0_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[12]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[12]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[12]),
-        .I4(data1[12]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[12]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[12]_INST_0_i_4 
-       (.I0(\rd_value[18]_INST_0_i_9_n_0 ),
-        .I1(\rd_value[14]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[16]_INST_0_i_9_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[12]_INST_0_i_8_n_0 ),
-        .O(\rd_value[12]_INST_0_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'h000030300000BB88)) 
-    \rd_value[12]_INST_0_i_5 
-       (.I0(alu_src_t[5]),
-        .I1(alu_src_t[2]),
-        .I2(alu_src_t[1]),
-        .I3(alu_src_t[9]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[3]),
-        .O(\rd_value[12]_INST_0_i_5_n_0 ));
-  LUT5 #(
-    .INIT(32'h003300B8)) 
-    \rd_value[12]_INST_0_i_6 
-       (.I0(alu_src_t[7]),
-        .I1(alu_src_t[2]),
-        .I2(alu_src_t[11]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[3]),
-        .O(\rd_value[12]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[12]_INST_0_i_7 
-       (.I0(data0[12]),
-        .I1(alu_src_s[12]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[12]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[12]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \rd_value[12]_INST_0_i_8 
-       (.I0(alu_src_t[20]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[28]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[12]),
-        .O(\rd_value[12]_INST_0_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
-    \rd_value[13]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[13]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[13]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[13]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[13]_INST_0_i_3_n_0 ),
-        .O(rd_value[13]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[13]_INST_0_i_1 
-       (.I0(\rd_value[13]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[14]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[13]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[13]_INST_0_i_2 
-       (.I0(\rd_value[14]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[13]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[13]_INST_0_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[13]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[13]_INST_0_i_6_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[13]),
-        .I4(data1[13]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[13]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[13]_INST_0_i_4 
-       (.I0(\rd_value[19]_INST_0_i_9_n_0 ),
-        .I1(\rd_value[15]_INST_0_i_8_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[17]_INST_0_i_9_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[13]_INST_0_i_7_n_0 ),
-        .O(\rd_value[13]_INST_0_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'hB8BBB888B888B888)) 
-    \rd_value[13]_INST_0_i_5 
-       (.I0(\rd_value[13]_INST_0_i_8_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[15]_INST_0_i_9_n_0 ),
-        .I3(alu_src_t[2]),
-        .I4(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I5(alu_src_t[12]),
-        .O(\rd_value[13]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[13]_INST_0_i_6 
-       (.I0(data0[13]),
-        .I1(alu_src_s[13]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[13]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[13]_INST_0_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \rd_value[13]_INST_0_i_7 
-       (.I0(alu_src_t[21]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[29]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[13]),
-        .O(\rd_value[13]_INST_0_i_7_n_0 ));
-  LUT5 #(
-    .INIT(32'h000000B8)) 
-    \rd_value[13]_INST_0_i_8 
-       (.I0(alu_src_t[6]),
-        .I1(alu_src_t[2]),
-        .I2(alu_src_t[10]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[3]),
-        .O(\rd_value[13]_INST_0_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
-    \rd_value[14]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[14]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[14]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[14]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[14]_INST_0_i_3_n_0 ),
-        .O(rd_value[14]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[14]_INST_0_i_1 
-       (.I0(\rd_value[14]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[15]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[14]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[14]_INST_0_i_2 
-       (.I0(\rd_value[15]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[14]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[14]_INST_0_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[14]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[14]_INST_0_i_6_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[14]),
-        .I4(data1[14]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[14]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[14]_INST_0_i_4 
-       (.I0(\rd_value[16]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[16]_INST_0_i_9_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[18]_INST_0_i_9_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[14]_INST_0_i_7_n_0 ),
-        .O(\rd_value[14]_INST_0_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \rd_value[14]_INST_0_i_5 
-       (.I0(\rd_value[12]_INST_0_i_6_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[16]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[2]),
-        .I4(\rd_value[20]_INST_0_i_9_n_0 ),
-        .O(\rd_value[14]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[14]_INST_0_i_6 
-       (.I0(data0[14]),
-        .I1(alu_src_s[14]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[14]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[14]_INST_0_i_6_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
-    \rd_value[14]_INST_0_i_7 
-       (.I0(alu_src_t[22]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[30]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[14]),
-        .O(\rd_value[14]_INST_0_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
-    \rd_value[15]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[15]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[15]_INST_0_i_2_n_0 ),
-        .I4(\rd_value[15]_INST_0_i_3_n_0 ),
-        .I5(\rd_value[15]_INST_0_i_4_n_0 ),
-        .O(rd_value[15]));
-  LUT6 #(
-    .INIT(64'h0020000000000000)) 
-    \rd_value[15]_INST_0_i_1 
-       (.I0(\alu_op_reg_n_0_[0] ),
-        .I1(alu_op),
-        .I2(\alu_op_reg_n_0_[4] ),
-        .I3(\alu_op_reg_n_0_[3] ),
-        .I4(\alu_op_reg_n_0_[2] ),
-        .I5(\alu_op_reg_n_0_[1] ),
-        .O(\rd_value[15]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[15]_INST_0_i_2 
-       (.I0(\rd_value[15]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[16]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[15]_INST_0_i_2_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[15]_INST_0_i_3 
-       (.I0(\rd_value[16]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[15]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[15]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[15]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[15]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[15]),
-        .I4(data1[15]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[15]_INST_0_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[15]_INST_0_i_5 
-       (.I0(\rd_value[17]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[17]_INST_0_i_9_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[19]_INST_0_i_9_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[15]_INST_0_i_8_n_0 ),
-        .O(\rd_value[15]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hB888FFFFB8880000)) 
-    \rd_value[15]_INST_0_i_6 
-       (.I0(\rd_value[15]_INST_0_i_9_n_0 ),
-        .I1(alu_src_t[2]),
-        .I2(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I3(alu_src_t[12]),
-        .I4(alu_src_t[1]),
-        .I5(\rd_value[17]_INST_0_i_10_n_0 ),
-        .O(\rd_value[15]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[15]_INST_0_i_7 
-       (.I0(data0[15]),
-        .I1(alu_src_s[15]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[15]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[15]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \rd_value[15]_INST_0_i_8 
-       (.I0(alu_src_t[23]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t__95),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[15]),
-        .O(\rd_value[15]_INST_0_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
-    \rd_value[15]_INST_0_i_9 
-       (.I0(alu_src_t[0]),
-        .I1(alu_src_t[8]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
-        .O(\rd_value[15]_INST_0_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
-    \rd_value[16]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[16]_INST_0_i_1_n_0 ),
-        .I2(\rd_value[16]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[0]),
-        .I5(\rd_value[16]_INST_0_i_4_n_0 ),
-        .O(rd_value[16]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[16]_INST_0_i_1 
-       (.I0(\rd_value[16]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[17]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[16]_INST_0_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
-    \rd_value[16]_INST_0_i_10 
-       (.I0(alu_src_t[1]),
-        .I1(alu_src_t[9]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
-        .O(\rd_value[16]_INST_0_i_10_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[16]_INST_0_i_2 
-       (.I0(\rd_value[17]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[16]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[16]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+    \rd_value[11]_INST_0 
+       (.I0(alu_src_t[11]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[11]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[11]_INST_0_i_3_n_0 ),
+        .O(rd_value[11]));
   LUT3 #(
     .INIT(8'hB8)) 
-    \rd_value[16]_INST_0_i_3 
+    \rd_value[11]_INST_0_i_1 
+       (.I0(\imm_reg_n_0_[11] ),
+        .I1(alu_src),
+        .I2(write_data[10]),
+        .O(alu_src_t[11]));
+  LUT6 #(
+    .INIT(64'hFC55FC55FC550055)) 
+    \rd_value[11]_INST_0_i_2 
+       (.I0(\rd_value[11]_INST_0_i_4_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(data1[11]),
+        .I3(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I4(\rd_value[11]_INST_0_i_5_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[11]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000022202)) 
+    \rd_value[11]_INST_0_i_3 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[15]_INST_0_i_6_n_0 ),
+        .I2(\rd_value[12]_INST_0_i_6_n_0 ),
+        .I3(alu_src_t[0]),
+        .I4(\rd_value[11]_INST_0_i_6_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
+        .O(\rd_value[11]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h55555555F0CF33C0)) 
+    \rd_value[11]_INST_0_i_4 
+       (.I0(data0[11]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(alu_src_t[11]),
+        .I4(\rd_value[11]_INST_0_i_5_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[11]_INST_0_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[11]_INST_0_i_5 
+       (.I0(write_back_data[11]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[11]),
+        .I3(rs_forward[1]),
+        .I4(rs[11]),
+        .O(\rd_value[11]_INST_0_i_5_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[11]_INST_0_i_6 
+       (.I0(\rd_value[11]_INST_0_i_7_n_0 ),
+        .I1(alu_src_t[1]),
+        .I2(\rd_value[13]_INST_0_i_7_n_0 ),
+        .O(\rd_value[11]_INST_0_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  LUT5 #(
+    .INIT(32'hFFFFFF1D)) 
+    \rd_value[11]_INST_0_i_7 
+       (.I0(alu_src_t[8]),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[0]),
+        .I3(alu_src_t[4]),
+        .I4(alu_src_t[2]),
+        .O(\rd_value[11]_INST_0_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \rd_value[12]_INST_0 
+       (.I0(alu_src_t[12]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[12]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[12]_INST_0_i_3_n_0 ),
+        .O(rd_value[12]));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[12]_INST_0_i_1 
+       (.I0(\imm_reg_n_0_[12] ),
+        .I1(alu_src),
+        .I2(write_data[11]),
+        .O(alu_src_t[12]));
+  LUT6 #(
+    .INIT(64'hCF550055CF55CF55)) 
+    \rd_value[12]_INST_0_i_2 
+       (.I0(\rd_value[12]_INST_0_i_4_n_0 ),
+        .I1(\rd_value[12]_INST_0_i_5_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I4(data1[12]),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[12]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000022202)) 
+    \rd_value[12]_INST_0_i_3 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[15]_INST_0_i_6_n_0 ),
+        .I2(\rd_value[13]_INST_0_i_6_n_0 ),
+        .I3(alu_src_t[0]),
+        .I4(\rd_value[12]_INST_0_i_6_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
+        .O(\rd_value[12]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h55555555F0CF33C0)) 
+    \rd_value[12]_INST_0_i_4 
+       (.I0(data0[12]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(alu_src_t[12]),
+        .I4(\rd_value[12]_INST_0_i_5_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[12]_INST_0_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[12]_INST_0_i_5 
+       (.I0(write_back_data[12]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[12]),
+        .I3(rs_forward[1]),
+        .I4(rs[12]),
+        .O(\rd_value[12]_INST_0_i_5_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[12]_INST_0_i_6 
+       (.I0(\rd_value[12]_INST_0_i_7_n_0 ),
+        .I1(alu_src_t[1]),
+        .I2(\rd_value[14]_INST_0_i_5_n_0 ),
+        .O(\rd_value[12]_INST_0_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFCF44FFFFCF77)) 
+    \rd_value[12]_INST_0_i_7 
+       (.I0(alu_src_t[5]),
+        .I1(alu_src_t[2]),
+        .I2(alu_src_t[1]),
+        .I3(alu_src_t[3]),
+        .I4(alu_src_t[4]),
+        .I5(alu_src_t[9]),
+        .O(\rd_value[12]_INST_0_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \rd_value[13]_INST_0 
+       (.I0(alu_src_t[13]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[13]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[13]_INST_0_i_3_n_0 ),
+        .O(rd_value[13]));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[13]_INST_0_i_1 
+       (.I0(\imm_reg_n_0_[13] ),
+        .I1(alu_src),
+        .I2(write_data[12]),
+        .O(alu_src_t[13]));
+  LUT6 #(
+    .INIT(64'hCF550055CF55CF55)) 
+    \rd_value[13]_INST_0_i_2 
+       (.I0(\rd_value[13]_INST_0_i_4_n_0 ),
+        .I1(\rd_value[13]_INST_0_i_5_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I4(data1[13]),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[13]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000022202)) 
+    \rd_value[13]_INST_0_i_3 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[15]_INST_0_i_6_n_0 ),
+        .I2(\rd_value[14]_INST_0_i_4_n_0 ),
+        .I3(alu_src_t[0]),
+        .I4(\rd_value[13]_INST_0_i_6_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
+        .O(\rd_value[13]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h55555555F0CF33C0)) 
+    \rd_value[13]_INST_0_i_4 
+       (.I0(data0[13]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(alu_src_t[13]),
+        .I4(\rd_value[13]_INST_0_i_5_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[13]_INST_0_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[13]_INST_0_i_5 
+       (.I0(write_back_data[13]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[13]),
+        .I3(rs_forward[1]),
+        .I4(rs[13]),
+        .O(\rd_value[13]_INST_0_i_5_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[13]_INST_0_i_6 
+       (.I0(\rd_value[13]_INST_0_i_7_n_0 ),
+        .I1(alu_src_t[1]),
+        .I2(\rd_value[15]_INST_0_i_19_n_0 ),
+        .O(\rd_value[13]_INST_0_i_6_n_0 ));
+  LUT5 #(
+    .INIT(32'hFFFFDDCF)) 
+    \rd_value[13]_INST_0_i_7 
+       (.I0(alu_src_t[6]),
+        .I1(alu_src_t[4]),
+        .I2(alu_src_t[10]),
+        .I3(alu_src_t[2]),
+        .I4(alu_src_t[3]),
+        .O(\rd_value[13]_INST_0_i_7_n_0 ));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \rd_value[14]_INST_0 
+       (.I0(alu_src_t[14]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[14]_INST_0_i_1_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[14]_INST_0_i_2_n_0 ),
+        .O(rd_value[14]));
+  LUT6 #(
+    .INIT(64'hAFA03F3FAFA03030)) 
+    \rd_value[14]_INST_0_i_1 
+       (.I0(data1[14]),
+        .I1(alu_src_s[14]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[14]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[14]_INST_0_i_3_n_0 ),
+        .O(\rd_value[14]_INST_0_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000022202)) 
+    \rd_value[14]_INST_0_i_2 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[15]_INST_0_i_6_n_0 ),
+        .I2(\rd_value[15]_INST_0_i_8_n_0 ),
+        .I3(alu_src_t[0]),
+        .I4(\rd_value[14]_INST_0_i_4_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
+        .O(\rd_value[14]_INST_0_i_2_n_0 ));
+  LUT4 #(
+    .INIT(16'h91DA)) 
+    \rd_value[14]_INST_0_i_3 
+       (.I0(alu_src_t[14]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(alu_src_s[14]),
+        .I3(\rd_value[31]_INST_0_i_13_n_0 ),
+        .O(\rd_value[14]_INST_0_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \rd_value[14]_INST_0_i_4 
+       (.I0(\rd_value[14]_INST_0_i_5_n_0 ),
+        .I1(alu_src_t[1]),
+        .I2(\rd_value[16]_INST_0_i_11_n_0 ),
+        .I3(alu_src_t[2]),
+        .I4(\rd_value[20]_INST_0_i_10_n_0 ),
+        .O(\rd_value[14]_INST_0_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hFCFCF4F7)) 
+    \rd_value[14]_INST_0_i_5 
+       (.I0(alu_src_t[7]),
+        .I1(alu_src_t[2]),
+        .I2(alu_src_t[4]),
+        .I3(alu_src_t[11]),
+        .I4(alu_src_t[3]),
+        .O(\rd_value[14]_INST_0_i_5_n_0 ));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \rd_value[15]_INST_0 
+       (.I0(alu_src_t[15]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[15]_INST_0_i_1_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[15]_INST_0_i_2_n_0 ),
+        .O(rd_value[15]));
+  LUT6 #(
+    .INIT(64'hFFF000F0AA33AA33)) 
+    \rd_value[15]_INST_0_i_1 
+       (.I0(data0[15]),
+        .I1(\rd_value[15]_INST_0_i_4_n_0 ),
+        .I2(\rd_value[15]_INST_0_i_5_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I4(data1[15]),
+        .I5(\rd_value[31]_INST_0_i_7_n_0 ),
+        .O(\rd_value[15]_INST_0_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[15]_INST_0_i_10 
+       (.I0(alu_src_t[14]),
+        .I1(write_back_data[14]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[14]),
+        .I4(rs_forward[1]),
+        .I5(rs[14]),
+        .O(\rd_value[15]_INST_0_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hCF44CF7730BB3088)) 
+    \rd_value[15]_INST_0_i_11 
+       (.I0(write_back_data[13]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[13]),
+        .I3(rs_forward[1]),
+        .I4(rs[13]),
+        .I5(alu_src_t[13]),
+        .O(\rd_value[15]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hCF44CF7730BB3088)) 
+    \rd_value[15]_INST_0_i_12 
+       (.I0(write_back_data[12]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[12]),
+        .I3(rs_forward[1]),
+        .I4(rs[12]),
+        .I5(alu_src_t[12]),
+        .O(\rd_value[15]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \rd_value[15]_INST_0_i_13 
+       (.I0(alu_src_t[15]),
+        .I1(rd_sub_carry__3_i_12_n_0),
+        .I2(\rd_value[15]_INST_0_i_20_n_0 ),
+        .I3(rd_sub_carry__3_i_9_n_0),
+        .I4(rd_sub_carry__4_i_12_n_0),
+        .I5(\rd_value[28]_INST_0_i_14_n_0 ),
+        .O(\rd_value[15]_INST_0_i_13_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \rd_value[15]_INST_0_i_14 
+       (.I0(alu_src_t[6]),
+        .I1(alu_src_t[5]),
+        .I2(alu_src_t[8]),
+        .I3(alu_src_t[7]),
+        .O(\rd_value[15]_INST_0_i_14_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \rd_value[15]_INST_0_i_15 
+       (.I0(alu_src_t[10]),
+        .I1(alu_src_t[9]),
+        .I2(alu_src_t[12]),
+        .I3(alu_src_t[11]),
+        .O(\rd_value[15]_INST_0_i_15_n_0 ));
+  LUT3 #(
+    .INIT(8'hFE)) 
+    \rd_value[15]_INST_0_i_16 
+       (.I0(rd_sub_carry__6_i_8_n_0),
+        .I1(rd_sub_carry__6_i_9_n_0),
+        .I2(rd_sub_carry__6_i_10_n_0),
+        .O(\rd_value[15]_INST_0_i_16_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \rd_value[15]_INST_0_i_17 
+       (.I0(rd_sub_carry__4_i_10_n_0),
+        .I1(rd_sub_carry__4_i_11_n_0),
+        .I2(rd_sub_carry__5_i_12_n_0),
+        .I3(rd_sub_carry__4_i_9_n_0),
+        .O(\rd_value[15]_INST_0_i_17_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \rd_value[15]_INST_0_i_18 
+       (.I0(rd_sub_carry__5_i_10_n_0),
+        .I1(rd_sub_carry__5_i_11_n_0),
+        .I2(rd_sub_carry__6_i_11_n_0),
+        .I3(rd_sub_carry__5_i_9_n_0),
+        .O(\rd_value[15]_INST_0_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF5F305F3F)) 
+    \rd_value[15]_INST_0_i_19 
+       (.I0(alu_src_t[0]),
+        .I1(alu_src_t[8]),
+        .I2(alu_src_t[2]),
+        .I3(alu_src_t[3]),
+        .I4(alu_src_t[12]),
+        .I5(alu_src_t[4]),
+        .O(\rd_value[15]_INST_0_i_19_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000022202)) 
+    \rd_value[15]_INST_0_i_2 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[15]_INST_0_i_6_n_0 ),
+        .I2(\rd_value[15]_INST_0_i_7_n_0 ),
+        .I3(alu_src_t[0]),
+        .I4(\rd_value[15]_INST_0_i_8_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
+        .O(\rd_value[15]_INST_0_i_2_n_0 ));
+  LUT5 #(
+    .INIT(32'hFFFACCFA)) 
+    \rd_value[15]_INST_0_i_20 
+       (.I0(write_data[12]),
+        .I1(\imm_reg_n_0_[13] ),
+        .I2(write_data[13]),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[14] ),
+        .O(\rd_value[15]_INST_0_i_20_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \rd_value[15]_INST_0_i_3 
+       (.CI(\rd_value[10]_INST_0_i_2_n_0 ),
+        .CO({\rd_value[15]_INST_0_i_3_n_0 ,\rd_value[15]_INST_0_i_3_n_1 ,\rd_value[15]_INST_0_i_3_n_2 ,\rd_value[15]_INST_0_i_3_n_3 }),
+        .CYINIT(1'b0),
+        .DI(alu_src_s[15:12]),
+        .O(data0[15:12]),
+        .S({\rd_value[15]_INST_0_i_9_n_0 ,\rd_value[15]_INST_0_i_10_n_0 ,\rd_value[15]_INST_0_i_11_n_0 ,\rd_value[15]_INST_0_i_12_n_0 }));
+  LUT4 #(
+    .INIT(16'hCB58)) 
+    \rd_value[15]_INST_0_i_4 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[15]),
+        .I3(\rd_value[15]_INST_0_i_5_n_0 ),
+        .O(\rd_value[15]_INST_0_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[15]_INST_0_i_5 
+       (.I0(write_back_data[15]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[15]),
+        .I3(rs_forward[1]),
+        .I4(rs[15]),
+        .O(\rd_value[15]_INST_0_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \rd_value[15]_INST_0_i_6 
+       (.I0(\rd_value[15]_INST_0_i_13_n_0 ),
+        .I1(\rd_value[15]_INST_0_i_14_n_0 ),
+        .I2(\rd_value[15]_INST_0_i_15_n_0 ),
+        .I3(\rd_value[15]_INST_0_i_16_n_0 ),
+        .I4(\rd_value[15]_INST_0_i_17_n_0 ),
+        .I5(\rd_value[15]_INST_0_i_18_n_0 ),
+        .O(\rd_value[15]_INST_0_i_6_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \rd_value[15]_INST_0_i_7 
+       (.I0(\rd_value[16]_INST_0_i_11_n_0 ),
+        .I1(alu_src_t[2]),
+        .I2(\rd_value[20]_INST_0_i_10_n_0 ),
+        .I3(alu_src_t[1]),
+        .I4(\rd_value[18]_INST_0_i_7_n_0 ),
+        .O(\rd_value[15]_INST_0_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[15]_INST_0_i_8 
+       (.I0(\rd_value[15]_INST_0_i_19_n_0 ),
+        .I1(alu_src_t[1]),
+        .I2(\rd_value[17]_INST_0_i_11_n_0 ),
+        .O(\rd_value[15]_INST_0_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hCF44CF7730BB3088)) 
+    \rd_value[15]_INST_0_i_9 
+       (.I0(write_back_data[15]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[15]),
+        .I3(rs_forward[1]),
+        .I4(rs[15]),
+        .I5(alu_src_t[15]),
+        .O(\rd_value[15]_INST_0_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'h8B00BB338B008B00)) 
+    \rd_value[16]_INST_0 
+       (.I0(alu_src_t[0]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[16]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[16]_INST_0_i_3_n_0 ),
+        .I5(\rd_value[16]_INST_0_i_4_n_0 ),
+        .O(rd_value[16]));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[16]_INST_0_i_1 
        (.I0(\imm_reg_n_0_[0] ),
         .I1(alu_src),
         .I2(write_data[0]),
         .O(alu_src_t[0]));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  LUT4 #(
+    .INIT(16'hF4F7)) 
+    \rd_value[16]_INST_0_i_10 
+       (.I0(rd_sub_carry__6_i_11_n_0),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[4]),
+        .I3(rd_sub_carry__4_i_12_n_0),
+        .O(\rd_value[16]_INST_0_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT4 #(
+    .INIT(16'hF4F7)) 
+    \rd_value[16]_INST_0_i_11 
+       (.I0(alu_src_t[1]),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[4]),
+        .I3(alu_src_t[9]),
+        .O(\rd_value[16]_INST_0_i_11_n_0 ));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[16]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
+    .INIT(64'h303F303F5F5F5050)) 
+    \rd_value[16]_INST_0_i_2 
+       (.I0(\rd_value[16]_INST_0_i_5_n_0 ),
+        .I1(data1[16]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[16]),
+        .I4(\rd_value[16]_INST_0_i_6_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[16]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000011111011)) 
+    \rd_value[16]_INST_0_i_3 
+       (.I0(\rd_value[17]_INST_0_i_7_n_0 ),
         .I1(\rd_value[16]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[16]),
-        .I4(data1[16]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[16]_INST_0_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[16]_INST_0_i_5 
-       (.I0(\rd_value[18]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[18]_INST_0_i_9_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[16]_INST_0_i_8_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[16]_INST_0_i_9_n_0 ),
-        .O(\rd_value[16]_INST_0_i_5_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \rd_value[16]_INST_0_i_6 
-       (.I0(\rd_value[16]_INST_0_i_10_n_0 ),
-        .I1(alu_src_t[2]),
-        .I2(\rd_value[20]_INST_0_i_9_n_0 ),
-        .I3(alu_src_t[1]),
-        .I4(\rd_value[18]_INST_0_i_10_n_0 ),
-        .O(\rd_value[16]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[16]_INST_0_i_7 
-       (.I0(data0[16]),
-        .I1(alu_src_s[16]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[16]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[16]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
-    \rd_value[16]_INST_0_i_8 
-       (.I0(alu_src_t[28]),
-        .I1(alu_src_t[20]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
-        .O(\rd_value[16]_INST_0_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
-    \rd_value[16]_INST_0_i_9 
-       (.I0(alu_src_t[24]),
-        .I1(alu_src_t[16]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
-        .O(\rd_value[16]_INST_0_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
-    \rd_value[17]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[17]_INST_0_i_1_n_0 ),
-        .I2(\rd_value[17]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
+        .I2(\rd_value[16]_INST_0_i_8_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_13_n_0 ),
         .I4(alu_src_t[1]),
-        .I5(\rd_value[17]_INST_0_i_4_n_0 ),
-        .O(rd_value[17]));
+        .I5(alu_src_t[0]),
+        .O(\rd_value[16]_INST_0_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[17]_INST_0_i_1 
-       (.I0(\rd_value[17]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[18]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[17]_INST_0_i_1_n_0 ));
+    .INIT(16'h4555)) 
+    \rd_value[16]_INST_0_i_4 
+       (.I0(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I1(\rd_value[16]_INST_0_i_9_n_0 ),
+        .I2(alu_src_t[0]),
+        .I3(\rd_value[17]_INST_0_i_8_n_0 ),
+        .O(\rd_value[16]_INST_0_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[16]_INST_0_i_5 
+       (.I0(write_back_data[16]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[16]),
+        .I3(rs_forward[1]),
+        .I4(rs[16]),
+        .O(\rd_value[16]_INST_0_i_5_n_0 ));
+  LUT4 #(
+    .INIT(16'hC5B8)) 
+    \rd_value[16]_INST_0_i_6 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(\rd_value[16]_INST_0_i_5_n_0 ),
+        .I3(rd_sub_carry__3_i_12_n_0),
+        .O(\rd_value[16]_INST_0_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT5 #(
+    .INIT(32'h00088808)) 
+    \rd_value[16]_INST_0_i_7 
+       (.I0(alu_src_t[1]),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(\rd_value[17]_INST_0_i_10_n_0 ),
+        .I3(alu_src_t[2]),
+        .I4(\rd_value[17]_INST_0_i_9_n_0 ),
+        .O(\rd_value[16]_INST_0_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h0000FCFC0000BB88)) 
+    .INIT(64'hFFFFFF470000FF47)) 
+    \rd_value[16]_INST_0_i_8 
+       (.I0(rd_sub_carry__5_i_12_n_0),
+        .I1(alu_src_t[3]),
+        .I2(rd_sub_carry__3_i_12_n_0),
+        .I3(alu_src_t[4]),
+        .I4(alu_src_t[2]),
+        .I5(\rd_value[16]_INST_0_i_10_n_0 ),
+        .O(\rd_value[16]_INST_0_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000474700FF)) 
+    \rd_value[16]_INST_0_i_9 
+       (.I0(\rd_value[16]_INST_0_i_11_n_0 ),
+        .I1(alu_src_t[2]),
+        .I2(\rd_value[20]_INST_0_i_10_n_0 ),
+        .I3(\rd_value[18]_INST_0_i_7_n_0 ),
+        .I4(alu_src_t[1]),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
+        .O(\rd_value[16]_INST_0_i_9_n_0 ));
+  LUT5 #(
+    .INIT(32'hBB338B00)) 
+    \rd_value[17]_INST_0 
+       (.I0(alu_src_t[1]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[17]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[17]_INST_0_i_3_n_0 ),
+        .O(rd_value[17]));
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \rd_value[17]_INST_0_i_1 
+       (.I0(write_data[1]),
+        .I1(\imm_reg_n_0_[1] ),
+        .I2(alu_src),
+        .O(alu_src_t[1]));
+  LUT4 #(
+    .INIT(16'hFF47)) 
     \rd_value[17]_INST_0_i_10 
+       (.I0(rd_sub_carry__5_i_10_n_0),
+        .I1(alu_src_t[3]),
+        .I2(rd_sub_carry__3_i_10_n_0),
+        .I3(alu_src_t[4]),
+        .O(\rd_value[17]_INST_0_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFF0344FFFF0377)) 
+    \rd_value[17]_INST_0_i_11 
        (.I0(alu_src_t[10]),
         .I1(alu_src_t[2]),
         .I2(alu_src_t[6]),
-        .I3(alu_src_t[14]),
+        .I3(alu_src_t[3]),
         .I4(alu_src_t[4]),
-        .I5(alu_src_t[3]),
-        .O(\rd_value[17]_INST_0_i_10_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[17]_INST_0_i_2 
-       (.I0(\rd_value[18]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[17]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[17]_INST_0_i_2_n_0 ));
+        .I5(alu_src_t[14]),
+        .O(\rd_value[17]_INST_0_i_11_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'h04)) 
+    \rd_value[17]_INST_0_i_12 
+       (.I0(alu_src_t[4]),
+        .I1(alu_src_t[12]),
+        .I2(alu_src_t[3]),
+        .O(\rd_value[17]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hF505F3F3F5050303)) 
+    \rd_value[17]_INST_0_i_13 
+       (.I0(\rd_value[17]_INST_0_i_16_n_0 ),
+        .I1(\rd_value[22]_INST_0_i_15_n_0 ),
+        .I2(alu_src_t[2]),
+        .I3(\rd_value[17]_INST_0_i_17_n_0 ),
+        .I4(alu_src_t[3]),
+        .I5(\rd_value[17]_INST_0_i_18_n_0 ),
+        .O(\rd_value[17]_INST_0_i_13_n_0 ));
+  LUT4 #(
+    .INIT(16'h00B8)) 
+    \rd_value[17]_INST_0_i_14 
+       (.I0(rd_sub_carry__5_i_11_n_0),
+        .I1(alu_src_t[3]),
+        .I2(rd_sub_carry__3_i_11_n_0),
+        .I3(alu_src_t[4]),
+        .O(\rd_value[17]_INST_0_i_14_n_0 ));
+  LUT4 #(
+    .INIT(16'hF4F7)) 
+    \rd_value[17]_INST_0_i_15 
+       (.I0(rd_sub_carry__6_i_10_n_0),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[4]),
+        .I3(rd_sub_carry__4_i_11_n_0),
+        .O(\rd_value[17]_INST_0_i_15_n_0 ));
+  LUT5 #(
+    .INIT(32'h000ACC0A)) 
+    \rd_value[17]_INST_0_i_16 
+       (.I0(write_data[26]),
+        .I1(\imm_reg_n_0_[27] ),
+        .I2(\rt_forward_reg[0]_0 ),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[4] ),
+        .O(\rd_value[17]_INST_0_i_16_n_0 ));
+  LUT5 #(
+    .INIT(32'hCCAFFFAF)) 
+    \rd_value[17]_INST_0_i_17 
+       (.I0(\rt_forward_reg[0]_0 ),
+        .I1(\imm_reg_n_0_[4] ),
+        .I2(write_data[30]),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[31] ),
+        .O(\rd_value[17]_INST_0_i_17_n_0 ));
+  LUT5 #(
+    .INIT(32'hCCAFFFAF)) 
+    \rd_value[17]_INST_0_i_18 
+       (.I0(\rt_forward_reg[0]_0 ),
+        .I1(\imm_reg_n_0_[4] ),
+        .I2(write_data[22]),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[23] ),
+        .O(\rd_value[17]_INST_0_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'h303F303F5F5F5050)) 
+    \rd_value[17]_INST_0_i_2 
+       (.I0(\rd_value[17]_INST_0_i_4_n_0 ),
+        .I1(data1[17]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[17]),
+        .I4(\rd_value[17]_INST_0_i_5_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[17]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000EEEE0FFF)) 
     \rd_value[17]_INST_0_i_3 
-       (.I0(\imm_reg_n_0_[1] ),
-        .I1(alu_src),
-        .I2(write_data[1]),
-        .O(alu_src_t[1]));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[17]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
+       (.I0(\rd_value[17]_INST_0_i_6_n_0 ),
         .I1(\rd_value[17]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[17]),
-        .I4(data1[17]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[17]_INST_0_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[17]_INST_0_i_5 
-       (.I0(\rd_value[19]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[19]_INST_0_i_9_n_0 ),
-        .I2(alu_src_t[1]),
+        .I2(\rd_value[18]_INST_0_i_6_n_0 ),
         .I3(\rd_value[17]_INST_0_i_8_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[17]_INST_0_i_9_n_0 ),
+        .I4(alu_src_t[0]),
+        .I5(\rd_value[28]_INST_0_i_3_n_0 ),
+        .O(\rd_value[17]_INST_0_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[17]_INST_0_i_4 
+       (.I0(write_back_data[17]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[17]),
+        .I3(rs_forward[1]),
+        .I4(rs[17]),
+        .O(\rd_value[17]_INST_0_i_4_n_0 ));
+  LUT4 #(
+    .INIT(16'hC5B8)) 
+    \rd_value[17]_INST_0_i_5 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(\rd_value[17]_INST_0_i_4_n_0 ),
+        .I3(rd_sub_carry__3_i_11_n_0),
         .O(\rd_value[17]_INST_0_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'hB888BBBBB8888888)) 
+    .INIT(64'h55550000303F0000)) 
     \rd_value[17]_INST_0_i_6 
-       (.I0(\rd_value[17]_INST_0_i_10_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I3(alu_src_t[12]),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[23]_INST_0_i_8_n_0 ),
+       (.I0(\rd_value[20]_INST_0_i_9_n_0 ),
+        .I1(\rd_value[17]_INST_0_i_9_n_0 ),
+        .I2(alu_src_t[2]),
+        .I3(\rd_value[17]_INST_0_i_10_n_0 ),
+        .I4(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I5(alu_src_t[1]),
         .O(\rd_value[17]_INST_0_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
+    .INIT(64'h0704070707040404)) 
     \rd_value[17]_INST_0_i_7 
-       (.I0(data0[17]),
-        .I1(alu_src_s[17]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[17]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
+       (.I0(\rd_value[17]_INST_0_i_11_n_0 ),
+        .I1(alu_src_t[1]),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[17]_INST_0_i_12_n_0 ),
+        .I4(alu_src_t[2]),
+        .I5(\rd_value[23]_INST_0_i_12_n_0 ),
         .O(\rd_value[17]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
+  LUT6 #(
+    .INIT(64'hAAAAFFFFF303FFFF)) 
     \rd_value[17]_INST_0_i_8 
-       (.I0(alu_src_t[29]),
-        .I1(alu_src_t[21]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
+       (.I0(\rd_value[17]_INST_0_i_13_n_0 ),
+        .I1(\rd_value[17]_INST_0_i_14_n_0 ),
+        .I2(alu_src_t[2]),
+        .I3(\rd_value[17]_INST_0_i_15_n_0 ),
+        .I4(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I5(alu_src_t[1]),
         .O(\rd_value[17]_INST_0_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
-    .INIT(16'h0A0C)) 
+    .INIT(16'hF4F7)) 
     \rd_value[17]_INST_0_i_9 
-       (.I0(alu_src_t[25]),
-        .I1(alu_src_t[17]),
+       (.I0(rd_sub_carry__6_i_9_n_0),
+        .I1(alu_src_t[3]),
         .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
+        .I3(rd_sub_carry__4_i_10_n_0),
         .O(\rd_value[17]_INST_0_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
+    .INIT(64'h8B00BB338B008B00)) 
     \rd_value[18]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[18]_INST_0_i_1_n_0 ),
+       (.I0(alu_src_t[2]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
         .I2(\rd_value[18]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[18]_INST_0_i_4_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[18]_INST_0_i_3_n_0 ),
+        .I5(\rd_value[21]_INST_0_i_3_n_0 ),
         .O(rd_value[18]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[18]_INST_0_i_1 
-       (.I0(\rd_value[18]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[19]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[18]_INST_0_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000FCFC0000BB88)) 
-    \rd_value[18]_INST_0_i_10 
-       (.I0(alu_src_t[11]),
-        .I1(alu_src_t[2]),
-        .I2(alu_src_t[7]),
-        .I3(alu_src_t[15]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[3]),
-        .O(\rd_value[18]_INST_0_i_10_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[18]_INST_0_i_2 
-       (.I0(\rd_value[19]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[18]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[18]_INST_0_i_2_n_0 ));
   LUT3 #(
     .INIT(8'hB8)) 
-    \rd_value[18]_INST_0_i_3 
+    \rd_value[18]_INST_0_i_1 
        (.I0(\imm_reg_n_0_[2] ),
         .I1(alu_src),
         .I2(write_data[2]),
         .O(alu_src_t[2]));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[18]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[18]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[18]),
-        .I4(data1[18]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[18]_INST_0_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \rd_value[18]_INST_0_i_5 
-       (.I0(\rd_value[20]_INST_0_i_6_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[18]_INST_0_i_8_n_0 ),
-        .I3(alu_src_t[2]),
-        .I4(\rd_value[18]_INST_0_i_9_n_0 ),
-        .O(\rd_value[18]_INST_0_i_5_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \rd_value[18]_INST_0_i_6 
-       (.I0(\rd_value[18]_INST_0_i_10_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[20]_INST_0_i_9_n_0 ),
-        .I3(alu_src_t[2]),
-        .I4(\rd_value[24]_INST_0_i_9_n_0 ),
-        .O(\rd_value[18]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[18]_INST_0_i_7 
-       (.I0(data0[18]),
-        .I1(alu_src_s[18]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[18]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[18]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
-    \rd_value[18]_INST_0_i_8 
-       (.I0(alu_src_t[30]),
-        .I1(alu_src_t[22]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
-        .O(\rd_value[18]_INST_0_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
-    \rd_value[18]_INST_0_i_9 
-       (.I0(alu_src_t[26]),
-        .I1(alu_src_t[18]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
-        .O(\rd_value[18]_INST_0_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
-    \rd_value[19]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[19]_INST_0_i_1_n_0 ),
-        .I2(\rd_value[19]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[3]),
-        .I5(\rd_value[19]_INST_0_i_4_n_0 ),
-        .O(rd_value[19]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[19]_INST_0_i_1 
-       (.I0(\rd_value[19]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[20]_INST_0_i_7_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[19]_INST_0_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
-  LUT2 #(
-    .INIT(4'h8)) 
-    \rd_value[19]_INST_0_i_10 
-       (.I0(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I1(alu_src_t[12]),
-        .O(\rd_value[19]_INST_0_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFB800B800B800)) 
-    \rd_value[19]_INST_0_i_2 
-       (.I0(\rd_value[20]_INST_0_i_5_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[20]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I4(\rd_value[19]_INST_0_i_6_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[19]_INST_0_i_2_n_0 ));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \rd_value[19]_INST_0_i_3 
-       (.I0(\imm_reg_n_0_[3] ),
-        .I1(alu_src),
-        .I2(write_data[3]),
-        .O(alu_src_t[3]));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[19]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[19]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[19]),
-        .I4(data1[19]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[19]_INST_0_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \rd_value[19]_INST_0_i_5 
-       (.I0(\rd_value[21]_INST_0_i_6_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[19]_INST_0_i_8_n_0 ),
-        .I3(alu_src_t[2]),
-        .I4(\rd_value[19]_INST_0_i_9_n_0 ),
-        .O(\rd_value[19]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[19]_INST_0_i_6 
-       (.I0(\rd_value[19]_INST_0_i_10_n_0 ),
-        .I1(\rd_value[23]_INST_0_i_8_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[21]_INST_0_i_9_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[25]_INST_0_i_9_n_0 ),
-        .O(\rd_value[19]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[19]_INST_0_i_7 
-       (.I0(data0[19]),
-        .I1(alu_src_s[19]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[19]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[19]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
-    \rd_value[19]_INST_0_i_8 
-       (.I0(alu_src_t__95),
-        .I1(alu_src_t[23]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
-        .O(\rd_value[19]_INST_0_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
-    \rd_value[19]_INST_0_i_9 
-       (.I0(alu_src_t[27]),
-        .I1(alu_src_t[19]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
-        .O(\rd_value[19]_INST_0_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
-    \rd_value[1]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[1]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[1]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[1]_INST_0_i_3_n_0 ),
-        .O(rd_value[1]));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
-  LUT5 #(
-    .INIT(32'h00080000)) 
-    \rd_value[1]_INST_0_i_1 
-       (.I0(alu_src_t[0]),
-        .I1(\rd_value[31]_INST_0_i_11_n_0 ),
-        .I2(alu_src_t[2]),
-        .I3(alu_src_t[1]),
-        .I4(\rd_value[30]_INST_0_i_7_n_0 ),
-        .O(\rd_value[1]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[1]_INST_0_i_2 
-       (.I0(\rd_value[2]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[1]_INST_0_i_4_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_8_n_0 ),
-        .O(\rd_value[1]_INST_0_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[1]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[1]_INST_0_i_5_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[1]),
-        .I4(data1[1]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[1]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFCFCFA0AFC0CFA0A)) 
-    \rd_value[1]_INST_0_i_4 
-       (.I0(\rd_value[1]_INST_0_i_6_n_0 ),
-        .I1(\rd_value[5]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[3]_INST_0_i_7_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[7]_INST_0_i_7_n_0 ),
-        .O(\rd_value[1]_INST_0_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[1]_INST_0_i_5 
-       (.I0(data0[1]),
-        .I1(alu_src_s[1]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[1]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[1]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[1]_INST_0_i_6 
-       (.I0(alu_src_t[1]),
-        .I1(alu_src_t[17]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[25]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[9]),
-        .O(\rd_value[1]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
-    \rd_value[20]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[20]_INST_0_i_1_n_0 ),
-        .I2(\rd_value[20]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[4]),
-        .I5(\rd_value[20]_INST_0_i_4_n_0 ),
-        .O(rd_value[20]));
-  LUT6 #(
-    .INIT(64'hFFFFB800B800B800)) 
-    \rd_value[20]_INST_0_i_1 
-       (.I0(\rd_value[20]_INST_0_i_5_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[20]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I4(\rd_value[21]_INST_0_i_7_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[20]_INST_0_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFB800B800B800)) 
-    \rd_value[20]_INST_0_i_2 
-       (.I0(\rd_value[21]_INST_0_i_5_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[21]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I4(\rd_value[20]_INST_0_i_7_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[20]_INST_0_i_2_n_0 ));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \rd_value[20]_INST_0_i_3 
-       (.I0(\imm_reg_n_0_[4] ),
-        .I1(alu_src),
-        .I2(write_data[4]),
-        .O(alu_src_t[4]));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[20]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[20]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[20]),
-        .I4(data1[20]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[20]_INST_0_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'h000030300000BB88)) 
-    \rd_value[20]_INST_0_i_5 
-       (.I0(alu_src_t[26]),
-        .I1(alu_src_t[2]),
-        .I2(alu_src_t[30]),
-        .I3(alu_src_t[22]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[3]),
-        .O(\rd_value[20]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h000030300000BB88)) 
-    \rd_value[20]_INST_0_i_6 
-       (.I0(alu_src_t[24]),
-        .I1(alu_src_t[2]),
-        .I2(alu_src_t[28]),
-        .I3(alu_src_t[20]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[3]),
-        .O(\rd_value[20]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[20]_INST_0_i_7 
-       (.I0(\rd_value[20]_INST_0_i_9_n_0 ),
-        .I1(\rd_value[24]_INST_0_i_9_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[22]_INST_0_i_8_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[26]_INST_0_i_8_n_0 ),
-        .O(\rd_value[20]_INST_0_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[20]_INST_0_i_8 
-       (.I0(data0[20]),
-        .I1(alu_src_s[20]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[20]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[20]_INST_0_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
-    \rd_value[20]_INST_0_i_9 
-       (.I0(alu_src_t[5]),
-        .I1(alu_src_t[13]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
-        .O(\rd_value[20]_INST_0_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
-    \rd_value[21]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[21]_INST_0_i_1_n_0 ),
-        .I2(\rd_value[21]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[5]),
-        .I5(\rd_value[21]_INST_0_i_4_n_0 ),
-        .O(rd_value[21]));
-  LUT6 #(
-    .INIT(64'hFFFFB800B800B800)) 
-    \rd_value[21]_INST_0_i_1 
-       (.I0(\rd_value[21]_INST_0_i_5_n_0 ),
-        .I1(alu_src_t[1]),
-        .I2(\rd_value[21]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I4(\rd_value[22]_INST_0_i_6_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[21]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[21]_INST_0_i_2 
-       (.I0(\rd_value[22]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[21]_INST_0_i_7_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[21]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \rd_value[21]_INST_0_i_3 
-       (.I0(\imm_reg_n_0_[5] ),
-        .I1(alu_src),
-        .I2(write_data[5]),
-        .O(alu_src_t[5]));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[21]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[21]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[21]),
-        .I4(data1[21]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[21]_INST_0_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'h000030300000BB88)) 
-    \rd_value[21]_INST_0_i_5 
-       (.I0(alu_src_t[27]),
-        .I1(alu_src_t[2]),
-        .I2(alu_src_t__95),
-        .I3(alu_src_t[23]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[3]),
-        .O(\rd_value[21]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h000030300000BB88)) 
-    \rd_value[21]_INST_0_i_6 
-       (.I0(alu_src_t[25]),
-        .I1(alu_src_t[2]),
-        .I2(alu_src_t[29]),
-        .I3(alu_src_t[21]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[3]),
-        .O(\rd_value[21]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[21]_INST_0_i_7 
-       (.I0(\rd_value[21]_INST_0_i_9_n_0 ),
-        .I1(\rd_value[25]_INST_0_i_9_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[23]_INST_0_i_8_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[27]_INST_0_i_8_n_0 ),
-        .O(\rd_value[21]_INST_0_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[21]_INST_0_i_8 
-       (.I0(data0[21]),
-        .I1(alu_src_s[21]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[21]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[21]_INST_0_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
-    \rd_value[21]_INST_0_i_9 
-       (.I0(alu_src_t[6]),
-        .I1(alu_src_t[14]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
-        .O(\rd_value[21]_INST_0_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
-    \rd_value[22]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[22]_INST_0_i_1_n_0 ),
-        .I2(\rd_value[22]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[6]),
-        .I5(\rd_value[22]_INST_0_i_4_n_0 ),
-        .O(rd_value[22]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[22]_INST_0_i_1 
-       (.I0(\rd_value[22]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[23]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[22]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[22]_INST_0_i_2 
-       (.I0(\rd_value[23]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[22]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[22]_INST_0_i_2_n_0 ));
+    .INIT(64'h303F303F5F5F5050)) 
+    \rd_value[18]_INST_0_i_2 
+       (.I0(\rd_value[18]_INST_0_i_4_n_0 ),
+        .I1(data1[18]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[18]),
+        .I4(\rd_value[18]_INST_0_i_5_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[18]_INST_0_i_2_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
-    \rd_value[22]_INST_0_i_3 
-       (.I0(\imm_reg_n_0_[6] ),
-        .I1(alu_src),
-        .I2(write_data[6]),
-        .O(alu_src_t[6]));
+    .INIT(8'h08)) 
+    \rd_value[18]_INST_0_i_3 
+       (.I0(\rd_value[18]_INST_0_i_6_n_0 ),
+        .I1(alu_src_t[0]),
+        .I2(\rd_value[19]_INST_0_i_8_n_0 ),
+        .O(\rd_value[18]_INST_0_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[18]_INST_0_i_4 
+       (.I0(write_back_data[18]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[18]),
+        .I3(rs_forward[1]),
+        .I4(rs[18]),
+        .O(\rd_value[18]_INST_0_i_4_n_0 ));
+  LUT4 #(
+    .INIT(16'hC5B8)) 
+    \rd_value[18]_INST_0_i_5 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(\rd_value[18]_INST_0_i_4_n_0 ),
+        .I3(rd_sub_carry__3_i_10_n_0),
+        .O(\rd_value[18]_INST_0_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[22]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[22]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[22]),
-        .I4(data1[22]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[22]_INST_0_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'hB080FFFFB0800000)) 
-    \rd_value[22]_INST_0_i_5 
-       (.I0(alu_src_t[28]),
-        .I1(alu_src_t[2]),
-        .I2(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I3(alu_src_t[24]),
+    .INIT(64'hFFFFFFFFFF00C5C5)) 
+    \rd_value[18]_INST_0_i_6 
+       (.I0(\rd_value[24]_INST_0_i_10_n_0 ),
+        .I1(\rd_value[20]_INST_0_i_10_n_0 ),
+        .I2(alu_src_t[2]),
+        .I3(\rd_value[18]_INST_0_i_7_n_0 ),
         .I4(alu_src_t[1]),
-        .I5(\rd_value[20]_INST_0_i_5_n_0 ),
-        .O(\rd_value[22]_INST_0_i_5_n_0 ));
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
+        .O(\rd_value[18]_INST_0_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[22]_INST_0_i_6 
-       (.I0(\rd_value[22]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[26]_INST_0_i_8_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[24]_INST_0_i_9_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[28]_INST_0_i_8_n_0 ),
-        .O(\rd_value[22]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[22]_INST_0_i_7 
-       (.I0(data0[22]),
-        .I1(alu_src_s[22]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[22]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[22]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT4 #(
-    .INIT(16'h0A0C)) 
-    \rd_value[22]_INST_0_i_8 
-       (.I0(alu_src_t[7]),
-        .I1(alu_src_t[15]),
-        .I2(alu_src_t[4]),
+    .INIT(64'hFFFF0344FFFF0377)) 
+    \rd_value[18]_INST_0_i_7 
+       (.I0(alu_src_t[11]),
+        .I1(alu_src_t[2]),
+        .I2(alu_src_t[7]),
         .I3(alu_src_t[3]),
-        .O(\rd_value[22]_INST_0_i_8_n_0 ));
+        .I4(alu_src_t[4]),
+        .I5(alu_src_t[15]),
+        .O(\rd_value[18]_INST_0_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
-    \rd_value[23]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[23]_INST_0_i_1_n_0 ),
-        .I2(\rd_value[23]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[7]),
-        .I5(\rd_value[23]_INST_0_i_4_n_0 ),
-        .O(rd_value[23]));
+    .INIT(64'h8B00BB338B008B00)) 
+    \rd_value[19]_INST_0 
+       (.I0(alu_src_t[3]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[19]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[19]_INST_0_i_3_n_0 ),
+        .I5(\rd_value[19]_INST_0_i_4_n_0 ),
+        .O(rd_value[19]));
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \rd_value[19]_INST_0_i_1 
+       (.I0(write_data[3]),
+        .I1(\imm_reg_n_0_[3] ),
+        .I2(alu_src),
+        .O(alu_src_t[3]));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[19]_INST_0_i_10 
+       (.I0(rd_sub_carry__3_i_9_n_0),
+        .I1(write_back_data[19]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[19]),
+        .I4(rs_forward[1]),
+        .I5(rs[19]),
+        .O(\rd_value[19]_INST_0_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[19]_INST_0_i_11 
+       (.I0(rd_sub_carry__3_i_10_n_0),
+        .I1(write_back_data[18]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[18]),
+        .I4(rs_forward[1]),
+        .I5(rs[18]),
+        .O(\rd_value[19]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[19]_INST_0_i_12 
+       (.I0(rd_sub_carry__3_i_11_n_0),
+        .I1(write_back_data[17]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[17]),
+        .I4(rs_forward[1]),
+        .I5(rs[17]),
+        .O(\rd_value[19]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[19]_INST_0_i_13 
+       (.I0(rd_sub_carry__3_i_12_n_0),
+        .I1(write_back_data[16]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[16]),
+        .I4(rs_forward[1]),
+        .I5(rs[16]),
+        .O(\rd_value[19]_INST_0_i_13_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[23]_INST_0_i_1 
-       (.I0(\rd_value[23]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[24]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[23]_INST_0_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+    .INIT(16'h00B8)) 
+    \rd_value[19]_INST_0_i_14 
+       (.I0(rd_sub_carry__5_i_9_n_0),
+        .I1(alu_src_t[3]),
+        .I2(rd_sub_carry__3_i_9_n_0),
+        .I3(alu_src_t[4]),
+        .O(\rd_value[19]_INST_0_i_14_n_0 ));
   LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[23]_INST_0_i_2 
-       (.I0(\rd_value[24]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[23]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[23]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+    .INIT(16'hF4F7)) 
+    \rd_value[19]_INST_0_i_15 
+       (.I0(rd_sub_carry__6_i_8_n_0),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[4]),
+        .I3(rd_sub_carry__4_i_9_n_0),
+        .O(\rd_value[19]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'h303F303F5F5F5050)) 
+    \rd_value[19]_INST_0_i_2 
+       (.I0(\rd_value[19]_INST_0_i_5_n_0 ),
+        .I1(data1[19]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[19]),
+        .I4(\rd_value[19]_INST_0_i_7_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[19]_INST_0_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  LUT4 #(
+    .INIT(16'hABAA)) 
+    \rd_value[19]_INST_0_i_3 
+       (.I0(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I1(alu_src_t[0]),
+        .I2(\rd_value[19]_INST_0_i_8_n_0 ),
+        .I3(\rd_value[20]_INST_0_i_8_n_0 ),
+        .O(\rd_value[19]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF2320FFFF)) 
+    \rd_value[19]_INST_0_i_4 
+       (.I0(\rd_value[19]_INST_0_i_9_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[21]_INST_0_i_8_n_0 ),
+        .I4(alu_src_t[0]),
+        .I5(\rd_value[20]_INST_0_i_7_n_0 ),
+        .O(\rd_value[19]_INST_0_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[19]_INST_0_i_5 
+       (.I0(write_back_data[19]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[19]),
+        .I3(rs_forward[1]),
+        .I4(rs[19]),
+        .O(\rd_value[19]_INST_0_i_5_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \rd_value[19]_INST_0_i_6 
+       (.CI(\rd_value[15]_INST_0_i_3_n_0 ),
+        .CO({\rd_value[19]_INST_0_i_6_n_0 ,\rd_value[19]_INST_0_i_6_n_1 ,\rd_value[19]_INST_0_i_6_n_2 ,\rd_value[19]_INST_0_i_6_n_3 }),
+        .CYINIT(1'b0),
+        .DI(alu_src_s[19:16]),
+        .O(data0[19:16]),
+        .S({\rd_value[19]_INST_0_i_10_n_0 ,\rd_value[19]_INST_0_i_11_n_0 ,\rd_value[19]_INST_0_i_12_n_0 ,\rd_value[19]_INST_0_i_13_n_0 }));
+  LUT4 #(
+    .INIT(16'hC5B8)) 
+    \rd_value[19]_INST_0_i_7 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(\rd_value[19]_INST_0_i_5_n_0 ),
+        .I3(rd_sub_carry__3_i_9_n_0),
+        .O(\rd_value[19]_INST_0_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'h555500000CFC0000)) 
+    \rd_value[19]_INST_0_i_8 
+       (.I0(\rd_value[21]_INST_0_i_9_n_0 ),
+        .I1(\rd_value[19]_INST_0_i_14_n_0 ),
+        .I2(alu_src_t[2]),
+        .I3(\rd_value[19]_INST_0_i_15_n_0 ),
+        .I4(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I5(alu_src_t[1]),
+        .O(\rd_value[19]_INST_0_i_8_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  LUT5 #(
+    .INIT(32'h04FF0400)) 
+    \rd_value[19]_INST_0_i_9 
+       (.I0(alu_src_t[4]),
+        .I1(alu_src_t[12]),
+        .I2(alu_src_t[3]),
+        .I3(alu_src_t[2]),
+        .I4(\rd_value[23]_INST_0_i_12_n_0 ),
+        .O(\rd_value[19]_INST_0_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'h3088308830BB3088)) 
+    \rd_value[1]_INST_0 
+       (.I0(alu_src_t[1]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[1]_INST_0_i_1_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I5(\rd_value[1]_INST_0_i_2_n_0 ),
+        .O(rd_value[1]));
+  LUT6 #(
+    .INIT(64'hAFA03F3FAFA03030)) 
+    \rd_value[1]_INST_0_i_1 
+       (.I0(data1[1]),
+        .I1(alu_src_s[1]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[1]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[1]_INST_0_i_3_n_0 ),
+        .O(\rd_value[1]_INST_0_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFEFF)) 
+    \rd_value[1]_INST_0_i_2 
+       (.I0(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I1(\rd_value[4]_INST_0_i_5_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(alu_src_t[0]),
+        .I4(alu_src_t[4]),
+        .I5(\rd_value[15]_INST_0_i_6_n_0 ),
+        .O(\rd_value[1]_INST_0_i_2_n_0 ));
+  LUT4 #(
+    .INIT(16'hD41E)) 
+    \rd_value[1]_INST_0_i_3 
+       (.I0(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I1(alu_src_s[1]),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[5]_INST_0_i_2_n_0 ),
+        .O(\rd_value[1]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hB8B8B8BBB8B8B8B8)) 
+    \rd_value[20]_INST_0 
+       (.I0(\rd_value[20]_INST_0_i_1_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[20]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I4(\rd_value[20]_INST_0_i_3_n_0 ),
+        .I5(\rd_value[20]_INST_0_i_4_n_0 ),
+        .O(rd_value[20]));
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    \rd_value[20]_INST_0_i_1 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(alu_src_t[4]),
+        .O(\rd_value[20]_INST_0_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  LUT4 #(
+    .INIT(16'hF4F7)) 
+    \rd_value[20]_INST_0_i_10 
+       (.I0(alu_src_t[5]),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[4]),
+        .I3(alu_src_t[13]),
+        .O(\rd_value[20]_INST_0_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hA202A2A2A2020202)) 
+    \rd_value[20]_INST_0_i_2 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(\rd_value[20]_INST_0_i_5_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data1[20]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[20]_INST_0_i_6_n_0 ),
+        .O(\rd_value[20]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h000000000000CDFD)) 
+    \rd_value[20]_INST_0_i_3 
+       (.I0(\rd_value[23]_INST_0_i_7_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[21]_INST_0_i_8_n_0 ),
+        .I4(\rd_value[20]_INST_0_i_7_n_0 ),
+        .I5(alu_src_t[0]),
+        .O(\rd_value[20]_INST_0_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT3 #(
+    .INIT(8'hDF)) 
+    \rd_value[20]_INST_0_i_4 
+       (.I0(\rd_value[20]_INST_0_i_8_n_0 ),
+        .I1(\rd_value[21]_INST_0_i_7_n_0 ),
+        .I2(alu_src_t[0]),
+        .O(\rd_value[20]_INST_0_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'h55555555F033CFC0)) 
+    \rd_value[20]_INST_0_i_5 
+       (.I0(data0[20]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[20]_INST_0_i_6_n_0 ),
+        .I4(rd_sub_carry__4_i_12_n_0),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[20]_INST_0_i_5_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[20]_INST_0_i_6 
+       (.I0(write_back_data[20]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[20]),
+        .I3(rs_forward[1]),
+        .I4(rs[20]),
+        .O(\rd_value[20]_INST_0_i_6_n_0 ));
+  LUT4 #(
+    .INIT(16'h3050)) 
+    \rd_value[20]_INST_0_i_7 
+       (.I0(\rd_value[20]_INST_0_i_9_n_0 ),
+        .I1(\rd_value[22]_INST_0_i_11_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(alu_src_t[1]),
+        .O(\rd_value[20]_INST_0_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFC5C5FF00)) 
+    \rd_value[20]_INST_0_i_8 
+       (.I0(\rd_value[24]_INST_0_i_10_n_0 ),
+        .I1(\rd_value[20]_INST_0_i_10_n_0 ),
+        .I2(alu_src_t[2]),
+        .I3(\rd_value[22]_INST_0_i_12_n_0 ),
+        .I4(alu_src_t[1]),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
+        .O(\rd_value[20]_INST_0_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFCF44FFFFCF77)) 
+    \rd_value[20]_INST_0_i_9 
+       (.I0(rd_sub_carry__5_i_12_n_0),
+        .I1(alu_src_t[2]),
+        .I2(rd_sub_carry__6_i_11_n_0),
+        .I3(alu_src_t[3]),
+        .I4(alu_src_t[4]),
+        .I5(rd_sub_carry__4_i_12_n_0),
+        .O(\rd_value[20]_INST_0_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'hBB338B008B008B00)) 
+    \rd_value[21]_INST_0 
+       (.I0(alu_src_t[5]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[21]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[21]_INST_0_i_3_n_0 ),
+        .I5(\rd_value[21]_INST_0_i_4_n_0 ),
+        .O(rd_value[21]));
   LUT3 #(
     .INIT(8'hB8)) 
-    \rd_value[23]_INST_0_i_3 
+    \rd_value[21]_INST_0_i_1 
+       (.I0(\imm_reg_n_0_[5] ),
+        .I1(alu_src),
+        .I2(write_data[4]),
+        .O(alu_src_t[5]));
+  LUT5 #(
+    .INIT(32'h0A0ACFC0)) 
+    \rd_value[21]_INST_0_i_10 
+       (.I0(alu_src_t[10]),
+        .I1(alu_src_t[2]),
+        .I2(alu_src_t[4]),
+        .I3(rd_sub_carry__3_i_10_n_0),
+        .I4(alu_src_t[3]),
+        .O(\rd_value[21]_INST_0_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'h303F303F5F5F5050)) 
+    \rd_value[21]_INST_0_i_2 
+       (.I0(\rd_value[21]_INST_0_i_5_n_0 ),
+        .I1(data1[21]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[21]),
+        .I4(\rd_value[21]_INST_0_i_6_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[21]_INST_0_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT4 #(
+    .INIT(16'h5455)) 
+    \rd_value[21]_INST_0_i_3 
+       (.I0(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I1(alu_src_t[0]),
+        .I2(\rd_value[21]_INST_0_i_7_n_0 ),
+        .I3(\rd_value[22]_INST_0_i_8_n_0 ),
+        .O(\rd_value[21]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFF3202FFFFFFFF)) 
+    \rd_value[21]_INST_0_i_4 
+       (.I0(\rd_value[23]_INST_0_i_7_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[21]_INST_0_i_8_n_0 ),
+        .I4(\rd_value[22]_INST_0_i_7_n_0 ),
+        .I5(alu_src_t[0]),
+        .O(\rd_value[21]_INST_0_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[21]_INST_0_i_5 
+       (.I0(write_back_data[21]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[21]),
+        .I3(rs_forward[1]),
+        .I4(rs[21]),
+        .O(\rd_value[21]_INST_0_i_5_n_0 ));
+  LUT4 #(
+    .INIT(16'hC5B8)) 
+    \rd_value[21]_INST_0_i_6 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(\rd_value[21]_INST_0_i_5_n_0 ),
+        .I3(rd_sub_carry__4_i_11_n_0),
+        .O(\rd_value[21]_INST_0_i_6_n_0 ));
+  LUT4 #(
+    .INIT(16'h5030)) 
+    \rd_value[21]_INST_0_i_7 
+       (.I0(\rd_value[22]_INST_0_i_9_n_0 ),
+        .I1(\rd_value[21]_INST_0_i_9_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(alu_src_t[1]),
+        .O(\rd_value[21]_INST_0_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'h00CF00C0AAAAAAAA)) 
+    \rd_value[21]_INST_0_i_8 
+       (.I0(\rd_value[21]_INST_0_i_10_n_0 ),
+        .I1(alu_src_t[6]),
+        .I2(alu_src_t[3]),
+        .I3(alu_src_t[4]),
+        .I4(alu_src_t[14]),
+        .I5(alu_src_t[2]),
+        .O(\rd_value[21]_INST_0_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFCF44FFFFCF77)) 
+    \rd_value[21]_INST_0_i_9 
+       (.I0(rd_sub_carry__5_i_11_n_0),
+        .I1(alu_src_t[2]),
+        .I2(rd_sub_carry__6_i_10_n_0),
+        .I3(alu_src_t[3]),
+        .I4(alu_src_t[4]),
+        .I5(rd_sub_carry__4_i_11_n_0),
+        .O(\rd_value[21]_INST_0_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'hB8B8B8BBB8B8B8B8)) 
+    \rd_value[22]_INST_0 
+       (.I0(\rd_value[22]_INST_0_i_1_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[22]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I4(\rd_value[22]_INST_0_i_3_n_0 ),
+        .I5(\rd_value[22]_INST_0_i_4_n_0 ),
+        .O(rd_value[22]));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    \rd_value[22]_INST_0_i_1 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(alu_src_t[6]),
+        .O(\rd_value[22]_INST_0_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  LUT5 #(
+    .INIT(32'hFFF4FFF7)) 
+    \rd_value[22]_INST_0_i_10 
+       (.I0(rd_sub_carry__6_i_10_n_0),
+        .I1(alu_src_t[2]),
+        .I2(alu_src_t[3]),
+        .I3(alu_src_t[4]),
+        .I4(rd_sub_carry__5_i_11_n_0),
+        .O(\rd_value[22]_INST_0_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFCF44FFFFCF77)) 
+    \rd_value[22]_INST_0_i_11 
+       (.I0(rd_sub_carry__5_i_10_n_0),
+        .I1(alu_src_t[2]),
+        .I2(rd_sub_carry__6_i_9_n_0),
+        .I3(alu_src_t[3]),
+        .I4(alu_src_t[4]),
+        .I5(rd_sub_carry__4_i_10_n_0),
+        .O(\rd_value[22]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFAFA0A0C0CFC0CF)) 
+    \rd_value[22]_INST_0_i_12 
+       (.I0(\rd_value[22]_INST_0_i_13_n_0 ),
+        .I1(\rd_value[22]_INST_0_i_14_n_0 ),
+        .I2(alu_src_t[2]),
+        .I3(\rd_value[22]_INST_0_i_15_n_0 ),
+        .I4(\rd_value[22]_INST_0_i_16_n_0 ),
+        .I5(alu_src_t[3]),
+        .O(\rd_value[22]_INST_0_i_12_n_0 ));
+  LUT5 #(
+    .INIT(32'hCCAFFFAF)) 
+    \rd_value[22]_INST_0_i_13 
+       (.I0(\rt_forward_reg[0]_0 ),
+        .I1(\imm_reg_n_0_[4] ),
+        .I2(write_data[6]),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[7] ),
+        .O(\rd_value[22]_INST_0_i_13_n_0 ));
+  LUT5 #(
+    .INIT(32'hCCAFFFAF)) 
+    \rd_value[22]_INST_0_i_14 
+       (.I0(\rt_forward_reg[0]_0 ),
+        .I1(\imm_reg_n_0_[4] ),
+        .I2(write_data[14]),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[15] ),
+        .O(\rd_value[22]_INST_0_i_14_n_0 ));
+  LUT5 #(
+    .INIT(32'h000ACC0A)) 
+    \rd_value[22]_INST_0_i_15 
+       (.I0(write_data[18]),
+        .I1(\imm_reg_n_0_[19] ),
+        .I2(\rt_forward_reg[0]_0 ),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[4] ),
+        .O(\rd_value[22]_INST_0_i_15_n_0 ));
+  LUT5 #(
+    .INIT(32'hCCAFFFAF)) 
+    \rd_value[22]_INST_0_i_16 
+       (.I0(\rt_forward_reg[0]_0 ),
+        .I1(\imm_reg_n_0_[4] ),
+        .I2(write_data[10]),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[11] ),
+        .O(\rd_value[22]_INST_0_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hA202A2A2A2020202)) 
+    \rd_value[22]_INST_0_i_2 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(\rd_value[22]_INST_0_i_5_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data1[22]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[22]_INST_0_i_6_n_0 ),
+        .O(\rd_value[22]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h000000000000CDFD)) 
+    \rd_value[22]_INST_0_i_3 
+       (.I0(\rd_value[25]_INST_0_i_7_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[23]_INST_0_i_7_n_0 ),
+        .I4(\rd_value[22]_INST_0_i_7_n_0 ),
+        .I5(alu_src_t[0]),
+        .O(\rd_value[22]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h5F557755FFFFFFFF)) 
+    \rd_value[22]_INST_0_i_4 
+       (.I0(\rd_value[22]_INST_0_i_8_n_0 ),
+        .I1(\rd_value[22]_INST_0_i_9_n_0 ),
+        .I2(\rd_value[22]_INST_0_i_10_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I4(alu_src_t[1]),
+        .I5(alu_src_t[0]),
+        .O(\rd_value[22]_INST_0_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'h55555555F033CFC0)) 
+    \rd_value[22]_INST_0_i_5 
+       (.I0(data0[22]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[22]_INST_0_i_6_n_0 ),
+        .I4(rd_sub_carry__4_i_10_n_0),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[22]_INST_0_i_5_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[22]_INST_0_i_6 
+       (.I0(write_back_data[22]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[22]),
+        .I3(rs_forward[1]),
+        .I4(rs[22]),
+        .O(\rd_value[22]_INST_0_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  LUT4 #(
+    .INIT(16'h5030)) 
+    \rd_value[22]_INST_0_i_7 
+       (.I0(\rd_value[24]_INST_0_i_9_n_0 ),
+        .I1(\rd_value[22]_INST_0_i_11_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(alu_src_t[1]),
+        .O(\rd_value[22]_INST_0_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'hF8FBF8F8F8FBFBFB)) 
+    \rd_value[22]_INST_0_i_8 
+       (.I0(\rd_value[22]_INST_0_i_12_n_0 ),
+        .I1(alu_src_t[1]),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[24]_INST_0_i_10_n_0 ),
+        .I4(alu_src_t[2]),
+        .I5(\rd_value[28]_INST_0_i_19_n_0 ),
+        .O(\rd_value[22]_INST_0_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFCF44FFFFCF77)) 
+    \rd_value[22]_INST_0_i_9 
+       (.I0(rd_sub_carry__5_i_9_n_0),
+        .I1(alu_src_t[2]),
+        .I2(rd_sub_carry__6_i_8_n_0),
+        .I3(alu_src_t[3]),
+        .I4(alu_src_t[4]),
+        .I5(rd_sub_carry__4_i_9_n_0),
+        .O(\rd_value[22]_INST_0_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'h8B00BB338B008B00)) 
+    \rd_value[23]_INST_0 
+       (.I0(alu_src_t[7]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[23]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[23]_INST_0_i_3_n_0 ),
+        .I5(\rd_value[26]_INST_0_i_4_n_0 ),
+        .O(rd_value[23]));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[23]_INST_0_i_1 
        (.I0(\imm_reg_n_0_[7] ),
         .I1(alu_src),
-        .I2(write_data[7]),
+        .I2(write_data[6]),
         .O(alu_src_t[7]));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[23]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[23]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[23]),
-        .I4(data1[23]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[23]_INST_0_i_4_n_0 ));
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[23]_INST_0_i_10 
+       (.I0(rd_sub_carry__4_i_11_n_0),
+        .I1(write_back_data[21]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[21]),
+        .I4(rs_forward[1]),
+        .I5(rs[21]),
+        .O(\rd_value[23]_INST_0_i_10_n_0 ));
   LUT6 #(
-    .INIT(64'hB080FFFFB0800000)) 
-    \rd_value[23]_INST_0_i_5 
-       (.I0(alu_src_t[29]),
-        .I1(alu_src_t[2]),
-        .I2(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I3(alu_src_t[25]),
-        .I4(alu_src_t[1]),
-        .I5(\rd_value[21]_INST_0_i_5_n_0 ),
-        .O(\rd_value[23]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[23]_INST_0_i_6 
-       (.I0(\rd_value[23]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[27]_INST_0_i_8_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[25]_INST_0_i_9_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[29]_INST_0_i_8_n_0 ),
-        .O(\rd_value[23]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[23]_INST_0_i_7 
-       (.I0(data0[23]),
-        .I1(alu_src_s[23]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[23]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[23]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[23]_INST_0_i_11 
+       (.I0(rd_sub_carry__4_i_12_n_0),
+        .I1(write_back_data[20]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[20]),
+        .I4(rs_forward[1]),
+        .I5(rs[20]),
+        .O(\rd_value[23]_INST_0_i_11_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
-    \rd_value[23]_INST_0_i_8 
+    \rd_value[23]_INST_0_i_12 
        (.I0(alu_src_t[8]),
         .I1(alu_src_t[3]),
         .I2(alu_src_t[0]),
         .I3(alu_src_t[4]),
-        .I4(alu_src_t[16]),
+        .I4(rd_sub_carry__3_i_12_n_0),
+        .O(\rd_value[23]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'h303F303F5F5F5050)) 
+    \rd_value[23]_INST_0_i_2 
+       (.I0(\rd_value[23]_INST_0_i_4_n_0 ),
+        .I1(data1[23]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[23]),
+        .I4(\rd_value[23]_INST_0_i_6_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[23]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000CDFD0000)) 
+    \rd_value[23]_INST_0_i_3 
+       (.I0(\rd_value[25]_INST_0_i_7_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[23]_INST_0_i_7_n_0 ),
+        .I4(alu_src_t[0]),
+        .I5(\rd_value[24]_INST_0_i_7_n_0 ),
+        .O(\rd_value[23]_INST_0_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[23]_INST_0_i_4 
+       (.I0(write_back_data[23]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[23]),
+        .I3(rs_forward[1]),
+        .I4(rs[23]),
+        .O(\rd_value[23]_INST_0_i_4_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \rd_value[23]_INST_0_i_5 
+       (.CI(\rd_value[19]_INST_0_i_6_n_0 ),
+        .CO({\rd_value[23]_INST_0_i_5_n_0 ,\rd_value[23]_INST_0_i_5_n_1 ,\rd_value[23]_INST_0_i_5_n_2 ,\rd_value[23]_INST_0_i_5_n_3 }),
+        .CYINIT(1'b0),
+        .DI(alu_src_s[23:20]),
+        .O(data0[23:20]),
+        .S({\rd_value[23]_INST_0_i_8_n_0 ,\rd_value[23]_INST_0_i_9_n_0 ,\rd_value[23]_INST_0_i_10_n_0 ,\rd_value[23]_INST_0_i_11_n_0 }));
+  LUT4 #(
+    .INIT(16'hC5B8)) 
+    \rd_value[23]_INST_0_i_6 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(\rd_value[23]_INST_0_i_4_n_0 ),
+        .I3(rd_sub_carry__4_i_9_n_0),
+        .O(\rd_value[23]_INST_0_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'h88BBB8BB88BBB888)) 
+    \rd_value[23]_INST_0_i_7 
+       (.I0(\rd_value[23]_INST_0_i_12_n_0 ),
+        .I1(alu_src_t[2]),
+        .I2(alu_src_t[12]),
+        .I3(alu_src_t[3]),
+        .I4(alu_src_t[4]),
+        .I5(rd_sub_carry__4_i_12_n_0),
+        .O(\rd_value[23]_INST_0_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[23]_INST_0_i_8 
+       (.I0(rd_sub_carry__4_i_9_n_0),
+        .I1(write_back_data[23]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[23]),
+        .I4(rs_forward[1]),
+        .I5(rs[23]),
         .O(\rd_value[23]_INST_0_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[23]_INST_0_i_9 
+       (.I0(rd_sub_carry__4_i_10_n_0),
+        .I1(write_back_data[22]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[22]),
+        .I4(rs_forward[1]),
+        .I5(rs[22]),
+        .O(\rd_value[23]_INST_0_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'hB8B8B8BBB8B8B8B8)) 
     \rd_value[24]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[24]_INST_0_i_1_n_0 ),
+       (.I0(\rd_value[24]_INST_0_i_1_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
         .I2(\rd_value[24]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[8]),
+        .I3(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I4(\rd_value[24]_INST_0_i_3_n_0 ),
         .I5(\rd_value[24]_INST_0_i_4_n_0 ),
         .O(rd_value[24]));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     \rd_value[24]_INST_0_i_1 
-       (.I0(\rd_value[24]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[25]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(alu_src_t[8]),
         .O(\rd_value[24]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[24]_INST_0_i_2 
-       (.I0(\rd_value[25]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[24]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[24]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \rd_value[24]_INST_0_i_3 
-       (.I0(\imm_reg_n_0_[8] ),
-        .I1(alu_src),
-        .I2(write_data[8]),
-        .O(alu_src_t[8]));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT5 #(
+    .INIT(32'h0A0ACFC0)) 
+    \rd_value[24]_INST_0_i_10 
+       (.I0(alu_src_t[9]),
+        .I1(alu_src_t[1]),
+        .I2(alu_src_t[4]),
+        .I3(rd_sub_carry__3_i_11_n_0),
+        .I4(alu_src_t[3]),
+        .O(\rd_value[24]_INST_0_i_10_n_0 ));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
+    .INIT(64'hA202A2A2A2020202)) 
+    \rd_value[24]_INST_0_i_2 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(\rd_value[24]_INST_0_i_5_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data1[24]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[24]_INST_0_i_6_n_0 ),
+        .O(\rd_value[24]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h000000000000CDFD)) 
+    \rd_value[24]_INST_0_i_3 
+       (.I0(\rd_value[27]_INST_0_i_7_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[25]_INST_0_i_7_n_0 ),
+        .I4(\rd_value[24]_INST_0_i_7_n_0 ),
+        .I5(alu_src_t[0]),
+        .O(\rd_value[24]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF3202FFFF)) 
     \rd_value[24]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[24]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[24]),
-        .I4(data1[24]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
+       (.I0(\rd_value[26]_INST_0_i_8_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[24]_INST_0_i_8_n_0 ),
+        .I4(alu_src_t[0]),
+        .I5(\rd_value[25]_INST_0_i_9_n_0 ),
         .O(\rd_value[24]_INST_0_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'hB080FFFFB0800000)) 
+    .INIT(64'h55555555F033CFC0)) 
     \rd_value[24]_INST_0_i_5 
-       (.I0(alu_src_t[30]),
-        .I1(alu_src_t[2]),
-        .I2(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I3(alu_src_t[26]),
-        .I4(alu_src_t[1]),
-        .I5(\rd_value[24]_INST_0_i_8_n_0 ),
-        .O(\rd_value[24]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[24]_INST_0_i_6 
-       (.I0(\rd_value[24]_INST_0_i_9_n_0 ),
-        .I1(\rd_value[28]_INST_0_i_8_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[26]_INST_0_i_8_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[30]_INST_0_i_12_n_0 ),
-        .O(\rd_value[24]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[24]_INST_0_i_7 
        (.I0(data0[24]),
-        .I1(alu_src_s[24]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[24]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[24]_INST_0_i_7_n_0 ));
-  LUT4 #(
-    .INIT(16'hB080)) 
-    \rd_value[24]_INST_0_i_8 
-       (.I0(alu_src_t[28]),
-        .I1(alu_src_t[2]),
-        .I2(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I3(alu_src_t[24]),
-        .O(\rd_value[24]_INST_0_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[24]_INST_0_i_6_n_0 ),
+        .I4(rd_sub_carry__5_i_12_n_0),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[24]_INST_0_i_5_n_0 ));
   LUT5 #(
-    .INIT(32'h30BB3088)) 
+    .INIT(32'hCF44CF77)) 
+    \rd_value[24]_INST_0_i_6 
+       (.I0(write_back_data[24]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[24]),
+        .I3(rs_forward[1]),
+        .I4(rs[24]),
+        .O(\rd_value[24]_INST_0_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  LUT4 #(
+    .INIT(16'h3050)) 
+    \rd_value[24]_INST_0_i_7 
+       (.I0(\rd_value[24]_INST_0_i_9_n_0 ),
+        .I1(\rd_value[26]_INST_0_i_14_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(alu_src_t[1]),
+        .O(\rd_value[24]_INST_0_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[24]_INST_0_i_8 
+       (.I0(\rd_value[24]_INST_0_i_10_n_0 ),
+        .I1(alu_src_t[2]),
+        .I2(\rd_value[28]_INST_0_i_19_n_0 ),
+        .O(\rd_value[24]_INST_0_i_8_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  LUT5 #(
+    .INIT(32'hFFF4FFF7)) 
     \rd_value[24]_INST_0_i_9 
-       (.I0(alu_src_t[9]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[1]),
+       (.I0(rd_sub_carry__6_i_11_n_0),
+        .I1(alu_src_t[2]),
+        .I2(alu_src_t[3]),
         .I3(alu_src_t[4]),
-        .I4(alu_src_t[17]),
+        .I4(rd_sub_carry__5_i_12_n_0),
         .O(\rd_value[24]_INST_0_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
+    .INIT(64'hB8B8B8BBB8B8B8B8)) 
     \rd_value[25]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[25]_INST_0_i_1_n_0 ),
+       (.I0(\rd_value[25]_INST_0_i_1_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
         .I2(\rd_value[25]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[9]),
+        .I3(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I4(\rd_value[25]_INST_0_i_3_n_0 ),
         .I5(\rd_value[25]_INST_0_i_4_n_0 ),
         .O(rd_value[25]));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     \rd_value[25]_INST_0_i_1 
-       (.I0(\rd_value[25]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[26]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(alu_src_t[9]),
         .O(\rd_value[25]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[25]_INST_0_i_2 
-       (.I0(\rd_value[26]_INST_0_i_6_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[25]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[25]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \rd_value[25]_INST_0_i_3 
-       (.I0(\imm_reg_n_0_[9] ),
-        .I1(alu_src),
-        .I2(write_data[9]),
-        .O(alu_src_t[9]));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
+    .INIT(64'hA202A2A2A2020202)) 
+    \rd_value[25]_INST_0_i_2 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(\rd_value[25]_INST_0_i_5_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data1[25]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[25]_INST_0_i_6_n_0 ),
+        .O(\rd_value[25]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000CDFD0000)) 
+    \rd_value[25]_INST_0_i_3 
+       (.I0(\rd_value[27]_INST_0_i_7_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[25]_INST_0_i_7_n_0 ),
+        .I4(alu_src_t[0]),
+        .I5(\rd_value[25]_INST_0_i_8_n_0 ),
+        .O(\rd_value[25]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFF3202)) 
     \rd_value[25]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[25]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[25]),
-        .I4(data1[25]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
+       (.I0(\rd_value[28]_INST_0_i_13_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[26]_INST_0_i_8_n_0 ),
+        .I4(\rd_value[25]_INST_0_i_9_n_0 ),
+        .I5(alu_src_t[0]),
         .O(\rd_value[25]_INST_0_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'hB080FFFFB0800000)) 
+    .INIT(64'h55555555F033CFC0)) 
     \rd_value[25]_INST_0_i_5 
-       (.I0(alu_src_t__95),
-        .I1(alu_src_t[2]),
-        .I2(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I3(alu_src_t[27]),
-        .I4(alu_src_t[1]),
-        .I5(\rd_value[25]_INST_0_i_8_n_0 ),
+       (.I0(data0[25]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[25]_INST_0_i_6_n_0 ),
+        .I4(rd_sub_carry__5_i_11_n_0),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
         .O(\rd_value[25]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
     \rd_value[25]_INST_0_i_6 
-       (.I0(\rd_value[25]_INST_0_i_9_n_0 ),
-        .I1(\rd_value[29]_INST_0_i_8_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[27]_INST_0_i_8_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[31]_INST_0_i_27_n_0 ),
+       (.I0(write_back_data[25]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[25]),
+        .I3(rs_forward[1]),
+        .I4(rs[25]),
         .O(\rd_value[25]_INST_0_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
+    .INIT(64'h22FCFFFF22FC0000)) 
     \rd_value[25]_INST_0_i_7 
-       (.I0(data0[25]),
-        .I1(alu_src_s[25]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[25]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[25]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
-  LUT4 #(
-    .INIT(16'hB080)) 
-    \rd_value[25]_INST_0_i_8 
-       (.I0(alu_src_t[29]),
-        .I1(alu_src_t[2]),
-        .I2(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I3(alu_src_t[25]),
-        .O(\rd_value[25]_INST_0_i_8_n_0 ));
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \rd_value[25]_INST_0_i_9 
        (.I0(alu_src_t[10]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[2]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[18]),
+        .I1(alu_src_t[4]),
+        .I2(rd_sub_carry__3_i_10_n_0),
+        .I3(alu_src_t[3]),
+        .I4(alu_src_t[2]),
+        .I5(\rd_value[29]_INST_0_i_12_n_0 ),
+        .O(\rd_value[25]_INST_0_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'h0404000000FF0000)) 
+    \rd_value[25]_INST_0_i_8 
+       (.I0(\rd_value[4]_INST_0_i_5_n_0 ),
+        .I1(rd_sub_carry__6_i_11_n_0),
+        .I2(alu_src_t[4]),
+        .I3(\rd_value[26]_INST_0_i_14_n_0 ),
+        .I4(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I5(alu_src_t[1]),
+        .O(\rd_value[25]_INST_0_i_8_n_0 ));
+  LUT4 #(
+    .INIT(16'h5030)) 
+    \rd_value[25]_INST_0_i_9 
+       (.I0(\rd_value[27]_INST_0_i_9_n_0 ),
+        .I1(\rd_value[22]_INST_0_i_10_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(alu_src_t[1]),
         .O(\rd_value[25]_INST_0_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
+    .INIT(64'h8B00BB338B008B00)) 
     \rd_value[26]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[26]_INST_0_i_1_n_0 ),
+       (.I0(alu_src_t[10]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
         .I2(\rd_value[26]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[10]),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[26]_INST_0_i_3_n_0 ),
         .I5(\rd_value[26]_INST_0_i_4_n_0 ),
         .O(rd_value[26]));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[26]_INST_0_i_1 
-       (.I0(\rd_value[26]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_11_n_0 ),
-        .I2(\rd_value[27]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[26]_INST_0_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[26]_INST_0_i_2 
-       (.I0(\rd_value[27]_INST_0_i_6_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[26]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_8_n_0 ),
-        .O(\rd_value[26]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \rd_value[26]_INST_0_i_3 
+    \rd_value[26]_INST_0_i_1 
        (.I0(\imm_reg_n_0_[10] ),
         .I1(alu_src),
-        .I2(write_data[10]),
+        .I2(write_data[9]),
         .O(alu_src_t[10]));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[26]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[26]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[26]),
-        .I4(data1[26]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[26]_INST_0_i_4_n_0 ));
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[26]_INST_0_i_10 
+       (.I0(rd_sub_carry__5_i_9_n_0),
+        .I1(write_back_data[27]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[27]),
+        .I4(rs_forward[1]),
+        .I5(rs[27]),
+        .O(\rd_value[26]_INST_0_i_10_n_0 ));
   LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[26]_INST_0_i_5 
-       (.I0(\rd_value[26]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_12_n_0 ),
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[26]_INST_0_i_11 
+       (.I0(rd_sub_carry__5_i_10_n_0),
+        .I1(write_back_data[26]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[26]),
+        .I4(rs_forward[1]),
+        .I5(rs[26]),
+        .O(\rd_value[26]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[26]_INST_0_i_12 
+       (.I0(rd_sub_carry__5_i_11_n_0),
+        .I1(write_back_data[25]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[25]),
+        .I4(rs_forward[1]),
+        .I5(rs[25]),
+        .O(\rd_value[26]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[26]_INST_0_i_13 
+       (.I0(rd_sub_carry__5_i_12_n_0),
+        .I1(write_back_data[24]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[24]),
+        .I4(rs_forward[1]),
+        .I5(rs[24]),
+        .O(\rd_value[26]_INST_0_i_13_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  LUT5 #(
+    .INIT(32'hFFFFF4F7)) 
+    \rd_value[26]_INST_0_i_14 
+       (.I0(rd_sub_carry__6_i_9_n_0),
+        .I1(alu_src_t[2]),
+        .I2(alu_src_t[3]),
+        .I3(rd_sub_carry__5_i_10_n_0),
+        .I4(alu_src_t[4]),
+        .O(\rd_value[26]_INST_0_i_14_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  LUT2 #(
+    .INIT(4'hB)) 
+    \rd_value[26]_INST_0_i_15 
+       (.I0(alu_src_t[4]),
+        .I1(rd_sub_carry__6_i_11_n_0),
+        .O(\rd_value[26]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'h303F303F5F5F5050)) 
+    \rd_value[26]_INST_0_i_2 
+       (.I0(\rd_value[26]_INST_0_i_5_n_0 ),
+        .I1(data1[26]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[26]),
+        .I4(\rd_value[26]_INST_0_i_7_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[26]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000CDFD0000)) 
+    \rd_value[26]_INST_0_i_3 
+       (.I0(\rd_value[28]_INST_0_i_13_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
         .I2(alu_src_t[1]),
-        .I3(\rd_value[28]_INST_0_i_8_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[31]_INST_0_i_23_n_0 ),
+        .I3(\rd_value[26]_INST_0_i_8_n_0 ),
+        .I4(alu_src_t[0]),
+        .I5(\rd_value[27]_INST_0_i_8_n_0 ),
+        .O(\rd_value[26]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h4444545544445444)) 
+    \rd_value[26]_INST_0_i_4 
+       (.I0(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I1(\rd_value[26]_INST_0_i_9_n_0 ),
+        .I2(\rd_value[27]_INST_0_i_7_n_0 ),
+        .I3(alu_src_t[1]),
+        .I4(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I5(\rd_value[29]_INST_0_i_10_n_0 ),
+        .O(\rd_value[26]_INST_0_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[26]_INST_0_i_5 
+       (.I0(write_back_data[26]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[26]),
+        .I3(rs_forward[1]),
+        .I4(rs[26]),
         .O(\rd_value[26]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h30BB000030880000)) 
-    \rd_value[26]_INST_0_i_6 
-       (.I0(alu_src_t[28]),
-        .I1(alu_src_t[1]),
-        .I2(alu_src_t[30]),
-        .I3(alu_src_t[2]),
-        .I4(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I5(alu_src_t[26]),
-        .O(\rd_value[26]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[26]_INST_0_i_7 
-       (.I0(data0[26]),
-        .I1(alu_src_s[26]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[26]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[26]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \rd_value[26]_INST_0_i_6 
+       (.CI(\rd_value[23]_INST_0_i_5_n_0 ),
+        .CO({\rd_value[26]_INST_0_i_6_n_0 ,\rd_value[26]_INST_0_i_6_n_1 ,\rd_value[26]_INST_0_i_6_n_2 ,\rd_value[26]_INST_0_i_6_n_3 }),
+        .CYINIT(1'b0),
+        .DI(alu_src_s[27:24]),
+        .O(data0[27:24]),
+        .S({\rd_value[26]_INST_0_i_10_n_0 ,\rd_value[26]_INST_0_i_11_n_0 ,\rd_value[26]_INST_0_i_12_n_0 ,\rd_value[26]_INST_0_i_13_n_0 }));
   LUT4 #(
-    .INIT(16'h0B08)) 
+    .INIT(16'hC5B8)) 
+    \rd_value[26]_INST_0_i_7 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(\rd_value[26]_INST_0_i_5_n_0 ),
+        .I3(rd_sub_carry__5_i_10_n_0),
+        .O(\rd_value[26]_INST_0_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'h3022FFFF30220000)) 
     \rd_value[26]_INST_0_i_8 
-       (.I0(alu_src_t[11]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[19]),
+       (.I0(rd_sub_carry__3_i_9_n_0),
+        .I1(alu_src_t[4]),
+        .I2(alu_src_t[11]),
+        .I3(alu_src_t[3]),
+        .I4(alu_src_t[2]),
+        .I5(\rd_value[30]_INST_0_i_11_n_0 ),
         .O(\rd_value[26]_INST_0_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
+    .INIT(64'hAABAAABAAABAEAFA)) 
+    \rd_value[26]_INST_0_i_9 
+       (.I0(alu_src_t[0]),
+        .I1(alu_src_t[1]),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[26]_INST_0_i_14_n_0 ),
+        .I4(\rd_value[26]_INST_0_i_15_n_0 ),
+        .I5(\rd_value[4]_INST_0_i_5_n_0 ),
+        .O(\rd_value[26]_INST_0_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'hB8B8B8BBB8B8B8B8)) 
     \rd_value[27]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[27]_INST_0_i_1_n_0 ),
+       (.I0(\rd_value[27]_INST_0_i_1_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
         .I2(\rd_value[27]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[11]),
+        .I3(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I4(\rd_value[27]_INST_0_i_3_n_0 ),
         .I5(\rd_value[27]_INST_0_i_4_n_0 ),
         .O(rd_value[27]));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
-  LUT4 #(
-    .INIT(16'hF888)) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     \rd_value[27]_INST_0_i_1 
-       (.I0(\rd_value[27]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_11_n_0 ),
-        .I2(\rd_value[28]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(alu_src_t[11]),
         .O(\rd_value[27]_INST_0_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[27]_INST_0_i_2 
-       (.I0(\rd_value[28]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[27]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_8_n_0 ),
-        .O(\rd_value[27]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \rd_value[27]_INST_0_i_3 
-       (.I0(\imm_reg_n_0_[11] ),
-        .I1(alu_src),
-        .I2(write_data[11]),
-        .O(alu_src_t[11]));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
+    .INIT(64'hA202A2A2A2020202)) 
+    \rd_value[27]_INST_0_i_2 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(\rd_value[27]_INST_0_i_5_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data1[27]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[27]_INST_0_i_6_n_0 ),
+        .O(\rd_value[27]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000CDFD0000)) 
+    \rd_value[27]_INST_0_i_3 
+       (.I0(\rd_value[29]_INST_0_i_10_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[27]_INST_0_i_7_n_0 ),
+        .I4(alu_src_t[0]),
+        .I5(\rd_value[28]_INST_0_i_12_n_0 ),
+        .O(\rd_value[27]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFF3202)) 
     \rd_value[27]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[27]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[27]),
-        .I4(data1[27]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
+       (.I0(\rd_value[30]_INST_0_i_8_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[28]_INST_0_i_13_n_0 ),
+        .I4(\rd_value[27]_INST_0_i_8_n_0 ),
+        .I5(alu_src_t[0]),
         .O(\rd_value[27]_INST_0_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    .INIT(64'h55555555F033CFC0)) 
     \rd_value[27]_INST_0_i_5 
-       (.I0(\rd_value[27]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_27_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[29]_INST_0_i_8_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[31]_INST_0_i_26_n_0 ),
+       (.I0(data0[27]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[27]_INST_0_i_6_n_0 ),
+        .I4(rd_sub_carry__5_i_9_n_0),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
         .O(\rd_value[27]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h30BB000030880000)) 
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
     \rd_value[27]_INST_0_i_6 
-       (.I0(alu_src_t[29]),
-        .I1(alu_src_t[1]),
-        .I2(alu_src_t__95),
-        .I3(alu_src_t[2]),
-        .I4(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I5(alu_src_t[27]),
+       (.I0(write_back_data[27]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[27]),
+        .I3(rs_forward[1]),
+        .I4(rs[27]),
         .O(\rd_value[27]_INST_0_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
+    .INIT(64'h3B38FFFF3B380000)) 
     \rd_value[27]_INST_0_i_7 
-       (.I0(data0[27]),
-        .I1(alu_src_s[27]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[27]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[27]_INST_0_i_7_n_0 ));
-  LUT4 #(
-    .INIT(16'h3B38)) 
-    \rd_value[27]_INST_0_i_8 
        (.I0(alu_src_t[12]),
         .I1(alu_src_t[3]),
         .I2(alu_src_t[4]),
-        .I3(alu_src_t[20]),
+        .I3(rd_sub_carry__4_i_12_n_0),
+        .I4(alu_src_t[2]),
+        .I5(\rd_value[31]_INST_0_i_23_n_0 ),
+        .O(\rd_value[27]_INST_0_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'h1010000000FF0000)) 
+    \rd_value[27]_INST_0_i_8 
+       (.I0(\rd_value[4]_INST_0_i_5_n_0 ),
+        .I1(alu_src_t[4]),
+        .I2(rd_sub_carry__6_i_10_n_0),
+        .I3(\rd_value[27]_INST_0_i_9_n_0 ),
+        .I4(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I5(alu_src_t[1]),
         .O(\rd_value[27]_INST_0_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
-    \rd_value[28]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[28]_INST_0_i_1_n_0 ),
-        .I2(\rd_value[28]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[12]),
-        .I5(\rd_value[28]_INST_0_i_4_n_0 ),
-        .O(rd_value[28]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[28]_INST_0_i_1 
-       (.I0(\rd_value[28]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[29]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[28]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[28]_INST_0_i_2 
-       (.I0(\rd_value[29]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[28]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[28]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \rd_value[28]_INST_0_i_3 
-       (.I0(\imm_reg_n_0_[12] ),
-        .I1(alu_src),
-        .I2(write_data[12]),
-        .O(alu_src_t[12]));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[28]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[28]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[28]),
-        .I4(data1[28]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[28]_INST_0_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
-    .INIT(32'h008800C0)) 
-    \rd_value[28]_INST_0_i_5 
-       (.I0(alu_src_t[30]),
-        .I1(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[28]),
-        .I3(alu_src_t[2]),
-        .I4(alu_src_t[1]),
-        .O(\rd_value[28]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[28]_INST_0_i_6 
-       (.I0(\rd_value[28]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_23_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[30]_INST_0_i_12_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[31]_INST_0_i_22_n_0 ),
-        .O(\rd_value[28]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[28]_INST_0_i_7 
-       (.I0(data0[28]),
-        .I1(alu_src_s[28]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[28]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[28]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \rd_value[28]_INST_0_i_8 
-       (.I0(alu_src_t[13]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[5]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[21]),
-        .O(\rd_value[28]_INST_0_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
-    \rd_value[29]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[29]_INST_0_i_1_n_0 ),
-        .I2(\rd_value[29]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[13]),
-        .I5(\rd_value[29]_INST_0_i_4_n_0 ),
-        .O(rd_value[29]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[29]_INST_0_i_1 
-       (.I0(\rd_value[29]_INST_0_i_5_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[30]_INST_0_i_10_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[29]_INST_0_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFF800080008000)) 
-    \rd_value[29]_INST_0_i_2 
-       (.I0(\rd_value[30]_INST_0_i_5_n_0 ),
-        .I1(alu_src_t[30]),
-        .I2(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I3(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I4(\rd_value[29]_INST_0_i_6_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[29]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \rd_value[29]_INST_0_i_3 
-       (.I0(\imm_reg_n_0_[13] ),
-        .I1(alu_src),
-        .I2(write_data[13]),
-        .O(alu_src_t[13]));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[29]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[29]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[29]),
-        .I4(data1[29]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[29]_INST_0_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT5 #(
-    .INIT(32'h008800C0)) 
-    \rd_value[29]_INST_0_i_5 
-       (.I0(alu_src_t__95),
-        .I1(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[29]),
-        .I3(alu_src_t[2]),
-        .I4(alu_src_t[1]),
-        .O(\rd_value[29]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[29]_INST_0_i_6 
-       (.I0(\rd_value[29]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_26_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[31]_INST_0_i_27_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[31]_INST_0_i_28_n_0 ),
-        .O(\rd_value[29]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[29]_INST_0_i_7 
-       (.I0(data0[29]),
-        .I1(alu_src_s[29]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[29]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[29]_INST_0_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \rd_value[29]_INST_0_i_8 
-       (.I0(alu_src_t[14]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[6]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[22]),
-        .O(\rd_value[29]_INST_0_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
-    \rd_value[2]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
+    .INIT(32'hFFF4FFF7)) 
+    \rd_value[27]_INST_0_i_9 
+       (.I0(rd_sub_carry__6_i_8_n_0),
         .I1(alu_src_t[2]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[2]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[2]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[2]_INST_0_i_3_n_0 ),
-        .O(rd_value[2]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[2]_INST_0_i_1 
-       (.I0(\rd_value[2]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[3]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[2]_INST_0_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+        .I2(alu_src_t[3]),
+        .I3(alu_src_t[4]),
+        .I4(rd_sub_carry__5_i_9_n_0),
+        .O(\rd_value[27]_INST_0_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'hB8B8B8BBB8B8B8B8)) 
+    \rd_value[28]_INST_0 
+       (.I0(\rd_value[28]_INST_0_i_1_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[28]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I4(\rd_value[28]_INST_0_i_4_n_0 ),
+        .I5(\rd_value[28]_INST_0_i_5_n_0 ),
+        .O(rd_value[28]));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT2 #(
     .INIT(4'h8)) 
-    \rd_value[2]_INST_0_i_2 
-       (.I0(\rd_value[3]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .O(\rd_value[2]_INST_0_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[2]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[2]_INST_0_i_5_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[2]),
-        .I4(data1[2]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[2]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[2]_INST_0_i_4 
-       (.I0(\rd_value[8]_INST_0_i_7_n_0 ),
-        .I1(\rd_value[4]_INST_0_i_6_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[6]_INST_0_i_7_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[2]_INST_0_i_6_n_0 ),
-        .O(\rd_value[2]_INST_0_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[2]_INST_0_i_5 
-       (.I0(data0[2]),
-        .I1(alu_src_s[2]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[2]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[2]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[2]_INST_0_i_6 
-       (.I0(alu_src_t[2]),
-        .I1(alu_src_t[18]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[26]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[10]),
-        .O(\rd_value[2]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFA8A8A8)) 
-    \rd_value[30]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_1_n_0 ),
-        .I2(\rd_value[30]_INST_0_i_2_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I4(alu_src_t[14]),
-        .I5(\rd_value[30]_INST_0_i_4_n_0 ),
-        .O(rd_value[30]));
-  LUT6 #(
-    .INIT(64'hFFFF800080008000)) 
-    \rd_value[30]_INST_0_i_1 
-       (.I0(\rd_value[30]_INST_0_i_5_n_0 ),
-        .I1(alu_src_t[30]),
-        .I2(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I4(\rd_value[31]_INST_0_i_10_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[30]_INST_0_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[30]_INST_0_i_10 
-       (.I0(\rd_value[30]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_22_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[31]_INST_0_i_23_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[31]_INST_0_i_24_n_0 ),
-        .O(\rd_value[30]_INST_0_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[30]_INST_0_i_11 
-       (.I0(data0[30]),
-        .I1(alu_src_s[30]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[30]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[30]_INST_0_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+    \rd_value[28]_INST_0_i_1 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(alu_src_t[12]),
+        .O(\rd_value[28]_INST_0_i_1_n_0 ));
   LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \rd_value[30]_INST_0_i_12 
-       (.I0(alu_src_t[15]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[7]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[23]),
-        .O(\rd_value[30]_INST_0_i_12_n_0 ));
+    .INIT(32'hFFFFFFFE)) 
+    \rd_value[28]_INST_0_i_10 
+       (.I0(alu_src_t[14]),
+        .I1(alu_src_t[13]),
+        .I2(alu_src_t[5]),
+        .I3(alu_src_t[7]),
+        .I4(alu_src_t[6]),
+        .O(\rd_value[28]_INST_0_i_10_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFF800080008000)) 
-    \rd_value[30]_INST_0_i_2 
-       (.I0(\rd_value[30]_INST_0_i_5_n_0 ),
-        .I1(alu_src_t__95),
-        .I2(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I3(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I4(\rd_value[30]_INST_0_i_10_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[30]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \rd_value[28]_INST_0_i_11 
+       (.I0(alu_src_t[8]),
+        .I1(alu_src_t[11]),
+        .I2(alu_src_t[9]),
+        .I3(alu_src_t[10]),
+        .I4(alu_src_t[15]),
+        .I5(alu_src_t[12]),
+        .O(\rd_value[28]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000020AAAA0020)) 
+    \rd_value[28]_INST_0_i_12 
+       (.I0(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I1(alu_src_t[4]),
+        .I2(rd_sub_carry__6_i_11_n_0),
+        .I3(\rd_value[4]_INST_0_i_5_n_0 ),
+        .I4(alu_src_t[1]),
+        .I5(\rd_value[28]_INST_0_i_18_n_0 ),
+        .O(\rd_value[28]_INST_0_i_12_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \rd_value[30]_INST_0_i_3 
-       (.I0(\imm_reg_n_0_[14] ),
-        .I1(alu_src),
-        .I2(write_data[14]),
-        .O(alu_src_t[14]));
+    \rd_value[28]_INST_0_i_13 
+       (.I0(\rd_value[28]_INST_0_i_19_n_0 ),
+        .I1(alu_src_t[2]),
+        .I2(\rd_value[31]_INST_0_i_21_n_0 ),
+        .O(\rd_value[28]_INST_0_i_13_n_0 ));
+  LUT5 #(
+    .INIT(32'hFFFACCFA)) 
+    \rd_value[28]_INST_0_i_14 
+       (.I0(write_data[16]),
+        .I1(\imm_reg_n_0_[17] ),
+        .I2(write_data[17]),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[18] ),
+        .O(\rd_value[28]_INST_0_i_14_n_0 ));
+  LUT5 #(
+    .INIT(32'hFFFACCFA)) 
+    \rd_value[28]_INST_0_i_15 
+       (.I0(write_data[19]),
+        .I1(\imm_reg_n_0_[20] ),
+        .I2(write_data[22]),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[23] ),
+        .O(\rd_value[28]_INST_0_i_15_n_0 ));
+  LUT5 #(
+    .INIT(32'hFFFACCFA)) 
+    \rd_value[28]_INST_0_i_16 
+       (.I0(write_data[23]),
+        .I1(\imm_reg_n_0_[24] ),
+        .I2(write_data[26]),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[27] ),
+        .O(\rd_value[28]_INST_0_i_16_n_0 ));
+  LUT5 #(
+    .INIT(32'hFFFACCFA)) 
+    \rd_value[28]_INST_0_i_17 
+       (.I0(write_data[24]),
+        .I1(\imm_reg_n_0_[25] ),
+        .I2(write_data[25]),
+        .I3(alu_src),
+        .I4(\imm_reg_n_0_[26] ),
+        .O(\rd_value[28]_INST_0_i_17_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  LUT4 #(
+    .INIT(16'hFFEF)) 
+    \rd_value[28]_INST_0_i_18 
+       (.I0(alu_src_t[2]),
+        .I1(alu_src_t[4]),
+        .I2(rd_sub_carry__6_i_9_n_0),
+        .I3(alu_src_t[3]),
+        .O(\rd_value[28]_INST_0_i_18_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  LUT5 #(
+    .INIT(32'h0A0ACFC0)) 
+    \rd_value[28]_INST_0_i_19 
+       (.I0(alu_src_t[13]),
+        .I1(alu_src_t[5]),
+        .I2(alu_src_t[4]),
+        .I3(rd_sub_carry__4_i_11_n_0),
+        .I4(alu_src_t[3]),
+        .O(\rd_value[28]_INST_0_i_19_n_0 ));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[30]_INST_0_i_4 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_11_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[30]),
-        .I4(data1[30]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[30]_INST_0_i_4_n_0 ));
+    .INIT(64'hA202A2A2A2020202)) 
+    \rd_value[28]_INST_0_i_2 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(\rd_value[28]_INST_0_i_6_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data1[28]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[28]_INST_0_i_7_n_0 ),
+        .O(\rd_value[28]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFEF)) 
+    \rd_value[28]_INST_0_i_3 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(\rd_value[28]_INST_0_i_8_n_0 ),
+        .I2(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[28]_INST_0_i_9_n_0 ),
+        .I4(\rd_value[28]_INST_0_i_10_n_0 ),
+        .I5(\rd_value[28]_INST_0_i_11_n_0 ),
+        .O(\rd_value[28]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h000000000000DCDF)) 
+    \rd_value[28]_INST_0_i_4 
+       (.I0(\rd_value[29]_INST_0_i_10_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[29]_INST_0_i_9_n_0 ),
+        .I4(\rd_value[28]_INST_0_i_12_n_0 ),
+        .I5(alu_src_t[0]),
+        .O(\rd_value[28]_INST_0_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF3202FFFF)) 
+    \rd_value[28]_INST_0_i_5 
+       (.I0(\rd_value[30]_INST_0_i_8_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[28]_INST_0_i_13_n_0 ),
+        .I4(alu_src_t[0]),
+        .I5(\rd_value[29]_INST_0_i_11_n_0 ),
+        .O(\rd_value[28]_INST_0_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h55555555F033CFC0)) 
+    \rd_value[28]_INST_0_i_6 
+       (.I0(data0[28]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[28]_INST_0_i_7_n_0 ),
+        .I4(rd_sub_carry__6_i_11_n_0),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[28]_INST_0_i_6_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[28]_INST_0_i_7 
+       (.I0(write_back_data[28]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[28]),
+        .I3(rs_forward[1]),
+        .I4(rs[28]),
+        .O(\rd_value[28]_INST_0_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \rd_value[28]_INST_0_i_8 
+       (.I0(rd_sub_carry__3_i_12_n_0),
+        .I1(rd_sub_carry__3_i_9_n_0),
+        .I2(\rd_value[28]_INST_0_i_14_n_0 ),
+        .I3(rd_sub_carry__4_i_11_n_0),
+        .I4(\rd_value[28]_INST_0_i_15_n_0 ),
+        .I5(rd_sub_carry__4_i_10_n_0),
+        .O(\rd_value[28]_INST_0_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \rd_value[28]_INST_0_i_9 
+       (.I0(rd_sub_carry__6_i_9_n_0),
+        .I1(rd_sub_carry__6_i_11_n_0),
+        .I2(rd_sub_carry__6_i_8_n_0),
+        .I3(rd_sub_carry__6_i_10_n_0),
+        .I4(\rd_value[28]_INST_0_i_16_n_0 ),
+        .I5(\rd_value[28]_INST_0_i_17_n_0 ),
+        .O(\rd_value[28]_INST_0_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'hB8BBB8BBB8BBB8B8)) 
+    \rd_value[29]_INST_0 
+       (.I0(\rd_value[29]_INST_0_i_1_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[29]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[29]_INST_0_i_3_n_0 ),
+        .I4(\rd_value[29]_INST_0_i_4_n_0 ),
+        .I5(\rd_value[29]_INST_0_i_5_n_0 ),
+        .O(rd_value[29]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT2 #(
-    .INIT(4'h1)) 
-    \rd_value[30]_INST_0_i_5 
-       (.I0(alu_src_t[2]),
-        .I1(alu_src_t[1]),
-        .O(\rd_value[30]_INST_0_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+    .INIT(4'h8)) 
+    \rd_value[29]_INST_0_i_1 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(alu_src_t[13]),
+        .O(\rd_value[29]_INST_0_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \rd_value[30]_INST_0_i_6 
-       (.I0(\imm_reg_n_0_[30] ),
-        .I1(alu_src),
-        .I2(write_data[30]),
-        .O(alu_src_t[30]));
+    \rd_value[29]_INST_0_i_10 
+       (.I0(\rd_value[29]_INST_0_i_12_n_0 ),
+        .I1(alu_src_t[2]),
+        .I2(\rd_value[31]_INST_0_i_25_n_0 ),
+        .O(\rd_value[29]_INST_0_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hAAAA0000000C0000)) 
+    \rd_value[29]_INST_0_i_11 
+       (.I0(\rd_value[29]_INST_0_i_13_n_0 ),
+        .I1(rd_sub_carry__6_i_10_n_0),
+        .I2(alu_src_t[4]),
+        .I3(\rd_value[4]_INST_0_i_5_n_0 ),
+        .I4(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I5(alu_src_t[1]),
+        .O(\rd_value[29]_INST_0_i_11_n_0 ));
   LUT5 #(
-    .INIT(32'h00053305)) 
+    .INIT(32'h0A0ACFC0)) 
+    \rd_value[29]_INST_0_i_12 
+       (.I0(alu_src_t[14]),
+        .I1(alu_src_t[6]),
+        .I2(alu_src_t[4]),
+        .I3(rd_sub_carry__4_i_10_n_0),
+        .I4(alu_src_t[3]),
+        .O(\rd_value[29]_INST_0_i_12_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  LUT4 #(
+    .INIT(16'h0010)) 
+    \rd_value[29]_INST_0_i_13 
+       (.I0(alu_src_t[2]),
+        .I1(alu_src_t[4]),
+        .I2(rd_sub_carry__6_i_8_n_0),
+        .I3(alu_src_t[3]),
+        .O(\rd_value[29]_INST_0_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hA202A2A2A2020202)) 
+    \rd_value[29]_INST_0_i_2 
+       (.I0(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I1(\rd_value[29]_INST_0_i_6_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data1[29]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[29]_INST_0_i_7_n_0 ),
+        .O(\rd_value[29]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hBBBBAAABBBBBBBAB)) 
+    \rd_value[29]_INST_0_i_3 
+       (.I0(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I1(\rd_value[29]_INST_0_i_8_n_0 ),
+        .I2(\rd_value[29]_INST_0_i_9_n_0 ),
+        .I3(alu_src_t[1]),
+        .I4(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I5(\rd_value[29]_INST_0_i_10_n_0 ),
+        .O(\rd_value[29]_INST_0_i_3_n_0 ));
+  LUT4 #(
+    .INIT(16'h0E02)) 
+    \rd_value[29]_INST_0_i_4 
+       (.I0(\rd_value[30]_INST_0_i_7_n_0 ),
+        .I1(alu_src_t[1]),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[30]_INST_0_i_8_n_0 ),
+        .O(\rd_value[29]_INST_0_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
+    \rd_value[29]_INST_0_i_5 
+       (.I0(alu_src_t[0]),
+        .I1(\rd_value[29]_INST_0_i_11_n_0 ),
+        .O(\rd_value[29]_INST_0_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h55555555F033CFC0)) 
+    \rd_value[29]_INST_0_i_6 
+       (.I0(data0[29]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[29]_INST_0_i_7_n_0 ),
+        .I4(rd_sub_carry__6_i_10_n_0),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[29]_INST_0_i_6_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[29]_INST_0_i_7 
+       (.I0(write_back_data[29]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[29]),
+        .I3(rs_forward[1]),
+        .I4(rs[29]),
+        .O(\rd_value[29]_INST_0_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'h00100000FFFFFFFF)) 
+    \rd_value[29]_INST_0_i_8 
+       (.I0(alu_src_t[2]),
+        .I1(alu_src_t[4]),
+        .I2(rd_sub_carry__6_i_9_n_0),
+        .I3(alu_src_t[3]),
+        .I4(\rd_value[30]_INST_0_i_12_n_0 ),
+        .I5(alu_src_t[0]),
+        .O(\rd_value[29]_INST_0_i_8_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[29]_INST_0_i_9 
+       (.I0(\rd_value[31]_INST_0_i_23_n_0 ),
+        .I1(alu_src_t[2]),
+        .I2(\rd_value[31]_INST_0_i_24_n_0 ),
+        .O(\rd_value[29]_INST_0_i_9_n_0 ));
+  LUT4 #(
+    .INIT(16'h0838)) 
+    \rd_value[2]_INST_0 
+       (.I0(alu_src_t[2]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I3(\rd_value[2]_INST_0_i_1_n_0 ),
+        .O(rd_value[2]));
+  LUT6 #(
+    .INIT(64'h303F303FAFAFA0A0)) 
+    \rd_value[2]_INST_0_i_1 
+       (.I0(alu_src_s[2]),
+        .I1(data1[2]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[2]),
+        .I4(\rd_value[2]_INST_0_i_2_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[2]_INST_0_i_1_n_0 ));
+  LUT4 #(
+    .INIT(16'h58CB)) 
+    \rd_value[2]_INST_0_i_2 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[2]),
+        .I3(alu_src_s[2]),
+        .O(\rd_value[2]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h8B00BB338B008B00)) 
+    \rd_value[30]_INST_0 
+       (.I0(alu_src_t[14]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[30]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[30]_INST_0_i_3_n_0 ),
+        .I5(\rd_value[30]_INST_0_i_4_n_0 ),
+        .O(rd_value[30]));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[30]_INST_0_i_1 
+       (.I0(\imm_reg_n_0_[14] ),
+        .I1(alu_src),
+        .I2(write_data[13]),
+        .O(alu_src_t[14]));
+  LUT6 #(
+    .INIT(64'h0000000000000400)) 
+    \rd_value[30]_INST_0_i_10 
+       (.I0(alu_src_t[1]),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[3]),
+        .I3(rd_sub_carry__6_i_9_n_0),
+        .I4(alu_src_t[4]),
+        .I5(alu_src_t[2]),
+        .O(\rd_value[30]_INST_0_i_10_n_0 ));
+  LUT5 #(
+    .INIT(32'h0A0ACFC0)) 
+    \rd_value[30]_INST_0_i_11 
+       (.I0(alu_src_t[15]),
+        .I1(alu_src_t[7]),
+        .I2(alu_src_t[4]),
+        .I3(rd_sub_carry__4_i_9_n_0),
+        .I4(alu_src_t[3]),
+        .O(\rd_value[30]_INST_0_i_11_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT2 #(
+    .INIT(4'h2)) 
+    \rd_value[30]_INST_0_i_12 
+       (.I0(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I1(alu_src_t[1]),
+        .O(\rd_value[30]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'h303F303F5F5F5050)) 
+    \rd_value[30]_INST_0_i_2 
+       (.I0(\rd_value[30]_INST_0_i_5_n_0 ),
+        .I1(data1[30]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[30]),
+        .I4(\rd_value[30]_INST_0_i_6_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[30]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFABFFFBAAAAAAAA)) 
+    \rd_value[30]_INST_0_i_3 
+       (.I0(\rd_value[28]_INST_0_i_3_n_0 ),
+        .I1(\rd_value[30]_INST_0_i_7_n_0 ),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I4(\rd_value[30]_INST_0_i_8_n_0 ),
+        .I5(\rd_value[30]_INST_0_i_9_n_0 ),
+        .O(\rd_value[30]_INST_0_i_3_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFF4)) 
+    \rd_value[30]_INST_0_i_4 
+       (.I0(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_12_n_0 ),
+        .I2(\rd_value[30]_INST_0_i_10_n_0 ),
+        .I3(alu_src_t[0]),
+        .O(\rd_value[30]_INST_0_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[30]_INST_0_i_5 
+       (.I0(write_back_data[30]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[30]),
+        .I3(rs_forward[1]),
+        .I4(rs[30]),
+        .O(\rd_value[30]_INST_0_i_5_n_0 ));
+  LUT4 #(
+    .INIT(16'hC5B8)) 
+    \rd_value[30]_INST_0_i_6 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(\rd_value[30]_INST_0_i_5_n_0 ),
+        .I3(rd_sub_carry__6_i_9_n_0),
+        .O(\rd_value[30]_INST_0_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \rd_value[30]_INST_0_i_7 
-       (.I0(write_data[4]),
-        .I1(\imm_reg_n_0_[4] ),
-        .I2(write_data[3]),
-        .I3(alu_src),
-        .I4(\imm_reg_n_0_[3] ),
+       (.I0(\rd_value[31]_INST_0_i_21_n_0 ),
+        .I1(alu_src_t[2]),
+        .I2(\rd_value[31]_INST_0_i_22_n_0 ),
         .O(\rd_value[30]_INST_0_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \rd_value[30]_INST_0_i_8 
-       (.I0(\imm_reg_n_0_[31] ),
-        .I1(alu_src),
-        .I2(write_data[31]),
-        .O(alu_src_t__95));
+       (.I0(\rd_value[30]_INST_0_i_11_n_0 ),
+        .I1(alu_src_t[2]),
+        .I2(\rd_value[31]_INST_0_i_19_n_0 ),
+        .O(\rd_value[30]_INST_0_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'h0000008000000000)) 
+    .INIT(64'hAAAAAAAAAAA2AAAA)) 
     \rd_value[30]_INST_0_i_9 
        (.I0(alu_src_t[0]),
-        .I1(\rd_value[31]_INST_0_i_17_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_18_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_19_n_0 ),
-        .I4(\rd_value[31]_INST_0_i_20_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_10_n_0 ),
+        .I1(\rd_value[30]_INST_0_i_12_n_0 ),
+        .I2(alu_src_t[2]),
+        .I3(alu_src_t[4]),
+        .I4(rd_sub_carry__6_i_8_n_0),
+        .I5(alu_src_t[3]),
         .O(\rd_value[30]_INST_0_i_9_n_0 ));
   LUT5 #(
-    .INIT(32'hFFFFF888)) 
+    .INIT(32'hBB338B00)) 
     \rd_value[31]_INST_0 
-       (.I0(\rd_value[31]_INST_0_i_1_n_0 ),
+       (.I0(alu_src_t[15]),
         .I1(\rd_value[31]_INST_0_i_2_n_0 ),
         .I2(\rd_value[31]_INST_0_i_3_n_0 ),
-        .I3(alu_src_t[15]),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
         .I4(\rd_value[31]_INST_0_i_5_n_0 ),
         .O(rd_value[31]));
-  LUT6 #(
-    .INIT(64'h0001000000030000)) 
-    \rd_value[31]_INST_0_i_1 
-       (.I0(\alu_op_reg_n_0_[0] ),
-        .I1(alu_op),
-        .I2(\alu_op_reg_n_0_[4] ),
-        .I3(\alu_op_reg_n_0_[3] ),
-        .I4(\alu_op_reg_n_0_[2] ),
-        .I5(\alu_op_reg_n_0_[1] ),
-        .O(\rd_value[31]_INST_0_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[31]_INST_0_i_10 
-       (.I0(\rd_value[31]_INST_0_i_25_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_26_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[31]_INST_0_i_27_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[31]_INST_0_i_28_n_0 ),
-        .O(\rd_value[31]_INST_0_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000000080)) 
-    \rd_value[31]_INST_0_i_11 
-       (.I0(alu_src_t[0]),
-        .I1(\rd_value[31]_INST_0_i_17_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_18_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_19_n_0 ),
-        .I4(\rd_value[31]_INST_0_i_20_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_10_n_0 ),
-        .O(\rd_value[31]_INST_0_i_11_n_0 ));
-  LUT6 #(
-    .INIT(64'h0102333003300300)) 
-    \rd_value[31]_INST_0_i_12 
-       (.I0(\alu_op_reg_n_0_[0] ),
-        .I1(alu_op),
-        .I2(\alu_op_reg_n_0_[4] ),
-        .I3(\alu_op_reg_n_0_[3] ),
-        .I4(\alu_op_reg_n_0_[2] ),
-        .I5(\alu_op_reg_n_0_[1] ),
-        .O(\rd_value[31]_INST_0_i_12_n_0 ));
-  LUT6 #(
-    .INIT(64'h0F3CAAAAF330AAAA)) 
-    \rd_value[31]_INST_0_i_13 
-       (.I0(data0[31]),
-        .I1(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I2(alu_src_t__95),
-        .I3(alu_src_s__96),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[31]_INST_0_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'h00001F38000097B0)) 
-    \rd_value[31]_INST_0_i_14 
-       (.I0(\alu_op_reg_n_0_[1] ),
-        .I1(\alu_op_reg_n_0_[4] ),
-        .I2(\alu_op_reg_n_0_[3] ),
-        .I3(\alu_op_reg_n_0_[2] ),
-        .I4(alu_op),
-        .I5(\alu_op_reg_n_0_[0] ),
-        .O(\rd_value[31]_INST_0_i_14_n_0 ));
-  LUT5 #(
-    .INIT(32'h00CCF0AA)) 
-    \rd_value[31]_INST_0_i_15 
-       (.I0(rs[31]),
-        .I1(write_back_data[31]),
-        .I2(alu_result_back[31]),
-        .I3(rs_forward[1]),
-        .I4(rs_forward[0]),
-        .O(alu_src_s__96));
-  LUT6 #(
-    .INIT(64'h0000010007898F00)) 
-    \rd_value[31]_INST_0_i_16 
-       (.I0(\alu_op_reg_n_0_[2] ),
-        .I1(\alu_op_reg_n_0_[1] ),
-        .I2(\alu_op_reg_n_0_[4] ),
-        .I3(\alu_op_reg_n_0_[3] ),
-        .I4(\alu_op_reg_n_0_[0] ),
-        .I5(alu_op),
-        .O(\rd_value[31]_INST_0_i_16_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000000008)) 
-    \rd_value[31]_INST_0_i_17 
-       (.I0(\rd_value[31]_INST_0_i_29_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_30_n_0 ),
-        .I2(alu_src_t[12]),
-        .I3(alu_src_t[11]),
-        .I4(alu_src_t[10]),
-        .I5(alu_src_t[9]),
-        .O(\rd_value[31]_INST_0_i_17_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000000008)) 
-    \rd_value[31]_INST_0_i_18 
-       (.I0(\rd_value[31]_INST_0_i_31_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_32_n_0 ),
-        .I2(alu_src_t[16]),
-        .I3(alu_src_t[15]),
-        .I4(alu_src_t[14]),
-        .I5(alu_src_t[13]),
-        .O(\rd_value[31]_INST_0_i_18_n_0 ));
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    \rd_value[31]_INST_0_i_19 
-       (.I0(alu_src_t[24]),
-        .I1(alu_src_t[21]),
-        .I2(alu_src_t[26]),
-        .I3(alu_src_t[23]),
-        .O(\rd_value[31]_INST_0_i_19_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
-    \rd_value[31]_INST_0_i_2 
-       (.I0(\rd_value[31]_INST_0_i_6_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_7_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_9_n_0 ),
-        .I4(\rd_value[31]_INST_0_i_10_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[31]_INST_0_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \rd_value[31]_INST_0_i_20 
-       (.I0(alu_src_t[27]),
-        .I1(alu_src_t__95),
-        .I2(alu_src_t[25]),
-        .I3(alu_src_t[28]),
-        .I4(alu_src_t[22]),
-        .I5(\rd_value[31]_INST_0_i_33_n_0 ),
-        .O(\rd_value[31]_INST_0_i_20_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[31]_INST_0_i_21 
-       (.I0(alu_src_t__95),
-        .I1(alu_src_t[15]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[7]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[23]),
-        .O(\rd_value[31]_INST_0_i_21_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT5 #(
-    .INIT(32'hFCFAFC0A)) 
-    \rd_value[31]_INST_0_i_22 
-       (.I0(alu_src_t[27]),
-        .I1(alu_src_t[11]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[19]),
-        .O(\rd_value[31]_INST_0_i_22_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[31]_INST_0_i_23 
-       (.I0(alu_src_t[25]),
-        .I1(alu_src_t[9]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[1]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[17]),
-        .O(\rd_value[31]_INST_0_i_23_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[31]_INST_0_i_24 
-       (.I0(alu_src_t[29]),
-        .I1(alu_src_t[13]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[5]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[21]),
-        .O(\rd_value[31]_INST_0_i_24_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[31]_INST_0_i_25 
-       (.I0(alu_src_t[30]),
-        .I1(alu_src_t[14]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[6]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[22]),
-        .O(\rd_value[31]_INST_0_i_25_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[31]_INST_0_i_26 
-       (.I0(alu_src_t[26]),
-        .I1(alu_src_t[10]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[2]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[18]),
-        .O(\rd_value[31]_INST_0_i_26_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[31]_INST_0_i_27 
-       (.I0(alu_src_t[24]),
-        .I1(alu_src_t[8]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[0]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[16]),
-        .O(\rd_value[31]_INST_0_i_27_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT5 #(
-    .INIT(32'hFCFAFC0A)) 
-    \rd_value[31]_INST_0_i_28 
-       (.I0(alu_src_t[28]),
-        .I1(alu_src_t[12]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[20]),
-        .O(\rd_value[31]_INST_0_i_28_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
-  LUT5 #(
-    .INIT(32'h00053305)) 
-    \rd_value[31]_INST_0_i_29 
-       (.I0(write_data[8]),
-        .I1(\imm_reg_n_0_[8] ),
-        .I2(write_data[7]),
-        .I3(alu_src),
-        .I4(\imm_reg_n_0_[7] ),
-        .O(\rd_value[31]_INST_0_i_29_n_0 ));
-  LUT6 #(
-    .INIT(64'h1000000000000000)) 
-    \rd_value[31]_INST_0_i_3 
-       (.I0(\alu_op_reg_n_0_[0] ),
-        .I1(alu_op),
-        .I2(\alu_op_reg_n_0_[4] ),
-        .I3(\alu_op_reg_n_0_[3] ),
-        .I4(\alu_op_reg_n_0_[2] ),
-        .I5(\alu_op_reg_n_0_[1] ),
-        .O(\rd_value[31]_INST_0_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
-  LUT5 #(
-    .INIT(32'h00053305)) 
-    \rd_value[31]_INST_0_i_30 
-       (.I0(write_data[6]),
-        .I1(\imm_reg_n_0_[6] ),
-        .I2(write_data[5]),
-        .I3(alu_src),
-        .I4(\imm_reg_n_0_[5] ),
-        .O(\rd_value[31]_INST_0_i_30_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
-  LUT5 #(
-    .INIT(32'h00053305)) 
-    \rd_value[31]_INST_0_i_31 
-       (.I0(write_data[18]),
-        .I1(\imm_reg_n_0_[18] ),
-        .I2(write_data[17]),
-        .I3(alu_src),
-        .I4(\imm_reg_n_0_[17] ),
-        .O(\rd_value[31]_INST_0_i_31_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT5 #(
-    .INIT(32'h00053305)) 
-    \rd_value[31]_INST_0_i_32 
-       (.I0(write_data[20]),
-        .I1(\imm_reg_n_0_[20] ),
-        .I2(write_data[19]),
-        .I3(alu_src),
-        .I4(\imm_reg_n_0_[19] ),
-        .O(\rd_value[31]_INST_0_i_32_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT5 #(
-    .INIT(32'hFFFACCFA)) 
-    \rd_value[31]_INST_0_i_33 
-       (.I0(write_data[30]),
-        .I1(\imm_reg_n_0_[30] ),
-        .I2(write_data[29]),
-        .I3(alu_src),
-        .I4(\imm_reg_n_0_[29] ),
-        .O(\rd_value[31]_INST_0_i_33_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \rd_value[31]_INST_0_i_4 
+    \rd_value[31]_INST_0_i_1 
        (.I0(\imm_reg_n_0_[15] ),
         .I1(alu_src),
-        .I2(write_data[15]),
+        .I2(write_data[14]),
         .O(alu_src_t[15]));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \rd_value[31]_INST_0_i_10 
+       (.CI(\rd_value[26]_INST_0_i_6_n_0 ),
+        .CO({\NLW_rd_value[31]_INST_0_i_10_CO_UNCONNECTED [3],\rd_value[31]_INST_0_i_10_n_1 ,\rd_value[31]_INST_0_i_10_n_2 ,\rd_value[31]_INST_0_i_10_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,alu_src_s[30:28]}),
+        .O(data0[31:28]),
+        .S({\rd_value[31]_INST_0_i_15_n_0 ,\rd_value[31]_INST_0_i_16_n_0 ,\rd_value[31]_INST_0_i_17_n_0 ,\rd_value[31]_INST_0_i_18_n_0 }));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[31]_INST_0_i_5 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s__96),
-        .I4(data1[31]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[31]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000000040)) 
-    \rd_value[31]_INST_0_i_6 
-       (.I0(alu_src_t[0]),
-        .I1(\rd_value[31]_INST_0_i_17_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_18_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_19_n_0 ),
-        .I4(\rd_value[31]_INST_0_i_20_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_10_n_0 ),
-        .O(\rd_value[31]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[31]_INST_0_i_7 
-       (.I0(\rd_value[31]_INST_0_i_21_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_22_n_0 ),
+    .INIT(64'h05F5030305F5F3F3)) 
+    \rd_value[31]_INST_0_i_11 
+       (.I0(\rd_value[31]_INST_0_i_19_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_20_n_0 ),
         .I2(alu_src_t[1]),
-        .I3(\rd_value[31]_INST_0_i_23_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_21_n_0 ),
         .I4(alu_src_t[2]),
-        .I5(\rd_value[31]_INST_0_i_24_n_0 ),
-        .O(\rd_value[31]_INST_0_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000004000000000)) 
-    \rd_value[31]_INST_0_i_8 
-       (.I0(alu_src_t[0]),
-        .I1(\rd_value[31]_INST_0_i_17_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_18_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_19_n_0 ),
-        .I4(\rd_value[31]_INST_0_i_20_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_10_n_0 ),
-        .O(\rd_value[31]_INST_0_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT4 #(
-    .INIT(16'h1000)) 
-    \rd_value[31]_INST_0_i_9 
-       (.I0(alu_src_t[1]),
-        .I1(alu_src_t[2]),
-        .I2(alu_src_t__95),
-        .I3(\rd_value[30]_INST_0_i_7_n_0 ),
-        .O(\rd_value[31]_INST_0_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
-    \rd_value[3]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[3]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[3]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[3]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[3]_INST_0_i_3_n_0 ),
-        .O(rd_value[3]));
-  LUT6 #(
-    .INIT(64'h8F88888888888888)) 
-    \rd_value[3]_INST_0_i_1 
-       (.I0(\rd_value[3]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(alu_src_t[2]),
-        .I3(alu_src_t[1]),
-        .I4(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[3]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[3]_INST_0_i_2 
-       (.I0(\rd_value[4]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[3]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[3]_INST_0_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[3]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[3]_INST_0_i_6_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[3]),
-        .I4(data1[3]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[3]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFAFCFC0AFA0CFC0)) 
-    \rd_value[3]_INST_0_i_4 
-       (.I0(\rd_value[9]_INST_0_i_7_n_0 ),
-        .I1(\rd_value[5]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[3]_INST_0_i_7_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[7]_INST_0_i_7_n_0 ),
-        .O(\rd_value[3]_INST_0_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
-  LUT4 #(
-    .INIT(16'h0800)) 
-    \rd_value[3]_INST_0_i_5 
-       (.I0(alu_src_t[0]),
-        .I1(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[2]),
-        .I3(alu_src_t[1]),
-        .O(\rd_value[3]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[3]_INST_0_i_6 
-       (.I0(data0[3]),
-        .I1(alu_src_s[3]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[3]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[3]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000ACF0AC00)) 
-    \rd_value[3]_INST_0_i_7 
-       (.I0(alu_src_t[27]),
-        .I1(alu_src_t[11]),
-        .I2(alu_src_t[4]),
-        .I3(alu_src_t[3]),
-        .I4(alu_src_t[19]),
-        .I5(alu_src_t[2]),
-        .O(\rd_value[3]_INST_0_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
-    \rd_value[4]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[4]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[4]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[4]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[4]_INST_0_i_3_n_0 ),
-        .O(rd_value[4]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \rd_value[4]_INST_0_i_1 
-       (.I0(\rd_value[4]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[5]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[4]_INST_0_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h8F88888888888888)) 
-    \rd_value[4]_INST_0_i_2 
-       (.I0(\rd_value[5]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(alu_src_t[2]),
-        .I3(alu_src_t[1]),
-        .I4(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I5(\rd_value[31]_INST_0_i_11_n_0 ),
-        .O(\rd_value[4]_INST_0_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
-    \rd_value[4]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[4]_INST_0_i_5_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[4]),
-        .I4(data1[4]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[4]_INST_0_i_3_n_0 ));
+        .I5(\rd_value[31]_INST_0_i_22_n_0 ),
+        .O(\rd_value[31]_INST_0_i_11_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[4]_INST_0_i_4 
-       (.I0(\rd_value[10]_INST_0_i_7_n_0 ),
-        .I1(\rd_value[6]_INST_0_i_7_n_0 ),
+    \rd_value[31]_INST_0_i_12 
+       (.I0(\rd_value[31]_INST_0_i_23_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_24_n_0 ),
         .I2(alu_src_t[1]),
-        .I3(\rd_value[8]_INST_0_i_7_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_25_n_0 ),
         .I4(alu_src_t[2]),
-        .I5(\rd_value[4]_INST_0_i_6_n_0 ),
-        .O(\rd_value[4]_INST_0_i_4_n_0 ));
+        .I5(\rd_value[31]_INST_0_i_26_n_0 ),
+        .O(\rd_value[31]_INST_0_i_12_n_0 ));
   LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[4]_INST_0_i_5 
-       (.I0(data0[4]),
-        .I1(alu_src_s[4]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[4]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[4]_INST_0_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+    .INIT(64'h0010110010542233)) 
+    \rd_value[31]_INST_0_i_13 
+       (.I0(alu_op[3]),
+        .I1(alu_op[4]),
+        .I2(alu_op[0]),
+        .I3(alu_op[1]),
+        .I4(alu_op[5]),
+        .I5(alu_op[2]),
+        .O(\rd_value[31]_INST_0_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000400000000)) 
+    \rd_value[31]_INST_0_i_14 
+       (.I0(alu_src_t[3]),
+        .I1(rd_sub_carry__6_i_8_n_0),
+        .I2(alu_src_t[4]),
+        .I3(alu_src_t[2]),
+        .I4(alu_src_t[1]),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
+        .O(\rd_value[31]_INST_0_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hCC1DFF1D33E200E2)) 
+    \rd_value[31]_INST_0_i_15 
+       (.I0(rs[31]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[31]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[31]),
+        .I5(rd_sub_carry__6_i_8_n_0),
+        .O(\rd_value[31]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[31]_INST_0_i_16 
+       (.I0(rd_sub_carry__6_i_9_n_0),
+        .I1(write_back_data[30]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[30]),
+        .I4(rs_forward[1]),
+        .I5(rs[30]),
+        .O(\rd_value[31]_INST_0_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[31]_INST_0_i_17 
+       (.I0(rd_sub_carry__6_i_10_n_0),
+        .I1(write_back_data[29]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[29]),
+        .I4(rs_forward[1]),
+        .I5(rs[29]),
+        .O(\rd_value[31]_INST_0_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[31]_INST_0_i_18 
+       (.I0(rd_sub_carry__6_i_11_n_0),
+        .I1(write_back_data[28]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[28]),
+        .I4(rs_forward[1]),
+        .I5(rs[28]),
+        .O(\rd_value[31]_INST_0_i_18_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT5 #(
-    .INIT(32'hAACCF000)) 
-    \rd_value[4]_INST_0_i_6 
-       (.I0(alu_src_t[28]),
-        .I1(alu_src_t[12]),
-        .I2(alu_src_t[20]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[3]),
-        .O(\rd_value[4]_INST_0_i_6_n_0 ));
+    .INIT(32'hFFB8CCB8)) 
+    \rd_value[31]_INST_0_i_19 
+       (.I0(alu_src_t[11]),
+        .I1(alu_src_t[4]),
+        .I2(rd_sub_carry__5_i_9_n_0),
+        .I3(alu_src_t[3]),
+        .I4(rd_sub_carry__3_i_9_n_0),
+        .O(\rd_value[31]_INST_0_i_19_n_0 ));
+  LUT5 #(
+    .INIT(32'h01000000)) 
+    \rd_value[31]_INST_0_i_2 
+       (.I0(alu_op[4]),
+        .I1(alu_op[2]),
+        .I2(alu_op[1]),
+        .I3(alu_op[0]),
+        .I4(alu_op[5]),
+        .O(\rd_value[31]_INST_0_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \rd_value[31]_INST_0_i_20 
+       (.I0(alu_src_t[7]),
+        .I1(rd_sub_carry__4_i_9_n_0),
+        .I2(alu_src_t[3]),
+        .I3(alu_src_t[15]),
+        .I4(alu_src_t[4]),
+        .I5(rd_sub_carry__6_i_8_n_0),
+        .O(\rd_value[31]_INST_0_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \rd_value[31]_INST_0_i_21 
+       (.I0(alu_src_t[1]),
+        .I1(rd_sub_carry__3_i_11_n_0),
+        .I2(alu_src_t[3]),
+        .I3(alu_src_t[9]),
+        .I4(alu_src_t[4]),
+        .I5(rd_sub_carry__5_i_11_n_0),
+        .O(\rd_value[31]_INST_0_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \rd_value[31]_INST_0_i_22 
+       (.I0(alu_src_t[5]),
+        .I1(rd_sub_carry__4_i_11_n_0),
+        .I2(alu_src_t[3]),
+        .I3(alu_src_t[13]),
+        .I4(alu_src_t[4]),
+        .I5(rd_sub_carry__6_i_10_n_0),
+        .O(\rd_value[31]_INST_0_i_22_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \rd_value[31]_INST_0_i_23 
+       (.I0(alu_src_t[0]),
+        .I1(rd_sub_carry__3_i_12_n_0),
+        .I2(alu_src_t[3]),
+        .I3(alu_src_t[8]),
+        .I4(alu_src_t[4]),
+        .I5(rd_sub_carry__5_i_12_n_0),
+        .O(\rd_value[31]_INST_0_i_23_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  LUT5 #(
+    .INIT(32'hFCBBFC88)) 
+    \rd_value[31]_INST_0_i_24 
+       (.I0(rd_sub_carry__4_i_12_n_0),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[12]),
+        .I3(alu_src_t[4]),
+        .I4(rd_sub_carry__6_i_11_n_0),
+        .O(\rd_value[31]_INST_0_i_24_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \rd_value[31]_INST_0_i_25 
+       (.I0(alu_src_t[2]),
+        .I1(rd_sub_carry__3_i_10_n_0),
+        .I2(alu_src_t[3]),
+        .I3(alu_src_t[10]),
+        .I4(alu_src_t[4]),
+        .I5(rd_sub_carry__5_i_10_n_0),
+        .O(\rd_value[31]_INST_0_i_25_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \rd_value[31]_INST_0_i_26 
+       (.I0(alu_src_t[6]),
+        .I1(rd_sub_carry__4_i_10_n_0),
+        .I2(alu_src_t[3]),
+        .I3(alu_src_t[14]),
+        .I4(alu_src_t[4]),
+        .I5(rd_sub_carry__6_i_9_n_0),
+        .O(\rd_value[31]_INST_0_i_26_n_0 ));
+  LUT6 #(
+    .INIT(64'h3030AFA03F3FAFA0)) 
+    \rd_value[31]_INST_0_i_3 
+       (.I0(\rd_value[31]_INST_0_i_6_n_0 ),
+        .I1(data1[31]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_8_n_0 ),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(data0[31]),
+        .O(\rd_value[31]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000044647575)) 
+    \rd_value[31]_INST_0_i_4 
+       (.I0(alu_op[5]),
+        .I1(alu_op[3]),
+        .I2(alu_op[0]),
+        .I3(alu_op[1]),
+        .I4(alu_op[2]),
+        .I5(alu_op[4]),
+        .O(\rd_value[31]_INST_0_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000033F300D1)) 
+    \rd_value[31]_INST_0_i_5 
+       (.I0(\rd_value[31]_INST_0_i_11_n_0 ),
+        .I1(alu_src_t[0]),
+        .I2(\rd_value[31]_INST_0_i_12_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I4(\rd_value[31]_INST_0_i_14_n_0 ),
+        .I5(\rd_value[28]_INST_0_i_3_n_0 ),
+        .O(\rd_value[31]_INST_0_i_5_n_0 ));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \rd_value[31]_INST_0_i_6 
+       (.I0(write_back_data[31]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[31]),
+        .I3(rs_forward[1]),
+        .I4(rs[31]),
+        .O(\rd_value[31]_INST_0_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFB04B31A)) 
+    \rd_value[31]_INST_0_i_7 
+       (.I0(alu_op[1]),
+        .I1(alu_op[0]),
+        .I2(alu_op[3]),
+        .I3(alu_op[5]),
+        .I4(alu_op[2]),
+        .I5(alu_op[4]),
+        .O(\rd_value[31]_INST_0_i_7_n_0 ));
+  LUT4 #(
+    .INIT(16'h58CB)) 
+    \rd_value[31]_INST_0_i_8 
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(rd_sub_carry__6_i_8_n_0),
+        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
+        .O(\rd_value[31]_INST_0_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hFAFFFAFFEACFFADF)) 
+    \rd_value[31]_INST_0_i_9 
+       (.I0(alu_op[4]),
+        .I1(alu_op[2]),
+        .I2(alu_op[5]),
+        .I3(alu_op[3]),
+        .I4(alu_op[0]),
+        .I5(alu_op[1]),
+        .O(\rd_value[31]_INST_0_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'h3088308830BB3088)) 
+    \rd_value[3]_INST_0 
+       (.I0(alu_src_t[3]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[3]_INST_0_i_1_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I5(\rd_value[3]_INST_0_i_2_n_0 ),
+        .O(rd_value[3]));
+  LUT6 #(
+    .INIT(64'hAFA03F3FAFA03030)) 
+    \rd_value[3]_INST_0_i_1 
+       (.I0(data1[3]),
+        .I1(alu_src_s[3]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[3]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[3]_INST_0_i_4_n_0 ),
+        .O(\rd_value[3]_INST_0_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFEFF)) 
+    \rd_value[3]_INST_0_i_2 
+       (.I0(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[2]),
+        .I3(alu_src_t[1]),
+        .I4(alu_src_t[4]),
+        .I5(\rd_value[15]_INST_0_i_6_n_0 ),
+        .O(\rd_value[3]_INST_0_i_2_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \rd_value[3]_INST_0_i_3 
+       (.CI(1'b0),
+        .CO({\rd_value[3]_INST_0_i_3_n_0 ,\rd_value[3]_INST_0_i_3_n_1 ,\rd_value[3]_INST_0_i_3_n_2 ,\rd_value[3]_INST_0_i_3_n_3 }),
+        .CYINIT(1'b0),
+        .DI(alu_src_s[3:0]),
+        .O(data0[3:0]),
+        .S({\rd_value[3]_INST_0_i_5_n_0 ,\rd_value[3]_INST_0_i_6_n_0 ,\rd_value[3]_INST_0_i_7_n_0 ,\rd_value[3]_INST_0_i_8_n_0 }));
+  LUT4 #(
+    .INIT(16'h9D1A)) 
+    \rd_value[3]_INST_0_i_4 
+       (.I0(alu_src_t[3]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(alu_src_s[3]),
+        .O(\rd_value[3]_INST_0_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'hCC1DFF1D33E200E2)) 
+    \rd_value[3]_INST_0_i_5 
+       (.I0(rs[3]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[3]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[3]),
+        .I5(alu_src_t[3]),
+        .O(\rd_value[3]_INST_0_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hCF44CF7730BB3088)) 
+    \rd_value[3]_INST_0_i_6 
+       (.I0(write_back_data[2]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[2]),
+        .I3(rs_forward[1]),
+        .I4(rs[2]),
+        .I5(alu_src_t[2]),
+        .O(\rd_value[3]_INST_0_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'hCC1DFF1D33E200E2)) 
+    \rd_value[3]_INST_0_i_7 
+       (.I0(rs[1]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[1]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[1]),
+        .I5(alu_src_t[1]),
+        .O(\rd_value[3]_INST_0_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'hCC1DFF1D33E200E2)) 
+    \rd_value[3]_INST_0_i_8 
+       (.I0(rs[0]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[0]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[0]),
+        .I5(alu_src_t[0]),
+        .O(\rd_value[3]_INST_0_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'h3088308830BB3088)) 
+    \rd_value[4]_INST_0 
+       (.I0(alu_src_t[4]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[4]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I5(\rd_value[4]_INST_0_i_3_n_0 ),
+        .O(rd_value[4]));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[4]_INST_0_i_1 
+       (.I0(\imm_reg_n_0_[4] ),
+        .I1(alu_src),
+        .I2(\rt_forward_reg[0]_0 ),
+        .O(alu_src_t[4]));
+  LUT6 #(
+    .INIT(64'hAFA03F3FAFA03030)) 
+    \rd_value[4]_INST_0_i_2 
+       (.I0(data1[4]),
+        .I1(alu_src_s[4]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[4]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[4]_INST_0_i_4_n_0 ),
+        .O(\rd_value[4]_INST_0_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFEFFFFF)) 
+    \rd_value[4]_INST_0_i_3 
+       (.I0(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I1(alu_src_t[4]),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[4]_INST_0_i_5_n_0 ),
+        .I4(alu_src_t[0]),
+        .I5(\rd_value[15]_INST_0_i_6_n_0 ),
+        .O(\rd_value[4]_INST_0_i_3_n_0 ));
+  LUT4 #(
+    .INIT(16'h9D1A)) 
+    \rd_value[4]_INST_0_i_4 
+       (.I0(alu_src_t[4]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(alu_src_s[4]),
+        .O(\rd_value[4]_INST_0_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
+    \rd_value[4]_INST_0_i_5 
+       (.I0(alu_src_t[2]),
+        .I1(alu_src_t[3]),
+        .O(\rd_value[4]_INST_0_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h3088308830BB3088)) 
     \rd_value[5]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[5]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[5]_INST_0_i_1_n_0 ),
+       (.I0(alu_src_t[5]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[5]_INST_0_i_1_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
         .I4(\rd_value[5]_INST_0_i_2_n_0 ),
         .I5(\rd_value[5]_INST_0_i_3_n_0 ),
         .O(rd_value[5]));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  LUT6 #(
+    .INIT(64'hAFA03F3FAFA03030)) 
     \rd_value[5]_INST_0_i_1 
-       (.I0(\rd_value[5]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_6_n_0 ),
-        .I3(\rd_value[6]_INST_0_i_5_n_0 ),
+       (.I0(data1[5]),
+        .I1(alu_src_s[5]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[5]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[5]_INST_0_i_4_n_0 ),
         .O(\rd_value[5]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  LUT6 #(
+    .INIT(64'h0514050410510005)) 
     \rd_value[5]_INST_0_i_2 
-       (.I0(\rd_value[6]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[5]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
+       (.I0(alu_op[4]),
+        .I1(alu_op[2]),
+        .I2(alu_op[5]),
+        .I3(alu_op[3]),
+        .I4(alu_op[0]),
+        .I5(alu_op[1]),
         .O(\rd_value[5]_INST_0_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
+    .INIT(64'hFFFFFFFFFFFFFAEE)) 
     \rd_value[5]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[5]_INST_0_i_6_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[5]),
-        .I4(data1[5]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
+       (.I0(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I1(\rd_value[5]_INST_0_i_5_n_0 ),
+        .I2(\rd_value[5]_INST_0_i_6_n_0 ),
+        .I3(alu_src_t[0]),
+        .I4(alu_src_t[1]),
+        .I5(\rd_value[15]_INST_0_i_6_n_0 ),
         .O(\rd_value[5]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+  LUT4 #(
+    .INIT(16'hA734)) 
     \rd_value[5]_INST_0_i_4 
-       (.I0(\rd_value[11]_INST_0_i_7_n_0 ),
-        .I1(\rd_value[7]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[9]_INST_0_i_7_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[5]_INST_0_i_7_n_0 ),
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[5]),
+        .I3(alu_src_s[5]),
         .O(\rd_value[5]_INST_0_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT4 #(
-    .INIT(16'h0080)) 
+    .INIT(16'hFFEF)) 
     \rd_value[5]_INST_0_i_5 
-       (.I0(alu_src_t[0]),
-        .I1(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[2]),
-        .I3(alu_src_t[1]),
+       (.I0(alu_src_t[3]),
+        .I1(alu_src_t[2]),
+        .I2(alu_src_t[5]),
+        .I3(alu_src_t[4]),
         .O(\rd_value[5]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  LUT3 #(
+    .INIT(8'hFB)) 
     \rd_value[5]_INST_0_i_6 
-       (.I0(data0[5]),
-        .I1(alu_src_s[5]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[5]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
+       (.I0(alu_src_t[3]),
+        .I1(alu_src_t[2]),
+        .I2(alu_src_t[4]),
         .O(\rd_value[5]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[5]_INST_0_i_7 
-       (.I0(alu_src_t[5]),
-        .I1(alu_src_t[21]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[29]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[13]),
-        .O(\rd_value[5]_INST_0_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT5 #(
+    .INIT(32'h03BB0388)) 
     \rd_value[6]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[6]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[6]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[6]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[6]_INST_0_i_3_n_0 ),
+       (.I0(alu_src_t[6]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[6]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[6]_INST_0_i_3_n_0 ),
         .O(rd_value[6]));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \rd_value[6]_INST_0_i_1 
-       (.I0(\rd_value[6]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[7]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[6]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
+       (.I0(\imm_reg_n_0_[6] ),
+        .I1(alu_src),
+        .I2(write_data[5]),
+        .O(alu_src_t[6]));
+  LUT6 #(
+    .INIT(64'hCC1DFF1D33E200E2)) 
+    \rd_value[6]_INST_0_i_10 
+       (.I0(rs[5]),
+        .I1(rs_forward[1]),
+        .I2(alu_result_back[5]),
+        .I3(rs_forward[0]),
+        .I4(write_back_data[5]),
+        .I5(alu_src_t[5]),
+        .O(\rd_value[6]_INST_0_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hA5AA6565A5AA6A6A)) 
+    \rd_value[6]_INST_0_i_11 
+       (.I0(alu_src_t[4]),
+        .I1(write_back_data[4]),
+        .I2(rs_forward[0]),
+        .I3(alu_result_back[4]),
+        .I4(rs_forward[1]),
+        .I5(rs[4]),
+        .O(\rd_value[6]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'h303F303F5F5F5050)) 
     \rd_value[6]_INST_0_i_2 
-       (.I0(\rd_value[7]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_11_n_0 ),
-        .I3(\rd_value[6]_INST_0_i_5_n_0 ),
+       (.I0(\rd_value[6]_INST_0_i_4_n_0 ),
+        .I1(data1[6]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[6]),
+        .I4(\rd_value[6]_INST_0_i_6_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
         .O(\rd_value[6]_INST_0_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
+    .INIT(64'h0000000000022202)) 
     \rd_value[6]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[6]_INST_0_i_6_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[6]),
-        .I4(data1[6]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[15]_INST_0_i_6_n_0 ),
+        .I2(\rd_value[7]_INST_0_i_5_n_0 ),
+        .I3(alu_src_t[0]),
+        .I4(\rd_value[6]_INST_0_i_7_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
         .O(\rd_value[6]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+  LUT5 #(
+    .INIT(32'hFF550F33)) 
     \rd_value[6]_INST_0_i_4 
-       (.I0(\rd_value[12]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[8]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[10]_INST_0_i_7_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[6]_INST_0_i_7_n_0 ),
+       (.I0(write_back_data[6]),
+        .I1(rs[6]),
+        .I2(alu_result_back[6]),
+        .I3(rs_forward[1]),
+        .I4(rs_forward[0]),
         .O(\rd_value[6]_INST_0_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \rd_value[6]_INST_0_i_5 
+       (.CI(\rd_value[3]_INST_0_i_3_n_0 ),
+        .CO({\rd_value[6]_INST_0_i_5_n_0 ,\rd_value[6]_INST_0_i_5_n_1 ,\rd_value[6]_INST_0_i_5_n_2 ,\rd_value[6]_INST_0_i_5_n_3 }),
+        .CYINIT(1'b0),
+        .DI(alu_src_s[7:4]),
+        .O(data0[7:4]),
+        .S({\rd_value[6]_INST_0_i_8_n_0 ,\rd_value[6]_INST_0_i_9_n_0 ,\rd_value[6]_INST_0_i_10_n_0 ,\rd_value[6]_INST_0_i_11_n_0 }));
   LUT4 #(
-    .INIT(16'h0008)) 
-    \rd_value[6]_INST_0_i_5 
-       (.I0(alu_src_t[5]),
-        .I1(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[2]),
-        .I3(alu_src_t[1]),
-        .O(\rd_value[6]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
+    .INIT(16'hE562)) 
     \rd_value[6]_INST_0_i_6 
-       (.I0(data0[6]),
-        .I1(alu_src_s[6]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[6]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[6]_INST_0_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[6]_INST_0_i_7 
        (.I0(alu_src_t[6]),
-        .I1(alu_src_t[22]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t[30]),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[14]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I3(\rd_value[6]_INST_0_i_4_n_0 ),
+        .O(\rd_value[6]_INST_0_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  LUT5 #(
+    .INIT(32'hFFFFFFEF)) 
+    \rd_value[6]_INST_0_i_7 
+       (.I0(alu_src_t[1]),
+        .I1(alu_src_t[4]),
+        .I2(alu_src_t[5]),
+        .I3(alu_src_t[2]),
+        .I4(alu_src_t[3]),
         .O(\rd_value[6]_INST_0_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
+    .INIT(64'hCF44CF7730BB3088)) 
+    \rd_value[6]_INST_0_i_8 
+       (.I0(write_back_data[7]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[7]),
+        .I3(rs_forward[1]),
+        .I4(rs[7]),
+        .I5(alu_src_t[7]),
+        .O(\rd_value[6]_INST_0_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hAAAA666655AA5A5A)) 
+    \rd_value[6]_INST_0_i_9 
+       (.I0(alu_src_t[6]),
+        .I1(write_back_data[6]),
+        .I2(rs[6]),
+        .I3(alu_result_back[6]),
+        .I4(rs_forward[1]),
+        .I5(rs_forward[0]),
+        .O(\rd_value[6]_INST_0_i_9_n_0 ));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
     \rd_value[7]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[7]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[7]_INST_0_i_1_n_0 ),
+       (.I0(alu_src_t[7]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[7]_INST_0_i_1_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
         .I4(\rd_value[7]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[7]_INST_0_i_3_n_0 ),
         .O(rd_value[7]));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  LUT6 #(
+    .INIT(64'hFC55FC55FC550055)) 
     \rd_value[7]_INST_0_i_1 
-       (.I0(\rd_value[7]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[8]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
+       (.I0(\rd_value[7]_INST_0_i_3_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(data1[7]),
+        .I3(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I4(\rd_value[7]_INST_0_i_4_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
         .O(\rd_value[7]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  LUT6 #(
+    .INIT(64'h0000000000022202)) 
     \rd_value[7]_INST_0_i_2 
-       (.I0(\rd_value[8]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[7]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[15]_INST_0_i_6_n_0 ),
+        .I2(\rd_value[8]_INST_0_i_5_n_0 ),
+        .I3(alu_src_t[0]),
+        .I4(\rd_value[7]_INST_0_i_5_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
         .O(\rd_value[7]_INST_0_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
+    .INIT(64'h55555555F0CF33C0)) 
     \rd_value[7]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[7]_INST_0_i_6_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[7]),
-        .I4(data1[7]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
-        .O(\rd_value[7]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \rd_value[7]_INST_0_i_4 
-       (.I0(\rd_value[13]_INST_0_i_7_n_0 ),
-        .I1(\rd_value[9]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[11]_INST_0_i_7_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[7]_INST_0_i_7_n_0 ),
-        .O(\rd_value[7]_INST_0_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
-  LUT5 #(
-    .INIT(32'hB300B000)) 
-    \rd_value[7]_INST_0_i_5 
-       (.I0(alu_src_t[0]),
-        .I1(alu_src_t[1]),
-        .I2(alu_src_t[2]),
-        .I3(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I4(alu_src_t[6]),
-        .O(\rd_value[7]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[7]_INST_0_i_6 
        (.I0(data0[7]),
-        .I1(alu_src_s[7]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[31]_INST_0_i_13_n_0 ),
         .I3(alu_src_t[7]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[7]_INST_0_i_6_n_0 ));
+        .I4(\rd_value[7]_INST_0_i_4_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_9_n_0 ),
+        .O(\rd_value[7]_INST_0_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'hCF44CF77)) 
+    \rd_value[7]_INST_0_i_4 
+       (.I0(write_back_data[7]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[7]),
+        .I3(rs_forward[1]),
+        .I4(rs[7]),
+        .O(\rd_value[7]_INST_0_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'hFC0CFAFAFC0C0A0A)) 
-    \rd_value[7]_INST_0_i_7 
-       (.I0(alu_src_t[7]),
-        .I1(alu_src_t[23]),
-        .I2(alu_src_t[3]),
-        .I3(alu_src_t__95),
-        .I4(alu_src_t[4]),
-        .I5(alu_src_t[15]),
-        .O(\rd_value[7]_INST_0_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
+    .INIT(64'hFFFFF0FDFFFFFCFD)) 
+    \rd_value[7]_INST_0_i_5 
+       (.I0(alu_src_t[6]),
+        .I1(alu_src_t[1]),
+        .I2(alu_src_t[4]),
+        .I3(alu_src_t[2]),
+        .I4(alu_src_t[3]),
+        .I5(alu_src_t[0]),
+        .O(\rd_value[7]_INST_0_i_5_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
     \rd_value[8]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[8]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[8]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[8]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[8]_INST_0_i_3_n_0 ),
+       (.I0(alu_src_t[8]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[8]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[8]_INST_0_i_3_n_0 ),
         .O(rd_value[8]));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \rd_value[8]_INST_0_i_1 
-       (.I0(\rd_value[8]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[9]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[8]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
+       (.I0(\imm_reg_n_0_[8] ),
+        .I1(alu_src),
+        .I2(write_data[7]),
+        .O(alu_src_t[8]));
+  LUT6 #(
+    .INIT(64'hAFA03F3FAFA03030)) 
     \rd_value[8]_INST_0_i_2 
-       (.I0(\rd_value[9]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
-        .I2(\rd_value[8]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
+       (.I0(data1[8]),
+        .I1(alu_src_s[8]),
+        .I2(\rd_value[31]_INST_0_i_7_n_0 ),
+        .I3(data0[8]),
+        .I4(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I5(\rd_value[8]_INST_0_i_4_n_0 ),
         .O(\rd_value[8]_INST_0_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
+    .INIT(64'h0000000000022202)) 
     \rd_value[8]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[8]_INST_0_i_6_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[8]),
-        .I4(data1[8]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[15]_INST_0_i_6_n_0 ),
+        .I2(\rd_value[9]_INST_0_i_7_n_0 ),
+        .I3(alu_src_t[0]),
+        .I4(\rd_value[8]_INST_0_i_5_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
         .O(\rd_value[8]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+  LUT4 #(
+    .INIT(16'h91DA)) 
     \rd_value[8]_INST_0_i_4 
-       (.I0(\rd_value[14]_INST_0_i_7_n_0 ),
-        .I1(\rd_value[10]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[12]_INST_0_i_8_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[8]_INST_0_i_7_n_0 ),
+       (.I0(alu_src_t[8]),
+        .I1(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I2(alu_src_s[8]),
+        .I3(\rd_value[31]_INST_0_i_13_n_0 ),
         .O(\rd_value[8]_INST_0_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
-  LUT5 #(
-    .INIT(32'hCC8800C0)) 
+  LUT6 #(
+    .INIT(64'hFFFFFFFFF3F4F3F7)) 
     \rd_value[8]_INST_0_i_5 
        (.I0(alu_src_t[5]),
-        .I1(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[7]),
+        .I1(alu_src_t[1]),
+        .I2(alu_src_t[3]),
         .I3(alu_src_t[2]),
-        .I4(alu_src_t[1]),
+        .I4(alu_src_t[7]),
+        .I5(alu_src_t[4]),
         .O(\rd_value[8]_INST_0_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
-    \rd_value[8]_INST_0_i_6 
-       (.I0(data0[8]),
-        .I1(alu_src_s[8]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[8]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[8]_INST_0_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
-    \rd_value[8]_INST_0_i_7 
-       (.I0(alu_src_t[16]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[24]),
-        .I3(alu_src_t[4]),
-        .I4(alu_src_t[8]),
-        .O(\rd_value[8]_INST_0_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFF8F8F888)) 
     \rd_value[9]_INST_0 
-       (.I0(\rd_value[15]_INST_0_i_1_n_0 ),
-        .I1(alu_src_t[9]),
-        .I2(\rd_value[31]_INST_0_i_1_n_0 ),
-        .I3(\rd_value[9]_INST_0_i_1_n_0 ),
-        .I4(\rd_value[9]_INST_0_i_2_n_0 ),
-        .I5(\rd_value[9]_INST_0_i_3_n_0 ),
+       (.I0(alu_src_t[9]),
+        .I1(\rd_value[31]_INST_0_i_2_n_0 ),
+        .I2(\rd_value[9]_INST_0_i_2_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_4_n_0 ),
+        .I4(\rd_value[9]_INST_0_i_3_n_0 ),
         .O(rd_value[9]));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \rd_value[9]_INST_0_i_1 
-       (.I0(\rd_value[9]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[31]_INST_0_i_8_n_0 ),
-        .I2(\rd_value[10]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_6_n_0 ),
-        .O(\rd_value[9]_INST_0_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
+       (.I0(\imm_reg_n_0_[9] ),
+        .I1(alu_src),
+        .I2(write_data[8]),
+        .O(alu_src_t[9]));
+  LUT6 #(
+    .INIT(64'hFFF000F0AA33AA33)) 
     \rd_value[9]_INST_0_i_2 
-       (.I0(\rd_value[10]_INST_0_i_4_n_0 ),
-        .I1(\rd_value[30]_INST_0_i_9_n_0 ),
+       (.I0(data0[9]),
+        .I1(\rd_value[9]_INST_0_i_4_n_0 ),
         .I2(\rd_value[9]_INST_0_i_5_n_0 ),
-        .I3(\rd_value[31]_INST_0_i_11_n_0 ),
+        .I3(\rd_value[31]_INST_0_i_9_n_0 ),
+        .I4(data1[9]),
+        .I5(\rd_value[31]_INST_0_i_7_n_0 ),
         .O(\rd_value[9]_INST_0_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h808A808A8A8A8080)) 
+    .INIT(64'h0000000000022202)) 
     \rd_value[9]_INST_0_i_3 
-       (.I0(\rd_value[31]_INST_0_i_12_n_0 ),
-        .I1(\rd_value[9]_INST_0_i_6_n_0 ),
-        .I2(\rd_value[31]_INST_0_i_14_n_0 ),
-        .I3(alu_src_s[9]),
-        .I4(data1[9]),
-        .I5(\rd_value[31]_INST_0_i_16_n_0 ),
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[15]_INST_0_i_6_n_0 ),
+        .I2(\rd_value[9]_INST_0_i_6_n_0 ),
+        .I3(alu_src_t[0]),
+        .I4(\rd_value[9]_INST_0_i_7_n_0 ),
+        .I5(\rd_value[31]_INST_0_i_13_n_0 ),
         .O(\rd_value[9]_INST_0_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+  LUT4 #(
+    .INIT(16'hCB58)) 
     \rd_value[9]_INST_0_i_4 
-       (.I0(\rd_value[15]_INST_0_i_8_n_0 ),
-        .I1(\rd_value[11]_INST_0_i_7_n_0 ),
-        .I2(alu_src_t[1]),
-        .I3(\rd_value[13]_INST_0_i_7_n_0 ),
-        .I4(alu_src_t[2]),
-        .I5(\rd_value[9]_INST_0_i_7_n_0 ),
+       (.I0(\rd_value[5]_INST_0_i_2_n_0 ),
+        .I1(\rd_value[31]_INST_0_i_13_n_0 ),
+        .I2(alu_src_t[9]),
+        .I3(\rd_value[9]_INST_0_i_5_n_0 ),
         .O(\rd_value[9]_INST_0_i_4_n_0 ));
   LUT5 #(
-    .INIT(32'hAA8800F0)) 
+    .INIT(32'hCF44CF77)) 
     \rd_value[9]_INST_0_i_5 
-       (.I0(\rd_value[30]_INST_0_i_7_n_0 ),
-        .I1(alu_src_t[6]),
-        .I2(\rd_value[15]_INST_0_i_9_n_0 ),
-        .I3(alu_src_t[2]),
-        .I4(alu_src_t[1]),
+       (.I0(write_back_data[9]),
+        .I1(rs_forward[0]),
+        .I2(alu_result_back[9]),
+        .I3(rs_forward[1]),
+        .I4(rs[9]),
         .O(\rd_value[9]_INST_0_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h03FCAAAACF0CAAAA)) 
+    .INIT(64'hFFEFFFFFFFEF0000)) 
     \rd_value[9]_INST_0_i_6 
-       (.I0(data0[9]),
-        .I1(alu_src_s[9]),
-        .I2(\rd_value[0]_INST_0_i_10_n_0 ),
-        .I3(alu_src_t[9]),
-        .I4(\rd_value[31]_INST_0_i_16_n_0 ),
-        .I5(\rd_value[0]_INST_0_i_11_n_0 ),
-        .O(\rd_value[9]_INST_0_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \rd_value[9]_INST_0_i_7 
-       (.I0(alu_src_t[17]),
-        .I1(alu_src_t[3]),
-        .I2(alu_src_t[25]),
+       (.I0(alu_src_t[3]),
+        .I1(alu_src_t[2]),
+        .I2(alu_src_t[7]),
         .I3(alu_src_t[4]),
-        .I4(alu_src_t[9]),
+        .I4(alu_src_t[1]),
+        .I5(\rd_value[12]_INST_0_i_7_n_0 ),
+        .O(\rd_value[9]_INST_0_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFCFCFFFFFD0DF)) 
+    \rd_value[9]_INST_0_i_7 
+       (.I0(alu_src_t[6]),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[1]),
+        .I3(\rd_value[9]_INST_0_i_8_n_0 ),
+        .I4(alu_src_t[4]),
+        .I5(alu_src_t[2]),
         .O(\rd_value[9]_INST_0_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \rd_value[9]_INST_0_i_8 
+       (.I0(alu_src_t[0]),
+        .I1(alu_src_t[3]),
+        .I2(alu_src_t[8]),
+        .O(\rd_value[9]_INST_0_i_8_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
     reg_write_reg
@@ -7481,293 +7014,293 @@ module bluex_alu_ex_0_0_alu_ex
         .D(rt_inw[9]),
         .Q(rt[9]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[0]_INST_0 
-       (.I0(rt[0]),
-        .I1(write_back_data[0]),
+       (.I0(write_back_data[0]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[0]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
+        .I4(rt[0]),
         .O(write_data[0]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[10]_INST_0 
-       (.I0(rt[10]),
-        .I1(write_back_data[10]),
+       (.I0(write_back_data[10]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[10]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[10]));
+        .I4(rt[10]),
+        .O(write_data[9]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[11]_INST_0 
-       (.I0(rt[11]),
-        .I1(write_back_data[11]),
+       (.I0(write_back_data[11]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[11]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[11]));
+        .I4(rt[11]),
+        .O(write_data[10]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[12]_INST_0 
-       (.I0(rt[12]),
-        .I1(write_back_data[12]),
+       (.I0(write_back_data[12]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[12]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[12]));
+        .I4(rt[12]),
+        .O(write_data[11]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[13]_INST_0 
-       (.I0(rt[13]),
-        .I1(write_back_data[13]),
+       (.I0(write_back_data[13]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[13]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[13]));
+        .I4(rt[13]),
+        .O(write_data[12]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[14]_INST_0 
-       (.I0(rt[14]),
-        .I1(write_back_data[14]),
+       (.I0(write_back_data[14]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[14]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[14]));
+        .I4(rt[14]),
+        .O(write_data[13]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[15]_INST_0 
-       (.I0(rt[15]),
-        .I1(write_back_data[15]),
+       (.I0(write_back_data[15]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[15]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[15]));
+        .I4(rt[15]),
+        .O(write_data[14]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[16]_INST_0 
-       (.I0(rt[16]),
-        .I1(write_back_data[16]),
+       (.I0(write_back_data[16]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[16]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[16]));
+        .I4(rt[16]),
+        .O(write_data[15]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[17]_INST_0 
-       (.I0(rt[17]),
-        .I1(write_back_data[17]),
+       (.I0(write_back_data[17]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[17]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[17]));
+        .I4(rt[17]),
+        .O(write_data[16]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[18]_INST_0 
-       (.I0(rt[18]),
-        .I1(write_back_data[18]),
+       (.I0(write_back_data[18]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[18]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[18]));
+        .I4(rt[18]),
+        .O(write_data[17]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[19]_INST_0 
-       (.I0(rt[19]),
-        .I1(write_back_data[19]),
+       (.I0(write_back_data[19]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[19]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[19]));
+        .I4(rt[19]),
+        .O(write_data[18]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[1]_INST_0 
-       (.I0(rt[1]),
-        .I1(write_back_data[1]),
+       (.I0(write_back_data[1]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[1]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
+        .I4(rt[1]),
         .O(write_data[1]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[20]_INST_0 
-       (.I0(rt[20]),
-        .I1(write_back_data[20]),
+       (.I0(write_back_data[20]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[20]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[20]));
+        .I4(rt[20]),
+        .O(write_data[19]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[21]_INST_0 
-       (.I0(rt[21]),
-        .I1(write_back_data[21]),
+       (.I0(write_back_data[21]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[21]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[21]));
+        .I4(rt[21]),
+        .O(write_data[20]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[22]_INST_0 
-       (.I0(rt[22]),
-        .I1(write_back_data[22]),
+       (.I0(write_back_data[22]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[22]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[22]));
+        .I4(rt[22]),
+        .O(write_data[21]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[23]_INST_0 
-       (.I0(rt[23]),
-        .I1(write_back_data[23]),
+       (.I0(write_back_data[23]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[23]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[23]));
+        .I4(rt[23]),
+        .O(write_data[22]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[24]_INST_0 
-       (.I0(rt[24]),
-        .I1(write_back_data[24]),
+       (.I0(write_back_data[24]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[24]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[24]));
+        .I4(rt[24]),
+        .O(write_data[23]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[25]_INST_0 
-       (.I0(rt[25]),
-        .I1(write_back_data[25]),
+       (.I0(write_back_data[25]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[25]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[25]));
+        .I4(rt[25]),
+        .O(write_data[24]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[26]_INST_0 
-       (.I0(rt[26]),
-        .I1(write_back_data[26]),
+       (.I0(write_back_data[26]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[26]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[26]));
+        .I4(rt[26]),
+        .O(write_data[25]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[27]_INST_0 
-       (.I0(rt[27]),
-        .I1(write_back_data[27]),
+       (.I0(write_back_data[27]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[27]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[27]));
+        .I4(rt[27]),
+        .O(write_data[26]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[28]_INST_0 
-       (.I0(rt[28]),
-        .I1(write_back_data[28]),
+       (.I0(write_back_data[28]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[28]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[28]));
+        .I4(rt[28]),
+        .O(write_data[27]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[29]_INST_0 
-       (.I0(rt[29]),
-        .I1(write_back_data[29]),
+       (.I0(write_back_data[29]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[29]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[29]));
+        .I4(rt[29]),
+        .O(write_data[28]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[2]_INST_0 
-       (.I0(rt[2]),
-        .I1(write_back_data[2]),
+       (.I0(write_back_data[2]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[2]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
+        .I4(rt[2]),
         .O(write_data[2]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[30]_INST_0 
-       (.I0(rt[30]),
-        .I1(write_back_data[30]),
+       (.I0(write_back_data[30]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[30]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[30]));
+        .I4(rt[30]),
+        .O(write_data[29]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[31]_INST_0 
-       (.I0(rt[31]),
-        .I1(write_back_data[31]),
+       (.I0(write_back_data[31]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[31]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[31]));
+        .I4(rt[31]),
+        .O(write_data[30]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[3]_INST_0 
-       (.I0(rt[3]),
-        .I1(write_back_data[3]),
+       (.I0(write_back_data[3]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[3]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
+        .I4(rt[3]),
         .O(write_data[3]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[4]_INST_0 
-       (.I0(rt[4]),
-        .I1(write_back_data[4]),
+       (.I0(write_back_data[4]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[4]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[4]));
+        .I4(rt[4]),
+        .O(\rt_forward_reg[0]_0 ));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[5]_INST_0 
-       (.I0(rt[5]),
-        .I1(write_back_data[5]),
+       (.I0(write_back_data[5]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[5]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[5]));
+        .I4(rt[5]),
+        .O(write_data[4]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[6]_INST_0 
-       (.I0(rt[6]),
-        .I1(write_back_data[6]),
+       (.I0(write_back_data[6]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[6]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[6]));
+        .I4(rt[6]),
+        .O(write_data[5]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[7]_INST_0 
-       (.I0(rt[7]),
-        .I1(write_back_data[7]),
+       (.I0(write_back_data[7]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[7]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[7]));
+        .I4(rt[7]),
+        .O(write_data[6]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[8]_INST_0 
-       (.I0(rt[8]),
-        .I1(write_back_data[8]),
+       (.I0(write_back_data[8]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[8]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[8]));
+        .I4(rt[8]),
+        .O(write_data[7]));
   LUT5 #(
-    .INIT(32'h00CCF0AA)) 
+    .INIT(32'h30BB3088)) 
     \write_data[9]_INST_0 
-       (.I0(rt[9]),
-        .I1(write_back_data[9]),
+       (.I0(write_back_data[9]),
+        .I1(rt_forward[0]),
         .I2(alu_result_back[9]),
         .I3(rt_forward[1]),
-        .I4(rt_forward[0]),
-        .O(write_data[9]));
+        .I4(rt[9]),
+        .O(write_data[8]));
   LUT2 #(
     .INIT(4'hE)) 
     \write_reg_addr_out[4]_i_1 
@@ -7816,6 +7349,535 @@ module bluex_alu_ex_0_0_alu_ex
         .Q(write_reg_addr_out[4]));
 endmodule
 
+module aux_id
+   (addr_reg,
+    addr_rd,
+    addr_flag,
+    addr_rt);
+  output [4:0]addr_reg;
+  input [4:0]addr_rd;
+  input addr_flag;
+  input [4:0]addr_rt;
+
+  wire addr_flag;
+  wire [4:0]addr_rd;
+  wire [4:0]addr_reg;
+  wire [4:0]addr_rt;
+
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \addr_reg[0]_INST_0 
+       (.I0(addr_rd[0]),
+        .I1(addr_flag),
+        .I2(addr_rt[0]),
+        .O(addr_reg[0]));
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \addr_reg[1]_INST_0 
+       (.I0(addr_rd[1]),
+        .I1(addr_flag),
+        .I2(addr_rt[1]),
+        .O(addr_reg[1]));
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \addr_reg[2]_INST_0 
+       (.I0(addr_rd[2]),
+        .I1(addr_flag),
+        .I2(addr_rt[2]),
+        .O(addr_reg[2]));
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \addr_reg[3]_INST_0 
+       (.I0(addr_rd[3]),
+        .I1(addr_flag),
+        .I2(addr_rt[3]),
+        .O(addr_reg[3]));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \addr_reg[4]_INST_0 
+       (.I0(addr_rd[4]),
+        .I1(addr_flag),
+        .I2(addr_rt[4]),
+        .O(addr_reg[4]));
+endmodule
+
+(* HW_HANDOFF = "bluex.hwdef" *) 
+module bluex
+   (clk,
+    current_addr,
+    enable_CPU,
+    isc,
+    ram_addr,
+    ram_clk,
+    ram_en,
+    ram_rd_data,
+    ram_rst,
+    ram_we,
+    ram_wr_data,
+    read_mem_out_inw,
+    rst_n,
+    wr_en_i,
+    wr_en_o,
+    wr_en_t,
+    write_mem_addr,
+    write_mem_clk,
+    write_mem_data,
+    write_mem_en,
+    write_mem_rst,
+    write_mem_we);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, CLK_DOMAIN bluex_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input clk;
+  output [15:0]current_addr;
+  input [0:0]enable_CPU;
+  input [31:0]isc;
+  output [31:0]ram_addr;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.RAM_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.RAM_CLK, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output ram_clk;
+  output ram_en;
+  input [31:0]ram_rd_data;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RAM_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RAM_RST, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) output ram_rst;
+  output [3:0]ram_we;
+  output [31:0]ram_wr_data;
+  input [31:0]read_mem_out_inw;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RST_N RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RST_N, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input rst_n;
+  input wr_en_i;
+  output wr_en_o;
+  input wr_en_t;
+  output [15:0]write_mem_addr;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.WRITE_MEM_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.WRITE_MEM_CLK, CLK_DOMAIN bluex_wrapper_mem_0_0_write_mem_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output write_mem_clk;
+  output [31:0]write_mem_data;
+  output write_mem_en;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.WRITE_MEM_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.WRITE_MEM_RST, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) output write_mem_rst;
+  output write_mem_we;
+
+  wire \<const0> ;
+  wire [15:0]PC_0_next_addr_output;
+  wire alu_ex_0_branch_PC;
+  wire [15:0]alu_ex_0_branch_addr;
+  wire alu_ex_0_branch_jump_flag;
+  wire alu_ex_0_memory_to_reg;
+  wire alu_ex_0_memory_write;
+  wire [31:0]alu_ex_0_rd_value;
+  wire alu_ex_0_reg_write;
+  wire [31:0]alu_ex_0_write_data;
+  wire [4:0]alu_ex_0_write_reg_addr_out;
+  wire [4:0]aux_id_0_addr_reg;
+  wire [31:0]aux_id_0_sext_imm;
+  wire clk;
+  wire controller_id_0_addr_flag;
+  wire controller_id_0_alu_src;
+  wire controller_id_0_branch;
+  wire controller_id_0_memory_to_reg;
+  wire controller_id_0_memory_write;
+  wire controller_id_0_reg_write;
+  wire [15:0]current_addr;
+  wire [15:0]demux_id_0_imm;
+  wire [15:0]demux_id_0_pc_next;
+  wire [4:0]demux_id_0_rd;
+  wire [5:0]demux_id_0_real_op;
+  wire [4:0]demux_id_0_rs;
+  wire [4:0]demux_id_0_rt;
+  wire [0:0]enable_CPU;
+  wire [31:0]isc;
+  wire [31:2]\^ram_addr ;
+  wire ram_clk;
+  wire ram_en;
+  wire ram_rst;
+  wire [3:0]ram_we;
+  wire [31:0]ram_wr_data;
+  wire [31:0]read_mem_out_inw;
+  wire redirection_0_flush;
+  wire [1:0]redirection_0_rs_forward;
+  wire [1:0]redirection_0_rt_forward;
+  wire redirection_0_stall;
+  wire [31:0]reg_heap_id_0_rs;
+  wire [31:0]reg_heap_id_0_rt;
+  wire reg_wb_0_reg_write;
+  wire [31:0]reg_wb_0_write_back_data;
+  wire [4:0]reg_wb_0_write_reg_addr;
+  wire rst_n;
+  wire util_vector_logic_0_Res;
+  wire util_vector_logic_1_Res;
+  wire util_vector_logic_2_Res;
+  wire wr_en_i;
+  wire [31:0]wrapper_mem_0_alu_result;
+  wire wrapper_mem_0_memory_to_reg;
+  wire [31:0]wrapper_mem_0_read_mem_out;
+  wire wrapper_mem_0_reg_write;
+  wire [4:0]wrapper_mem_0_write_reg_addr;
+  wire [15:0]write_mem_addr;
+  wire write_mem_clk;
+  wire [31:0]write_mem_data;
+  wire write_mem_rst;
+  wire write_mem_we;
+  wire [15:0]NLW_demux_id_0_addr_UNCONNECTED;
+  wire [5:0]NLW_demux_id_0_op_UNCONNECTED;
+  wire [5:0]NLW_demux_id_0_rfunct_UNCONNECTED;
+  wire [4:0]NLW_demux_id_0_shamt_UNCONNECTED;
+  wire NLW_reg_heap_id_0_wr_en_o_UNCONNECTED;
+  wire [1:0]NLW_reg_heap_id_0_ram_addr_UNCONNECTED;
+  wire NLW_wrapper_mem_0_write_mem_en_UNCONNECTED;
+
+  assign ram_addr[31:2] = \^ram_addr [31:2];
+  assign ram_addr[1] = \<const0> ;
+  assign ram_addr[0] = \<const0> ;
+  assign wr_en_o = \<const0> ;
+  assign write_mem_en = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
+  (* CHECK_LICENSE_TYPE = "bluex_PC_0_0,PC,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* IP_DEFINITION_SOURCE = "module_ref" *) 
+  (* X_CORE_INFO = "PC,Vivado 2023.2" *) 
+  bluex_PC_0_0 PC_0
+       (.branch_taken_ex(alu_ex_0_branch_PC),
+        .clk(clk),
+        .current_addr(current_addr),
+        .ena_n(util_vector_logic_1_Res),
+        .next_addr_branch(alu_ex_0_branch_addr),
+        .next_addr_output(PC_0_next_addr_output),
+        .rst_n(rst_n));
+  (* CHECK_LICENSE_TYPE = "bluex_alu_ex_0_0,alu_ex,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* IP_DEFINITION_SOURCE = "module_ref" *) 
+  (* X_CORE_INFO = "alu_ex,Vivado 2023.2" *) 
+  bluex_alu_ex_0_0 alu_ex_0
+       (.alu_op_inw(demux_id_0_real_op),
+        .alu_result_back(wrapper_mem_0_alu_result),
+        .alu_src_inw(controller_id_0_alu_src),
+        .branch_PC(alu_ex_0_branch_PC),
+        .branch_addr(alu_ex_0_branch_addr),
+        .branch_isc_flag_inw(controller_id_0_branch),
+        .branch_jump_flag(alu_ex_0_branch_jump_flag),
+        .clk(clk),
+        .enable_CPU(enable_CPU),
+        .flush(redirection_0_flush),
+        .imm_inw(aux_id_0_sext_imm),
+        .memory_to_reg(alu_ex_0_memory_to_reg),
+        .memory_to_reg_inw(controller_id_0_memory_to_reg),
+        .memory_write(alu_ex_0_memory_write),
+        .memory_write_inw(controller_id_0_memory_write),
+        .pc_next_inw(demux_id_0_pc_next),
+        .rd_value(alu_ex_0_rd_value),
+        .reg_write(alu_ex_0_reg_write),
+        .reg_write_inw(controller_id_0_reg_write),
+        .rs_forward_inw(redirection_0_rs_forward),
+        .rs_inw(reg_heap_id_0_rs),
+        .rst(util_vector_logic_2_Res),
+        .rt_forward_inw(redirection_0_rt_forward),
+        .rt_inw(reg_heap_id_0_rt),
+        .write_back_data(reg_wb_0_write_back_data),
+        .write_data(alu_ex_0_write_data),
+        .write_reg_addr_in_inw(aux_id_0_addr_reg),
+        .write_reg_addr_out(alu_ex_0_write_reg_addr_out));
+  (* CHECK_LICENSE_TYPE = "bluex_aux_id_0_0,aux_id,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* IP_DEFINITION_SOURCE = "module_ref" *) 
+  (* X_CORE_INFO = "aux_id,Vivado 2023.2" *) 
+  bluex_aux_id_0_0 aux_id_0
+       (.addr_flag(controller_id_0_addr_flag),
+        .addr_rd(demux_id_0_rd),
+        .addr_reg(aux_id_0_addr_reg),
+        .addr_rt(demux_id_0_rt),
+        .imm(demux_id_0_imm),
+        .sext_imm(aux_id_0_sext_imm));
+  (* CHECK_LICENSE_TYPE = "bluex_controller_id_0_0,controller_id,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* IP_DEFINITION_SOURCE = "module_ref" *) 
+  (* X_CORE_INFO = "controller_id,Vivado 2023.2" *) 
+  bluex_controller_id_0_0 controller_id_0
+       (.addr_flag(controller_id_0_addr_flag),
+        .alu_src(controller_id_0_alu_src),
+        .branch(controller_id_0_branch),
+        .memory_to_reg(controller_id_0_memory_to_reg),
+        .memory_write(controller_id_0_memory_write),
+        .real_op(demux_id_0_real_op),
+        .reg_write(controller_id_0_reg_write));
+  (* CHECK_LICENSE_TYPE = "bluex_demux_id_0_0,demux_id,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* IP_DEFINITION_SOURCE = "module_ref" *) 
+  (* X_CORE_INFO = "demux_id,Vivado 2023.2" *) 
+  bluex_demux_id_0_0 demux_id_0
+       (.addr(NLW_demux_id_0_addr_UNCONNECTED[15:0]),
+        .branch_taken(alu_ex_0_branch_jump_flag),
+        .clk(clk),
+        .ena_n(redirection_0_stall),
+        .enable_CPU(enable_CPU),
+        .imm(demux_id_0_imm),
+        .isc(isc),
+        .op(NLW_demux_id_0_op_UNCONNECTED[5:0]),
+        .pc_next(demux_id_0_pc_next),
+        .pc_next_inw(PC_0_next_addr_output),
+        .rd(demux_id_0_rd),
+        .real_op(demux_id_0_real_op),
+        .rfunct(NLW_demux_id_0_rfunct_UNCONNECTED[5:0]),
+        .rs(demux_id_0_rs),
+        .rst(util_vector_logic_2_Res),
+        .rt(demux_id_0_rt),
+        .shamt(NLW_demux_id_0_shamt_UNCONNECTED[4:0]));
+  (* CHECK_LICENSE_TYPE = "bluex_redirection_0_0,redirection,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* IP_DEFINITION_SOURCE = "module_ref" *) 
+  (* X_CORE_INFO = "redirection,Vivado 2023.2" *) 
+  bluex_redirection_0_0 redirection_0
+       (.branch_taken_ex(alu_ex_0_branch_jump_flag),
+        .flush(redirection_0_flush),
+        .mem_rd_ex(alu_ex_0_memory_to_reg),
+        .real_op(demux_id_0_real_op),
+        .reg_write_ex(alu_ex_0_reg_write),
+        .reg_write_mem(wrapper_mem_0_reg_write),
+        .rs(demux_id_0_rs),
+        .rs_forward(redirection_0_rs_forward),
+        .rt(demux_id_0_rt),
+        .rt_forward(redirection_0_rt_forward),
+        .stall(redirection_0_stall),
+        .write_reg_addr_ex(alu_ex_0_write_reg_addr_out),
+        .write_reg_addr_mem(wrapper_mem_0_write_reg_addr));
+  (* CHECK_LICENSE_TYPE = "bluex_reg_heap_id_0_0,reg_heap_id,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* IP_DEFINITION_SOURCE = "module_ref" *) 
+  (* X_CORE_INFO = "reg_heap_id,Vivado 2023.2" *) 
+  bluex_reg_heap_id_0_0 reg_heap_id_0
+       (.addr_rs(demux_id_0_rs),
+        .addr_rt(demux_id_0_rt),
+        .addr_wr(reg_wb_0_write_reg_addr),
+        .clk(clk),
+        .ram_addr({\^ram_addr ,NLW_reg_heap_id_0_ram_addr_UNCONNECTED[1:0]}),
+        .ram_clk(ram_clk),
+        .ram_en(ram_en),
+        .ram_rd_data({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ram_rst(ram_rst),
+        .ram_we(ram_we),
+        .ram_wr_data(ram_wr_data),
+        .rs(reg_heap_id_0_rs),
+        .rst_n(rst_n),
+        .rt(reg_heap_id_0_rt),
+        .wd(reg_wb_0_write_back_data),
+        .we(reg_wb_0_reg_write),
+        .wr_en_i(wr_en_i),
+        .wr_en_o(NLW_reg_heap_id_0_wr_en_o_UNCONNECTED),
+        .wr_en_t(1'b0));
+  (* CHECK_LICENSE_TYPE = "bluex_reg_wb_0_0,reg_wb,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* IP_DEFINITION_SOURCE = "module_ref" *) 
+  (* X_CORE_INFO = "reg_wb,Vivado 2023.2" *) 
+  bluex_reg_wb_0_0 reg_wb_0
+       (.alu_result_inw(wrapper_mem_0_alu_result),
+        .clk(clk),
+        .enable_CPU(enable_CPU),
+        .mem_rd_inw(wrapper_mem_0_read_mem_out),
+        .memory_to_reg_inw(wrapper_mem_0_memory_to_reg),
+        .reg_write(reg_wb_0_reg_write),
+        .reg_write_inw(wrapper_mem_0_reg_write),
+        .rst_n(rst_n),
+        .write_back_data(reg_wb_0_write_back_data),
+        .write_reg_addr(reg_wb_0_write_reg_addr),
+        .write_reg_addr_inw(wrapper_mem_0_write_reg_addr));
+  (* CHECK_LICENSE_TYPE = "bluex_util_vector_logic_0_0,util_vector_logic_v2_0_3_util_vector_logic,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
+  bluex_util_vector_logic_0_0 util_vector_logic_0
+       (.Op1(enable_CPU),
+        .Res(util_vector_logic_0_Res));
+  (* CHECK_LICENSE_TYPE = "bluex_util_vector_logic_1_0,util_vector_logic_v2_0_3_util_vector_logic,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
+  bluex_util_vector_logic_1_0 util_vector_logic_1
+       (.Op1(redirection_0_stall),
+        .Op2(util_vector_logic_0_Res),
+        .Res(util_vector_logic_1_Res));
+  (* CHECK_LICENSE_TYPE = "bluex_util_vector_logic_0_1,util_vector_logic_v2_0_3_util_vector_logic,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
+  bluex_util_vector_logic_0_1 util_vector_logic_2
+       (.Op1(rst_n),
+        .Res(util_vector_logic_2_Res));
+  (* CHECK_LICENSE_TYPE = "bluex_wrapper_mem_0_0,wrapper_mem,{}" *) 
+  (* DowngradeIPIdentifiedWarnings = "yes" *) 
+  (* IP_DEFINITION_SOURCE = "module_ref" *) 
+  (* X_CORE_INFO = "wrapper_mem,Vivado 2023.2" *) 
+  bluex_wrapper_mem_0_0 wrapper_mem_0
+       (.alu_result(wrapper_mem_0_alu_result),
+        .alu_result_inw(alu_ex_0_rd_value),
+        .clk(clk),
+        .enable_CPU(enable_CPU),
+        .memory_to_reg(wrapper_mem_0_memory_to_reg),
+        .memory_to_reg_inw(alu_ex_0_memory_to_reg),
+        .memory_write_inw(alu_ex_0_memory_write),
+        .read_mem_out(wrapper_mem_0_read_mem_out),
+        .read_mem_out_inw(read_mem_out_inw),
+        .reg_write(wrapper_mem_0_reg_write),
+        .reg_write_inw(alu_ex_0_reg_write),
+        .rst_n(rst_n),
+        .write_data_inw(alu_ex_0_write_data),
+        .write_mem_addr(write_mem_addr),
+        .write_mem_clk(write_mem_clk),
+        .write_mem_data(write_mem_data),
+        .write_mem_en(NLW_wrapper_mem_0_write_mem_en_UNCONNECTED),
+        .write_mem_rst(write_mem_rst),
+        .write_mem_we(write_mem_we),
+        .write_reg_addr(wrapper_mem_0_write_reg_addr),
+        .write_reg_addr_inw(alu_ex_0_write_reg_addr_out));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "bluex_PC_0_0,PC,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
+(* X_CORE_INFO = "PC,Vivado 2023.2" *) 
+module bluex_PC_0_0
+   (clk,
+    rst_n,
+    ena_n,
+    next_addr_branch,
+    branch_taken_ex,
+    current_addr,
+    next_addr_output);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rst_n;
+  input ena_n;
+  input [15:0]next_addr_branch;
+  input branch_taken_ex;
+  output [15:0]current_addr;
+  output [15:0]next_addr_output;
+
+  wire branch_taken_ex;
+  wire clk;
+  wire [15:0]current_addr;
+  wire ena_n;
+  wire [15:0]next_addr_branch;
+  wire [15:0]next_addr_output;
+  wire rst_n;
+
+  PC inst
+       (.branch_taken_ex(branch_taken_ex),
+        .clk(clk),
+        .current_addr(current_addr),
+        .ena_n(ena_n),
+        .next_addr_branch(next_addr_branch),
+        .next_addr_output(next_addr_output),
+        .rst_n(rst_n));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "bluex_alu_ex_0_0,alu_ex,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
+(* X_CORE_INFO = "alu_ex,Vivado 2023.2" *) 
+module bluex_alu_ex_0_0
+   (clk,
+    rst,
+    enable_CPU,
+    flush,
+    rs_inw,
+    rt_inw,
+    imm_inw,
+    write_back_data,
+    alu_result_back,
+    alu_op_inw,
+    rs_forward_inw,
+    rt_forward_inw,
+    alu_src_inw,
+    memory_write_inw,
+    memory_to_reg_inw,
+    reg_write_inw,
+    branch_isc_flag_inw,
+    pc_next_inw,
+    write_reg_addr_in_inw,
+    rd_value,
+    write_data,
+    branch_jump_flag,
+    branch_PC,
+    branch_addr,
+    write_reg_addr_out,
+    memory_write,
+    memory_to_reg,
+    reg_write);
+  (* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 user_lcd CLK" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *) input rst;
+  input enable_CPU;
+  input flush;
+  input [31:0]rs_inw;
+  input [31:0]rt_inw;
+  input [31:0]imm_inw;
+  input [31:0]write_back_data;
+  input [31:0]alu_result_back;
+  input [5:0]alu_op_inw;
+  input [1:0]rs_forward_inw;
+  input [1:0]rt_forward_inw;
+  input alu_src_inw;
+  input memory_write_inw;
+  input memory_to_reg_inw;
+  input reg_write_inw;
+  input branch_isc_flag_inw;
+  input [15:0]pc_next_inw;
+  input [4:0]write_reg_addr_in_inw;
+  output [31:0]rd_value;
+  output [31:0]write_data;
+  output branch_jump_flag;
+  output branch_PC;
+  output [15:0]branch_addr;
+  output [4:0]write_reg_addr_out;
+  output memory_write;
+  output memory_to_reg;
+  output reg_write;
+
+  wire [5:0]alu_op_inw;
+  wire [31:0]alu_result_back;
+  wire alu_src_inw;
+  wire [15:0]branch_addr;
+  wire branch_isc_flag_inw;
+  wire branch_jump_flag;
+  wire clk;
+  wire enable_CPU;
+  wire flush;
+  wire [31:0]imm_inw;
+  wire memory_to_reg;
+  wire memory_to_reg_inw;
+  wire memory_write;
+  wire memory_write_inw;
+  wire [15:0]pc_next_inw;
+  wire [31:0]rd_value;
+  wire reg_write;
+  wire reg_write_inw;
+  wire [1:0]rs_forward_inw;
+  wire [31:0]rs_inw;
+  wire rst;
+  wire [1:0]rt_forward_inw;
+  wire [31:0]rt_inw;
+  wire [31:0]write_back_data;
+  wire [31:0]write_data;
+  wire [4:0]write_reg_addr_in_inw;
+  wire [4:0]write_reg_addr_out;
+
+  assign branch_PC = branch_jump_flag;
+  alu_ex inst
+       (.alu_op_inw(alu_op_inw),
+        .alu_result_back(alu_result_back),
+        .alu_src_inw(alu_src_inw),
+        .branch_addr(branch_addr),
+        .branch_isc_flag_inw(branch_isc_flag_inw),
+        .branch_jump_flag(branch_jump_flag),
+        .clk(clk),
+        .enable_CPU(enable_CPU),
+        .flush(flush),
+        .imm_inw(imm_inw),
+        .memory_to_reg(memory_to_reg),
+        .memory_to_reg_inw(memory_to_reg_inw),
+        .memory_write(memory_write),
+        .memory_write_inw(memory_write_inw),
+        .pc_next_inw(pc_next_inw),
+        .rd_value(rd_value),
+        .reg_write(reg_write),
+        .reg_write_inw(reg_write_inw),
+        .rs_forward_inw(rs_forward_inw),
+        .rs_inw(rs_inw),
+        .rst(rst),
+        .rt_forward_inw(rt_forward_inw),
+        .\rt_forward_reg[0]_0 (write_data[4]),
+        .rt_inw(rt_inw),
+        .write_back_data(write_back_data),
+        .write_data({write_data[31:5],write_data[3:0]}),
+        .write_reg_addr_in_inw(write_reg_addr_in_inw),
+        .write_reg_addr_out(write_reg_addr_out));
+endmodule
+
 (* CHECK_LICENSE_TYPE = "bluex_aux_id_0_0,aux_id,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
 (* X_CORE_INFO = "aux_id,Vivado 2023.2" *) 
 module bluex_aux_id_0_0
@@ -7855,68 +7917,11 @@ module bluex_aux_id_0_0
   assign sext_imm[17] = imm[15];
   assign sext_imm[16] = imm[15];
   assign sext_imm[15:0] = imm;
-  bluex_aux_id_0_0_aux_id inst
+  aux_id inst
        (.addr_flag(addr_flag),
         .addr_rd(addr_rd),
         .addr_reg(addr_reg),
         .addr_rt(addr_rt));
-endmodule
-
-(* ORIG_REF_NAME = "aux_id" *) 
-module bluex_aux_id_0_0_aux_id
-   (addr_reg,
-    addr_rd,
-    addr_flag,
-    addr_rt);
-  output [4:0]addr_reg;
-  input [4:0]addr_rd;
-  input addr_flag;
-  input [4:0]addr_rt;
-
-  wire addr_flag;
-  wire [4:0]addr_rd;
-  wire [4:0]addr_reg;
-  wire [4:0]addr_rt;
-
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \addr_reg[0]_INST_0 
-       (.I0(addr_rd[0]),
-        .I1(addr_flag),
-        .I2(addr_rt[0]),
-        .O(addr_reg[0]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \addr_reg[1]_INST_0 
-       (.I0(addr_rd[1]),
-        .I1(addr_flag),
-        .I2(addr_rt[1]),
-        .O(addr_reg[1]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \addr_reg[2]_INST_0 
-       (.I0(addr_rd[2]),
-        .I1(addr_flag),
-        .I2(addr_rt[2]),
-        .O(addr_reg[2]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \addr_reg[3]_INST_0 
-       (.I0(addr_rd[3]),
-        .I1(addr_flag),
-        .I2(addr_rt[3]),
-        .O(addr_reg[3]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \addr_reg[4]_INST_0 
-       (.I0(addr_rd[4]),
-        .I1(addr_flag),
-        .I2(addr_rt[4]),
-        .O(addr_reg[4]));
 endmodule
 
 (* CHECK_LICENSE_TYPE = "bluex_controller_id_0_0,controller_id,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
@@ -7945,7 +7950,7 @@ module bluex_controller_id_0_0
   wire [5:0]real_op;
   wire reg_write;
 
-  bluex_controller_id_0_0_controller_id inst
+  controller_id inst
        (.addr_flag(addr_flag),
         .alu_src(alu_src),
         .branch(branch),
@@ -7953,93 +7958,6 @@ module bluex_controller_id_0_0
         .memory_write(memory_write),
         .real_op(real_op),
         .reg_write(reg_write));
-endmodule
-
-(* ORIG_REF_NAME = "controller_id" *) 
-module bluex_controller_id_0_0_controller_id
-   (reg_write,
-    memory_to_reg,
-    memory_write,
-    branch,
-    alu_src,
-    addr_flag,
-    real_op);
-  output reg_write;
-  output memory_to_reg;
-  output memory_write;
-  output branch;
-  output alu_src;
-  output addr_flag;
-  input [5:0]real_op;
-
-  wire addr_flag;
-  wire alu_src;
-  wire branch;
-  wire memory_to_reg;
-  wire memory_write;
-  wire [5:0]real_op;
-  wire reg_write;
-
-  LUT6 #(
-    .INIT(64'hBFFFFFFFFEFEBFFF)) 
-    \/i_ 
-       (.I0(real_op[5]),
-        .I1(real_op[4]),
-        .I2(real_op[2]),
-        .I3(real_op[0]),
-        .I4(real_op[1]),
-        .I5(real_op[3]),
-        .O(reg_write));
-  LUT6 #(
-    .INIT(64'h0000000080030000)) 
-    \/i___0 
-       (.I0(real_op[0]),
-        .I1(real_op[2]),
-        .I2(real_op[3]),
-        .I3(real_op[4]),
-        .I4(real_op[1]),
-        .I5(real_op[5]),
-        .O(branch));
-  LUT6 #(
-    .INIT(64'h0000000064A24243)) 
-    \/i___1 
-       (.I0(real_op[3]),
-        .I1(real_op[2]),
-        .I2(real_op[4]),
-        .I3(real_op[0]),
-        .I4(real_op[1]),
-        .I5(real_op[5]),
-        .O(alu_src));
-  LUT6 #(
-    .INIT(64'hEFBFEFFBBEBFFFBA)) 
-    \/i___2 
-       (.I0(real_op[5]),
-        .I1(real_op[3]),
-        .I2(real_op[1]),
-        .I3(real_op[2]),
-        .I4(real_op[4]),
-        .I5(real_op[0]),
-        .O(addr_flag));
-  LUT6 #(
-    .INIT(64'h0000000000001000)) 
-    memory_to_reg__0
-       (.I0(real_op[5]),
-        .I1(real_op[1]),
-        .I2(real_op[4]),
-        .I3(real_op[2]),
-        .I4(real_op[3]),
-        .I5(real_op[0]),
-        .O(memory_to_reg));
-  LUT6 #(
-    .INIT(64'h0000100000000000)) 
-    memory_write__0
-       (.I0(real_op[5]),
-        .I1(real_op[1]),
-        .I2(real_op[2]),
-        .I3(real_op[0]),
-        .I4(real_op[3]),
-        .I5(real_op[4]),
-        .O(memory_write));
 endmodule
 
 (* CHECK_LICENSE_TYPE = "bluex_demux_id_0_0,demux_id,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
@@ -8080,13 +7998,13 @@ module bluex_demux_id_0_0
   output [5:0]real_op;
   output [15:0]pc_next;
 
+  wire \<const0> ;
   wire branch_taken;
   wire clk;
   wire ena_n;
   wire enable_CPU;
   wire [15:0]imm;
   wire [31:0]isc;
-  wire [5:0]op;
   wire [15:0]pc_next;
   wire [15:0]pc_next_inw;
   wire [5:0]real_op;
@@ -8094,590 +8012,55 @@ module bluex_demux_id_0_0
   wire rst;
   wire [4:0]rt;
 
-  assign addr[15:0] = imm;
+  assign addr[15] = \<const0> ;
+  assign addr[14] = \<const0> ;
+  assign addr[13] = \<const0> ;
+  assign addr[12] = \<const0> ;
+  assign addr[11] = \<const0> ;
+  assign addr[10] = \<const0> ;
+  assign addr[9] = \<const0> ;
+  assign addr[8] = \<const0> ;
+  assign addr[7] = \<const0> ;
+  assign addr[6] = \<const0> ;
+  assign addr[5] = \<const0> ;
+  assign addr[4] = \<const0> ;
+  assign addr[3] = \<const0> ;
+  assign addr[2] = \<const0> ;
+  assign addr[1] = \<const0> ;
+  assign addr[0] = \<const0> ;
+  assign op[5] = \<const0> ;
+  assign op[4] = \<const0> ;
+  assign op[3] = \<const0> ;
+  assign op[2] = \<const0> ;
+  assign op[1] = \<const0> ;
+  assign op[0] = \<const0> ;
   assign rd[4:0] = imm[15:11];
-  assign rfunct[5:0] = imm[5:0];
-  assign shamt[4:0] = imm[10:6];
-  bluex_demux_id_0_0_demux_id inst
+  assign rfunct[5] = \<const0> ;
+  assign rfunct[4] = \<const0> ;
+  assign rfunct[3] = \<const0> ;
+  assign rfunct[2] = \<const0> ;
+  assign rfunct[1] = \<const0> ;
+  assign rfunct[0] = \<const0> ;
+  assign shamt[4] = \<const0> ;
+  assign shamt[3] = \<const0> ;
+  assign shamt[2] = \<const0> ;
+  assign shamt[1] = \<const0> ;
+  assign shamt[0] = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
+  demux_id inst
        (.branch_taken(branch_taken),
         .clk(clk),
         .ena_n(ena_n),
         .enable_CPU(enable_CPU),
         .imm(imm),
         .isc(isc),
-        .op(op),
         .pc_next(pc_next),
         .pc_next_inw(pc_next_inw),
         .real_op(real_op),
         .rs(rs),
         .rst(rst),
         .rt(rt));
-endmodule
-
-(* ORIG_REF_NAME = "demux_id" *) 
-module bluex_demux_id_0_0_demux_id
-   (op,
-    rs,
-    rt,
-    real_op,
-    pc_next,
-    imm,
-    isc,
-    clk,
-    pc_next_inw,
-    rst,
-    branch_taken,
-    enable_CPU,
-    ena_n);
-  output [5:0]op;
-  output [4:0]rs;
-  output [4:0]rt;
-  output [5:0]real_op;
-  output [15:0]pc_next;
-  output [15:0]imm;
-  input [31:0]isc;
-  input clk;
-  input [15:0]pc_next_inw;
-  input rst;
-  input branch_taken;
-  input enable_CPU;
-  input ena_n;
-
-  wire branch_taken;
-  wire clk;
-  wire ena_n;
-  wire enable_CPU;
-  wire [15:0]imm;
-  wire [31:0]isc;
-  wire [5:0]op;
-  wire \op[5]_i_1_n_0 ;
-  wire [15:0]pc_next;
-  wire [15:0]pc_next_inw;
-  wire [5:0]real_op;
-  wire \real_op[3]_i_2_n_0 ;
-  wire \real_op[5]_i_2_n_0 ;
-  wire [5:0]real_op_0;
-  wire real_rst;
-  wire [4:0]rs;
-  wire rst;
-  wire [4:0]rt;
-
-  LUT2 #(
-    .INIT(4'h2)) 
-    \op[5]_i_1 
-       (.I0(enable_CPU),
-        .I1(ena_n),
-        .O(\op[5]_i_1_n_0 ));
-  LUT2 #(
-    .INIT(4'hE)) 
-    \op[5]_i_2 
-       (.I0(rst),
-        .I1(branch_taken),
-        .O(real_rst));
-  FDCE #(
-    .INIT(1'b0)) 
-    \op_reg[0] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[26]),
-        .Q(op[0]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \op_reg[1] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[27]),
-        .Q(op[1]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \op_reg[2] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[28]),
-        .Q(op[2]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \op_reg[3] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[29]),
-        .Q(op[3]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \op_reg[4] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[30]),
-        .Q(op[4]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \op_reg[5] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[31]),
-        .Q(op[5]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[0] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[0]),
-        .Q(pc_next[0]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[10] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[10]),
-        .Q(pc_next[10]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[11] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[11]),
-        .Q(pc_next[11]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[12] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[12]),
-        .Q(pc_next[12]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[13] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[13]),
-        .Q(pc_next[13]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[14] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[14]),
-        .Q(pc_next[14]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[15] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[15]),
-        .Q(pc_next[15]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[1] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[1]),
-        .Q(pc_next[1]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[2] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[2]),
-        .Q(pc_next[2]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[3] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[3]),
-        .Q(pc_next[3]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[4] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[4]),
-        .Q(pc_next[4]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[5] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[5]),
-        .Q(pc_next[5]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[6] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[6]),
-        .Q(pc_next[6]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[7] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[7]),
-        .Q(pc_next[7]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[8] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[8]),
-        .Q(pc_next[8]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \pc_next_reg[9] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(pc_next_inw[9]),
-        .Q(pc_next[9]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rd_reg[0] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[11]),
-        .Q(imm[11]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rd_reg[1] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[12]),
-        .Q(imm[12]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rd_reg[2] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[13]),
-        .Q(imm[13]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rd_reg[3] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[14]),
-        .Q(imm[14]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rd_reg[4] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[15]),
-        .Q(imm[15]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF00000020)) 
-    \real_op[0]_i_1 
-       (.I0(\real_op[3]_i_2_n_0 ),
-        .I1(isc[27]),
-        .I2(isc[0]),
-        .I3(isc[29]),
-        .I4(isc[28]),
-        .I5(isc[26]),
-        .O(real_op_0[0]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF00000020)) 
-    \real_op[1]_i_1 
-       (.I0(\real_op[3]_i_2_n_0 ),
-        .I1(isc[26]),
-        .I2(isc[1]),
-        .I3(isc[29]),
-        .I4(isc[28]),
-        .I5(isc[27]),
-        .O(real_op_0[1]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF00000020)) 
-    \real_op[2]_i_1 
-       (.I0(\real_op[3]_i_2_n_0 ),
-        .I1(isc[29]),
-        .I2(isc[2]),
-        .I3(isc[27]),
-        .I4(isc[26]),
-        .I5(isc[28]),
-        .O(real_op_0[2]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF00000020)) 
-    \real_op[3]_i_1 
-       (.I0(\real_op[3]_i_2_n_0 ),
-        .I1(isc[28]),
-        .I2(isc[3]),
-        .I3(isc[27]),
-        .I4(isc[26]),
-        .I5(isc[29]),
-        .O(real_op_0[3]));
-  LUT2 #(
-    .INIT(4'h1)) 
-    \real_op[3]_i_2 
-       (.I0(isc[30]),
-        .I1(isc[31]),
-        .O(\real_op[3]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF00000020)) 
-    \real_op[4]_i_1 
-       (.I0(\real_op[5]_i_2_n_0 ),
-        .I1(isc[31]),
-        .I2(isc[4]),
-        .I3(isc[27]),
-        .I4(isc[26]),
-        .I5(isc[30]),
-        .O(real_op_0[4]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF00000020)) 
-    \real_op[5]_i_1 
-       (.I0(\real_op[5]_i_2_n_0 ),
-        .I1(isc[30]),
-        .I2(isc[5]),
-        .I3(isc[27]),
-        .I4(isc[26]),
-        .I5(isc[31]),
-        .O(real_op_0[5]));
-  LUT2 #(
-    .INIT(4'h1)) 
-    \real_op[5]_i_2 
-       (.I0(isc[28]),
-        .I1(isc[29]),
-        .O(\real_op[5]_i_2_n_0 ));
-  FDCE #(
-    .INIT(1'b0)) 
-    \real_op_reg[0] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(real_op_0[0]),
-        .Q(real_op[0]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \real_op_reg[1] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(real_op_0[1]),
-        .Q(real_op[1]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \real_op_reg[2] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(real_op_0[2]),
-        .Q(real_op[2]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \real_op_reg[3] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(real_op_0[3]),
-        .Q(real_op[3]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \real_op_reg[4] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(real_op_0[4]),
-        .Q(real_op[4]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \real_op_reg[5] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(real_op_0[5]),
-        .Q(real_op[5]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rfunct_reg[0] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[0]),
-        .Q(imm[0]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rfunct_reg[1] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[1]),
-        .Q(imm[1]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rfunct_reg[2] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[2]),
-        .Q(imm[2]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rfunct_reg[3] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[3]),
-        .Q(imm[3]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rfunct_reg[4] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[4]),
-        .Q(imm[4]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rfunct_reg[5] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[5]),
-        .Q(imm[5]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rs_reg[0] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[21]),
-        .Q(rs[0]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rs_reg[1] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[22]),
-        .Q(rs[1]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rs_reg[2] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[23]),
-        .Q(rs[2]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rs_reg[3] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[24]),
-        .Q(rs[3]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rs_reg[4] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[25]),
-        .Q(rs[4]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rt_reg[0] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[16]),
-        .Q(rt[0]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rt_reg[1] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[17]),
-        .Q(rt[1]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rt_reg[2] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[18]),
-        .Q(rt[2]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rt_reg[3] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[19]),
-        .Q(rt[3]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \rt_reg[4] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[20]),
-        .Q(rt[4]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \shamt_reg[0] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[6]),
-        .Q(imm[6]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \shamt_reg[1] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[7]),
-        .Q(imm[7]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \shamt_reg[2] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[8]),
-        .Q(imm[8]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \shamt_reg[3] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[9]),
-        .Q(imm[9]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \shamt_reg[4] 
-       (.C(clk),
-        .CE(\op[5]_i_1_n_0 ),
-        .CLR(real_rst),
-        .D(isc[10]),
-        .Q(imm[10]));
 endmodule
 
 (* CHECK_LICENSE_TYPE = "bluex_redirection_0_0,redirection,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
@@ -8747,14 +8130,14 @@ module bluex_redirection_0_0
         .I5(mem_rd_ex),
         .O(flush));
   LUT6 #(
-    .INIT(64'h0A08000000000200)) 
+    .INIT(64'h0004000400044000)) 
     flush_INST_0_i_1
        (.I0(real_op[1]),
         .I1(real_op[0]),
-        .I2(real_op[5]),
-        .I3(real_op[3]),
-        .I4(real_op[4]),
-        .I5(real_op[2]),
+        .I2(real_op[4]),
+        .I3(real_op[2]),
+        .I4(real_op[5]),
+        .I5(real_op[3]),
         .O(flush_INST_0_i_1_n_0));
   LUT6 #(
     .INIT(64'hEFFEFFFFFFFFEFFE)) 
@@ -8767,24 +8150,24 @@ module bluex_redirection_0_0
         .I5(write_reg_addr_ex[2]),
         .O(flush_INST_0_i_2_n_0));
   LUT6 #(
-    .INIT(64'hBBFEBFBFBBBAEFFE)) 
+    .INIT(64'hFFFDFFD5FFDF7571)) 
     flush_INST_0_i_3
-       (.I0(real_op[5]),
-        .I1(real_op[1]),
+       (.I0(real_op[0]),
+        .I1(real_op[3]),
         .I2(real_op[2]),
-        .I3(real_op[4]),
-        .I4(real_op[3]),
-        .I5(real_op[0]),
+        .I3(real_op[1]),
+        .I4(real_op[4]),
+        .I5(real_op[5]),
         .O(flush_INST_0_i_3_n_0));
   LUT6 #(
-    .INIT(64'h0000000041000041)) 
+    .INIT(64'h1001000000001001)) 
     flush_INST_0_i_4
        (.I0(flush_INST_0_i_5_n_0),
-        .I1(rt[2]),
-        .I2(write_reg_addr_ex[2]),
-        .I3(rt[1]),
-        .I4(write_reg_addr_ex[1]),
-        .I5(flush_INST_0_i_7_n_0),
+        .I1(flush_INST_0_i_7_n_0),
+        .I2(rt[1]),
+        .I3(write_reg_addr_ex[1]),
+        .I4(rt[2]),
+        .I5(write_reg_addr_ex[2]),
         .O(flush_INST_0_i_4_n_0));
   LUT5 #(
     .INIT(32'h00000001)) 
@@ -8808,13 +8191,14 @@ module bluex_redirection_0_0
   LUT6 #(
     .INIT(64'h6FF6FFFFFFFF6FF6)) 
     flush_INST_0_i_7
-       (.I0(rt[4]),
-        .I1(write_reg_addr_ex[4]),
-        .I2(write_reg_addr_ex[0]),
-        .I3(rt[0]),
+       (.I0(rt[0]),
+        .I1(write_reg_addr_ex[0]),
+        .I2(write_reg_addr_ex[4]),
+        .I3(rt[4]),
         .I4(write_reg_addr_ex[3]),
         .I5(rt[3]),
         .O(flush_INST_0_i_7_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT4 #(
     .INIT(16'h0002)) 
     \rs_forward[0]_INST_0 
@@ -8834,24 +8218,25 @@ module bluex_redirection_0_0
         .I5(write_reg_addr_mem[1]),
         .O(\rs_forward[0]_INST_0_i_1_n_0 ));
   LUT5 #(
-    .INIT(32'hFFFF6FF6)) 
+    .INIT(32'hBEFFFFBE)) 
     \rs_forward[0]_INST_0_i_2 
-       (.I0(write_reg_addr_mem[2]),
-        .I1(rs[2]),
-        .I2(write_reg_addr_mem[0]),
-        .I3(rs[0]),
-        .I4(\rs_forward[0]_INST_0_i_3_n_0 ),
+       (.I0(\rs_forward[0]_INST_0_i_3_n_0 ),
+        .I1(write_reg_addr_mem[0]),
+        .I2(rs[0]),
+        .I3(write_reg_addr_mem[2]),
+        .I4(rs[2]),
         .O(\rs_forward[0]_INST_0_i_2_n_0 ));
   LUT6 #(
     .INIT(64'h6FF6FFFFFFFF6FF6)) 
     \rs_forward[0]_INST_0_i_3 
-       (.I0(rs[3]),
-        .I1(write_reg_addr_mem[3]),
-        .I2(write_reg_addr_mem[4]),
-        .I3(rs[4]),
-        .I4(write_reg_addr_mem[1]),
-        .I5(rs[1]),
+       (.I0(rs[4]),
+        .I1(write_reg_addr_mem[4]),
+        .I2(write_reg_addr_mem[1]),
+        .I3(rs[1]),
+        .I4(write_reg_addr_mem[3]),
+        .I5(rs[3]),
         .O(\rs_forward[0]_INST_0_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'h02)) 
     \rs_forward[1]_INST_0 
@@ -8859,6 +8244,7 @@ module bluex_redirection_0_0
         .I1(flush_INST_0_i_1_n_0),
         .I2(flush_INST_0_i_2_n_0),
         .O(rs_forward[1]));
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'h02)) 
     \rt_forward[0]_INST_0 
@@ -8867,25 +8253,26 @@ module bluex_redirection_0_0
         .I2(flush_INST_0_i_4_n_0),
         .O(rt_forward[0]));
   LUT6 #(
-    .INIT(64'hEFFEFFFFFFFFEFFE)) 
+    .INIT(64'hFFFFFFFFBEFFFFBE)) 
     \rt_forward[0]_INST_0_i_1 
        (.I0(\rs_forward[0]_INST_0_i_1_n_0 ),
-        .I1(\rt_forward[0]_INST_0_i_2_n_0 ),
-        .I2(rt[0]),
-        .I3(write_reg_addr_mem[0]),
-        .I4(rt[1]),
-        .I5(write_reg_addr_mem[1]),
+        .I1(rt[2]),
+        .I2(write_reg_addr_mem[2]),
+        .I3(rt[1]),
+        .I4(write_reg_addr_mem[1]),
+        .I5(\rt_forward[0]_INST_0_i_2_n_0 ),
         .O(\rt_forward[0]_INST_0_i_1_n_0 ));
   LUT6 #(
     .INIT(64'h6FF6FFFFFFFF6FF6)) 
     \rt_forward[0]_INST_0_i_2 
-       (.I0(rt[2]),
-        .I1(write_reg_addr_mem[2]),
-        .I2(write_reg_addr_mem[4]),
-        .I3(rt[4]),
-        .I4(write_reg_addr_mem[3]),
-        .I5(rt[3]),
+       (.I0(rt[4]),
+        .I1(write_reg_addr_mem[4]),
+        .I2(write_reg_addr_mem[3]),
+        .I3(rt[3]),
+        .I4(write_reg_addr_mem[0]),
+        .I5(rt[0]),
         .O(\rt_forward[0]_INST_0_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'h80)) 
     \rt_forward[1]_INST_0 
@@ -8974,7 +8361,7 @@ module bluex_reg_heap_id_0_0
   assign wr_en_o = \<const0> ;
   GND GND
        (.G(\<const0> ));
-  bluex_reg_heap_id_0_0_reg_heap_id inst
+  reg_heap_id inst
        (.addr_rs(addr_rs),
         .addr_rt(addr_rt),
         .addr_wr(addr_wr),
@@ -8992,15 +8379,1557 @@ module bluex_reg_heap_id_0_0
         .wr_en_i(wr_en_i));
 endmodule
 
-(* ORIG_REF_NAME = "reg_heap_id" *) 
-module bluex_reg_heap_id_0_0_reg_heap_id
-   (rst_n_0,
+(* CHECK_LICENSE_TYPE = "bluex_reg_wb_0_0,reg_wb,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
+(* X_CORE_INFO = "reg_wb,Vivado 2023.2" *) 
+module bluex_reg_wb_0_0
+   (clk,
+    rst_n,
+    enable_CPU,
+    alu_result_inw,
+    mem_rd_inw,
+    write_reg_addr_inw,
+    reg_write_inw,
+    memory_to_reg_inw,
+    write_back_data,
+    write_reg_addr,
+    reg_write);
+  (* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 user_lcd CLK" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rst_n;
+  input enable_CPU;
+  input [31:0]alu_result_inw;
+  input [31:0]mem_rd_inw;
+  input [4:0]write_reg_addr_inw;
+  input reg_write_inw;
+  input memory_to_reg_inw;
+  output [31:0]write_back_data;
+  output [4:0]write_reg_addr;
+  output reg_write;
+
+  wire [31:0]alu_result_inw;
+  wire clk;
+  wire enable_CPU;
+  wire [31:0]mem_rd_inw;
+  wire memory_to_reg_inw;
+  wire reg_write;
+  wire reg_write_inw;
+  wire rst_n;
+  wire [31:0]write_back_data;
+  wire [4:0]write_reg_addr;
+  wire [4:0]write_reg_addr_inw;
+
+  reg_wb inst
+       (.alu_result_inw(alu_result_inw),
+        .clk(clk),
+        .enable_CPU(enable_CPU),
+        .mem_rd_inw(mem_rd_inw),
+        .memory_to_reg_inw(memory_to_reg_inw),
+        .reg_write(reg_write),
+        .reg_write_inw(reg_write_inw),
+        .rst_n(rst_n),
+        .write_back_data(write_back_data),
+        .write_reg_addr(write_reg_addr),
+        .write_reg_addr_inw(write_reg_addr_inw));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "bluex_util_vector_logic_0_0,util_vector_logic_v2_0_3_util_vector_logic,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
+module bluex_util_vector_logic_0_0
+   (Op1,
+    Res);
+  input [0:0]Op1;
+  output [0:0]Res;
+
+  wire [0:0]Op1;
+  wire [0:0]Res;
+
+  LUT1 #(
+    .INIT(2'h1)) 
+    \Res[0]_INST_0 
+       (.I0(Op1),
+        .O(Res));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "bluex_util_vector_logic_0_1,util_vector_logic_v2_0_3_util_vector_logic,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
+module bluex_util_vector_logic_0_1
+   (Op1,
+    Res);
+  input [0:0]Op1;
+  output [0:0]Res;
+
+  wire [0:0]Op1;
+  wire [0:0]Res;
+
+  LUT1 #(
+    .INIT(2'h1)) 
+    \Res[0]_INST_0 
+       (.I0(Op1),
+        .O(Res));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "bluex_util_vector_logic_1_0,util_vector_logic_v2_0_3_util_vector_logic,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
+module bluex_util_vector_logic_1_0
+   (Op1,
+    Op2,
+    Res);
+  input [0:0]Op1;
+  input [0:0]Op2;
+  output [0:0]Res;
+
+  wire [0:0]Op1;
+  wire [0:0]Op2;
+  wire [0:0]Res;
+
+  LUT2 #(
+    .INIT(4'hE)) 
+    \Res[0]_INST_0 
+       (.I0(Op1),
+        .I1(Op2),
+        .O(Res));
+endmodule
+
+(* NotValidForBitStream *)
+module bluex_wrapper
+   (clk,
+    current_addr,
+    enable_CPU,
+    isc,
     ram_addr,
+    ram_clk,
+    ram_en,
+    ram_rd_data,
+    ram_rst,
+    ram_we,
+    ram_wr_data,
+    read_mem_out_inw,
+    rst_n,
+    wr_en_i,
+    wr_en_o,
+    wr_en_t,
+    write_mem_addr,
+    write_mem_clk,
+    write_mem_data,
+    write_mem_en,
+    write_mem_rst,
+    write_mem_we);
+  input clk;
+  output [15:0]current_addr;
+  input [0:0]enable_CPU;
+  input [31:0]isc;
+  output [31:0]ram_addr;
+  output ram_clk;
+  output ram_en;
+  input [31:0]ram_rd_data;
+  output ram_rst;
+  output [3:0]ram_we;
+  output [31:0]ram_wr_data;
+  input [31:0]read_mem_out_inw;
+  input rst_n;
+  input wr_en_i;
+  output wr_en_o;
+  input wr_en_t;
+  output [15:0]write_mem_addr;
+  output write_mem_clk;
+  output [31:0]write_mem_data;
+  output write_mem_en;
+  output write_mem_rst;
+  output write_mem_we;
+
+  wire clk;
+  wire clk_IBUF;
+  wire clk_IBUF_BUFG;
+  wire [15:0]current_addr;
+  wire [15:0]current_addr_OBUF;
+  wire [0:0]enable_CPU;
+  wire [0:0]enable_CPU_IBUF;
+  wire [31:0]isc;
+  wire [31:0]isc_IBUF;
+  wire [31:0]ram_addr;
+  wire [31:2]ram_addr_OBUF;
+  wire ram_clk;
+  wire ram_clk_OBUF;
+  wire ram_en;
+  wire ram_en_OBUF;
+  wire ram_rst;
+  wire ram_rst_OBUF;
+  wire [3:0]ram_we;
+  wire [3:0]ram_we_OBUF;
+  wire [31:0]ram_wr_data;
+  wire [31:0]ram_wr_data_OBUF;
+  wire [31:0]read_mem_out_inw;
+  wire [31:0]read_mem_out_inw_IBUF;
+  wire rst_n;
+  wire rst_n_IBUF;
+  wire wr_en_i;
+  wire wr_en_i_IBUF;
+  wire wr_en_o;
+  wire [15:0]write_mem_addr;
+  wire [15:0]write_mem_addr_OBUF;
+  wire write_mem_clk;
+  wire write_mem_clk_OBUF;
+  wire [31:0]write_mem_data;
+  wire [31:0]write_mem_data_OBUF;
+  wire write_mem_en;
+  wire write_mem_rst;
+  wire write_mem_rst_OBUF;
+  wire write_mem_we;
+  wire write_mem_we_OBUF;
+  wire NLW_bluex_i_wr_en_o_UNCONNECTED;
+  wire NLW_bluex_i_write_mem_en_UNCONNECTED;
+  wire [1:0]NLW_bluex_i_ram_addr_UNCONNECTED;
+
+initial begin
+ $sdf_annotate("tb_ROM_time_synth.sdf",,,,"tool_control");
+end
+  (* HW_HANDOFF = "bluex.hwdef" *) 
+  bluex bluex_i
+       (.clk(clk_IBUF_BUFG),
+        .current_addr(current_addr_OBUF),
+        .enable_CPU(enable_CPU_IBUF),
+        .isc(isc_IBUF),
+        .ram_addr({ram_addr_OBUF,NLW_bluex_i_ram_addr_UNCONNECTED[1:0]}),
+        .ram_clk(ram_clk_OBUF),
+        .ram_en(ram_en_OBUF),
+        .ram_rd_data({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ram_rst(ram_rst_OBUF),
+        .ram_we(ram_we_OBUF),
+        .ram_wr_data(ram_wr_data_OBUF),
+        .read_mem_out_inw(read_mem_out_inw_IBUF),
+        .rst_n(rst_n_IBUF),
+        .wr_en_i(wr_en_i_IBUF),
+        .wr_en_o(NLW_bluex_i_wr_en_o_UNCONNECTED),
+        .wr_en_t(1'b0),
+        .write_mem_addr(write_mem_addr_OBUF),
+        .write_mem_clk(write_mem_clk_OBUF),
+        .write_mem_data(write_mem_data_OBUF),
+        .write_mem_en(NLW_bluex_i_write_mem_en_UNCONNECTED),
+        .write_mem_rst(write_mem_rst_OBUF),
+        .write_mem_we(write_mem_we_OBUF));
+  BUFG clk_IBUF_BUFG_inst
+       (.I(clk_IBUF),
+        .O(clk_IBUF_BUFG));
+  IBUF clk_IBUF_inst
+       (.I(clk),
+        .O(clk_IBUF));
+  OBUF \current_addr_OBUF[0]_inst 
+       (.I(current_addr_OBUF[0]),
+        .O(current_addr[0]));
+  OBUF \current_addr_OBUF[10]_inst 
+       (.I(current_addr_OBUF[10]),
+        .O(current_addr[10]));
+  OBUF \current_addr_OBUF[11]_inst 
+       (.I(current_addr_OBUF[11]),
+        .O(current_addr[11]));
+  OBUF \current_addr_OBUF[12]_inst 
+       (.I(current_addr_OBUF[12]),
+        .O(current_addr[12]));
+  OBUF \current_addr_OBUF[13]_inst 
+       (.I(current_addr_OBUF[13]),
+        .O(current_addr[13]));
+  OBUF \current_addr_OBUF[14]_inst 
+       (.I(current_addr_OBUF[14]),
+        .O(current_addr[14]));
+  OBUF \current_addr_OBUF[15]_inst 
+       (.I(current_addr_OBUF[15]),
+        .O(current_addr[15]));
+  OBUF \current_addr_OBUF[1]_inst 
+       (.I(current_addr_OBUF[1]),
+        .O(current_addr[1]));
+  OBUF \current_addr_OBUF[2]_inst 
+       (.I(current_addr_OBUF[2]),
+        .O(current_addr[2]));
+  OBUF \current_addr_OBUF[3]_inst 
+       (.I(current_addr_OBUF[3]),
+        .O(current_addr[3]));
+  OBUF \current_addr_OBUF[4]_inst 
+       (.I(current_addr_OBUF[4]),
+        .O(current_addr[4]));
+  OBUF \current_addr_OBUF[5]_inst 
+       (.I(current_addr_OBUF[5]),
+        .O(current_addr[5]));
+  OBUF \current_addr_OBUF[6]_inst 
+       (.I(current_addr_OBUF[6]),
+        .O(current_addr[6]));
+  OBUF \current_addr_OBUF[7]_inst 
+       (.I(current_addr_OBUF[7]),
+        .O(current_addr[7]));
+  OBUF \current_addr_OBUF[8]_inst 
+       (.I(current_addr_OBUF[8]),
+        .O(current_addr[8]));
+  OBUF \current_addr_OBUF[9]_inst 
+       (.I(current_addr_OBUF[9]),
+        .O(current_addr[9]));
+  IBUF \enable_CPU_IBUF[0]_inst 
+       (.I(enable_CPU),
+        .O(enable_CPU_IBUF));
+  IBUF \isc_IBUF[0]_inst 
+       (.I(isc[0]),
+        .O(isc_IBUF[0]));
+  IBUF \isc_IBUF[10]_inst 
+       (.I(isc[10]),
+        .O(isc_IBUF[10]));
+  IBUF \isc_IBUF[11]_inst 
+       (.I(isc[11]),
+        .O(isc_IBUF[11]));
+  IBUF \isc_IBUF[12]_inst 
+       (.I(isc[12]),
+        .O(isc_IBUF[12]));
+  IBUF \isc_IBUF[13]_inst 
+       (.I(isc[13]),
+        .O(isc_IBUF[13]));
+  IBUF \isc_IBUF[14]_inst 
+       (.I(isc[14]),
+        .O(isc_IBUF[14]));
+  IBUF \isc_IBUF[15]_inst 
+       (.I(isc[15]),
+        .O(isc_IBUF[15]));
+  IBUF \isc_IBUF[16]_inst 
+       (.I(isc[16]),
+        .O(isc_IBUF[16]));
+  IBUF \isc_IBUF[17]_inst 
+       (.I(isc[17]),
+        .O(isc_IBUF[17]));
+  IBUF \isc_IBUF[18]_inst 
+       (.I(isc[18]),
+        .O(isc_IBUF[18]));
+  IBUF \isc_IBUF[19]_inst 
+       (.I(isc[19]),
+        .O(isc_IBUF[19]));
+  IBUF \isc_IBUF[1]_inst 
+       (.I(isc[1]),
+        .O(isc_IBUF[1]));
+  IBUF \isc_IBUF[20]_inst 
+       (.I(isc[20]),
+        .O(isc_IBUF[20]));
+  IBUF \isc_IBUF[21]_inst 
+       (.I(isc[21]),
+        .O(isc_IBUF[21]));
+  IBUF \isc_IBUF[22]_inst 
+       (.I(isc[22]),
+        .O(isc_IBUF[22]));
+  IBUF \isc_IBUF[23]_inst 
+       (.I(isc[23]),
+        .O(isc_IBUF[23]));
+  IBUF \isc_IBUF[24]_inst 
+       (.I(isc[24]),
+        .O(isc_IBUF[24]));
+  IBUF \isc_IBUF[25]_inst 
+       (.I(isc[25]),
+        .O(isc_IBUF[25]));
+  IBUF \isc_IBUF[26]_inst 
+       (.I(isc[26]),
+        .O(isc_IBUF[26]));
+  IBUF \isc_IBUF[27]_inst 
+       (.I(isc[27]),
+        .O(isc_IBUF[27]));
+  IBUF \isc_IBUF[28]_inst 
+       (.I(isc[28]),
+        .O(isc_IBUF[28]));
+  IBUF \isc_IBUF[29]_inst 
+       (.I(isc[29]),
+        .O(isc_IBUF[29]));
+  IBUF \isc_IBUF[2]_inst 
+       (.I(isc[2]),
+        .O(isc_IBUF[2]));
+  IBUF \isc_IBUF[30]_inst 
+       (.I(isc[30]),
+        .O(isc_IBUF[30]));
+  IBUF \isc_IBUF[31]_inst 
+       (.I(isc[31]),
+        .O(isc_IBUF[31]));
+  IBUF \isc_IBUF[3]_inst 
+       (.I(isc[3]),
+        .O(isc_IBUF[3]));
+  IBUF \isc_IBUF[4]_inst 
+       (.I(isc[4]),
+        .O(isc_IBUF[4]));
+  IBUF \isc_IBUF[5]_inst 
+       (.I(isc[5]),
+        .O(isc_IBUF[5]));
+  IBUF \isc_IBUF[6]_inst 
+       (.I(isc[6]),
+        .O(isc_IBUF[6]));
+  IBUF \isc_IBUF[7]_inst 
+       (.I(isc[7]),
+        .O(isc_IBUF[7]));
+  IBUF \isc_IBUF[8]_inst 
+       (.I(isc[8]),
+        .O(isc_IBUF[8]));
+  IBUF \isc_IBUF[9]_inst 
+       (.I(isc[9]),
+        .O(isc_IBUF[9]));
+  OBUF \ram_addr_OBUF[0]_inst 
+       (.I(1'b0),
+        .O(ram_addr[0]));
+  OBUF \ram_addr_OBUF[10]_inst 
+       (.I(ram_addr_OBUF[10]),
+        .O(ram_addr[10]));
+  OBUF \ram_addr_OBUF[11]_inst 
+       (.I(ram_addr_OBUF[11]),
+        .O(ram_addr[11]));
+  OBUF \ram_addr_OBUF[12]_inst 
+       (.I(ram_addr_OBUF[12]),
+        .O(ram_addr[12]));
+  OBUF \ram_addr_OBUF[13]_inst 
+       (.I(ram_addr_OBUF[13]),
+        .O(ram_addr[13]));
+  OBUF \ram_addr_OBUF[14]_inst 
+       (.I(ram_addr_OBUF[14]),
+        .O(ram_addr[14]));
+  OBUF \ram_addr_OBUF[15]_inst 
+       (.I(ram_addr_OBUF[15]),
+        .O(ram_addr[15]));
+  OBUF \ram_addr_OBUF[16]_inst 
+       (.I(ram_addr_OBUF[16]),
+        .O(ram_addr[16]));
+  OBUF \ram_addr_OBUF[17]_inst 
+       (.I(ram_addr_OBUF[17]),
+        .O(ram_addr[17]));
+  OBUF \ram_addr_OBUF[18]_inst 
+       (.I(ram_addr_OBUF[18]),
+        .O(ram_addr[18]));
+  OBUF \ram_addr_OBUF[19]_inst 
+       (.I(ram_addr_OBUF[19]),
+        .O(ram_addr[19]));
+  OBUF \ram_addr_OBUF[1]_inst 
+       (.I(1'b0),
+        .O(ram_addr[1]));
+  OBUF \ram_addr_OBUF[20]_inst 
+       (.I(ram_addr_OBUF[20]),
+        .O(ram_addr[20]));
+  OBUF \ram_addr_OBUF[21]_inst 
+       (.I(ram_addr_OBUF[21]),
+        .O(ram_addr[21]));
+  OBUF \ram_addr_OBUF[22]_inst 
+       (.I(ram_addr_OBUF[22]),
+        .O(ram_addr[22]));
+  OBUF \ram_addr_OBUF[23]_inst 
+       (.I(ram_addr_OBUF[23]),
+        .O(ram_addr[23]));
+  OBUF \ram_addr_OBUF[24]_inst 
+       (.I(ram_addr_OBUF[24]),
+        .O(ram_addr[24]));
+  OBUF \ram_addr_OBUF[25]_inst 
+       (.I(ram_addr_OBUF[25]),
+        .O(ram_addr[25]));
+  OBUF \ram_addr_OBUF[26]_inst 
+       (.I(ram_addr_OBUF[26]),
+        .O(ram_addr[26]));
+  OBUF \ram_addr_OBUF[27]_inst 
+       (.I(ram_addr_OBUF[27]),
+        .O(ram_addr[27]));
+  OBUF \ram_addr_OBUF[28]_inst 
+       (.I(ram_addr_OBUF[28]),
+        .O(ram_addr[28]));
+  OBUF \ram_addr_OBUF[29]_inst 
+       (.I(ram_addr_OBUF[29]),
+        .O(ram_addr[29]));
+  OBUF \ram_addr_OBUF[2]_inst 
+       (.I(ram_addr_OBUF[2]),
+        .O(ram_addr[2]));
+  OBUF \ram_addr_OBUF[30]_inst 
+       (.I(ram_addr_OBUF[30]),
+        .O(ram_addr[30]));
+  OBUF \ram_addr_OBUF[31]_inst 
+       (.I(ram_addr_OBUF[31]),
+        .O(ram_addr[31]));
+  OBUF \ram_addr_OBUF[3]_inst 
+       (.I(ram_addr_OBUF[3]),
+        .O(ram_addr[3]));
+  OBUF \ram_addr_OBUF[4]_inst 
+       (.I(ram_addr_OBUF[4]),
+        .O(ram_addr[4]));
+  OBUF \ram_addr_OBUF[5]_inst 
+       (.I(ram_addr_OBUF[5]),
+        .O(ram_addr[5]));
+  OBUF \ram_addr_OBUF[6]_inst 
+       (.I(ram_addr_OBUF[6]),
+        .O(ram_addr[6]));
+  OBUF \ram_addr_OBUF[7]_inst 
+       (.I(ram_addr_OBUF[7]),
+        .O(ram_addr[7]));
+  OBUF \ram_addr_OBUF[8]_inst 
+       (.I(ram_addr_OBUF[8]),
+        .O(ram_addr[8]));
+  OBUF \ram_addr_OBUF[9]_inst 
+       (.I(ram_addr_OBUF[9]),
+        .O(ram_addr[9]));
+  OBUF ram_clk_OBUF_inst
+       (.I(ram_clk_OBUF),
+        .O(ram_clk));
+  OBUF ram_en_OBUF_inst
+       (.I(ram_en_OBUF),
+        .O(ram_en));
+  OBUF ram_rst_OBUF_inst
+       (.I(ram_rst_OBUF),
+        .O(ram_rst));
+  OBUF \ram_we_OBUF[0]_inst 
+       (.I(ram_we_OBUF[0]),
+        .O(ram_we[0]));
+  OBUF \ram_we_OBUF[1]_inst 
+       (.I(ram_we_OBUF[1]),
+        .O(ram_we[1]));
+  OBUF \ram_we_OBUF[2]_inst 
+       (.I(ram_we_OBUF[2]),
+        .O(ram_we[2]));
+  OBUF \ram_we_OBUF[3]_inst 
+       (.I(ram_we_OBUF[3]),
+        .O(ram_we[3]));
+  OBUF \ram_wr_data_OBUF[0]_inst 
+       (.I(ram_wr_data_OBUF[0]),
+        .O(ram_wr_data[0]));
+  OBUF \ram_wr_data_OBUF[10]_inst 
+       (.I(ram_wr_data_OBUF[10]),
+        .O(ram_wr_data[10]));
+  OBUF \ram_wr_data_OBUF[11]_inst 
+       (.I(ram_wr_data_OBUF[11]),
+        .O(ram_wr_data[11]));
+  OBUF \ram_wr_data_OBUF[12]_inst 
+       (.I(ram_wr_data_OBUF[12]),
+        .O(ram_wr_data[12]));
+  OBUF \ram_wr_data_OBUF[13]_inst 
+       (.I(ram_wr_data_OBUF[13]),
+        .O(ram_wr_data[13]));
+  OBUF \ram_wr_data_OBUF[14]_inst 
+       (.I(ram_wr_data_OBUF[14]),
+        .O(ram_wr_data[14]));
+  OBUF \ram_wr_data_OBUF[15]_inst 
+       (.I(ram_wr_data_OBUF[15]),
+        .O(ram_wr_data[15]));
+  OBUF \ram_wr_data_OBUF[16]_inst 
+       (.I(ram_wr_data_OBUF[16]),
+        .O(ram_wr_data[16]));
+  OBUF \ram_wr_data_OBUF[17]_inst 
+       (.I(ram_wr_data_OBUF[17]),
+        .O(ram_wr_data[17]));
+  OBUF \ram_wr_data_OBUF[18]_inst 
+       (.I(ram_wr_data_OBUF[18]),
+        .O(ram_wr_data[18]));
+  OBUF \ram_wr_data_OBUF[19]_inst 
+       (.I(ram_wr_data_OBUF[19]),
+        .O(ram_wr_data[19]));
+  OBUF \ram_wr_data_OBUF[1]_inst 
+       (.I(ram_wr_data_OBUF[1]),
+        .O(ram_wr_data[1]));
+  OBUF \ram_wr_data_OBUF[20]_inst 
+       (.I(ram_wr_data_OBUF[20]),
+        .O(ram_wr_data[20]));
+  OBUF \ram_wr_data_OBUF[21]_inst 
+       (.I(ram_wr_data_OBUF[21]),
+        .O(ram_wr_data[21]));
+  OBUF \ram_wr_data_OBUF[22]_inst 
+       (.I(ram_wr_data_OBUF[22]),
+        .O(ram_wr_data[22]));
+  OBUF \ram_wr_data_OBUF[23]_inst 
+       (.I(ram_wr_data_OBUF[23]),
+        .O(ram_wr_data[23]));
+  OBUF \ram_wr_data_OBUF[24]_inst 
+       (.I(ram_wr_data_OBUF[24]),
+        .O(ram_wr_data[24]));
+  OBUF \ram_wr_data_OBUF[25]_inst 
+       (.I(ram_wr_data_OBUF[25]),
+        .O(ram_wr_data[25]));
+  OBUF \ram_wr_data_OBUF[26]_inst 
+       (.I(ram_wr_data_OBUF[26]),
+        .O(ram_wr_data[26]));
+  OBUF \ram_wr_data_OBUF[27]_inst 
+       (.I(ram_wr_data_OBUF[27]),
+        .O(ram_wr_data[27]));
+  OBUF \ram_wr_data_OBUF[28]_inst 
+       (.I(ram_wr_data_OBUF[28]),
+        .O(ram_wr_data[28]));
+  OBUF \ram_wr_data_OBUF[29]_inst 
+       (.I(ram_wr_data_OBUF[29]),
+        .O(ram_wr_data[29]));
+  OBUF \ram_wr_data_OBUF[2]_inst 
+       (.I(ram_wr_data_OBUF[2]),
+        .O(ram_wr_data[2]));
+  OBUF \ram_wr_data_OBUF[30]_inst 
+       (.I(ram_wr_data_OBUF[30]),
+        .O(ram_wr_data[30]));
+  OBUF \ram_wr_data_OBUF[31]_inst 
+       (.I(ram_wr_data_OBUF[31]),
+        .O(ram_wr_data[31]));
+  OBUF \ram_wr_data_OBUF[3]_inst 
+       (.I(ram_wr_data_OBUF[3]),
+        .O(ram_wr_data[3]));
+  OBUF \ram_wr_data_OBUF[4]_inst 
+       (.I(ram_wr_data_OBUF[4]),
+        .O(ram_wr_data[4]));
+  OBUF \ram_wr_data_OBUF[5]_inst 
+       (.I(ram_wr_data_OBUF[5]),
+        .O(ram_wr_data[5]));
+  OBUF \ram_wr_data_OBUF[6]_inst 
+       (.I(ram_wr_data_OBUF[6]),
+        .O(ram_wr_data[6]));
+  OBUF \ram_wr_data_OBUF[7]_inst 
+       (.I(ram_wr_data_OBUF[7]),
+        .O(ram_wr_data[7]));
+  OBUF \ram_wr_data_OBUF[8]_inst 
+       (.I(ram_wr_data_OBUF[8]),
+        .O(ram_wr_data[8]));
+  OBUF \ram_wr_data_OBUF[9]_inst 
+       (.I(ram_wr_data_OBUF[9]),
+        .O(ram_wr_data[9]));
+  IBUF \read_mem_out_inw_IBUF[0]_inst 
+       (.I(read_mem_out_inw[0]),
+        .O(read_mem_out_inw_IBUF[0]));
+  IBUF \read_mem_out_inw_IBUF[10]_inst 
+       (.I(read_mem_out_inw[10]),
+        .O(read_mem_out_inw_IBUF[10]));
+  IBUF \read_mem_out_inw_IBUF[11]_inst 
+       (.I(read_mem_out_inw[11]),
+        .O(read_mem_out_inw_IBUF[11]));
+  IBUF \read_mem_out_inw_IBUF[12]_inst 
+       (.I(read_mem_out_inw[12]),
+        .O(read_mem_out_inw_IBUF[12]));
+  IBUF \read_mem_out_inw_IBUF[13]_inst 
+       (.I(read_mem_out_inw[13]),
+        .O(read_mem_out_inw_IBUF[13]));
+  IBUF \read_mem_out_inw_IBUF[14]_inst 
+       (.I(read_mem_out_inw[14]),
+        .O(read_mem_out_inw_IBUF[14]));
+  IBUF \read_mem_out_inw_IBUF[15]_inst 
+       (.I(read_mem_out_inw[15]),
+        .O(read_mem_out_inw_IBUF[15]));
+  IBUF \read_mem_out_inw_IBUF[16]_inst 
+       (.I(read_mem_out_inw[16]),
+        .O(read_mem_out_inw_IBUF[16]));
+  IBUF \read_mem_out_inw_IBUF[17]_inst 
+       (.I(read_mem_out_inw[17]),
+        .O(read_mem_out_inw_IBUF[17]));
+  IBUF \read_mem_out_inw_IBUF[18]_inst 
+       (.I(read_mem_out_inw[18]),
+        .O(read_mem_out_inw_IBUF[18]));
+  IBUF \read_mem_out_inw_IBUF[19]_inst 
+       (.I(read_mem_out_inw[19]),
+        .O(read_mem_out_inw_IBUF[19]));
+  IBUF \read_mem_out_inw_IBUF[1]_inst 
+       (.I(read_mem_out_inw[1]),
+        .O(read_mem_out_inw_IBUF[1]));
+  IBUF \read_mem_out_inw_IBUF[20]_inst 
+       (.I(read_mem_out_inw[20]),
+        .O(read_mem_out_inw_IBUF[20]));
+  IBUF \read_mem_out_inw_IBUF[21]_inst 
+       (.I(read_mem_out_inw[21]),
+        .O(read_mem_out_inw_IBUF[21]));
+  IBUF \read_mem_out_inw_IBUF[22]_inst 
+       (.I(read_mem_out_inw[22]),
+        .O(read_mem_out_inw_IBUF[22]));
+  IBUF \read_mem_out_inw_IBUF[23]_inst 
+       (.I(read_mem_out_inw[23]),
+        .O(read_mem_out_inw_IBUF[23]));
+  IBUF \read_mem_out_inw_IBUF[24]_inst 
+       (.I(read_mem_out_inw[24]),
+        .O(read_mem_out_inw_IBUF[24]));
+  IBUF \read_mem_out_inw_IBUF[25]_inst 
+       (.I(read_mem_out_inw[25]),
+        .O(read_mem_out_inw_IBUF[25]));
+  IBUF \read_mem_out_inw_IBUF[26]_inst 
+       (.I(read_mem_out_inw[26]),
+        .O(read_mem_out_inw_IBUF[26]));
+  IBUF \read_mem_out_inw_IBUF[27]_inst 
+       (.I(read_mem_out_inw[27]),
+        .O(read_mem_out_inw_IBUF[27]));
+  IBUF \read_mem_out_inw_IBUF[28]_inst 
+       (.I(read_mem_out_inw[28]),
+        .O(read_mem_out_inw_IBUF[28]));
+  IBUF \read_mem_out_inw_IBUF[29]_inst 
+       (.I(read_mem_out_inw[29]),
+        .O(read_mem_out_inw_IBUF[29]));
+  IBUF \read_mem_out_inw_IBUF[2]_inst 
+       (.I(read_mem_out_inw[2]),
+        .O(read_mem_out_inw_IBUF[2]));
+  IBUF \read_mem_out_inw_IBUF[30]_inst 
+       (.I(read_mem_out_inw[30]),
+        .O(read_mem_out_inw_IBUF[30]));
+  IBUF \read_mem_out_inw_IBUF[31]_inst 
+       (.I(read_mem_out_inw[31]),
+        .O(read_mem_out_inw_IBUF[31]));
+  IBUF \read_mem_out_inw_IBUF[3]_inst 
+       (.I(read_mem_out_inw[3]),
+        .O(read_mem_out_inw_IBUF[3]));
+  IBUF \read_mem_out_inw_IBUF[4]_inst 
+       (.I(read_mem_out_inw[4]),
+        .O(read_mem_out_inw_IBUF[4]));
+  IBUF \read_mem_out_inw_IBUF[5]_inst 
+       (.I(read_mem_out_inw[5]),
+        .O(read_mem_out_inw_IBUF[5]));
+  IBUF \read_mem_out_inw_IBUF[6]_inst 
+       (.I(read_mem_out_inw[6]),
+        .O(read_mem_out_inw_IBUF[6]));
+  IBUF \read_mem_out_inw_IBUF[7]_inst 
+       (.I(read_mem_out_inw[7]),
+        .O(read_mem_out_inw_IBUF[7]));
+  IBUF \read_mem_out_inw_IBUF[8]_inst 
+       (.I(read_mem_out_inw[8]),
+        .O(read_mem_out_inw_IBUF[8]));
+  IBUF \read_mem_out_inw_IBUF[9]_inst 
+       (.I(read_mem_out_inw[9]),
+        .O(read_mem_out_inw_IBUF[9]));
+  IBUF rst_n_IBUF_inst
+       (.I(rst_n),
+        .O(rst_n_IBUF));
+  IBUF wr_en_i_IBUF_inst
+       (.I(wr_en_i),
+        .O(wr_en_i_IBUF));
+  OBUF wr_en_o_OBUF_inst
+       (.I(1'b0),
+        .O(wr_en_o));
+  OBUF \write_mem_addr_OBUF[0]_inst 
+       (.I(write_mem_addr_OBUF[0]),
+        .O(write_mem_addr[0]));
+  OBUF \write_mem_addr_OBUF[10]_inst 
+       (.I(write_mem_addr_OBUF[10]),
+        .O(write_mem_addr[10]));
+  OBUF \write_mem_addr_OBUF[11]_inst 
+       (.I(write_mem_addr_OBUF[11]),
+        .O(write_mem_addr[11]));
+  OBUF \write_mem_addr_OBUF[12]_inst 
+       (.I(write_mem_addr_OBUF[12]),
+        .O(write_mem_addr[12]));
+  OBUF \write_mem_addr_OBUF[13]_inst 
+       (.I(write_mem_addr_OBUF[13]),
+        .O(write_mem_addr[13]));
+  OBUF \write_mem_addr_OBUF[14]_inst 
+       (.I(write_mem_addr_OBUF[14]),
+        .O(write_mem_addr[14]));
+  OBUF \write_mem_addr_OBUF[15]_inst 
+       (.I(write_mem_addr_OBUF[15]),
+        .O(write_mem_addr[15]));
+  OBUF \write_mem_addr_OBUF[1]_inst 
+       (.I(write_mem_addr_OBUF[1]),
+        .O(write_mem_addr[1]));
+  OBUF \write_mem_addr_OBUF[2]_inst 
+       (.I(write_mem_addr_OBUF[2]),
+        .O(write_mem_addr[2]));
+  OBUF \write_mem_addr_OBUF[3]_inst 
+       (.I(write_mem_addr_OBUF[3]),
+        .O(write_mem_addr[3]));
+  OBUF \write_mem_addr_OBUF[4]_inst 
+       (.I(write_mem_addr_OBUF[4]),
+        .O(write_mem_addr[4]));
+  OBUF \write_mem_addr_OBUF[5]_inst 
+       (.I(write_mem_addr_OBUF[5]),
+        .O(write_mem_addr[5]));
+  OBUF \write_mem_addr_OBUF[6]_inst 
+       (.I(write_mem_addr_OBUF[6]),
+        .O(write_mem_addr[6]));
+  OBUF \write_mem_addr_OBUF[7]_inst 
+       (.I(write_mem_addr_OBUF[7]),
+        .O(write_mem_addr[7]));
+  OBUF \write_mem_addr_OBUF[8]_inst 
+       (.I(write_mem_addr_OBUF[8]),
+        .O(write_mem_addr[8]));
+  OBUF \write_mem_addr_OBUF[9]_inst 
+       (.I(write_mem_addr_OBUF[9]),
+        .O(write_mem_addr[9]));
+  OBUF write_mem_clk_OBUF_inst
+       (.I(write_mem_clk_OBUF),
+        .O(write_mem_clk));
+  OBUF \write_mem_data_OBUF[0]_inst 
+       (.I(write_mem_data_OBUF[0]),
+        .O(write_mem_data[0]));
+  OBUF \write_mem_data_OBUF[10]_inst 
+       (.I(write_mem_data_OBUF[10]),
+        .O(write_mem_data[10]));
+  OBUF \write_mem_data_OBUF[11]_inst 
+       (.I(write_mem_data_OBUF[11]),
+        .O(write_mem_data[11]));
+  OBUF \write_mem_data_OBUF[12]_inst 
+       (.I(write_mem_data_OBUF[12]),
+        .O(write_mem_data[12]));
+  OBUF \write_mem_data_OBUF[13]_inst 
+       (.I(write_mem_data_OBUF[13]),
+        .O(write_mem_data[13]));
+  OBUF \write_mem_data_OBUF[14]_inst 
+       (.I(write_mem_data_OBUF[14]),
+        .O(write_mem_data[14]));
+  OBUF \write_mem_data_OBUF[15]_inst 
+       (.I(write_mem_data_OBUF[15]),
+        .O(write_mem_data[15]));
+  OBUF \write_mem_data_OBUF[16]_inst 
+       (.I(write_mem_data_OBUF[16]),
+        .O(write_mem_data[16]));
+  OBUF \write_mem_data_OBUF[17]_inst 
+       (.I(write_mem_data_OBUF[17]),
+        .O(write_mem_data[17]));
+  OBUF \write_mem_data_OBUF[18]_inst 
+       (.I(write_mem_data_OBUF[18]),
+        .O(write_mem_data[18]));
+  OBUF \write_mem_data_OBUF[19]_inst 
+       (.I(write_mem_data_OBUF[19]),
+        .O(write_mem_data[19]));
+  OBUF \write_mem_data_OBUF[1]_inst 
+       (.I(write_mem_data_OBUF[1]),
+        .O(write_mem_data[1]));
+  OBUF \write_mem_data_OBUF[20]_inst 
+       (.I(write_mem_data_OBUF[20]),
+        .O(write_mem_data[20]));
+  OBUF \write_mem_data_OBUF[21]_inst 
+       (.I(write_mem_data_OBUF[21]),
+        .O(write_mem_data[21]));
+  OBUF \write_mem_data_OBUF[22]_inst 
+       (.I(write_mem_data_OBUF[22]),
+        .O(write_mem_data[22]));
+  OBUF \write_mem_data_OBUF[23]_inst 
+       (.I(write_mem_data_OBUF[23]),
+        .O(write_mem_data[23]));
+  OBUF \write_mem_data_OBUF[24]_inst 
+       (.I(write_mem_data_OBUF[24]),
+        .O(write_mem_data[24]));
+  OBUF \write_mem_data_OBUF[25]_inst 
+       (.I(write_mem_data_OBUF[25]),
+        .O(write_mem_data[25]));
+  OBUF \write_mem_data_OBUF[26]_inst 
+       (.I(write_mem_data_OBUF[26]),
+        .O(write_mem_data[26]));
+  OBUF \write_mem_data_OBUF[27]_inst 
+       (.I(write_mem_data_OBUF[27]),
+        .O(write_mem_data[27]));
+  OBUF \write_mem_data_OBUF[28]_inst 
+       (.I(write_mem_data_OBUF[28]),
+        .O(write_mem_data[28]));
+  OBUF \write_mem_data_OBUF[29]_inst 
+       (.I(write_mem_data_OBUF[29]),
+        .O(write_mem_data[29]));
+  OBUF \write_mem_data_OBUF[2]_inst 
+       (.I(write_mem_data_OBUF[2]),
+        .O(write_mem_data[2]));
+  OBUF \write_mem_data_OBUF[30]_inst 
+       (.I(write_mem_data_OBUF[30]),
+        .O(write_mem_data[30]));
+  OBUF \write_mem_data_OBUF[31]_inst 
+       (.I(write_mem_data_OBUF[31]),
+        .O(write_mem_data[31]));
+  OBUF \write_mem_data_OBUF[3]_inst 
+       (.I(write_mem_data_OBUF[3]),
+        .O(write_mem_data[3]));
+  OBUF \write_mem_data_OBUF[4]_inst 
+       (.I(write_mem_data_OBUF[4]),
+        .O(write_mem_data[4]));
+  OBUF \write_mem_data_OBUF[5]_inst 
+       (.I(write_mem_data_OBUF[5]),
+        .O(write_mem_data[5]));
+  OBUF \write_mem_data_OBUF[6]_inst 
+       (.I(write_mem_data_OBUF[6]),
+        .O(write_mem_data[6]));
+  OBUF \write_mem_data_OBUF[7]_inst 
+       (.I(write_mem_data_OBUF[7]),
+        .O(write_mem_data[7]));
+  OBUF \write_mem_data_OBUF[8]_inst 
+       (.I(write_mem_data_OBUF[8]),
+        .O(write_mem_data[8]));
+  OBUF \write_mem_data_OBUF[9]_inst 
+       (.I(write_mem_data_OBUF[9]),
+        .O(write_mem_data[9]));
+  OBUF write_mem_en_OBUF_inst
+       (.I(1'b1),
+        .O(write_mem_en));
+  OBUF write_mem_rst_OBUF_inst
+       (.I(write_mem_rst_OBUF),
+        .O(write_mem_rst));
+  OBUF write_mem_we_OBUF_inst
+       (.I(write_mem_we_OBUF),
+        .O(write_mem_we));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "bluex_wrapper_mem_0_0,wrapper_mem,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
+(* X_CORE_INFO = "wrapper_mem,Vivado 2023.2" *) 
+module bluex_wrapper_mem_0_0
+   (clk,
+    rst_n,
+    enable_CPU,
+    reg_write_inw,
+    memory_to_reg_inw,
+    memory_write_inw,
+    alu_result_inw,
+    write_data_inw,
+    write_reg_addr_inw,
+    read_mem_out_inw,
+    reg_write,
+    memory_to_reg,
+    write_mem_addr,
+    write_mem_data,
+    write_mem_en,
+    write_mem_we,
+    write_mem_clk,
+    write_mem_rst,
+    alu_result,
+    read_mem_out,
+    write_reg_addr);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rst_n;
+  input enable_CPU;
+  input reg_write_inw;
+  input memory_to_reg_inw;
+  input memory_write_inw;
+  input [31:0]alu_result_inw;
+  input [31:0]write_data_inw;
+  input [4:0]write_reg_addr_inw;
+  input [31:0]read_mem_out_inw;
+  output reg_write;
+  output memory_to_reg;
+  output [15:0]write_mem_addr;
+  output [31:0]write_mem_data;
+  output write_mem_en;
+  output write_mem_we;
+  (* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 write_mem CLK" *) output write_mem_clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 write_mem_rst RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME write_mem_rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *) output write_mem_rst;
+  output [31:0]alu_result;
+  output [31:0]read_mem_out;
+  output [4:0]write_reg_addr;
+
+  wire \<const0> ;
+  wire [31:0]alu_result;
+  wire [31:0]alu_result_inw;
+  wire clk;
+  wire enable_CPU;
+  wire memory_to_reg;
+  wire memory_to_reg_inw;
+  wire memory_write_inw;
+  wire [31:0]read_mem_out_inw;
+  wire reg_write;
+  wire reg_write_inw;
+  wire rst_n;
+  wire [31:0]write_data_inw;
+  wire [31:0]write_mem_data;
+  wire write_mem_rst;
+  wire write_mem_we;
+  wire [4:0]write_reg_addr;
+  wire [4:0]write_reg_addr_inw;
+
+  assign read_mem_out[31:0] = read_mem_out_inw;
+  assign write_mem_addr[15:0] = alu_result[15:0];
+  assign write_mem_clk = clk;
+  assign write_mem_en = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
+  wrapper_mem inst
+       (.alu_result(alu_result),
+        .alu_result_inw(alu_result_inw),
+        .clk(clk),
+        .enable_CPU(enable_CPU),
+        .memory_to_reg(memory_to_reg),
+        .memory_to_reg_inw(memory_to_reg_inw),
+        .memory_write_inw(memory_write_inw),
+        .reg_write(reg_write),
+        .reg_write_inw(reg_write_inw),
+        .rst_n(rst_n),
+        .write_data_inw(write_data_inw),
+        .write_mem_data(write_mem_data),
+        .write_mem_rst(write_mem_rst),
+        .write_mem_we(write_mem_we),
+        .write_reg_addr(write_reg_addr),
+        .write_reg_addr_inw(write_reg_addr_inw));
+endmodule
+
+module controller_id
+   (reg_write,
+    memory_to_reg,
+    memory_write,
+    branch,
+    alu_src,
+    addr_flag,
+    real_op);
+  output reg_write;
+  output memory_to_reg;
+  output memory_write;
+  output branch;
+  output alu_src;
+  output addr_flag;
+  input [5:0]real_op;
+
+  wire addr_flag;
+  wire alu_src;
+  wire branch;
+  wire memory_to_reg;
+  wire memory_write;
+  wire [5:0]real_op;
+  wire reg_write;
+
+  LUT6 #(
+    .INIT(64'hFFFFFF5DFDFFD55D)) 
+    addr_flag_INST_0
+       (.I0(real_op[0]),
+        .I1(real_op[2]),
+        .I2(real_op[3]),
+        .I3(real_op[5]),
+        .I4(real_op[4]),
+        .I5(real_op[1]),
+        .O(addr_flag));
+  LUT6 #(
+    .INIT(64'h0008002A002820AA)) 
+    alu_src_INST_0
+       (.I0(real_op[0]),
+        .I1(real_op[3]),
+        .I2(real_op[5]),
+        .I3(real_op[4]),
+        .I4(real_op[2]),
+        .I5(real_op[1]),
+        .O(alu_src));
+  LUT6 #(
+    .INIT(64'h00000000002A0000)) 
+    branch_INST_0
+       (.I0(real_op[0]),
+        .I1(real_op[3]),
+        .I2(real_op[2]),
+        .I3(real_op[1]),
+        .I4(real_op[4]),
+        .I5(real_op[5]),
+        .O(branch));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    memory_to_reg_INST_0
+       (.I0(real_op[1]),
+        .I1(real_op[4]),
+        .I2(real_op[2]),
+        .I3(real_op[0]),
+        .I4(real_op[3]),
+        .I5(real_op[5]),
+        .O(memory_to_reg));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    memory_write_INST_0
+       (.I0(real_op[2]),
+        .I1(real_op[4]),
+        .I2(real_op[1]),
+        .I3(real_op[0]),
+        .I4(real_op[3]),
+        .I5(real_op[5]),
+        .O(memory_write));
+  LUT6 #(
+    .INIT(64'hFFFFFDFFFDFFFD7F)) 
+    reg_write_INST_0
+       (.I0(real_op[0]),
+        .I1(real_op[1]),
+        .I2(real_op[5]),
+        .I3(real_op[4]),
+        .I4(real_op[3]),
+        .I5(real_op[2]),
+        .O(reg_write));
+endmodule
+
+module demux_id
+   (rs,
+    rt,
+    real_op,
+    pc_next,
+    imm,
+    isc,
+    clk,
+    pc_next_inw,
+    rst,
+    branch_taken,
+    enable_CPU,
+    ena_n);
+  output [4:0]rs;
+  output [4:0]rt;
+  output [5:0]real_op;
+  output [15:0]pc_next;
+  output [15:0]imm;
+  input [31:0]isc;
+  input clk;
+  input [15:0]pc_next_inw;
+  input rst;
+  input branch_taken;
+  input enable_CPU;
+  input ena_n;
+
+  wire branch_taken;
+  wire clk;
+  wire ena_n;
+  wire enable_CPU;
+  wire [15:0]imm;
+  wire [31:0]isc;
+  wire [15:0]pc_next;
+  wire [15:0]pc_next_inw;
+  wire [5:0]real_op;
+  wire \real_op[3]_i_2_n_0 ;
+  wire \real_op[5]_i_2_n_0 ;
+  wire [5:0]real_op_0;
+  wire real_rst;
+  wire [4:0]rs;
+  wire \rs[4]_i_1_n_0 ;
+  wire rst;
+  wire [4:0]rt;
+
+  FDCE #(
+    .INIT(1'b0)) 
+    \imm_reg[0] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[0]),
+        .Q(imm[0]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \imm_reg[10] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[10]),
+        .Q(imm[10]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \imm_reg[1] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[1]),
+        .Q(imm[1]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \imm_reg[2] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[2]),
+        .Q(imm[2]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \imm_reg[3] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[3]),
+        .Q(imm[3]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \imm_reg[4] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[4]),
+        .Q(imm[4]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \imm_reg[5] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[5]),
+        .Q(imm[5]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \imm_reg[6] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[6]),
+        .Q(imm[6]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \imm_reg[7] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[7]),
+        .Q(imm[7]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \imm_reg[8] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[8]),
+        .Q(imm[8]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \imm_reg[9] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[9]),
+        .Q(imm[9]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[0] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[0]),
+        .Q(pc_next[0]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[10] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[10]),
+        .Q(pc_next[10]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[11] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[11]),
+        .Q(pc_next[11]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[12] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[12]),
+        .Q(pc_next[12]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[13] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[13]),
+        .Q(pc_next[13]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[14] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[14]),
+        .Q(pc_next[14]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[15] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[15]),
+        .Q(pc_next[15]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[1] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[1]),
+        .Q(pc_next[1]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[2] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[2]),
+        .Q(pc_next[2]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[3] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[3]),
+        .Q(pc_next[3]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[4] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[4]),
+        .Q(pc_next[4]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[5] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[5]),
+        .Q(pc_next[5]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[6] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[6]),
+        .Q(pc_next[6]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[7] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[7]),
+        .Q(pc_next[7]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[8] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[8]),
+        .Q(pc_next[8]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \pc_next_reg[9] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(pc_next_inw[9]),
+        .Q(pc_next[9]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rd_reg[0] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[11]),
+        .Q(imm[11]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rd_reg[1] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[12]),
+        .Q(imm[12]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rd_reg[2] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[13]),
+        .Q(imm[13]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rd_reg[3] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[14]),
+        .Q(imm[14]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rd_reg[4] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[15]),
+        .Q(imm[15]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF00000020)) 
+    \real_op[0]_i_1 
+       (.I0(\real_op[3]_i_2_n_0 ),
+        .I1(isc[27]),
+        .I2(isc[0]),
+        .I3(isc[29]),
+        .I4(isc[28]),
+        .I5(isc[26]),
+        .O(real_op_0[0]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF00000020)) 
+    \real_op[1]_i_1 
+       (.I0(\real_op[3]_i_2_n_0 ),
+        .I1(isc[26]),
+        .I2(isc[1]),
+        .I3(isc[29]),
+        .I4(isc[28]),
+        .I5(isc[27]),
+        .O(real_op_0[1]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF00000020)) 
+    \real_op[2]_i_1 
+       (.I0(\real_op[3]_i_2_n_0 ),
+        .I1(isc[29]),
+        .I2(isc[2]),
+        .I3(isc[27]),
+        .I4(isc[26]),
+        .I5(isc[28]),
+        .O(real_op_0[2]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF00000020)) 
+    \real_op[3]_i_1 
+       (.I0(\real_op[3]_i_2_n_0 ),
+        .I1(isc[28]),
+        .I2(isc[3]),
+        .I3(isc[27]),
+        .I4(isc[26]),
+        .I5(isc[29]),
+        .O(real_op_0[3]));
+  LUT2 #(
+    .INIT(4'h1)) 
+    \real_op[3]_i_2 
+       (.I0(isc[30]),
+        .I1(isc[31]),
+        .O(\real_op[3]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF00000020)) 
+    \real_op[4]_i_1 
+       (.I0(\real_op[5]_i_2_n_0 ),
+        .I1(isc[31]),
+        .I2(isc[4]),
+        .I3(isc[27]),
+        .I4(isc[26]),
+        .I5(isc[30]),
+        .O(real_op_0[4]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF00000020)) 
+    \real_op[5]_i_1 
+       (.I0(\real_op[5]_i_2_n_0 ),
+        .I1(isc[30]),
+        .I2(isc[5]),
+        .I3(isc[27]),
+        .I4(isc[26]),
+        .I5(isc[31]),
+        .O(real_op_0[5]));
+  LUT2 #(
+    .INIT(4'h1)) 
+    \real_op[5]_i_2 
+       (.I0(isc[28]),
+        .I1(isc[29]),
+        .O(\real_op[5]_i_2_n_0 ));
+  FDCE #(
+    .INIT(1'b0)) 
+    \real_op_reg[0] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(real_op_0[0]),
+        .Q(real_op[0]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \real_op_reg[1] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(real_op_0[1]),
+        .Q(real_op[1]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \real_op_reg[2] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(real_op_0[2]),
+        .Q(real_op[2]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \real_op_reg[3] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(real_op_0[3]),
+        .Q(real_op[3]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \real_op_reg[4] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(real_op_0[4]),
+        .Q(real_op[4]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \real_op_reg[5] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(real_op_0[5]),
+        .Q(real_op[5]));
+  LUT2 #(
+    .INIT(4'h2)) 
+    \rs[4]_i_1 
+       (.I0(enable_CPU),
+        .I1(ena_n),
+        .O(\rs[4]_i_1_n_0 ));
+  LUT2 #(
+    .INIT(4'hE)) 
+    \rs[4]_i_2 
+       (.I0(rst),
+        .I1(branch_taken),
+        .O(real_rst));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rs_reg[0] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[21]),
+        .Q(rs[0]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rs_reg[1] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[22]),
+        .Q(rs[1]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rs_reg[2] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[23]),
+        .Q(rs[2]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rs_reg[3] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[24]),
+        .Q(rs[3]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rs_reg[4] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[25]),
+        .Q(rs[4]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rt_reg[0] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[16]),
+        .Q(rt[0]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rt_reg[1] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[17]),
+        .Q(rt[1]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rt_reg[2] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[18]),
+        .Q(rt[2]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rt_reg[3] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[19]),
+        .Q(rt[3]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \rt_reg[4] 
+       (.C(clk),
+        .CE(\rs[4]_i_1_n_0 ),
+        .CLR(real_rst),
+        .D(isc[20]),
+        .Q(rt[4]));
+endmodule
+
+module reg_heap_id
+   (rst_n_0,
     ram_en_reg_0,
+    ram_addr,
+    ram_we,
     rs,
     rt,
     ram_wr_data,
-    ram_we,
     wd,
     clk,
     wr_en_i,
@@ -9010,12 +9939,12 @@ module bluex_reg_heap_id_0_0_reg_heap_id
     addr_rt,
     rst_n);
   output rst_n_0;
-  output [29:0]ram_addr;
   output ram_en_reg_0;
+  output [29:0]ram_addr;
+  output [0:0]ram_we;
   output [31:0]rs;
   output [31:0]rt;
   output [31:0]ram_wr_data;
-  output [0:0]ram_we;
   input [31:0]wd;
   input clk;
   input wr_en_i;
@@ -9190,6 +10119,7 @@ module bluex_reg_heap_id_0_0_reg_heap_id
   wire [31:0]\ram_reg_reg[9]_22 ;
   wire [0:0]ram_we;
   wire \ram_we[3]_i_1_n_0 ;
+  wire \ram_we[3]_i_2_n_0 ;
   wire [31:0]ram_wr_data;
   wire \ram_wr_data[0]_INST_0_i_10_n_0 ;
   wire \ram_wr_data[0]_INST_0_i_11_n_0 ;
@@ -10756,154 +11686,154 @@ module bluex_reg_heap_id_0_0_reg_heap_id
     ram_addr0_carry_i_1
        (.I0(ram_addr[0]),
         .O(ram_addr0_carry_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[10]_i_1 
        (.I0(ram_addr0_carry__1_n_6),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[11]_i_1 
        (.I0(ram_addr0_carry__1_n_5),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[11]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[12]_i_1 
        (.I0(ram_addr0_carry__1_n_4),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[12]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[13]_i_1 
        (.I0(ram_addr0_carry__2_n_7),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[13]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[14]_i_1 
        (.I0(ram_addr0_carry__2_n_6),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[14]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[15]_i_1 
        (.I0(ram_addr0_carry__2_n_5),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[15]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[16]_i_1 
        (.I0(ram_addr0_carry__2_n_4),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[16]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[17]_i_1 
        (.I0(ram_addr0_carry__3_n_7),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[17]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[18]_i_1 
        (.I0(ram_addr0_carry__3_n_6),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[18]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[19]_i_1 
        (.I0(ram_addr0_carry__3_n_5),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[19]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[20]_i_1 
        (.I0(ram_addr0_carry__3_n_4),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[20]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[21]_i_1 
        (.I0(ram_addr0_carry__4_n_7),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[21]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[22]_i_1 
        (.I0(ram_addr0_carry__4_n_6),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[22]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[23]_i_1 
        (.I0(ram_addr0_carry__4_n_5),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[23]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[24]_i_1 
        (.I0(ram_addr0_carry__4_n_4),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[24]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[25]_i_1 
        (.I0(ram_addr0_carry__5_n_7),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[25]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[26]_i_1 
        (.I0(ram_addr0_carry__5_n_6),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[26]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[27]_i_1 
        (.I0(ram_addr0_carry__5_n_5),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[27]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[28]_i_1 
        (.I0(ram_addr0_carry__5_n_4),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[28]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[29]_i_1 
        (.I0(ram_addr0_carry__6_n_7),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[29]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[2]_i_1 
        (.I0(ram_addr0_carry_n_6),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[30]_i_1 
@@ -10920,7 +11850,7 @@ module bluex_reg_heap_id_0_0_reg_heap_id
         .I4(\wr_cnt_reg_n_0_[5] ),
         .I5(\wr_cnt_reg_n_0_[4] ),
         .O(wr_cnt));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[31]_i_2 
@@ -10933,49 +11863,49 @@ module bluex_reg_heap_id_0_0_reg_heap_id
        (.I0(\wr_cnt_reg[1]_rep__0_n_0 ),
         .I1(\wr_cnt_reg[0]_rep__0_n_0 ),
         .O(\ram_addr[31]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[3]_i_1 
        (.I0(ram_addr0_carry_n_5),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[4]_i_1 
        (.I0(ram_addr0_carry_n_4),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[5]_i_1 
        (.I0(ram_addr0_carry__0_n_7),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[6]_i_1 
        (.I0(ram_addr0_carry__0_n_6),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[7]_i_1 
        (.I0(ram_addr0_carry__0_n_5),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[8]_i_1 
        (.I0(ram_addr0_carry__0_n_4),
         .I1(ram_en_i_2_n_0),
         .O(\ram_addr[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ram_addr[9]_i_1 
@@ -20223,24 +21153,29 @@ module bluex_reg_heap_id_0_0_reg_heap_id
     ram_rst_INST_0
        (.I0(rst_n),
         .O(rst_n_0));
-  LUT6 #(
-    .INIT(64'h00A0FFEF00A00020)) 
+  LUT4 #(
+    .INIT(16'hFF04)) 
     \ram_we[3]_i_1 
-       (.I0(ram_en_i_2_n_0),
-        .I1(ram_en_reg_0),
-        .I2(wr_en_d0),
-        .I3(wr_en_d1),
-        .I4(ram_en_i_3_n_0),
-        .I5(ram_we),
+       (.I0(ram_en_reg_0),
+        .I1(wr_en_d0),
+        .I2(wr_en_d1),
+        .I3(ram_en_i_3_n_0),
         .O(\ram_we[3]_i_1_n_0 ));
+  LUT3 #(
+    .INIT(8'h40)) 
+    \ram_we[3]_i_2 
+       (.I0(wr_en_d1),
+        .I1(wr_en_d0),
+        .I2(ram_en_i_2_n_0),
+        .O(\ram_we[3]_i_2_n_0 ));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \ram_we_reg[3] 
        (.C(clk),
-        .CE(1'b1),
+        .CE(\ram_we[3]_i_1_n_0 ),
         .CLR(rst_n_0),
-        .D(\ram_we[3]_i_1_n_0 ),
+        .D(\ram_we[3]_i_2_n_0 ),
         .Q(ram_we));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -30721,7 +31656,7 @@ module bluex_reg_heap_id_0_0_reg_heap_id
     \wr_cnt[0]_rep_i_1__0 
        (.I0(\wr_cnt_reg_n_0_[0] ),
         .O(\wr_cnt[0]_rep_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \wr_cnt[1]_i_1 
@@ -30740,7 +31675,7 @@ module bluex_reg_heap_id_0_0_reg_heap_id
        (.I0(\wr_cnt_reg_n_0_[1] ),
         .I1(\wr_cnt_reg[0]_rep__0_n_0 ),
         .O(\wr_cnt[1]_rep_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \wr_cnt[2]_i_1 
@@ -30748,7 +31683,7 @@ module bluex_reg_heap_id_0_0_reg_heap_id
         .I1(\wr_cnt_reg_n_0_[1] ),
         .I2(\wr_cnt_reg[0]_rep_n_0 ),
         .O(\wr_cnt[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT4 #(
     .INIT(16'h6CCC)) 
     \wr_cnt[3]_i_1 
@@ -30757,7 +31692,7 @@ module bluex_reg_heap_id_0_0_reg_heap_id
         .I2(\wr_cnt_reg[1]_rep__0_n_0 ),
         .I3(\wr_cnt_reg[0]_rep__0_n_0 ),
         .O(\wr_cnt[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT5 #(
     .INIT(32'h7F80FF00)) 
     \wr_cnt[4]_i_1 
@@ -30891,60 +31826,7 @@ module bluex_reg_heap_id_0_0_reg_heap_id
         .Q(wr_en_d1));
 endmodule
 
-(* CHECK_LICENSE_TYPE = "bluex_reg_wb_0_0,reg_wb,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "reg_wb,Vivado 2023.2" *) 
-module bluex_reg_wb_0_0
-   (clk,
-    rst_n,
-    enable_CPU,
-    alu_result_inw,
-    mem_rd_inw,
-    write_reg_addr_inw,
-    reg_write_inw,
-    memory_to_reg_inw,
-    write_back_data,
-    write_reg_addr,
-    reg_write);
-  (* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 user_lcd CLK" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rst_n;
-  input enable_CPU;
-  input [31:0]alu_result_inw;
-  input [31:0]mem_rd_inw;
-  input [4:0]write_reg_addr_inw;
-  input reg_write_inw;
-  input memory_to_reg_inw;
-  output [31:0]write_back_data;
-  output [4:0]write_reg_addr;
-  output reg_write;
-
-  wire [31:0]alu_result_inw;
-  wire clk;
-  wire enable_CPU;
-  wire [31:0]mem_rd_inw;
-  wire memory_to_reg_inw;
-  wire reg_write;
-  wire reg_write_inw;
-  wire rst_n;
-  wire [31:0]write_back_data;
-  wire [4:0]write_reg_addr;
-  wire [4:0]write_reg_addr_inw;
-
-  bluex_reg_wb_0_0_reg_wb inst
-       (.alu_result_inw(alu_result_inw),
-        .clk(clk),
-        .enable_CPU(enable_CPU),
-        .mem_rd_inw(mem_rd_inw),
-        .memory_to_reg_inw(memory_to_reg_inw),
-        .reg_write(reg_write),
-        .reg_write_inw(reg_write_inw),
-        .rst_n(rst_n),
-        .write_back_data(write_back_data),
-        .write_reg_addr(write_reg_addr),
-        .write_reg_addr_inw(write_reg_addr_inw));
-endmodule
-
-(* ORIG_REF_NAME = "reg_wb" *) 
-module bluex_reg_wb_0_0_reg_wb
+module reg_wb
    (write_back_data,
     write_reg_addr,
     reg_write,
@@ -31512,7 +32394,6 @@ module bluex_reg_wb_0_0_reg_wb
         .CLR(\write_reg_addr[4]_i_1_n_0 ),
         .D(reg_write_inw),
         .Q(reg_write));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[0]_INST_0 
@@ -31520,7 +32401,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[0]),
         .I2(memory_to_reg),
         .O(write_back_data[0]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[10]_INST_0 
@@ -31528,7 +32408,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[10]),
         .I2(memory_to_reg),
         .O(write_back_data[10]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[11]_INST_0 
@@ -31536,7 +32415,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[11]),
         .I2(memory_to_reg),
         .O(write_back_data[11]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[12]_INST_0 
@@ -31544,7 +32422,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[12]),
         .I2(memory_to_reg),
         .O(write_back_data[12]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[13]_INST_0 
@@ -31552,7 +32429,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[13]),
         .I2(memory_to_reg),
         .O(write_back_data[13]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[14]_INST_0 
@@ -31560,7 +32436,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[14]),
         .I2(memory_to_reg),
         .O(write_back_data[14]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[15]_INST_0 
@@ -31568,7 +32443,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[15]),
         .I2(memory_to_reg),
         .O(write_back_data[15]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[16]_INST_0 
@@ -31576,7 +32450,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[16]),
         .I2(memory_to_reg),
         .O(write_back_data[16]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[17]_INST_0 
@@ -31584,7 +32457,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[17]),
         .I2(memory_to_reg),
         .O(write_back_data[17]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[18]_INST_0 
@@ -31592,7 +32464,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[18]),
         .I2(memory_to_reg),
         .O(write_back_data[18]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[19]_INST_0 
@@ -31600,7 +32471,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[19]),
         .I2(memory_to_reg),
         .O(write_back_data[19]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[1]_INST_0 
@@ -31608,7 +32478,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[1]),
         .I2(memory_to_reg),
         .O(write_back_data[1]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[20]_INST_0 
@@ -31616,7 +32485,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[20]),
         .I2(memory_to_reg),
         .O(write_back_data[20]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[21]_INST_0 
@@ -31624,7 +32492,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[21]),
         .I2(memory_to_reg),
         .O(write_back_data[21]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[22]_INST_0 
@@ -31632,7 +32499,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[22]),
         .I2(memory_to_reg),
         .O(write_back_data[22]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[23]_INST_0 
@@ -31640,7 +32506,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[23]),
         .I2(memory_to_reg),
         .O(write_back_data[23]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[24]_INST_0 
@@ -31648,7 +32513,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[24]),
         .I2(memory_to_reg),
         .O(write_back_data[24]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[25]_INST_0 
@@ -31656,7 +32520,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[25]),
         .I2(memory_to_reg),
         .O(write_back_data[25]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[26]_INST_0 
@@ -31664,7 +32527,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[26]),
         .I2(memory_to_reg),
         .O(write_back_data[26]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[27]_INST_0 
@@ -31672,7 +32534,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[27]),
         .I2(memory_to_reg),
         .O(write_back_data[27]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[28]_INST_0 
@@ -31680,7 +32541,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[28]),
         .I2(memory_to_reg),
         .O(write_back_data[28]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[29]_INST_0 
@@ -31688,7 +32548,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[29]),
         .I2(memory_to_reg),
         .O(write_back_data[29]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[2]_INST_0 
@@ -31696,7 +32555,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[2]),
         .I2(memory_to_reg),
         .O(write_back_data[2]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[30]_INST_0 
@@ -31704,7 +32562,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[30]),
         .I2(memory_to_reg),
         .O(write_back_data[30]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[31]_INST_0 
@@ -31712,7 +32569,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[31]),
         .I2(memory_to_reg),
         .O(write_back_data[31]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[3]_INST_0 
@@ -31720,7 +32576,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[3]),
         .I2(memory_to_reg),
         .O(write_back_data[3]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[4]_INST_0 
@@ -31728,7 +32583,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[4]),
         .I2(memory_to_reg),
         .O(write_back_data[4]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[5]_INST_0 
@@ -31736,7 +32590,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[5]),
         .I2(memory_to_reg),
         .O(write_back_data[5]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[6]_INST_0 
@@ -31744,7 +32597,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[6]),
         .I2(memory_to_reg),
         .O(write_back_data[6]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[7]_INST_0 
@@ -31752,7 +32604,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[7]),
         .I2(memory_to_reg),
         .O(write_back_data[7]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[8]_INST_0 
@@ -31760,7 +32611,6 @@ module bluex_reg_wb_0_0_reg_wb
         .I1(alu_result_inr[8]),
         .I2(memory_to_reg),
         .O(write_back_data[8]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'hAC)) 
     \write_back_data[9]_INST_0 
@@ -31815,997 +32665,7 @@ module bluex_reg_wb_0_0_reg_wb
         .Q(write_reg_addr[4]));
 endmodule
 
-(* CHECK_LICENSE_TYPE = "bluex_util_vector_logic_0_0,util_vector_logic_v2_0_3_util_vector_logic,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
-module bluex_util_vector_logic_0_0
-   (Op1,
-    Res);
-  input [0:0]Op1;
-  output [0:0]Res;
-
-  wire [0:0]Op1;
-  wire [0:0]Res;
-
-  LUT1 #(
-    .INIT(2'h1)) 
-    \Res[0]_INST_0 
-       (.I0(Op1),
-        .O(Res));
-endmodule
-
-(* CHECK_LICENSE_TYPE = "bluex_util_vector_logic_0_0,util_vector_logic_v2_0_3_util_vector_logic,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
-module bluex_util_vector_logic_0_1
-   (Op1,
-    Res);
-  input [0:0]Op1;
-  output [0:0]Res;
-
-  wire [0:0]Op1;
-  wire [0:0]Res;
-
-  LUT1 #(
-    .INIT(2'h1)) 
-    \Res[0]_INST_0 
-       (.I0(Op1),
-        .O(Res));
-endmodule
-
-(* CHECK_LICENSE_TYPE = "bluex_util_vector_logic_1_0,util_vector_logic_v2_0_3_util_vector_logic,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "util_vector_logic_v2_0_3_util_vector_logic,Vivado 2023.2" *) 
-module bluex_util_vector_logic_1_0
-   (Op1,
-    Op2,
-    Res);
-  input [0:0]Op1;
-  input [0:0]Op2;
-  output [0:0]Res;
-
-  wire [0:0]Op1;
-  wire [0:0]Op2;
-  wire [0:0]Res;
-
-  LUT2 #(
-    .INIT(4'hE)) 
-    \Res[0]_INST_0 
-       (.I0(Op1),
-        .I1(Op2),
-        .O(Res));
-endmodule
-
-(* NotValidForBitStream *)
-module bluex_wrapper
-   (clk,
-    current_addr,
-    enable_CPU,
-    isc,
-    ram_addr,
-    ram_clk,
-    ram_en,
-    ram_rd_data,
-    ram_rst,
-    ram_we,
-    ram_wr_data,
-    read_mem_out_inw,
-    rst_n,
-    wr_en_i,
-    wr_en_o,
-    wr_en_t,
-    write_mem_addr,
-    write_mem_clk,
-    write_mem_data,
-    write_mem_en,
-    write_mem_rst,
-    write_mem_we);
-  input clk;
-  output [15:0]current_addr;
-  input [0:0]enable_CPU;
-  input [31:0]isc;
-  output [31:0]ram_addr;
-  output ram_clk;
-  output ram_en;
-  input [31:0]ram_rd_data;
-  output ram_rst;
-  output [3:0]ram_we;
-  output [31:0]ram_wr_data;
-  input [31:0]read_mem_out_inw;
-  input rst_n;
-  input wr_en_i;
-  output wr_en_o;
-  input wr_en_t;
-  output [15:0]write_mem_addr;
-  output write_mem_clk;
-  output [31:0]write_mem_data;
-  output write_mem_en;
-  output write_mem_rst;
-  output write_mem_we;
-
-  wire clk;
-  wire clk_IBUF;
-  wire [15:0]current_addr;
-  wire [15:0]current_addr_OBUF;
-  wire [0:0]enable_CPU;
-  wire [0:0]enable_CPU_IBUF;
-  wire [31:0]isc;
-  wire [31:0]isc_IBUF;
-  wire [31:0]ram_addr;
-  wire [31:0]ram_addr_OBUF;
-  wire ram_clk;
-  wire ram_clk_OBUF;
-  wire ram_en;
-  wire ram_en_OBUF;
-  wire [31:0]ram_rd_data;
-  wire [31:0]ram_rd_data_IBUF;
-  wire ram_rst;
-  wire ram_rst_OBUF;
-  wire [3:0]ram_we;
-  wire [3:0]ram_we_OBUF;
-  wire [31:0]ram_wr_data;
-  wire [31:0]ram_wr_data_OBUF;
-  wire [31:0]read_mem_out_inw;
-  wire [31:0]read_mem_out_inw_IBUF;
-  wire rst_n;
-  wire rst_n_IBUF;
-  wire wr_en_i;
-  wire wr_en_i_IBUF;
-  wire wr_en_o;
-  wire wr_en_o_OBUF;
-  wire wr_en_t;
-  wire wr_en_t_IBUF;
-  wire [15:0]write_mem_addr;
-  wire [15:0]write_mem_addr_OBUF;
-  wire write_mem_clk;
-  wire write_mem_clk_OBUF;
-  wire [31:0]write_mem_data;
-  wire [31:0]write_mem_data_OBUF;
-  wire write_mem_en;
-  wire write_mem_en_OBUF;
-  wire write_mem_rst;
-  wire write_mem_rst_OBUF;
-  wire write_mem_we;
-  wire write_mem_we_OBUF;
-
-initial begin
- $sdf_annotate("tb_ROM_time_synth.sdf",,,,"tool_control");
-end
-  (* HW_HANDOFF = "bluex.hwdef" *) 
-  bluex bluex_i
-       (.clk(clk_IBUF),
-        .current_addr(current_addr_OBUF),
-        .enable_CPU(enable_CPU_IBUF),
-        .isc(isc_IBUF),
-        .ram_addr(ram_addr_OBUF),
-        .ram_clk(ram_clk_OBUF),
-        .ram_en(ram_en_OBUF),
-        .ram_rd_data(ram_rd_data_IBUF),
-        .ram_rst(ram_rst_OBUF),
-        .ram_we(ram_we_OBUF),
-        .ram_wr_data(ram_wr_data_OBUF),
-        .read_mem_out_inw(read_mem_out_inw_IBUF),
-        .rst_n(rst_n_IBUF),
-        .wr_en_i(wr_en_i_IBUF),
-        .wr_en_o(wr_en_o_OBUF),
-        .wr_en_t(wr_en_t_IBUF),
-        .write_mem_addr(write_mem_addr_OBUF),
-        .write_mem_clk(write_mem_clk_OBUF),
-        .write_mem_data(write_mem_data_OBUF),
-        .write_mem_en(write_mem_en_OBUF),
-        .write_mem_rst(write_mem_rst_OBUF),
-        .write_mem_we(write_mem_we_OBUF));
-  IBUF clk_IBUF_inst
-       (.I(clk),
-        .O(clk_IBUF));
-  OBUF \current_addr_OBUF[0]_inst 
-       (.I(current_addr_OBUF[0]),
-        .O(current_addr[0]));
-  OBUF \current_addr_OBUF[10]_inst 
-       (.I(current_addr_OBUF[10]),
-        .O(current_addr[10]));
-  OBUF \current_addr_OBUF[11]_inst 
-       (.I(current_addr_OBUF[11]),
-        .O(current_addr[11]));
-  OBUF \current_addr_OBUF[12]_inst 
-       (.I(current_addr_OBUF[12]),
-        .O(current_addr[12]));
-  OBUF \current_addr_OBUF[13]_inst 
-       (.I(current_addr_OBUF[13]),
-        .O(current_addr[13]));
-  OBUF \current_addr_OBUF[14]_inst 
-       (.I(current_addr_OBUF[14]),
-        .O(current_addr[14]));
-  OBUF \current_addr_OBUF[15]_inst 
-       (.I(current_addr_OBUF[15]),
-        .O(current_addr[15]));
-  OBUF \current_addr_OBUF[1]_inst 
-       (.I(current_addr_OBUF[1]),
-        .O(current_addr[1]));
-  OBUF \current_addr_OBUF[2]_inst 
-       (.I(current_addr_OBUF[2]),
-        .O(current_addr[2]));
-  OBUF \current_addr_OBUF[3]_inst 
-       (.I(current_addr_OBUF[3]),
-        .O(current_addr[3]));
-  OBUF \current_addr_OBUF[4]_inst 
-       (.I(current_addr_OBUF[4]),
-        .O(current_addr[4]));
-  OBUF \current_addr_OBUF[5]_inst 
-       (.I(current_addr_OBUF[5]),
-        .O(current_addr[5]));
-  OBUF \current_addr_OBUF[6]_inst 
-       (.I(current_addr_OBUF[6]),
-        .O(current_addr[6]));
-  OBUF \current_addr_OBUF[7]_inst 
-       (.I(current_addr_OBUF[7]),
-        .O(current_addr[7]));
-  OBUF \current_addr_OBUF[8]_inst 
-       (.I(current_addr_OBUF[8]),
-        .O(current_addr[8]));
-  OBUF \current_addr_OBUF[9]_inst 
-       (.I(current_addr_OBUF[9]),
-        .O(current_addr[9]));
-  IBUF \enable_CPU_IBUF[0]_inst 
-       (.I(enable_CPU),
-        .O(enable_CPU_IBUF));
-  IBUF \isc_IBUF[0]_inst 
-       (.I(isc[0]),
-        .O(isc_IBUF[0]));
-  IBUF \isc_IBUF[10]_inst 
-       (.I(isc[10]),
-        .O(isc_IBUF[10]));
-  IBUF \isc_IBUF[11]_inst 
-       (.I(isc[11]),
-        .O(isc_IBUF[11]));
-  IBUF \isc_IBUF[12]_inst 
-       (.I(isc[12]),
-        .O(isc_IBUF[12]));
-  IBUF \isc_IBUF[13]_inst 
-       (.I(isc[13]),
-        .O(isc_IBUF[13]));
-  IBUF \isc_IBUF[14]_inst 
-       (.I(isc[14]),
-        .O(isc_IBUF[14]));
-  IBUF \isc_IBUF[15]_inst 
-       (.I(isc[15]),
-        .O(isc_IBUF[15]));
-  IBUF \isc_IBUF[16]_inst 
-       (.I(isc[16]),
-        .O(isc_IBUF[16]));
-  IBUF \isc_IBUF[17]_inst 
-       (.I(isc[17]),
-        .O(isc_IBUF[17]));
-  IBUF \isc_IBUF[18]_inst 
-       (.I(isc[18]),
-        .O(isc_IBUF[18]));
-  IBUF \isc_IBUF[19]_inst 
-       (.I(isc[19]),
-        .O(isc_IBUF[19]));
-  IBUF \isc_IBUF[1]_inst 
-       (.I(isc[1]),
-        .O(isc_IBUF[1]));
-  IBUF \isc_IBUF[20]_inst 
-       (.I(isc[20]),
-        .O(isc_IBUF[20]));
-  IBUF \isc_IBUF[21]_inst 
-       (.I(isc[21]),
-        .O(isc_IBUF[21]));
-  IBUF \isc_IBUF[22]_inst 
-       (.I(isc[22]),
-        .O(isc_IBUF[22]));
-  IBUF \isc_IBUF[23]_inst 
-       (.I(isc[23]),
-        .O(isc_IBUF[23]));
-  IBUF \isc_IBUF[24]_inst 
-       (.I(isc[24]),
-        .O(isc_IBUF[24]));
-  IBUF \isc_IBUF[25]_inst 
-       (.I(isc[25]),
-        .O(isc_IBUF[25]));
-  IBUF \isc_IBUF[26]_inst 
-       (.I(isc[26]),
-        .O(isc_IBUF[26]));
-  IBUF \isc_IBUF[27]_inst 
-       (.I(isc[27]),
-        .O(isc_IBUF[27]));
-  IBUF \isc_IBUF[28]_inst 
-       (.I(isc[28]),
-        .O(isc_IBUF[28]));
-  IBUF \isc_IBUF[29]_inst 
-       (.I(isc[29]),
-        .O(isc_IBUF[29]));
-  IBUF \isc_IBUF[2]_inst 
-       (.I(isc[2]),
-        .O(isc_IBUF[2]));
-  IBUF \isc_IBUF[30]_inst 
-       (.I(isc[30]),
-        .O(isc_IBUF[30]));
-  IBUF \isc_IBUF[31]_inst 
-       (.I(isc[31]),
-        .O(isc_IBUF[31]));
-  IBUF \isc_IBUF[3]_inst 
-       (.I(isc[3]),
-        .O(isc_IBUF[3]));
-  IBUF \isc_IBUF[4]_inst 
-       (.I(isc[4]),
-        .O(isc_IBUF[4]));
-  IBUF \isc_IBUF[5]_inst 
-       (.I(isc[5]),
-        .O(isc_IBUF[5]));
-  IBUF \isc_IBUF[6]_inst 
-       (.I(isc[6]),
-        .O(isc_IBUF[6]));
-  IBUF \isc_IBUF[7]_inst 
-       (.I(isc[7]),
-        .O(isc_IBUF[7]));
-  IBUF \isc_IBUF[8]_inst 
-       (.I(isc[8]),
-        .O(isc_IBUF[8]));
-  IBUF \isc_IBUF[9]_inst 
-       (.I(isc[9]),
-        .O(isc_IBUF[9]));
-  OBUF \ram_addr_OBUF[0]_inst 
-       (.I(ram_addr_OBUF[0]),
-        .O(ram_addr[0]));
-  OBUF \ram_addr_OBUF[10]_inst 
-       (.I(ram_addr_OBUF[10]),
-        .O(ram_addr[10]));
-  OBUF \ram_addr_OBUF[11]_inst 
-       (.I(ram_addr_OBUF[11]),
-        .O(ram_addr[11]));
-  OBUF \ram_addr_OBUF[12]_inst 
-       (.I(ram_addr_OBUF[12]),
-        .O(ram_addr[12]));
-  OBUF \ram_addr_OBUF[13]_inst 
-       (.I(ram_addr_OBUF[13]),
-        .O(ram_addr[13]));
-  OBUF \ram_addr_OBUF[14]_inst 
-       (.I(ram_addr_OBUF[14]),
-        .O(ram_addr[14]));
-  OBUF \ram_addr_OBUF[15]_inst 
-       (.I(ram_addr_OBUF[15]),
-        .O(ram_addr[15]));
-  OBUF \ram_addr_OBUF[16]_inst 
-       (.I(ram_addr_OBUF[16]),
-        .O(ram_addr[16]));
-  OBUF \ram_addr_OBUF[17]_inst 
-       (.I(ram_addr_OBUF[17]),
-        .O(ram_addr[17]));
-  OBUF \ram_addr_OBUF[18]_inst 
-       (.I(ram_addr_OBUF[18]),
-        .O(ram_addr[18]));
-  OBUF \ram_addr_OBUF[19]_inst 
-       (.I(ram_addr_OBUF[19]),
-        .O(ram_addr[19]));
-  OBUF \ram_addr_OBUF[1]_inst 
-       (.I(ram_addr_OBUF[1]),
-        .O(ram_addr[1]));
-  OBUF \ram_addr_OBUF[20]_inst 
-       (.I(ram_addr_OBUF[20]),
-        .O(ram_addr[20]));
-  OBUF \ram_addr_OBUF[21]_inst 
-       (.I(ram_addr_OBUF[21]),
-        .O(ram_addr[21]));
-  OBUF \ram_addr_OBUF[22]_inst 
-       (.I(ram_addr_OBUF[22]),
-        .O(ram_addr[22]));
-  OBUF \ram_addr_OBUF[23]_inst 
-       (.I(ram_addr_OBUF[23]),
-        .O(ram_addr[23]));
-  OBUF \ram_addr_OBUF[24]_inst 
-       (.I(ram_addr_OBUF[24]),
-        .O(ram_addr[24]));
-  OBUF \ram_addr_OBUF[25]_inst 
-       (.I(ram_addr_OBUF[25]),
-        .O(ram_addr[25]));
-  OBUF \ram_addr_OBUF[26]_inst 
-       (.I(ram_addr_OBUF[26]),
-        .O(ram_addr[26]));
-  OBUF \ram_addr_OBUF[27]_inst 
-       (.I(ram_addr_OBUF[27]),
-        .O(ram_addr[27]));
-  OBUF \ram_addr_OBUF[28]_inst 
-       (.I(ram_addr_OBUF[28]),
-        .O(ram_addr[28]));
-  OBUF \ram_addr_OBUF[29]_inst 
-       (.I(ram_addr_OBUF[29]),
-        .O(ram_addr[29]));
-  OBUF \ram_addr_OBUF[2]_inst 
-       (.I(ram_addr_OBUF[2]),
-        .O(ram_addr[2]));
-  OBUF \ram_addr_OBUF[30]_inst 
-       (.I(ram_addr_OBUF[30]),
-        .O(ram_addr[30]));
-  OBUF \ram_addr_OBUF[31]_inst 
-       (.I(ram_addr_OBUF[31]),
-        .O(ram_addr[31]));
-  OBUF \ram_addr_OBUF[3]_inst 
-       (.I(ram_addr_OBUF[3]),
-        .O(ram_addr[3]));
-  OBUF \ram_addr_OBUF[4]_inst 
-       (.I(ram_addr_OBUF[4]),
-        .O(ram_addr[4]));
-  OBUF \ram_addr_OBUF[5]_inst 
-       (.I(ram_addr_OBUF[5]),
-        .O(ram_addr[5]));
-  OBUF \ram_addr_OBUF[6]_inst 
-       (.I(ram_addr_OBUF[6]),
-        .O(ram_addr[6]));
-  OBUF \ram_addr_OBUF[7]_inst 
-       (.I(ram_addr_OBUF[7]),
-        .O(ram_addr[7]));
-  OBUF \ram_addr_OBUF[8]_inst 
-       (.I(ram_addr_OBUF[8]),
-        .O(ram_addr[8]));
-  OBUF \ram_addr_OBUF[9]_inst 
-       (.I(ram_addr_OBUF[9]),
-        .O(ram_addr[9]));
-  OBUF ram_clk_OBUF_inst
-       (.I(ram_clk_OBUF),
-        .O(ram_clk));
-  OBUF ram_en_OBUF_inst
-       (.I(ram_en_OBUF),
-        .O(ram_en));
-  IBUF \ram_rd_data_IBUF[0]_inst 
-       (.I(ram_rd_data[0]),
-        .O(ram_rd_data_IBUF[0]));
-  IBUF \ram_rd_data_IBUF[10]_inst 
-       (.I(ram_rd_data[10]),
-        .O(ram_rd_data_IBUF[10]));
-  IBUF \ram_rd_data_IBUF[11]_inst 
-       (.I(ram_rd_data[11]),
-        .O(ram_rd_data_IBUF[11]));
-  IBUF \ram_rd_data_IBUF[12]_inst 
-       (.I(ram_rd_data[12]),
-        .O(ram_rd_data_IBUF[12]));
-  IBUF \ram_rd_data_IBUF[13]_inst 
-       (.I(ram_rd_data[13]),
-        .O(ram_rd_data_IBUF[13]));
-  IBUF \ram_rd_data_IBUF[14]_inst 
-       (.I(ram_rd_data[14]),
-        .O(ram_rd_data_IBUF[14]));
-  IBUF \ram_rd_data_IBUF[15]_inst 
-       (.I(ram_rd_data[15]),
-        .O(ram_rd_data_IBUF[15]));
-  IBUF \ram_rd_data_IBUF[16]_inst 
-       (.I(ram_rd_data[16]),
-        .O(ram_rd_data_IBUF[16]));
-  IBUF \ram_rd_data_IBUF[17]_inst 
-       (.I(ram_rd_data[17]),
-        .O(ram_rd_data_IBUF[17]));
-  IBUF \ram_rd_data_IBUF[18]_inst 
-       (.I(ram_rd_data[18]),
-        .O(ram_rd_data_IBUF[18]));
-  IBUF \ram_rd_data_IBUF[19]_inst 
-       (.I(ram_rd_data[19]),
-        .O(ram_rd_data_IBUF[19]));
-  IBUF \ram_rd_data_IBUF[1]_inst 
-       (.I(ram_rd_data[1]),
-        .O(ram_rd_data_IBUF[1]));
-  IBUF \ram_rd_data_IBUF[20]_inst 
-       (.I(ram_rd_data[20]),
-        .O(ram_rd_data_IBUF[20]));
-  IBUF \ram_rd_data_IBUF[21]_inst 
-       (.I(ram_rd_data[21]),
-        .O(ram_rd_data_IBUF[21]));
-  IBUF \ram_rd_data_IBUF[22]_inst 
-       (.I(ram_rd_data[22]),
-        .O(ram_rd_data_IBUF[22]));
-  IBUF \ram_rd_data_IBUF[23]_inst 
-       (.I(ram_rd_data[23]),
-        .O(ram_rd_data_IBUF[23]));
-  IBUF \ram_rd_data_IBUF[24]_inst 
-       (.I(ram_rd_data[24]),
-        .O(ram_rd_data_IBUF[24]));
-  IBUF \ram_rd_data_IBUF[25]_inst 
-       (.I(ram_rd_data[25]),
-        .O(ram_rd_data_IBUF[25]));
-  IBUF \ram_rd_data_IBUF[26]_inst 
-       (.I(ram_rd_data[26]),
-        .O(ram_rd_data_IBUF[26]));
-  IBUF \ram_rd_data_IBUF[27]_inst 
-       (.I(ram_rd_data[27]),
-        .O(ram_rd_data_IBUF[27]));
-  IBUF \ram_rd_data_IBUF[28]_inst 
-       (.I(ram_rd_data[28]),
-        .O(ram_rd_data_IBUF[28]));
-  IBUF \ram_rd_data_IBUF[29]_inst 
-       (.I(ram_rd_data[29]),
-        .O(ram_rd_data_IBUF[29]));
-  IBUF \ram_rd_data_IBUF[2]_inst 
-       (.I(ram_rd_data[2]),
-        .O(ram_rd_data_IBUF[2]));
-  IBUF \ram_rd_data_IBUF[30]_inst 
-       (.I(ram_rd_data[30]),
-        .O(ram_rd_data_IBUF[30]));
-  IBUF \ram_rd_data_IBUF[31]_inst 
-       (.I(ram_rd_data[31]),
-        .O(ram_rd_data_IBUF[31]));
-  IBUF \ram_rd_data_IBUF[3]_inst 
-       (.I(ram_rd_data[3]),
-        .O(ram_rd_data_IBUF[3]));
-  IBUF \ram_rd_data_IBUF[4]_inst 
-       (.I(ram_rd_data[4]),
-        .O(ram_rd_data_IBUF[4]));
-  IBUF \ram_rd_data_IBUF[5]_inst 
-       (.I(ram_rd_data[5]),
-        .O(ram_rd_data_IBUF[5]));
-  IBUF \ram_rd_data_IBUF[6]_inst 
-       (.I(ram_rd_data[6]),
-        .O(ram_rd_data_IBUF[6]));
-  IBUF \ram_rd_data_IBUF[7]_inst 
-       (.I(ram_rd_data[7]),
-        .O(ram_rd_data_IBUF[7]));
-  IBUF \ram_rd_data_IBUF[8]_inst 
-       (.I(ram_rd_data[8]),
-        .O(ram_rd_data_IBUF[8]));
-  IBUF \ram_rd_data_IBUF[9]_inst 
-       (.I(ram_rd_data[9]),
-        .O(ram_rd_data_IBUF[9]));
-  OBUF ram_rst_OBUF_inst
-       (.I(ram_rst_OBUF),
-        .O(ram_rst));
-  OBUF \ram_we_OBUF[0]_inst 
-       (.I(ram_we_OBUF[0]),
-        .O(ram_we[0]));
-  OBUF \ram_we_OBUF[1]_inst 
-       (.I(ram_we_OBUF[1]),
-        .O(ram_we[1]));
-  OBUF \ram_we_OBUF[2]_inst 
-       (.I(ram_we_OBUF[2]),
-        .O(ram_we[2]));
-  OBUF \ram_we_OBUF[3]_inst 
-       (.I(ram_we_OBUF[3]),
-        .O(ram_we[3]));
-  OBUF \ram_wr_data_OBUF[0]_inst 
-       (.I(ram_wr_data_OBUF[0]),
-        .O(ram_wr_data[0]));
-  OBUF \ram_wr_data_OBUF[10]_inst 
-       (.I(ram_wr_data_OBUF[10]),
-        .O(ram_wr_data[10]));
-  OBUF \ram_wr_data_OBUF[11]_inst 
-       (.I(ram_wr_data_OBUF[11]),
-        .O(ram_wr_data[11]));
-  OBUF \ram_wr_data_OBUF[12]_inst 
-       (.I(ram_wr_data_OBUF[12]),
-        .O(ram_wr_data[12]));
-  OBUF \ram_wr_data_OBUF[13]_inst 
-       (.I(ram_wr_data_OBUF[13]),
-        .O(ram_wr_data[13]));
-  OBUF \ram_wr_data_OBUF[14]_inst 
-       (.I(ram_wr_data_OBUF[14]),
-        .O(ram_wr_data[14]));
-  OBUF \ram_wr_data_OBUF[15]_inst 
-       (.I(ram_wr_data_OBUF[15]),
-        .O(ram_wr_data[15]));
-  OBUF \ram_wr_data_OBUF[16]_inst 
-       (.I(ram_wr_data_OBUF[16]),
-        .O(ram_wr_data[16]));
-  OBUF \ram_wr_data_OBUF[17]_inst 
-       (.I(ram_wr_data_OBUF[17]),
-        .O(ram_wr_data[17]));
-  OBUF \ram_wr_data_OBUF[18]_inst 
-       (.I(ram_wr_data_OBUF[18]),
-        .O(ram_wr_data[18]));
-  OBUF \ram_wr_data_OBUF[19]_inst 
-       (.I(ram_wr_data_OBUF[19]),
-        .O(ram_wr_data[19]));
-  OBUF \ram_wr_data_OBUF[1]_inst 
-       (.I(ram_wr_data_OBUF[1]),
-        .O(ram_wr_data[1]));
-  OBUF \ram_wr_data_OBUF[20]_inst 
-       (.I(ram_wr_data_OBUF[20]),
-        .O(ram_wr_data[20]));
-  OBUF \ram_wr_data_OBUF[21]_inst 
-       (.I(ram_wr_data_OBUF[21]),
-        .O(ram_wr_data[21]));
-  OBUF \ram_wr_data_OBUF[22]_inst 
-       (.I(ram_wr_data_OBUF[22]),
-        .O(ram_wr_data[22]));
-  OBUF \ram_wr_data_OBUF[23]_inst 
-       (.I(ram_wr_data_OBUF[23]),
-        .O(ram_wr_data[23]));
-  OBUF \ram_wr_data_OBUF[24]_inst 
-       (.I(ram_wr_data_OBUF[24]),
-        .O(ram_wr_data[24]));
-  OBUF \ram_wr_data_OBUF[25]_inst 
-       (.I(ram_wr_data_OBUF[25]),
-        .O(ram_wr_data[25]));
-  OBUF \ram_wr_data_OBUF[26]_inst 
-       (.I(ram_wr_data_OBUF[26]),
-        .O(ram_wr_data[26]));
-  OBUF \ram_wr_data_OBUF[27]_inst 
-       (.I(ram_wr_data_OBUF[27]),
-        .O(ram_wr_data[27]));
-  OBUF \ram_wr_data_OBUF[28]_inst 
-       (.I(ram_wr_data_OBUF[28]),
-        .O(ram_wr_data[28]));
-  OBUF \ram_wr_data_OBUF[29]_inst 
-       (.I(ram_wr_data_OBUF[29]),
-        .O(ram_wr_data[29]));
-  OBUF \ram_wr_data_OBUF[2]_inst 
-       (.I(ram_wr_data_OBUF[2]),
-        .O(ram_wr_data[2]));
-  OBUF \ram_wr_data_OBUF[30]_inst 
-       (.I(ram_wr_data_OBUF[30]),
-        .O(ram_wr_data[30]));
-  OBUF \ram_wr_data_OBUF[31]_inst 
-       (.I(ram_wr_data_OBUF[31]),
-        .O(ram_wr_data[31]));
-  OBUF \ram_wr_data_OBUF[3]_inst 
-       (.I(ram_wr_data_OBUF[3]),
-        .O(ram_wr_data[3]));
-  OBUF \ram_wr_data_OBUF[4]_inst 
-       (.I(ram_wr_data_OBUF[4]),
-        .O(ram_wr_data[4]));
-  OBUF \ram_wr_data_OBUF[5]_inst 
-       (.I(ram_wr_data_OBUF[5]),
-        .O(ram_wr_data[5]));
-  OBUF \ram_wr_data_OBUF[6]_inst 
-       (.I(ram_wr_data_OBUF[6]),
-        .O(ram_wr_data[6]));
-  OBUF \ram_wr_data_OBUF[7]_inst 
-       (.I(ram_wr_data_OBUF[7]),
-        .O(ram_wr_data[7]));
-  OBUF \ram_wr_data_OBUF[8]_inst 
-       (.I(ram_wr_data_OBUF[8]),
-        .O(ram_wr_data[8]));
-  OBUF \ram_wr_data_OBUF[9]_inst 
-       (.I(ram_wr_data_OBUF[9]),
-        .O(ram_wr_data[9]));
-  IBUF \read_mem_out_inw_IBUF[0]_inst 
-       (.I(read_mem_out_inw[0]),
-        .O(read_mem_out_inw_IBUF[0]));
-  IBUF \read_mem_out_inw_IBUF[10]_inst 
-       (.I(read_mem_out_inw[10]),
-        .O(read_mem_out_inw_IBUF[10]));
-  IBUF \read_mem_out_inw_IBUF[11]_inst 
-       (.I(read_mem_out_inw[11]),
-        .O(read_mem_out_inw_IBUF[11]));
-  IBUF \read_mem_out_inw_IBUF[12]_inst 
-       (.I(read_mem_out_inw[12]),
-        .O(read_mem_out_inw_IBUF[12]));
-  IBUF \read_mem_out_inw_IBUF[13]_inst 
-       (.I(read_mem_out_inw[13]),
-        .O(read_mem_out_inw_IBUF[13]));
-  IBUF \read_mem_out_inw_IBUF[14]_inst 
-       (.I(read_mem_out_inw[14]),
-        .O(read_mem_out_inw_IBUF[14]));
-  IBUF \read_mem_out_inw_IBUF[15]_inst 
-       (.I(read_mem_out_inw[15]),
-        .O(read_mem_out_inw_IBUF[15]));
-  IBUF \read_mem_out_inw_IBUF[16]_inst 
-       (.I(read_mem_out_inw[16]),
-        .O(read_mem_out_inw_IBUF[16]));
-  IBUF \read_mem_out_inw_IBUF[17]_inst 
-       (.I(read_mem_out_inw[17]),
-        .O(read_mem_out_inw_IBUF[17]));
-  IBUF \read_mem_out_inw_IBUF[18]_inst 
-       (.I(read_mem_out_inw[18]),
-        .O(read_mem_out_inw_IBUF[18]));
-  IBUF \read_mem_out_inw_IBUF[19]_inst 
-       (.I(read_mem_out_inw[19]),
-        .O(read_mem_out_inw_IBUF[19]));
-  IBUF \read_mem_out_inw_IBUF[1]_inst 
-       (.I(read_mem_out_inw[1]),
-        .O(read_mem_out_inw_IBUF[1]));
-  IBUF \read_mem_out_inw_IBUF[20]_inst 
-       (.I(read_mem_out_inw[20]),
-        .O(read_mem_out_inw_IBUF[20]));
-  IBUF \read_mem_out_inw_IBUF[21]_inst 
-       (.I(read_mem_out_inw[21]),
-        .O(read_mem_out_inw_IBUF[21]));
-  IBUF \read_mem_out_inw_IBUF[22]_inst 
-       (.I(read_mem_out_inw[22]),
-        .O(read_mem_out_inw_IBUF[22]));
-  IBUF \read_mem_out_inw_IBUF[23]_inst 
-       (.I(read_mem_out_inw[23]),
-        .O(read_mem_out_inw_IBUF[23]));
-  IBUF \read_mem_out_inw_IBUF[24]_inst 
-       (.I(read_mem_out_inw[24]),
-        .O(read_mem_out_inw_IBUF[24]));
-  IBUF \read_mem_out_inw_IBUF[25]_inst 
-       (.I(read_mem_out_inw[25]),
-        .O(read_mem_out_inw_IBUF[25]));
-  IBUF \read_mem_out_inw_IBUF[26]_inst 
-       (.I(read_mem_out_inw[26]),
-        .O(read_mem_out_inw_IBUF[26]));
-  IBUF \read_mem_out_inw_IBUF[27]_inst 
-       (.I(read_mem_out_inw[27]),
-        .O(read_mem_out_inw_IBUF[27]));
-  IBUF \read_mem_out_inw_IBUF[28]_inst 
-       (.I(read_mem_out_inw[28]),
-        .O(read_mem_out_inw_IBUF[28]));
-  IBUF \read_mem_out_inw_IBUF[29]_inst 
-       (.I(read_mem_out_inw[29]),
-        .O(read_mem_out_inw_IBUF[29]));
-  IBUF \read_mem_out_inw_IBUF[2]_inst 
-       (.I(read_mem_out_inw[2]),
-        .O(read_mem_out_inw_IBUF[2]));
-  IBUF \read_mem_out_inw_IBUF[30]_inst 
-       (.I(read_mem_out_inw[30]),
-        .O(read_mem_out_inw_IBUF[30]));
-  IBUF \read_mem_out_inw_IBUF[31]_inst 
-       (.I(read_mem_out_inw[31]),
-        .O(read_mem_out_inw_IBUF[31]));
-  IBUF \read_mem_out_inw_IBUF[3]_inst 
-       (.I(read_mem_out_inw[3]),
-        .O(read_mem_out_inw_IBUF[3]));
-  IBUF \read_mem_out_inw_IBUF[4]_inst 
-       (.I(read_mem_out_inw[4]),
-        .O(read_mem_out_inw_IBUF[4]));
-  IBUF \read_mem_out_inw_IBUF[5]_inst 
-       (.I(read_mem_out_inw[5]),
-        .O(read_mem_out_inw_IBUF[5]));
-  IBUF \read_mem_out_inw_IBUF[6]_inst 
-       (.I(read_mem_out_inw[6]),
-        .O(read_mem_out_inw_IBUF[6]));
-  IBUF \read_mem_out_inw_IBUF[7]_inst 
-       (.I(read_mem_out_inw[7]),
-        .O(read_mem_out_inw_IBUF[7]));
-  IBUF \read_mem_out_inw_IBUF[8]_inst 
-       (.I(read_mem_out_inw[8]),
-        .O(read_mem_out_inw_IBUF[8]));
-  IBUF \read_mem_out_inw_IBUF[9]_inst 
-       (.I(read_mem_out_inw[9]),
-        .O(read_mem_out_inw_IBUF[9]));
-  IBUF rst_n_IBUF_inst
-       (.I(rst_n),
-        .O(rst_n_IBUF));
-  IBUF wr_en_i_IBUF_inst
-       (.I(wr_en_i),
-        .O(wr_en_i_IBUF));
-  OBUF wr_en_o_OBUF_inst
-       (.I(wr_en_o_OBUF),
-        .O(wr_en_o));
-  IBUF wr_en_t_IBUF_inst
-       (.I(wr_en_t),
-        .O(wr_en_t_IBUF));
-  OBUF \write_mem_addr_OBUF[0]_inst 
-       (.I(write_mem_addr_OBUF[0]),
-        .O(write_mem_addr[0]));
-  OBUF \write_mem_addr_OBUF[10]_inst 
-       (.I(write_mem_addr_OBUF[10]),
-        .O(write_mem_addr[10]));
-  OBUF \write_mem_addr_OBUF[11]_inst 
-       (.I(write_mem_addr_OBUF[11]),
-        .O(write_mem_addr[11]));
-  OBUF \write_mem_addr_OBUF[12]_inst 
-       (.I(write_mem_addr_OBUF[12]),
-        .O(write_mem_addr[12]));
-  OBUF \write_mem_addr_OBUF[13]_inst 
-       (.I(write_mem_addr_OBUF[13]),
-        .O(write_mem_addr[13]));
-  OBUF \write_mem_addr_OBUF[14]_inst 
-       (.I(write_mem_addr_OBUF[14]),
-        .O(write_mem_addr[14]));
-  OBUF \write_mem_addr_OBUF[15]_inst 
-       (.I(write_mem_addr_OBUF[15]),
-        .O(write_mem_addr[15]));
-  OBUF \write_mem_addr_OBUF[1]_inst 
-       (.I(write_mem_addr_OBUF[1]),
-        .O(write_mem_addr[1]));
-  OBUF \write_mem_addr_OBUF[2]_inst 
-       (.I(write_mem_addr_OBUF[2]),
-        .O(write_mem_addr[2]));
-  OBUF \write_mem_addr_OBUF[3]_inst 
-       (.I(write_mem_addr_OBUF[3]),
-        .O(write_mem_addr[3]));
-  OBUF \write_mem_addr_OBUF[4]_inst 
-       (.I(write_mem_addr_OBUF[4]),
-        .O(write_mem_addr[4]));
-  OBUF \write_mem_addr_OBUF[5]_inst 
-       (.I(write_mem_addr_OBUF[5]),
-        .O(write_mem_addr[5]));
-  OBUF \write_mem_addr_OBUF[6]_inst 
-       (.I(write_mem_addr_OBUF[6]),
-        .O(write_mem_addr[6]));
-  OBUF \write_mem_addr_OBUF[7]_inst 
-       (.I(write_mem_addr_OBUF[7]),
-        .O(write_mem_addr[7]));
-  OBUF \write_mem_addr_OBUF[8]_inst 
-       (.I(write_mem_addr_OBUF[8]),
-        .O(write_mem_addr[8]));
-  OBUF \write_mem_addr_OBUF[9]_inst 
-       (.I(write_mem_addr_OBUF[9]),
-        .O(write_mem_addr[9]));
-  OBUF write_mem_clk_OBUF_inst
-       (.I(write_mem_clk_OBUF),
-        .O(write_mem_clk));
-  OBUF \write_mem_data_OBUF[0]_inst 
-       (.I(write_mem_data_OBUF[0]),
-        .O(write_mem_data[0]));
-  OBUF \write_mem_data_OBUF[10]_inst 
-       (.I(write_mem_data_OBUF[10]),
-        .O(write_mem_data[10]));
-  OBUF \write_mem_data_OBUF[11]_inst 
-       (.I(write_mem_data_OBUF[11]),
-        .O(write_mem_data[11]));
-  OBUF \write_mem_data_OBUF[12]_inst 
-       (.I(write_mem_data_OBUF[12]),
-        .O(write_mem_data[12]));
-  OBUF \write_mem_data_OBUF[13]_inst 
-       (.I(write_mem_data_OBUF[13]),
-        .O(write_mem_data[13]));
-  OBUF \write_mem_data_OBUF[14]_inst 
-       (.I(write_mem_data_OBUF[14]),
-        .O(write_mem_data[14]));
-  OBUF \write_mem_data_OBUF[15]_inst 
-       (.I(write_mem_data_OBUF[15]),
-        .O(write_mem_data[15]));
-  OBUF \write_mem_data_OBUF[16]_inst 
-       (.I(write_mem_data_OBUF[16]),
-        .O(write_mem_data[16]));
-  OBUF \write_mem_data_OBUF[17]_inst 
-       (.I(write_mem_data_OBUF[17]),
-        .O(write_mem_data[17]));
-  OBUF \write_mem_data_OBUF[18]_inst 
-       (.I(write_mem_data_OBUF[18]),
-        .O(write_mem_data[18]));
-  OBUF \write_mem_data_OBUF[19]_inst 
-       (.I(write_mem_data_OBUF[19]),
-        .O(write_mem_data[19]));
-  OBUF \write_mem_data_OBUF[1]_inst 
-       (.I(write_mem_data_OBUF[1]),
-        .O(write_mem_data[1]));
-  OBUF \write_mem_data_OBUF[20]_inst 
-       (.I(write_mem_data_OBUF[20]),
-        .O(write_mem_data[20]));
-  OBUF \write_mem_data_OBUF[21]_inst 
-       (.I(write_mem_data_OBUF[21]),
-        .O(write_mem_data[21]));
-  OBUF \write_mem_data_OBUF[22]_inst 
-       (.I(write_mem_data_OBUF[22]),
-        .O(write_mem_data[22]));
-  OBUF \write_mem_data_OBUF[23]_inst 
-       (.I(write_mem_data_OBUF[23]),
-        .O(write_mem_data[23]));
-  OBUF \write_mem_data_OBUF[24]_inst 
-       (.I(write_mem_data_OBUF[24]),
-        .O(write_mem_data[24]));
-  OBUF \write_mem_data_OBUF[25]_inst 
-       (.I(write_mem_data_OBUF[25]),
-        .O(write_mem_data[25]));
-  OBUF \write_mem_data_OBUF[26]_inst 
-       (.I(write_mem_data_OBUF[26]),
-        .O(write_mem_data[26]));
-  OBUF \write_mem_data_OBUF[27]_inst 
-       (.I(write_mem_data_OBUF[27]),
-        .O(write_mem_data[27]));
-  OBUF \write_mem_data_OBUF[28]_inst 
-       (.I(write_mem_data_OBUF[28]),
-        .O(write_mem_data[28]));
-  OBUF \write_mem_data_OBUF[29]_inst 
-       (.I(write_mem_data_OBUF[29]),
-        .O(write_mem_data[29]));
-  OBUF \write_mem_data_OBUF[2]_inst 
-       (.I(write_mem_data_OBUF[2]),
-        .O(write_mem_data[2]));
-  OBUF \write_mem_data_OBUF[30]_inst 
-       (.I(write_mem_data_OBUF[30]),
-        .O(write_mem_data[30]));
-  OBUF \write_mem_data_OBUF[31]_inst 
-       (.I(write_mem_data_OBUF[31]),
-        .O(write_mem_data[31]));
-  OBUF \write_mem_data_OBUF[3]_inst 
-       (.I(write_mem_data_OBUF[3]),
-        .O(write_mem_data[3]));
-  OBUF \write_mem_data_OBUF[4]_inst 
-       (.I(write_mem_data_OBUF[4]),
-        .O(write_mem_data[4]));
-  OBUF \write_mem_data_OBUF[5]_inst 
-       (.I(write_mem_data_OBUF[5]),
-        .O(write_mem_data[5]));
-  OBUF \write_mem_data_OBUF[6]_inst 
-       (.I(write_mem_data_OBUF[6]),
-        .O(write_mem_data[6]));
-  OBUF \write_mem_data_OBUF[7]_inst 
-       (.I(write_mem_data_OBUF[7]),
-        .O(write_mem_data[7]));
-  OBUF \write_mem_data_OBUF[8]_inst 
-       (.I(write_mem_data_OBUF[8]),
-        .O(write_mem_data[8]));
-  OBUF \write_mem_data_OBUF[9]_inst 
-       (.I(write_mem_data_OBUF[9]),
-        .O(write_mem_data[9]));
-  OBUF write_mem_en_OBUF_inst
-       (.I(write_mem_en_OBUF),
-        .O(write_mem_en));
-  OBUF write_mem_rst_OBUF_inst
-       (.I(write_mem_rst_OBUF),
-        .O(write_mem_rst));
-  OBUF write_mem_we_OBUF_inst
-       (.I(write_mem_we_OBUF),
-        .O(write_mem_we));
-endmodule
-
-(* CHECK_LICENSE_TYPE = "bluex_wrapper_mem_0_0,wrapper_mem,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "wrapper_mem,Vivado 2023.2" *) 
-module bluex_wrapper_mem_0_0
-   (clk,
-    rst_n,
-    enable_CPU,
-    reg_write_inw,
-    memory_to_reg_inw,
-    memory_write_inw,
-    alu_result_inw,
-    write_data_inw,
-    write_reg_addr_inw,
-    read_mem_out_inw,
-    reg_write,
-    memory_to_reg,
-    write_mem_addr,
-    write_mem_data,
-    write_mem_en,
-    write_mem_we,
-    write_mem_clk,
-    write_mem_rst,
-    alu_result,
-    read_mem_out,
-    write_reg_addr);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bluex_clk, INSERT_VIP 0" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rst_n;
-  input enable_CPU;
-  input reg_write_inw;
-  input memory_to_reg_inw;
-  input memory_write_inw;
-  input [31:0]alu_result_inw;
-  input [31:0]write_data_inw;
-  input [4:0]write_reg_addr_inw;
-  input [31:0]read_mem_out_inw;
-  output reg_write;
-  output memory_to_reg;
-  output [15:0]write_mem_addr;
-  output [31:0]write_mem_data;
-  output write_mem_en;
-  output write_mem_we;
-  (* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 write_mem CLK" *) output write_mem_clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 write_mem_rst RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME write_mem_rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *) output write_mem_rst;
-  output [31:0]alu_result;
-  output [31:0]read_mem_out;
-  output [4:0]write_reg_addr;
-
-  wire \<const1> ;
-  wire [31:0]alu_result;
-  wire [31:0]alu_result_inw;
-  wire clk;
-  wire enable_CPU;
-  wire memory_to_reg;
-  wire memory_to_reg_inw;
-  wire memory_write_inw;
-  wire [31:0]read_mem_out_inw;
-  wire reg_write;
-  wire reg_write_inw;
-  wire rst_n;
-  wire [31:0]write_data_inw;
-  wire [31:0]write_mem_data;
-  wire write_mem_rst;
-  wire write_mem_we;
-  wire [4:0]write_reg_addr;
-  wire [4:0]write_reg_addr_inw;
-
-  assign read_mem_out[31:0] = read_mem_out_inw;
-  assign write_mem_addr[15:0] = alu_result[15:0];
-  assign write_mem_clk = clk;
-  assign write_mem_en = \<const1> ;
-  VCC VCC
-       (.P(\<const1> ));
-  bluex_wrapper_mem_0_0_wrapper_mem inst
-       (.alu_result(alu_result),
-        .alu_result_inw(alu_result_inw),
-        .clk(clk),
-        .enable_CPU(enable_CPU),
-        .memory_to_reg(memory_to_reg),
-        .memory_to_reg_inw(memory_to_reg_inw),
-        .memory_write_inw(memory_write_inw),
-        .reg_write(reg_write),
-        .reg_write_inw(reg_write_inw),
-        .rst_n(rst_n),
-        .write_data_inw(write_data_inw),
-        .write_mem_data(write_mem_data),
-        .write_mem_rst(write_mem_rst),
-        .write_mem_we(write_mem_we),
-        .write_reg_addr(write_reg_addr),
-        .write_reg_addr_inw(write_reg_addr_inw));
-endmodule
-
-(* ORIG_REF_NAME = "wrapper_mem" *) 
-module bluex_wrapper_mem_0_0_wrapper_mem
+module wrapper_mem
    (reg_write,
     write_mem_rst,
     memory_to_reg,

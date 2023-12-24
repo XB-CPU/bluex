@@ -112,7 +112,7 @@ class isc_code:
 	FC_DISP = 0
 	IM_DISP = 0
 	AD_DISP = 0
-	def __init__(self, isc:int=None, cmd_type:str=None, asb_line:int=None, bin_line:int=None) -> None:
+	def __init__(self, isc:int=None, cmd_type:str=None, asb_line:int=None, bin_line:int=None, cmd:str=None) -> None:
 		if isc == None:
 			self.isc = 0
 		elif isinstance(isc, int):
@@ -122,6 +122,7 @@ class isc_code:
 		self.cmd_type = cmd_type
 		self.asb_line = asb_line
 		self.bin_line = bin_line
+		self.cmd = cmd
 
 	def add_op(self, op_value:int, f:io.TextIOWrapper, line_index:int):
 		if not isinstance(op_value, int):
@@ -186,6 +187,9 @@ class isc_code:
 	def set_bin_line(self, bin_line:int):
 		self.bin_line = bin_line
 
+	def set_cmd_str(self, cmd:str):
+		self.cmd = cmd
+
 isc_code_list:List[isc_code] = []
 
 
@@ -211,7 +215,7 @@ def machine_code_print(code:str, ic:isc_code):#, cmd_type:str
 		op_code = int("".join(res[0:6]), 2)
 		ad_code = int("".join(res[17:]), 2)
 		res.append("  \t" + str(ad_code))
-	res.insert(0, str(ic.asb_line + 1) + "->" + str(ic.bin_line + 1) + "#\t" +str(op_code) + "\t")
+	res.insert(0, str(ic.asb_line + 1) + "->" + str(ic.bin_line + 1) + "#\t" +str(op_code) + "\t" + ic.cmd + "\t")
 	print("".join(res))
 
 def load_macro():
@@ -372,6 +376,7 @@ def compile(f:io.TextIOWrapper):
 							ic.add_rs(reg_num, f, index)
 						elif reg_pos == 2:
 							ic.add_rt(reg_num, f, index)
+					ic.set_cmd_str(line[0])
 				elif line[0] in ("NOT"):
 					if len(line) != 3:
 						if line[3].startswith("#") or line[3].startswith("//"):
@@ -390,6 +395,7 @@ def compile(f:io.TextIOWrapper):
 							ic.add_rt(reg_num, f, index)
 						elif reg_pos == 1:
 							ic.add_rs(reg_num, f, index)
+					ic.set_cmd_str(line[0])
 				else:
 					asb_print(f"unsupported cmd {line[0]} in {cmd_type} instruction set. Please contact compiler author for this problem", f, index)
 				ic.add_fc(macro_dict[line[0]], f, index)
@@ -423,6 +429,7 @@ def compile(f:io.TextIOWrapper):
 							ic.add_rs(rim_num, f, index)				
 						elif rim_pos == 2:
 							ic.add_im(imm_proc(rim, f, index), f, index)
+					ic.set_cmd_str(line[0])
 				elif line[0] in ("BEQ", "BNE"): 
 					if len(line) != 4:
 						if line[4].startswith("#") or line[4].startswith("//"):
@@ -453,6 +460,7 @@ def compile(f:io.TextIOWrapper):
 								ic.add_im(imm_proc(rim, f, index), f, index)
 							else:
 								seg_symbol_list.try_use_symb(rim, index)
+					ic.set_cmd_str(line[0])
 				elif line[0] in ("NOTI", "MIRL", "MIRH"):
 					if len(line) != 3:
 						if line[3].startswith("#") or line[3].startswith("//"):
@@ -471,6 +479,7 @@ def compile(f:io.TextIOWrapper):
 							ic.add_rt(rim_num, f, index)
 						elif rim_pos == 1:
 							ic.add_im(imm_proc(rim, f, index), f, index)
+					ic.set_cmd_str(line[0])
 				else:
 					asb_print(f"unsupported cmd {line[0]} in {cmd_type} instruction set. Please contact compiler author for this problem", f, index)
 				ic.add_op(macro_dict[line[0]], f, index)
@@ -489,6 +498,7 @@ def compile(f:io.TextIOWrapper):
 								ic.add_im(imm_proc(imm, f, index), f, index)
 							else:
 								seg_symbol_list.try_use_symb(imm, index)
+					ic.set_cmd_str(line[0])
 				else:
 					asb_print(f"unsupported cmd {line[0]} in {cmd_type} instruction set. Please contact compiler author for this problem", f, index)
 				ic.add_op(macro_dict[line[0]], f, index)

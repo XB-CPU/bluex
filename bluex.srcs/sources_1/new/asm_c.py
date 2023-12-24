@@ -67,12 +67,12 @@ def asb_print(mes:str, file:io.TextIOWrapper=None, line_index:int=None, level:in
 		asb_warning_num += 1
 		if cli_args.show_warning:
 			if line_index is None:
-				print(f"\033[0;95mCompile waring:\033[0m {mes}.")
+				print(f"\033[0;95mCompile warning:\033[0m {mes}.")
 			else:
-				print(f"\033[0;95mCompile waring\033[0m in line \033[0;95m{line_index + 1}:\033[0m {mes}.", end=" ")
+				print(f"\033[0;95mCompile warning\033[0m in line \033[0;95m{line_index + 1}:\033[0m {mes}.", end=" ")
 			if file is not None:
 				file.seek(0)
-				print(f"waring content: \033[0;95m{file.readlines()[line_index].rstrip()}\033[0m")
+				print(f"warning content: \033[0;95m{file.readlines()[line_index].rstrip()}\033[0m")
 			else:
 				print()
 
@@ -211,7 +211,7 @@ def machine_code_print(code:str, ic:isc_code):#, cmd_type:str
 		op_code = int("".join(res[0:6]), 2)
 		ad_code = int("".join(res[17:]), 2)
 		res.append("  \t" + str(ad_code))
-	res.insert(0, str(ic.asb_line) + "->" + str(ic.bin_line) + "#\t" +str(op_code) + "\t")
+	res.insert(0, str(ic.asb_line + 1) + "->" + str(ic.bin_line + 1) + "#\t" +str(op_code) + "\t")
 	print("".join(res))
 
 def load_macro():
@@ -228,11 +228,14 @@ def load_macro():
 		else:
 			error_print('"global_macro.v" has unrecognizable encoding! Abort.')
 	with open("./global_macro.v", errors="ignore") as f:
+		check_isc = set()
 		for line in f.readlines():
 			if line.startswith("`define ALO_"):
 				line = line.split()[1:4]
 				cmd = line[0].removeprefix("ALO_")
-				code = int(line[1].removeprefix("6'd"))
+				code = int(line[1].removeprefix("6'b").replace("_", ""), 2)
+				assert (not (code in check_isc)), f"Instruction {line} repeated!"
+				check_isc.add(code)
 				macro_dict[cmd] = code
 				cmd_type = line[2].removeprefix("//")
 				if cmd_type == "R":

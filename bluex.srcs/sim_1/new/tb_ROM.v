@@ -1,4 +1,4 @@
-`timescale  1ns / 1ps
+`timescale  1ns / 100ps
 `include "..//..//sources_1//new//global_macro.v"
 
 //~ `New testbench

@@ -81,8 +81,6 @@ module redirection (
 		endcase
 	end
 
-	// wire read_mem = (real_op == `ALO_LDW);
-
 	wire rs_load_use = read_rs & write_reg_addr_ex_is_rs & mem_rd_ex & write_reg_addr_ex_not_zero;
 	wire rt_load_use = read_rt & write_reg_addr_ex_is_rt & mem_rd_ex & write_reg_addr_ex_not_zero;
 	wire load_use = rs_load_use | rt_load_use;

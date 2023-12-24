@@ -40,6 +40,7 @@
         "rst": [ { "direction": "in" } ],
         "enable_CPU": [ { "direction": "in" } ],
         "flush": [ { "direction": "in" } ],
+        "stall": [ { "direction": "in" } ],
         "rs_inw": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
         "rt_inw": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
         "imm_inw": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
@@ -61,9 +62,9 @@
         "branch_PC": [ { "direction": "out" } ],
         "branch_addr": [ { "direction": "out", "size_left": "15", "size_right": "0" } ],
         "write_reg_addr_out": [ { "direction": "out", "size_left": "4", "size_right": "0" } ],
-        "memory_write": [ { "direction": "out" } ],
-        "memory_to_reg": [ { "direction": "out" } ],
-        "reg_write": [ { "direction": "out" } ]
+        "memory_write_out": [ { "direction": "out" } ],
+        "memory_to_reg_out": [ { "direction": "out" } ],
+        "reg_write_out": [ { "direction": "out" } ]
       },
       "interfaces": {
         "user_lcd": {

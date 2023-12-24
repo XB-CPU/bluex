@@ -8,7 +8,7 @@ module tb_ROM;
 
 // bluex_wrapper Parameters
 parameter PERIOD  = 20;
-parameter MEM_UNIT = 40;
+parameter MEM_UNIT = 32;
 
 
 // bluex_wrapper Inputs
@@ -42,6 +42,21 @@ reg [`ISC_BIT-1:0] RAM [MEM_UNIT - 1:0];
 assign isc = ROM[current_addr]; 
 assign read_mem_out_inw = RAM[write_mem_addr];
 
+integer i;
+
+always @(posedge write_mem_clk or posedge write_mem_rst) begin
+	if (write_mem_rst) begin
+		for (i = 0; i < MEM_UNIT; i = i + 1) begin
+			RAM[i] <= `ISC_BIT'b0;
+		end
+	end
+	else begin
+		if (write_mem_en & write_mem_we) begin
+			RAM[write_mem_addr] <= write_mem_data;
+		end
+	end
+end
+
 initial
 begin
     forever #(PERIOD/2)  clk=~clk;
@@ -52,7 +67,6 @@ begin
     #(PERIOD*2) rst_n  =  1;
 end
 
-integer i;
 initial begin
 	for (i = 0; i < MEM_UNIT; i = i + 1) begin
 		ROM[i] <= {`ISC_BIT'b0};

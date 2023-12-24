@@ -7,6 +7,7 @@ module alu_ex (
 	input									rst,
 	input									enable_CPU,
 	input									flush,
+	input									stall,
 	/*ID data input*/
 	input			[`GPR_BIT - 1 : 0] 		rs_inw,
 	input			[`GPR_BIT - 1 : 0] 		rt_inw,
@@ -39,9 +40,9 @@ module alu_ex (
 	output			[`ADR_BIT - 1 : 0]		branch_addr,
 	/*redirection*/
 	output	reg		[`GPR_ADR - 1 : 0]		write_reg_addr_out,
-	output	reg 							memory_write,
-	output	reg								memory_to_reg,
-	output	reg								reg_write//,
+	output	 								memory_write_out,
+	output									memory_to_reg_out,
+	output									reg_write_out//,
 
 	// output	reg		[`ERR_BIT - 1 : 0]		error_type,
 	// output	reg		[`ERR_BIT - 1 : 0]		carry
@@ -62,6 +63,13 @@ module alu_ex (
 	reg 			[`ADR_BIT - 1 : 0]		pc_next;
 	reg 									branch_isc_flag;
 	// reg				[`SFT_BIT - 1 : 0]		shift_num;
+	reg										memory_write;
+	reg										memory_to_reg;
+	reg										reg_write;
+
+	assign memory_write_out = memory_write & (~branch_jump_flag);
+	assign memory_to_reg_out = memory_to_reg & (~branch_jump_flag);
+	assign reg_write_out = reg_write & (~branch_jump_flag);
 
 	wire 									read_write_rst;
 	wire 									branch_rst;
@@ -100,24 +108,18 @@ module alu_ex (
 		endcase
 	end
 
-	always @(posedge clk or posedge read_write_rst) begin
-		if (read_write_rst) begin
-			memory_write <= 0;
-			memory_to_reg <= 0;
-			reg_write <= 0;
-			write_reg_addr_out <= 0;
-			// shift_num <= 0;
-		end
-		else begin
-			if (enable_CPU) begin
-				memory_write <= memory_write_inw;
-				memory_to_reg <= memory_to_reg_inw;
-				reg_write <= reg_write_inw;
-				write_reg_addr_out <= write_reg_addr_in_inw;
-				// shift_num <= shift_num_inw;
-			end
-		end
-	end
+	// always @(posedge clk or posedge read_write_rst) begin
+	// 	if (read_write_rst) begin
+	// 		memory_write <= 0;
+	// 		// shift_num <= 0;
+	// 	end
+	// 	else begin
+	// 		if (enable_CPU & (~stall)) begin
+	// 			memory_write <= memory_write_inw;
+	// 			// shift_num <= shift_num_inw;
+	// 		end
+	// 	end
+	// end
 
 	always @(posedge clk or posedge branch_rst) begin
 		if (branch_rst) begin
@@ -130,9 +132,13 @@ module alu_ex (
 			rs_forward <= 0;
 			rt_forward <= 0;
 			alu_src <= 0;
+			write_reg_addr_out <= 0;
+			memory_to_reg <= 0;
+			reg_write <= 0;
+			memory_write <= 0;
 		end
 		else begin
-			if (enable_CPU) begin
+			if (enable_CPU & (~stall)) begin
 				imm <= imm_inw;
 				alu_op <= alu_op_inw;
 				pc_next <= pc_next_inw;
@@ -142,6 +148,12 @@ module alu_ex (
 				rs_forward <= rs_forward_inw;
 				rt_forward <= rt_forward_inw;
 				alu_src <= alu_src_inw;
+				memory_to_reg <= memory_to_reg_inw;
+				reg_write <= reg_write_inw;
+				memory_write <= memory_write_inw;
+			end
+			if (enable_CPU) begin
+				write_reg_addr_out <= write_reg_addr_in_inw;
 			end
 		end
 	end

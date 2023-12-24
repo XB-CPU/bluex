@@ -59,6 +59,7 @@ module bluex_alu_ex_0_0 (
   rst,
   enable_CPU,
   flush,
+  stall,
   rs_inw,
   rt_inw,
   imm_inw,
@@ -80,9 +81,9 @@ module bluex_alu_ex_0_0 (
   branch_PC,
   branch_addr,
   write_reg_addr_out,
-  memory_write,
-  memory_to_reg,
-  reg_write
+  memory_write_out,
+  memory_to_reg_out,
+  reg_write_out
 );
 
 (* X_INTERFACE_INFO = "xilinx.com:user:lcd:1.0 user_lcd CLK" *)
@@ -92,6 +93,7 @@ input wire clk;
 input wire rst;
 input wire enable_CPU;
 input wire flush;
+input wire stall;
 input wire [31 : 0] rs_inw;
 input wire [31 : 0] rt_inw;
 input wire [31 : 0] imm_inw;
@@ -113,15 +115,16 @@ output wire branch_jump_flag;
 output wire branch_PC;
 output wire [15 : 0] branch_addr;
 output wire [4 : 0] write_reg_addr_out;
-output wire memory_write;
-output wire memory_to_reg;
-output wire reg_write;
+output wire memory_write_out;
+output wire memory_to_reg_out;
+output wire reg_write_out;
 
   alu_ex inst (
     .clk(clk),
     .rst(rst),
     .enable_CPU(enable_CPU),
     .flush(flush),
+    .stall(stall),
     .rs_inw(rs_inw),
     .rt_inw(rt_inw),
     .imm_inw(imm_inw),
@@ -143,8 +146,8 @@ output wire reg_write;
     .branch_PC(branch_PC),
     .branch_addr(branch_addr),
     .write_reg_addr_out(write_reg_addr_out),
-    .memory_write(memory_write),
-    .memory_to_reg(memory_to_reg),
-    .reg_write(reg_write)
+    .memory_write_out(memory_write_out),
+    .memory_to_reg_out(memory_to_reg_out),
+    .reg_write_out(reg_write_out)
   );
 endmodule

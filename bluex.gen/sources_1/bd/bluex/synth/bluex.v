@@ -2,7 +2,7 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-//Date        : Sun Dec 24 11:49:42 2023
+//Date        : Sun Dec 24 15:24:32 2023
 //Host        : DESKTOP-50PL36L running 64-bit major release  (build 9200)
 //Command     : generate_target bluex.bd
 //Design      : bluex
@@ -163,19 +163,20 @@ module bluex
         .enable_CPU(Op1_0_1),
         .flush(redirection_0_flush),
         .imm_inw(aux_id_0_sext_imm),
-        .memory_to_reg(alu_ex_0_memory_to_reg),
         .memory_to_reg_inw(controller_id_0_memory_to_reg),
-        .memory_write(alu_ex_0_memory_write),
+        .memory_to_reg_out(alu_ex_0_memory_to_reg),
         .memory_write_inw(controller_id_0_memory_write),
+        .memory_write_out(alu_ex_0_memory_write),
         .pc_next_inw(demux_id_0_pc_next),
         .rd_value(alu_ex_0_rd_value),
-        .reg_write(alu_ex_0_reg_write),
         .reg_write_inw(controller_id_0_reg_write),
+        .reg_write_out(alu_ex_0_reg_write),
         .rs_forward_inw(redirection_0_rs_forward),
         .rs_inw(reg_heap_id_0_rs),
         .rst(util_vector_logic_2_Res),
         .rt_forward_inw(redirection_0_rt_forward),
         .rt_inw(reg_heap_id_0_rt),
+        .stall(redirection_0_stall),
         .write_back_data(reg_wb_0_write_back_data),
         .write_data(alu_ex_0_write_data),
         .write_reg_addr_in_inw(aux_id_0_addr_reg),

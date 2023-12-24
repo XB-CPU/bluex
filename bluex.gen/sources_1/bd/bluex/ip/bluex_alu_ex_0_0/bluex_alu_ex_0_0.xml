@@ -68,7 +68,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:85bb11ae</spirit:value>
+            <spirit:value>9:837f5722</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -80,7 +80,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e261ce88</spirit:value>
+            <spirit:value>9:d217f0ed</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -91,7 +91,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e261ce88</spirit:value>
+            <spirit:value>9:d217f0ed</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -107,11 +107,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Dec 24 03:49:43 UTC 2023</spirit:value>
+            <spirit:value>Sun Dec 24 07:24:32 UTC 2023</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:85bb11ae</spirit:value>
+            <spirit:value>9:837f5722</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -127,11 +127,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Dec 24 03:49:43 UTC 2023</spirit:value>
+            <spirit:value>Sun Dec 24 07:24:32 UTC 2023</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e261ce88</spirit:value>
+            <spirit:value>9:d217f0ed</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -181,6 +181,19 @@
       </spirit:port>
       <spirit:port>
         <spirit:name>flush</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>stall</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -522,12 +535,12 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>memory_write</spirit:name>
+        <spirit:name>memory_write_out</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -535,12 +548,12 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>memory_to_reg</spirit:name>
+        <spirit:name>memory_to_reg_out</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -548,12 +561,12 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>reg_write</spirit:name>
+        <spirit:name>reg_write_out</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>

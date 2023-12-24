@@ -357,11 +357,13 @@ def compile(f:io.TextIOWrapper):
 				cmd_type = "R"
 				ic.set_cmd_type(cmd_type)
 				if line[0] in ("ADD", "SUB", "ORL", "AND", "XOR", "SLL", "SRL", "SRA", "SLS"):
-					if len(line) != 4:
+					if len(line) > 4:
 						if line[4].startswith("#") or line[4].startswith("//"):
 							line = line[0:4]
 						else:
 							asb_print(f"cmd {line[0]} should be followed by 3 reg, but {len(line) - 1} items are given", f, index)
+					elif len(line) < 4:
+						asb_print(f"cmd {line[0]} should be followed by 3 reg, but {len(line) - 1} items are given", f, index)
 					for (reg_pos, reg) in enumerate(line[1:]):
 						if not reg.startswith("R"):
 							asb_print(f"expect reg, but \"{reg}\" found", f, index)
@@ -378,11 +380,13 @@ def compile(f:io.TextIOWrapper):
 							ic.add_rt(reg_num, f, index)
 					ic.set_cmd_str(line[0])
 				elif line[0] in ("NOT"):
-					if len(line) != 3:
+					if len(line) > 3:
 						if line[3].startswith("#") or line[3].startswith("//"):
 							line = line[0:3]
 						else:
 							asb_print(f"cmd {line[0]} should be followed by 2 reg, but {len(line) - 1} items are given", f, index)
+					elif len(line) < 3:
+						asb_print(f"cmd {line[0]} should be followed by 2 reg, but {len(line) - 1} items are given", f, index)
 					for (reg_pos, reg) in enumerate(line[1:]):
 						if not reg.startswith("R"):
 							asb_print(f"expect reg, but \"{reg}\" found", f, index)
@@ -403,11 +407,13 @@ def compile(f:io.TextIOWrapper):
 				cmd_type = "I"
 				ic.set_cmd_type(cmd_type)
 				if line[0] in ("ADDI", "SUBI", "ORLI", "ANDI", "XORI", "SLSI", "LDW", "SVW"):
-					if len(line) != 4:
+					if len(line) > 4:
 						if line[4].startswith("#") or line[4].startswith("//"):
 							line = line[0:4]
 						else:
 							asb_print(f"cmd {line[0]} should be followed by 2 reg and 1 imm, but {len(line) - 1} items are given", f, index)
+					elif len(line) < 4:
+						asb_print(f"cmd {line[0]} should be followed by 2 reg and 1 imm, but {len(line) - 1} items are given", f, index)
 					for (rim_pos, rim) in enumerate(line[1:]):
 						if rim_pos == 0:
 							if not rim.startswith("R"):
@@ -430,12 +436,14 @@ def compile(f:io.TextIOWrapper):
 						elif rim_pos == 2:
 							ic.add_im(imm_proc(rim, f, index), f, index)
 					ic.set_cmd_str(line[0])
-				elif line[0] in ("BEQ", "BNE"): 
-					if len(line) != 4:
+				elif line[0] in ("BEQ", "BNE"):
+					if len(line) > 4:
 						if line[4].startswith("#") or line[4].startswith("//"):
 							line = line[0:4]
 						else:
 							asb_print(f"cmd {line[0]} should be followed by 2 reg and 1 imm or symbol, but {len(line) - 1} items are given", f, index)
+					elif len(line) < 4:
+						asb_print(f"cmd {line[0]} should be followed by 2 reg and 1 imm or symbol, but {len(line) - 1} items are given", f, index)
 					for (rim_pos, rim) in enumerate(line[1:]):
 						if rim_pos == 0:
 							if not rim.startswith("R"):
@@ -462,11 +470,13 @@ def compile(f:io.TextIOWrapper):
 								seg_symbol_list.try_use_symb(rim, index)
 					ic.set_cmd_str(line[0])
 				elif line[0] in ("NOTI", "MIRL", "MIRH"):
-					if len(line) != 3:
+					if len(line) > 3:
 						if line[3].startswith("#") or line[3].startswith("//"):
 							line = line[0:3]
 						else:
 							asb_print(f"cmd {line[0]} should be followed by 1 reg and 1 imm, but {len(line) - 1} items are given", f, index)
+					elif len(line) < 3:
+						asb_print(f"cmd {line[0]} should be followed by 1 reg and 1 imm, but {len(line) - 1} items are given", f, index)
 					for (rim_pos, rim) in enumerate(line[1:]):
 						if rim_pos == 0:
 							if not rim.startswith("R"):
@@ -487,11 +497,13 @@ def compile(f:io.TextIOWrapper):
 				cmd_type = "J"
 				ic.set_cmd_type(cmd_type)
 				if line[0] in ("JMP"):
-					if len(line) != 2:
+					if len(line) > 2:
 						if line[2].startswith("#") or line[2].startswith("//"):
 							line = line[0:2]
 						else:
 							asb_print(f"cmd {line[0]} should be followed by 1 imm, but {len(line) - 1} items are given", f, index)
+					elif len(line) < 2:
+						asb_print(f"cmd {line[0]} should be followed by 1 imm, but {len(line) - 1} items are given", f, index)
 					for (imm_pos, imm) in enumerate(line[1:]):
 						if imm_pos == 0:
 							if (imm[0] == "-" and imm[1].isdigit()) or imm[0].isdigit():
